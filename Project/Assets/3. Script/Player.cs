@@ -15,9 +15,12 @@ public class Player : MonoBehaviour
             MoveDirection = new Vector3(input.x, 0f, input.y);
             Debug.Log(MoveDirection);
         }
+
+        
     }
 
-    private void Start()
+    private void Update()
     {
+        transform.position += MoveDirection * Time.deltaTime;
     }
 }
