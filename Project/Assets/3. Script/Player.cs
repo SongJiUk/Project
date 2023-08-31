@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,5 +15,9 @@ public class Player : MonoBehaviour
             MoveDirection = new Vector3(input.x, 0f, input.y);
             Debug.Log(MoveDirection);
         }
+    }
+
+    private void Start()
+    {
     }
 }
