@@ -15,10 +15,19 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "Arrow",
-                    "type": "Value",
-                    "id": "4ab79c6c-f302-4a58-bdde-02ad616e4168",
-                    "expectedControlType": "Vector2",
+                    "name": "LeftMouse",
+                    "type": "Button",
+                    "id": "ec343a6d-b13c-4360-bf00-617c404ec070",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "RightMouse",
+                    "type": "Button",
+                    "id": "4b3ff86c-a688-4129-bda5-f2ec58e033b3",
+                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
@@ -26,7 +35,7 @@
             ],
             "bindings": [
                 {
-                    "name": "2D Vector",
+                    "name": "WASD",
                     "id": "692c08be-1377-42e2-a055-79275adaae1e",
                     "path": "2DVector",
                     "interactions": "",
@@ -81,59 +90,81 @@
                     "isPartOfComposite": true
                 },
                 {
-                    "name": "2D Vector",
-                    "id": "338a2b37-a1a8-4e57-9565-93a0d0adcf05",
+                    "name": "Arrow",
+                    "id": "8c32ba68-b6ee-4e5a-80ac-5393a0f416df",
                     "path": "2DVector",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Arrow",
+                    "action": "Move",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "up",
-                    "id": "1e8eec10-a906-4405-a8c2-b28f36950a3e",
+                    "id": "620aa4bf-0a5e-4034-b6f2-da09402a5a8d",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Arrow",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "down",
-                    "id": "fb24bc47-5252-403a-ab8e-e66016d05ce4",
+                    "id": "4cfbdde5-ce1c-4309-b24b-519fdb84163c",
                     "path": "<Keyboard>/downArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Arrow",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "left",
-                    "id": "4cbc099f-8391-4847-b826-586184bc3265",
+                    "id": "abce40e5-e33a-4320-bb1b-fa31b3ec4be5",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Arrow",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "right",
-                    "id": "9b98d6a0-9803-44c0-b5e2-d064ca6a36d3",
+                    "id": "a2341f7c-4c75-4bf2-89da-dfed0abdacaa",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Arrow",
+                    "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "877a2b71-9483-4a9a-a59d-7759320ea034",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "LeftMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ebbabb07-8c4a-4bff-9900-461954de5570",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "PC",
+                    "action": "RightMouse",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
