@@ -159,7 +159,7 @@
                     "name": "",
                     "id": "ebbabb07-8c4a-4bff-9900-461954de5570",
                     "path": "<Mouse>/rightButton",
-                    "interactions": "",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "PC",
                     "action": "RightMouse",
