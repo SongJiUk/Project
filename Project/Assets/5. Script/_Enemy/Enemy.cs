@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
     public void ActivateAttackEffect()
     {
         // 이펙트를 생성하고 플레이어 방향으로 위치를 조정합니다.
-        Vector3 effectPosition = player.position + Vector3.forward; // 예시로 플레이어 위쪽에 생성
+        Vector3 effectPosition = player.position + Vector3.forward; // 플레이어 앞쪽에 생성
         Instantiate(attackEffectPrefab, effectPosition, Quaternion.identity);
 
         // 여기에서 필요한 공격 로직을 추가할 수 있습니다.
