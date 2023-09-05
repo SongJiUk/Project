@@ -8,8 +8,19 @@ public class DragonBreath : MonoBehaviour
     GameObject attackEffectPrefab;
     [SerializeField]
     Transform EffectPosition;
+
+    ParticleSystem particle;
+    private void Start()
+    {
+        GameObject obj = Instantiate(attackEffectPrefab);
+        obj.transform.SetParent(EffectPosition);
+        obj.transform.localPosition = Vector3.zero;
+        obj.transform.localRotation = Quaternion.identity;
+
+        particle = obj.GetComponent<ParticleSystem>();
+    }
     public void DragonAttack()
     {
-        Instantiate(attackEffectPrefab, EffectPosition.position, Quaternion.Euler( new Vector3 (EffectPosition.rotation.x, EffectPosition.rotation.y, EffectPosition.rotation.z))).transform.parent = EffectPosition;
+        particle.Play();
     }
 }
