@@ -18,9 +18,9 @@ public class Player : Singleton<Player>
 
     [SerializeField] Animator anim;
     [SerializeField] NavMeshAgent nav;
-    Vector3 moveVelocity = Vector3.zero;
     bool isClickLeftMouse;
     Vector3 MoveDirection = Vector3.zero;
+    bool hasStarted = false;
 
     private void Awake()
     {
@@ -40,22 +40,52 @@ public class Player : Singleton<Player>
         }
     }
 
-    public void OnLeftClickOn(InputAction.CallbackContext context)
+    public void OnPressQBtn(InputAction.CallbackContext context)
     {
-        
-        if(!isClickLeftMouse)
-        {
-            anim.SetTrigger("Attack");
-            Debug.Log("11111");
-            isClickLeftMouse = true;
 
-            Invoke("ClickOver", 0.3f);
+        if (context.performed && !hasStarted)
+        {
+            Debug.Log("aa");
+            hasStarted = true;
+            anim.SetTrigger("PressQ");
+            anim.applyRootMotion = true;
+            nav.ResetPath();
         }
     }
-    public void ClickOver()
+
+    public void OnPressWBtn(InputAction.CallbackContext context)
     {
-        isClickLeftMouse = false;
+        Debug.Log("PressW");
+        anim.SetTrigger("PressW");
     }
+
+    public void OnPressEBtn(InputAction.CallbackContext context)
+    {
+        Debug.Log("PressE");
+        anim.SetTrigger("PressE");
+    }
+
+    public void OnPressRBtn(InputAction.CallbackContext context)
+    {
+        Debug.Log("PressR");
+        anim.SetTrigger("PressR");
+    }
+
+    public void OnLeftClickOn(InputAction.CallbackContext context)
+    {
+
+        if(context.performed && !isClickLeftMouse)
+        {
+            anim.SetTrigger("Attack");
+            isClickLeftMouse = true;
+        }
+
+        if(context.canceled)
+        {
+            isClickLeftMouse = false;
+        }
+    }
+  
 
     public void OnRightClick(InputAction.CallbackContext context)
     {
@@ -79,7 +109,13 @@ public class Player : Singleton<Player>
     {
 
         float MoveAnim = nav.remainingDistance < nav.stoppingDistance ? 0f : 1f;
-        anim.SetFloat("Velocity", MoveAnim, 0.5f, Time.deltaTime);
+        anim.SetFloat("Velocity", MoveAnim, 0.2f, Time.deltaTime);
+    }
+
+    public void EndChargeAttack()
+    {
+        anim.applyRootMotion = false;
+        hasStarted = false;
     }
 
 }
