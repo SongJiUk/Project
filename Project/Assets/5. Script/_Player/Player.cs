@@ -21,7 +21,6 @@ public class Player : Singleton<Player>
     bool isClickLeftMouse;
     Vector3 MoveDirection = Vector3.zero;
     bool hasStarted = false;
-
     private void Awake()
     {
         //if (null == instance) instance = this;
@@ -38,6 +37,11 @@ public class Player : Singleton<Player>
             
             anim.SetFloat("Velocity", MoveAnim);
         }
+    }
+
+    public void Check()
+    {
+        Debug.Log("wefsfsdfaf");
     }
 
     public void OnPressQBtn(InputAction.CallbackContext context)

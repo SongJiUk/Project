@@ -677,9 +677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 0}
-  distance: 5
-  height: 2
-  smoothSpeed: 5
+  smoothSpeed: 0.125
 --- !u!1 &1284094987
 GameObject:
   m_ObjectHideFlags: 0
