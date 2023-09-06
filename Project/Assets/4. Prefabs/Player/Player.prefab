@@ -42111,22 +42111,6 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 4757314139466498366}
         m_TargetAssemblyTypeName: Player, Assembly-CSharp
-        m_MethodName: OnPressWBtn
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_ActionId: 295cd4f3-17b5-43d8-bd5e-56816f3593db
-    m_ActionName: PlayerActions/SkillW[/Keyboard/w]
-  - m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 4757314139466498366}
-        m_TargetAssemblyTypeName: Player, Assembly-CSharp
         m_MethodName: OnPressEBtn
         m_Mode: 0
         m_Arguments:
@@ -42155,6 +42139,54 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 6c985cd6-493d-47b1-ac04-6e7609258a35
     m_ActionName: PlayerActions/SkillR[/Keyboard/r]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4757314139466498366}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnPressRBtn
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 1e2aff6b-5efc-447a-8ebc-136ece9d3795
+    m_ActionName: PlayerActions/SkillF[/Keyboard/f]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4757314139466498366}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnMouseWheelUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 8374c44a-cb2d-46c0-90fb-d5f3059afe0c
+    m_ActionName: PlayerActions/MouseWheel[/Mouse/scroll/up]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4757314139466498366}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnMouseWheelDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2d8bebbf-e731-4452-aa88-67212e749afe
+    m_ActionName: PlayerActions/MouseWheelDown[/Mouse/scroll/down]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: PlayerActions
@@ -42208,7 +42240,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2eee664a1c15749149eb4bdec1ba35d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  obj: {fileID: 0}
 --- !u!1 &1595597176900030
 GameObject:
   m_ObjectHideFlags: 0

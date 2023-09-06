@@ -16,51 +16,48 @@ public class Player : Singleton<Player>
     private float hp;
     public float HP { get { return hp; } }
 
-    [SerializeField] Animator anim;
-    [SerializeField] NavMeshAgent nav;
+    private float speed;
+    public float SPEED { get { return speed; } set { speed = value; } }
+
+    Animator anim;
+    NavMeshAgent nav;
     bool isClickLeftMouse;
-    Vector3 MoveDirection = Vector3.zero;
     bool hasStarted = false;
+    bool isUseSkill = false;
+    Vector3 MoveDirection = Vector3.zero;
+    
     private void Awake()
     {
         //if (null == instance) instance = this;
+        SPEED = 3f;
+
+        if (null == anim) anim = GetComponent<Animator>();
+        if (null == nav) nav = GetComponent<NavMeshAgent>();
     }
 
 
     public void OnMove(InputAction.CallbackContext context)
     {
         Vector2 input = context.ReadValue<Vector2>();
-        if(input != null)
+        if (input != null)
         {
             MoveDirection = new Vector3(input.x, 0f, input.y);
-            float MoveAnim = MoveDirection == Vector3.zero ? 0f : 1f;
-            
-            anim.SetFloat("Velocity", MoveAnim);
+           
         }
     }
 
-    public void Check()
-    {
-        Debug.Log("wefsfsdfaf");
-    }
-
+   
     public void OnPressQBtn(InputAction.CallbackContext context)
     {
 
         if (context.performed && !hasStarted)
         {
-            Debug.Log("aa");
+            isUseSkill = true;
             hasStarted = true;
             anim.SetTrigger("PressQ");
             anim.applyRootMotion = true;
             nav.ResetPath();
         }
-    }
-
-    public void OnPressWBtn(InputAction.CallbackContext context)
-    {
-        Debug.Log("PressW");
-        anim.SetTrigger("PressW");
     }
 
     public void OnPressEBtn(InputAction.CallbackContext context)
@@ -73,6 +70,12 @@ public class Player : Singleton<Player>
     {
         Debug.Log("PressR");
         anim.SetTrigger("PressR");
+    }
+
+    public void OnPressFBtn(InputAction.CallbackContext context)
+    {
+        Debug.Log("PressF");
+        anim.SetTrigger("PressF");
     }
 
     public void OnLeftClickOn(InputAction.CallbackContext context)
@@ -93,33 +96,40 @@ public class Player : Singleton<Player>
 
     public void OnRightClick(InputAction.CallbackContext context)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        if (Physics.Raycast(ray, out RaycastHit hit))
-        {
-            nav.SetDestination(hit.point);
-        }
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        //if (Physics.Raycast(ray, out RaycastHit hit))
+        //{
+        //    nav.SetDestination(hit.point);
+        //}
     }
-
 
     private void FixedUpdate()
     {
-        CheckPlaterVelocity();
+        if(!isUseSkill)
+        {
+            transform.Translate(MoveDirection.normalized * Time.deltaTime * SPEED, Space.World);
 
-        //키보드
-        //transform.position += MoveDirection.normalized * Time.deltaTime * 3f;
-    }
+            float horizontalInput = MoveDirection.x;
+            float verticalInput = MoveDirection.z;
+            Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
 
-    public void CheckPlaterVelocity()
-    {
+            if (movement != Vector3.zero)
+            {
+                Quaternion targetRotation = Quaternion.LookRotation(movement);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
+            }
 
-        float MoveAnim = nav.remainingDistance < nav.stoppingDistance ? 0f : 1f;
-        anim.SetFloat("Velocity", MoveAnim, 0.2f, Time.deltaTime);
+            float MoveAnim = MoveDirection == Vector3.zero ? 0f : 1f;
+            anim.SetFloat("Velocity", MoveAnim, 0.5f, Time.deltaTime);
+        }
+       
     }
 
     public void EndChargeAttack()
     {
         anim.applyRootMotion = false;
         hasStarted = false;
+        isUseSkill = false;
     }
 
 }

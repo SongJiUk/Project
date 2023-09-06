@@ -12,9 +12,5 @@ public class PlayerController : MonoBehaviour
         if (null == player) player = Player.GetInstance;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
 
-    }
 }
