@@ -10,8 +10,10 @@ public class DragonBreath : MonoBehaviour
     Transform EffectPosition;
 
     ParticleSystem particle;
+    Player player;
     private void Start()
     {
+        player = Player.GetInstance;
         GameObject obj = Instantiate(attackEffectPrefab);
         obj.transform.SetParent(EffectPosition);
         obj.transform.localPosition = Vector3.zero;
@@ -21,6 +23,7 @@ public class DragonBreath : MonoBehaviour
     }
     public void DragonAttack()
     {
+        transform.LookAt(player.transform);
         particle.Play();
     }
 }

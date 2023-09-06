@@ -19,8 +19,13 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     GameObject attackEffectPrefab;
+
+    [SerializeField]
+    float attackTime = 4f;
+    float timer = 0f;
     void Start()
     {
+        timer = attackTime;
         player = Player.GetInstance;
         nowEnemy = maxEnemyHP;
         Anime = GetComponent<Animator>();
@@ -38,18 +43,19 @@ public class Enemy : MonoBehaviour
         if (nav.enabled == true)
         {
             // ?????????? ???? ???? ???? ?????? ?????????? ???? ????
+            timer += Time.deltaTime;
             if (distanceToPlayer <= detectionRange)
             {
                 Anime.SetBool("IsChasing", true);
                 nav.SetDestination(player.transform.position);
                 if (nav.remainingDistance <= nav.stoppingDistance)
                 {
-                    Anime.SetBool("IsAttack", true);
-                    transform.LookAt(target);
-                }
-                else
-                {
-                    Anime.SetBool("IsAttack", false);
+                    if (timer >= attackTime)
+                    {
+                        transform.LookAt(player.transform);
+                        Anime.SetTrigger("IsAttack");
+                        timer = 0f;
+                    }
                 }
             }else
             {
