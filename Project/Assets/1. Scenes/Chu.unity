@@ -383,7 +383,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 47c607428a1bdbe4fbb4dd42f71da5cc, type: 2}
+  - {fileID: 2100000, guid: 809e1de97d0710c40a3770a01457172a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -823,6 +823,30 @@ PrefabInstance:
     - target: {fileID: 4291043271274770732, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
       propertyPath: m_LocalRotation.x
       value: 0.016822258
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376144399855680043, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
+      propertyPath: m_Size.x
+      value: 1.9504389
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376144399855680043, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
+      propertyPath: m_Size.y
+      value: 2.8054206
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376144399855680043, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
+      propertyPath: m_Size.z
+      value: 1.8258829
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376144399855680043, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
+      propertyPath: m_Center.x
+      value: -0.00013081233
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376144399855680043, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
+      propertyPath: m_Center.y
+      value: 0.90271014
+      objectReference: {fileID: 0}
+    - target: {fileID: 4376144399855680043, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
+      propertyPath: m_Center.z
+      value: 0.051047802
       objectReference: {fileID: 0}
     - target: {fileID: 4868192238660354547, guid: 51307c9d3d2fb804dae6474a7fdf165a, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1376,6 +1400,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -3523996030363254328, guid: bfcb437847a0646489832861662da6a0, type: 3}
+      propertyPath: m_Size.x
+      value: 1.7372417
+      objectReference: {fileID: 0}
+    - target: {fileID: -3523996030363254328, guid: bfcb437847a0646489832861662da6a0, type: 3}
+      propertyPath: m_Size.y
+      value: 2.484988
+      objectReference: {fileID: 0}
+    - target: {fileID: -3523996030363254328, guid: bfcb437847a0646489832861662da6a0, type: 3}
+      propertyPath: m_Center.x
+      value: 0.05282712
+      objectReference: {fileID: 0}
+    - target: {fileID: -3523996030363254328, guid: bfcb437847a0646489832861662da6a0, type: 3}
+      propertyPath: m_Center.y
+      value: 0.742494
+      objectReference: {fileID: 0}
     - target: {fileID: 6436132360585731475, guid: bfcb437847a0646489832861662da6a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.6

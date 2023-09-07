@@ -1421,6 +1421,7 @@ GameObject:
   - component: {fileID: 6525674820391976534}
   - component: {fileID: 8411380633424514872}
   - component: {fileID: 4383109901817948449}
+  - component: {fileID: -3523996030363254328}
   m_Layer: 0
   m_Name: BeholderPBRDefault
   m_TagString: Untagged
@@ -1519,6 +1520,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   attackEffectPrefab: {fileID: 7252213748702805929, guid: 831ea156b6a5efe4da27f0c14dac328d, type: 3}
   EffectPosition: {fileID: 6587069114203230232}
+--- !u!65 &-3523996030363254328
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8852478110032091693}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1.7372417, y: 2.484988, z: 1}
+  m_Center: {x: 0.05282712, y: 0.742494, z: 0}
 --- !u!1 &8966545255234995864
 GameObject:
   m_ObjectHideFlags: 0

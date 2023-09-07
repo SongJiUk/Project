@@ -1428,6 +1428,7 @@ GameObject:
   - component: {fileID: 201131557403916463}
   - component: {fileID: 5779978143755470339}
   - component: {fileID: 3536982226883879830}
+  - component: {fileID: -2249316587677080129}
   m_Layer: 0
   m_Name: MonsterPlantMesh
   m_TagString: Untagged
@@ -1512,6 +1513,27 @@ MonoBehaviour:
   detectionRange: 10
   attackEffectPrefab: {fileID: 2376959826022144281, guid: 11ee4850e130a2941ae3940161bd82ce, type: 3}
   attackTime: 1.5
+--- !u!65 &-2249316587677080129
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6853050300933770144}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.721055, z: 1.2599497}
+  m_Center: {x: 0, y: 0.71523, z: -0.12997484}
 --- !u!1 &6918473416910058441
 GameObject:
   m_ObjectHideFlags: 0
