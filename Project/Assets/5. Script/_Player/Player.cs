@@ -19,117 +19,28 @@ public class Player : Singleton<Player>
     private float speed;
     public float SPEED { get { return speed; } set { speed = value; } }
 
+
     Animator anim;
+    public Animator ANIM { get { return anim; } private set {  } }
     NavMeshAgent nav;
-    bool isClickLeftMouse;
-    bool hasStarted = false;
-    bool isUseSkill = false;
-    Vector3 MoveDirection = Vector3.zero;
-    
+    public NavMeshAgent NAV { get { return nav; } private set { } }
+    Rigidbody rigid;
+    public Rigidbody RIGID { get { return rigid; } private set { } }
+
     private void Awake()
     {
         //if (null == instance) instance = this;
-        SPEED = 3f;
-
         if (null == anim) anim = GetComponent<Animator>();
         if (null == nav) nav = GetComponent<NavMeshAgent>();
+        if (null == rigid) rigid = GetComponent<Rigidbody>();
+        SPEED = 3f;
+
     }
 
 
-    public void OnMove(InputAction.CallbackContext context)
+
+    private void OnTriggerEnter(Collider other)
     {
-        Vector2 input = context.ReadValue<Vector2>();
-        if (input != null)
-        {
-            MoveDirection = new Vector3(input.x, 0f, input.y);
-           
-        }
+        Debug.Log(other.gameObject);
     }
-
-   
-    public void OnPressQBtn(InputAction.CallbackContext context)
-    {
-
-        if (context.performed && !hasStarted)
-        {
-            isUseSkill = true;
-            hasStarted = true;
-            anim.SetTrigger("PressQ");
-            anim.applyRootMotion = true;
-            nav.ResetPath();
-        }
-    }
-
-    public void OnPressEBtn(InputAction.CallbackContext context)
-    {
-        Debug.Log("PressE");
-        anim.SetTrigger("PressE");
-    }
-
-    public void OnPressRBtn(InputAction.CallbackContext context)
-    {
-        Debug.Log("PressR");
-        anim.SetTrigger("PressR");
-    }
-
-    public void OnPressFBtn(InputAction.CallbackContext context)
-    {
-        Debug.Log("PressF");
-        anim.SetTrigger("PressF");
-    }
-
-    public void OnLeftClickOn(InputAction.CallbackContext context)
-    {
-
-        if(context.performed && !isClickLeftMouse)
-        {
-            anim.SetTrigger("Attack");
-            isClickLeftMouse = true;
-        }
-
-        if(context.canceled)
-        {
-            isClickLeftMouse = false;
-        }
-    }
-  
-
-    public void OnRightClick(InputAction.CallbackContext context)
-    {
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //if (Physics.Raycast(ray, out RaycastHit hit))
-        //{
-        //    nav.SetDestination(hit.point);
-        //}
-    }
-
-    private void FixedUpdate()
-    {
-        if(!isUseSkill)
-        {
-            transform.Translate(MoveDirection.normalized * Time.deltaTime * SPEED, Space.World);
-
-            float horizontalInput = MoveDirection.x;
-            float verticalInput = MoveDirection.z;
-            Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-
-            if (movement != Vector3.zero)
-            {
-                Quaternion targetRotation = Quaternion.LookRotation(movement);
-                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-            }
-
-            float MoveAnim = MoveDirection == Vector3.zero ? 0f : 1f;
-            anim.SetFloat("Velocity", MoveAnim, 0.5f, Time.deltaTime);
-        }
-       
-    }
-
-    public void EndChargeAttack()
-    {
-        anim.applyRootMotion = false;
-        hasStarted = false;
-        isUseSkill = false;
-    }
-
 }

@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 
 public class CameraManager : MonoBehaviour
 {
-    [SerializeField] Player player;
+    Player player;
 
 
     Vector2 mousePosition;

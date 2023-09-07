@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f45eca17a3a4640ce82c345f9d57c3c4, type: 3}
-  m_Name: NewGameData
+  m_Name: WeaponData
   m_EditorClassIdentifier: 
   equipmentType: 1
-  equipmentName: 
-  equipmentLevel: 0
-  damage: 0
+  equipmentName: Dagger25
+  equipmentLevel: 1
+  damage: 10
   defense: 0
