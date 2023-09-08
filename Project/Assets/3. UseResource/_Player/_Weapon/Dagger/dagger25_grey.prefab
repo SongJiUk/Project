@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1510354386034177361}
   - component: {fileID: 5506815767933028022}
   - component: {fileID: 1638281799028348490}
+  - component: {fileID: 1150949046468036367}
   m_Layer: 0
   m_Name: dagger25_grey
   m_TagString: Untagged
@@ -25,13 +26,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3407319306585721684}
-  serializedVersion: 2
   m_LocalRotation: {x: -0.7055315, y: -0.047170565, z: 0.04717059, w: -0.70553184}
   m_LocalPosition: {x: 2.35, y: 0, z: -1.44}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5506815767933028022
 MeshFilter:
@@ -83,3 +84,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &1150949046468036367
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407319306585721684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.093790054, y: 0.21526614, z: 0.033006042}
+  m_Center: {x: 0.017739363, y: 0.16923086, z: 0.000000055821147}

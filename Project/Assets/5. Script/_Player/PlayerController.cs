@@ -11,12 +11,12 @@ public class PlayerController : MonoBehaviour
     Vector3 MoveDirection = Vector3.zero;
    
     AnimationState stateMachine;
-
     private int comboCount = 0;
     private float comboTimer = 0f;
     public float comboDelay = 1f; // 콤보 딜레이 시간 조절
-
-
+    public bool isGrounded = false;
+    float groundDistanceThreshold = 0.1f;
+    RaycastHit hit;
     bool isAttack = false;
     bool hasStarted = false;
     bool isUseSkill = false;
@@ -24,10 +24,9 @@ public class PlayerController : MonoBehaviour
     bool isJump = false;
     bool isCombing = false;
 
-    void Start()
+    private void Awake()
     {
         if (null == player) player = Player.GetInstance;
-        
     }
 
 
@@ -37,7 +36,12 @@ public class PlayerController : MonoBehaviour
         Vector2 input = context.ReadValue<Vector2>();
         if (input != null)
         {
-            MoveDirection = new Vector3(input.x, 0f, input.y);
+            Vector3 cameraRotation = CameraManager.GetInstance.transform.eulerAngles;
+            float yRotation = cameraRotation.y * Mathf.Deg2Rad;
+            Vector3 forwardDirection = new Vector3(Mathf.Sin(yRotation), 0, Mathf.Cos(yRotation));
+
+            Vector3 inputDirection = (forwardDirection * input.y + CameraManager.GetInstance.transform.right * input.x).normalized;
+            MoveDirection = inputDirection;
 
         }
     }
@@ -171,13 +175,13 @@ public class PlayerController : MonoBehaviour
 
     public bool isGround()
     {
-
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, Vector3.down, out hit, LayerMask.GetMask("Object")))
+        float playerHeight = player.transform.position.y;
+        float groundHeight = hit.point.y;
+        float maxHeightDifference = 0.1f; // 플레이어의 최대 점프 가능 높이 차이
+        if (playerHeight - groundHeight <= maxHeightDifference + playerHeight)
         {
-            if (transform.position.y - hit.transform.position.y <= 0.1f) return true;
+            return true;
         }
-
         return false;
     }
     #endregion
@@ -193,10 +197,13 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f, LayerMask.GetMask("Object"));
+
 
         if (isAttack && !isCombing)
         {
             isCombing = true;
+            isAttack = false;
             comboCount++;
             comboTimer = comboDelay;
 
@@ -211,7 +218,7 @@ public class PlayerController : MonoBehaviour
         else
         {
             isCombing = false;
-            isAttack = false;
+            
             comboCount = 0;
             player.ANIM.SetInteger("ComboCount", 0);
         }
@@ -234,13 +241,11 @@ public class PlayerController : MonoBehaviour
             player.ANIM.SetFloat("Velocity", MoveAnim, 0.5f, Time.deltaTime * 5f);
         }
 
+
         if(isJump)
         {
-            RaycastHit hit;
-            if(Physics.Raycast(transform.position, Vector3.down, out hit))
-            {
-                if (transform.position.y - hit.transform.position.y < 0.1f) player.ANIM.SetTrigger("JumpEnd");
-            }
+            if(!isGround()) player.ANIM.SetTrigger("JumpEnd");
+            
         }
 
         
