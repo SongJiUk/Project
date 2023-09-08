@@ -19,22 +19,24 @@ public class EnemyHpUI : MonoBehaviour
     void Update()
     {
         // Debug.Log($"{camera.WorldToScreenPoint(cube.position)}");
-        Hpbar.transform.position = camera.WorldToScreenPoint(enemy.position);
-        Hpbar.value = Mathf.Lerp(Hpbar.value, currentHp / maxHp, Time.deltaTime * 5f);
-        if(FollowHppHit)
+        if (Hpbar != null)
         {
-            FollowHpbar.value = Mathf.Lerp(FollowHpbar.value, Hpbar.value, Time.deltaTime * 10f);
-            if(Hpbar.value>= FollowHpbar.value-0.01f)
+            Hpbar.transform.position = camera.WorldToScreenPoint(enemy.position);
+            Hpbar.value = Mathf.Lerp(Hpbar.value, currentHp / maxHp, Time.deltaTime * 5f);
+            if (FollowHppHit)
             {
-                FollowHppHit = false;
-                FollowHpbar.value = Hpbar.value;
+                FollowHpbar.value = Mathf.Lerp(FollowHpbar.value, Hpbar.value, Time.deltaTime * 10f);
+                if (Hpbar.value >= FollowHpbar.value - 0.01f)
+                {
+                    FollowHppHit = false;
+                    FollowHpbar.value = Hpbar.value;
+                }
+            }
+            if (Hpbar.value > 0.5f)
+            {
+                Dmg();
             }
         }
-        if(Hpbar.value>0.5f)
-        {
-            Dmg();
-        }
-
     }
 
     public void Dmg()
