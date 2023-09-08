@@ -124,13 +124,17 @@ public class PlayerController : MonoBehaviour
     #region 대쉬
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(context.performed && !isDash)
+        if(!isJump)
         {
-            player.ANIM.SetTrigger("Dash");
-            player.ANIM.applyRootMotion = true;
-            isDash = true;
+            if (context.performed && !isDash)
+            {
+                player.ANIM.SetTrigger("Dash");
+                player.ANIM.applyRootMotion = true;
+                isDash = true;
 
+            }
         }
+        
     }
     public void EndDash()
     {
@@ -193,7 +197,6 @@ public class PlayerController : MonoBehaviour
         if (isAttack && !isCombing)
         {
             isCombing = true;
-            isAttack = false;
             comboCount++;
             comboTimer = comboDelay;
 
@@ -213,7 +216,7 @@ public class PlayerController : MonoBehaviour
             player.ANIM.SetInteger("ComboCount", 0);
         }
 
-        if (!isUseSkill)
+        if (!isUseSkill || !isAttack)
         {
             transform.Translate(MoveDirection.normalized * Time.deltaTime * player.SPEED, Space.World);
 
