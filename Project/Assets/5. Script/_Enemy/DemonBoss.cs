@@ -14,9 +14,13 @@ public class DemonBoss : MonoBehaviour
     [SerializeField]
     Transform Point;
     [SerializeField]
+    Transform Attack3Point;
+    [SerializeField]
     GameObject ChargePrefab;
     [SerializeField]
     GameObject LazerChargePrefab;
+    [SerializeField]
+    GameObject ShockWavePrefab;
 
     ParticleSystem Charge;
     ParticleSystem Lazer;
@@ -33,24 +37,22 @@ public class DemonBoss : MonoBehaviour
         attckTimer -= Time.deltaTime;
         if (attckTimer <= 0f)
         {
-            float ran = Random.Range(0, 101);
+            float ran = Random.Range(0, 91);
             transform.LookAt(player.transform);
             if (ran <= 30)
             {
                 anime.SetTrigger("Attack1");
                 DemonCharge();
                 attckTimer = 12f;
-            }else if (ran > 30 && ran <= 55)
+            }else if (ran > 30 && ran <= 60)
             {
                 anime.SetTrigger("Attack2");
                 attckTimer = 15f;
             }
-            else if (ran > 55 && ran <= 85)
+            else
             {
-
-            }else
-            {
-
+                anime.SetTrigger("Attack3");
+                attckTimer = 12f;
             }
         }
     }
@@ -94,12 +96,17 @@ public class DemonBoss : MonoBehaviour
     void MeteorInvoke()
     {
         Vector3 playerPosi = player.transform.position;
-        Instantiate(DemonMeteorPrefab, new Vector3(Random.Range(playerPosi.x - 10, playerPosi.x + 10), 1f, Random.Range(playerPosi.z - 10, playerPosi.z + 10)), Quaternion.identity);
+        Instantiate(DemonMeteorPrefab, new Vector3(Random.Range(playerPosi.x - 10, playerPosi.x + 10), 2f, Random.Range(playerPosi.z - 10, playerPosi.z + 10)), Quaternion.identity);
         meteorCount++;
         if (meteorCount >= meteorMaxCount)
         {
             CancelInvoke("MeteorInvoke");
             meteorCount = 0;
         }
+    }
+
+    public void DemonShockWave()
+    {
+        Instantiate(ShockWavePrefab, Attack3Point.transform.position, Quaternion.identity);
     }
 }
