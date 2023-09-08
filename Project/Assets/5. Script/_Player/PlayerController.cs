@@ -112,8 +112,6 @@ public class PlayerController : MonoBehaviour
         if (context.performed && !isAttack)
         {
             isAttack = true;
-            //StartCoroutine(ComboAttack());
-
         }
     }
 
