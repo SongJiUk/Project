@@ -41975,8 +41975,6 @@ GameObject:
   - component: {fileID: 2401039738314324343}
   - component: {fileID: 2788925038701508672}
   - component: {fileID: 3541359689510199142}
-  - component: {fileID: 2388312950494362116}
-  - component: {fileID: 2069704486884232770}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -42244,6 +42242,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboDelay: 1
+  isGround: 0
 --- !u!114 &2788925038701508672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42272,36 +42271,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &2388312950494362116
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588895830433058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e741851cba3ad425c91ecf922cc6b379, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"declarations":{"Kind":"Object","collection":{"$content":[],"$version":"A"},"$version":"A"}}'
-    _objectReferences: []
---- !u!114 &2069704486884232770
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1588895830433058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: efe58df89b5b74a97a123b5ed2b70422, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _data:
-    _json: '{"nest":{"source":"Macro","macro":null,"embed":null}}'
-    _objectReferences: []
 --- !u!1 &1595597176900030
 GameObject:
   m_ObjectHideFlags: 0

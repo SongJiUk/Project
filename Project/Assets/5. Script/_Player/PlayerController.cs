@@ -8,21 +8,45 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     Player player;
-    Vector3 MoveDirection = Vector3.zero;
+    
    
     AnimationState stateMachine;
+
+
+
+    #region 플레이어 콤보공격, 스킬 관련
     private int comboCount = 0;
     private float comboTimer = 0f;
-    public float comboDelay = 1f; // 콤보 딜레이 시간 조절
-    public bool isGrounded = false;
-    float groundDistanceThreshold = 0.1f;
-    RaycastHit hit;
+    public float comboDelay = 1f;
     bool isAttack = false;
+    bool isDash = false;
+    bool isCombing = false;
     bool hasStarted = false;
     bool isUseSkill = false;
-    bool isDash = false;
+    #endregion
+
+    #region 플레이어 점프 관련
+    RaycastHit hit;
+    float maxHeightDifference = 0.2f;
+    float playerHeight;
+    float groundHeight;
     bool isJump = false;
-    bool isCombing = false;
+    bool isGround = false;
+    #endregion
+
+    #region 플레이어 이동(카메라 각도에 맞게)
+    Vector3 MoveDirection = Vector3.zero;
+    Vector2 input;
+    Vector3 cameraRotation;
+    float yRotation;
+    Vector3 forwardDirection;
+    Vector3 inputDirection;
+    float InputX;
+    float InputY;
+    float MoveAnim;
+    Vector3 movement;
+    Quaternion targetRotation;
+    #endregion
 
     private void Awake()
     {
@@ -33,20 +57,20 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        Vector2 input = context.ReadValue<Vector2>();
+        input = context.ReadValue<Vector2>();
         if (input != null)
         {
-            Vector3 cameraRotation = CameraManager.GetInstance.transform.eulerAngles;
-            float yRotation = cameraRotation.y * Mathf.Deg2Rad;
-            Vector3 forwardDirection = new Vector3(Mathf.Sin(yRotation), 0, Mathf.Cos(yRotation));
+            cameraRotation = CameraManager.GetInstance.transform.eulerAngles;
+            yRotation = cameraRotation.y * Mathf.Deg2Rad;
+            forwardDirection = new Vector3(Mathf.Sin(yRotation), 0, Mathf.Cos(yRotation));
 
-            Vector3 inputDirection = (forwardDirection * input.y + CameraManager.GetInstance.transform.right * input.x).normalized;
+            inputDirection = (forwardDirection * input.y + CameraManager.GetInstance.transform.right * input.x).normalized;
             MoveDirection = inputDirection;
 
         }
     }
 
-    #region 스킬
+    #region Skill
     public void OnPressQBtn(InputAction.CallbackContext context)
     {
 
@@ -108,7 +132,7 @@ public class PlayerController : MonoBehaviour
     #endregion
 
 
-    #region 콤보 공격
+    #region Combo Attack
 
     public void OnLeftClickOn(InputAction.CallbackContext context)
     {
@@ -125,7 +149,7 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region 대쉬
+    #region Dash
     public void OnDash(InputAction.CallbackContext context)
     {
         if(!isJump)
@@ -147,10 +171,10 @@ public class PlayerController : MonoBehaviour
     }
     #endregion
 
-    #region 점프
+    #region Jump
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (isGround())
+        if (isGround)
         {
             if (context.performed)
             {
@@ -169,37 +193,33 @@ public class PlayerController : MonoBehaviour
     }
     public void EndJump()
     {
-        isJump = false;
         player.NAV.enabled = true;
+        isJump = false;
     }
 
-    public bool isGround()
-    {
-        float playerHeight = player.transform.position.y;
-        float groundHeight = hit.point.y;
-        float maxHeightDifference = 0.1f; // 플레이어의 최대 점프 가능 높이 차이
-        if (playerHeight - groundHeight <= maxHeightDifference + playerHeight)
-        {
-            return true;
-        }
-        return false;
-    }
     #endregion
 
     public void OnRightClick(InputAction.CallbackContext context)
     {
-        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //if (Physics.Raycast(ray, out RaycastHit hit))
-        //{
-        //    nav.SetDestination(hit.point);
-        //}
+       
     }
 
     private void FixedUpdate()
     {
-        Physics.Raycast(transform.position, Vector3.down, out hit, 0.1f, LayerMask.GetMask("Object"));
+        #region Jump Code
+        Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Object"));
+        playerHeight = player.transform.position.y;
+        groundHeight = hit.point.y;
 
+        if (playerHeight - groundHeight <= maxHeightDifference) isGround = true;
+        else isGround = false;
 
+        if (isJump)
+            if (isGround) player.ANIM.SetTrigger("JumpEnd");
+
+        #endregion
+
+        #region Combo Attack
         if (isAttack && !isCombing)
         {
             isCombing = true;
@@ -222,31 +242,29 @@ public class PlayerController : MonoBehaviour
             comboCount = 0;
             player.ANIM.SetInteger("ComboCount", 0);
         }
+        #endregion
 
-        if (!isUseSkill || !isAttack)
+        if (!isUseSkill)
         {
             transform.Translate(MoveDirection.normalized * Time.deltaTime * player.SPEED, Space.World);
 
-            float horizontalInput = MoveDirection.x;
-            float verticalInput = MoveDirection.z;
-            Vector3 movement = new Vector3(horizontalInput, 0f, verticalInput).normalized;
+
+            InputX = MoveDirection.x;
+            InputY = MoveDirection.z;
+            movement = new Vector3(InputX, 0f, InputY).normalized;
 
             if (movement != Vector3.zero)
             {
-                Quaternion targetRotation = Quaternion.LookRotation(movement);
+                targetRotation = Quaternion.LookRotation(movement);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
             }
 
-            float MoveAnim = MoveDirection == Vector3.zero ? 0f : 1f;
+            MoveAnim = MoveDirection == Vector3.zero ? 0f : 1f;
             player.ANIM.SetFloat("Velocity", MoveAnim, 0.5f, Time.deltaTime * 5f);
         }
 
 
-        if(isJump)
-        {
-            if(!isGround()) player.ANIM.SetTrigger("JumpEnd");
-            
-        }
+      
 
         
     }

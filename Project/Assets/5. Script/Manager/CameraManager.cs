@@ -21,7 +21,7 @@ public class CameraManager : Singleton<CameraManager>
     private void Start()
     {
         if (null == player) player = Player.GetInstance;
-        smoothSpeed = 5f;
+        smoothSpeed = 4f;
     }
 
     public Vector3 offset = new Vector3(0f, 2f, -5f); // 카메라의 상대적인 위치 조정값입니다.
@@ -61,12 +61,14 @@ public class CameraManager : Singleton<CameraManager>
                 Vector2 dir = mousePosition - mouse.position.ReadValue();
                 dir.Normalize();
                 angles.y -= dir.x * smoothSpeed;
-                angles.x += dir.y * smoothSpeed /2f;
+                angles.x += dir.y * (smoothSpeed / smoothSpeed);
 
 
                 //if (angles.y < LeftWidth && angles.y > 320f) angles.y = LeftWidth;
                 //else if (angles.y > RightWidth && angles.y < 40f) angles.y = RightWidth;
 
+                Debug.Log(angles.x);
+                //16, 326기준으로 맞추기
                 if (angles.x < DownHeight && angles.x > 349f) angles.x = DownHeight;
                 else if (angles.x > UpHeigth && angles.x < 11f) angles.x = UpHeigth;
 
