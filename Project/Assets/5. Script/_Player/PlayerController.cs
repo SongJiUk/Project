@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     private float comboTimer = 0f;
     public float comboDelay = 1f;
     bool isAttack = false;
+    bool isAttacking = false;
     bool isDash = false;
     bool isCombing = false;
     bool hasStarted = false;
@@ -147,12 +148,22 @@ public class PlayerController : MonoBehaviour
     {
         isCombing = false;
     }
+
+    public void StartAttack()
+    {
+        isAttacking = true;
+    }
+
+    public void EndAttack()
+    {
+        isAttacking = false;
+    }
     #endregion
 
     #region Dash
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(!isJump)
+        if(!isJump && !isUseSkill && !isAttacking)
         {
             if (context.performed && !isDash)
             {
@@ -244,7 +255,7 @@ public class PlayerController : MonoBehaviour
         }
         #endregion
 
-        if (!isUseSkill)
+        if (!isUseSkill && !isAttacking)
         {
             transform.Translate(MoveDirection.normalized * Time.deltaTime * player.SPEED, Space.World);
 
