@@ -39259,6 +39259,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6015260243291749741, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015260243291749741, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.0000002499177
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015260243291749741, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.000000022067178
+      objectReference: {fileID: 0}
+    - target: {fileID: 6015260243291749741, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.000000018435292
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
 --- !u!1001 &898419822
@@ -61223,6 +61239,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4770989912629026, guid: 8b4f36b4159c2b54485db28da3403a33, type: 3}
   m_PrefabInstance: {fileID: 1394229433}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1394775366 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1588895830433058, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+  m_PrefabInstance: {fileID: 898139591}
+  m_PrefabAsset: {fileID: 0}
+--- !u!136 &1394775375
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1394775366}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1394925546
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -85001,8 +85036,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5b3bf6e123424a359da45a5b27bd7a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 2, z: -5}
-  rotationSpeed: 3
 --- !u!1001 &1950334505
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -210,6 +210,14 @@ public class PlayerController : MonoBehaviour
 
     #endregion
 
+    #region 장비 장착 및 해제
+    public void OnEquip()
+    {
+        // input.x
+
+    }
+
+    #endregion
     public void OnRightClick(InputAction.CallbackContext context)
     {
        

@@ -3291,7 +3291,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4063969837628530
 Transform:
   m_ObjectHideFlags: 0
@@ -6118,7 +6118,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4816573250590606
 Transform:
   m_ObjectHideFlags: 0
@@ -6442,7 +6442,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4253367477023898
 Transform:
   m_ObjectHideFlags: 0
@@ -6724,7 +6724,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4015612102487908
 Transform:
   m_ObjectHideFlags: 0
@@ -14329,7 +14329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4399711529414150
 Transform:
   m_ObjectHideFlags: 0
@@ -18621,7 +18621,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4085275017712404
 Transform:
   m_ObjectHideFlags: 0
@@ -25173,7 +25173,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4740488266072476
 Transform:
   m_ObjectHideFlags: 0
@@ -26737,7 +26737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4554959239714166
 Transform:
   m_ObjectHideFlags: 0
@@ -27973,7 +27973,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4866005304880086
 Transform:
   m_ObjectHideFlags: 0
@@ -28972,7 +28972,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4845609753973042
 Transform:
   m_ObjectHideFlags: 0
@@ -30909,7 +30909,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4438121649766792
 Transform:
   m_ObjectHideFlags: 0
@@ -37415,7 +37415,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4868114703872076
 Transform:
   m_ObjectHideFlags: 0
@@ -41975,6 +41975,7 @@ GameObject:
   - component: {fileID: 2401039738314324343}
   - component: {fileID: 2788925038701508672}
   - component: {fileID: 3541359689510199142}
+  - component: {fileID: 1394775375}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -42212,6 +42213,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d8b1cfe9-4799-42e9-8e1e-0a52af342e2b
     m_ActionName: PlayerActions/Jump[/Keyboard/space]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 92d5ed19-6cfa-48df-aeb9-8e6f5029cd51
+    m_ActionName: PlayerActions/Equipment[/Keyboard/x]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: PC
   m_DefaultActionMap: PlayerActions
@@ -42242,7 +42247,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   comboDelay: 1
-  isGround: 0
 --- !u!114 &2788925038701508672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42271,6 +42275,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!136 &1394775375
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1588895830433058}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2.01
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.69, z: 0}
 --- !u!1 &1595597176900030
 GameObject:
   m_ObjectHideFlags: 0
@@ -42373,7 +42391,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4014620265869780
 Transform:
   m_ObjectHideFlags: 0
@@ -52588,7 +52606,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4000298824463172
 Transform:
   m_ObjectHideFlags: 0
@@ -55009,7 +55027,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4484450598183952
 Transform:
   m_ObjectHideFlags: 0
@@ -61933,7 +61951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4299683216712640
 Transform:
   m_ObjectHideFlags: 0
@@ -65877,7 +65895,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4416140010567980
 Transform:
   m_ObjectHideFlags: 0
@@ -67074,7 +67092,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4970594427187748
 Transform:
   m_ObjectHideFlags: 0
@@ -69088,7 +69106,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4425209218024978
 Transform:
   m_ObjectHideFlags: 0
@@ -70120,15 +70138,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1510354386034177361, guid: 582249a3faba0424fa83d1fdf9a5321c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.00000017881393
+      value: 0.0000002499177
       objectReference: {fileID: 0}
     - target: {fileID: 1510354386034177361, guid: 582249a3faba0424fa83d1fdf9a5321c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0.000000015788874
+      value: -0.000000022067178
       objectReference: {fileID: 0}
     - target: {fileID: 1510354386034177361, guid: 582249a3faba0424fa83d1fdf9a5321c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0.0000000131902915
+      value: -0.000000018435292
       objectReference: {fileID: 0}
     - target: {fileID: 1510354386034177361, guid: 582249a3faba0424fa83d1fdf9a5321c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
