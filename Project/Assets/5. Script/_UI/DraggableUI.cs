@@ -17,6 +17,12 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDr
         canvasGroup = GetComponent<CanvasGroup>();
     }
 
+    public Transform previousParentreturn()
+    {
+        return previousParent;
+    }
+
+    //현재 오브젝트를 드래그하기 시작할 때 1회 호출
     public void OnBeginDrag(PointerEventData eventData)
     {
         previousParent = transform.parent;
@@ -28,25 +34,23 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDr
         canvasGroup.blocksRaycasts = false;
     }
 
+    //현재 오브젝트를 드래그 중일 때 매 프레임 호출
     public void OnDrag(PointerEventData eventData)
     {
-
+        rect.position = eventData.position;
     }
 
-    public void OnEndDrag(PointerEventData evetData)
+    //현재 오브젝트의 드래그를 종료할 때 1회 호출
+    public void OnEndDrag(PointerEventData eventData)
     {
-
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        if(transform.parent==canvas)
+        {
+            transform.SetParent(previousParent);
+            rect.position = previousParent.GetComponent<RectTransform>().position;
+        }
         
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        canvasGroup.alpha = 1.0f;
+        canvasGroup.blocksRaycasts = true;
     }
 }
