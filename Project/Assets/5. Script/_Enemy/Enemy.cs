@@ -23,6 +23,10 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float attackTime = 4f;
     float timer = 0f;
+
+    [SerializeField]
+    float attackRange = 3f;
+    int playerLayer; // 플레이어 레이어 마스크 설정
     void Start()
     {
         timer = attackTime;
@@ -32,7 +36,9 @@ public class Enemy : MonoBehaviour
         //GameObject obj = GameObject.FindGameObjectWithTag("Player");
         //target = obj.transform;
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
-       // nav.acceleration = Mathf.Infinity;
+        //playerLayer = 1 << 5;
+        playerLayer = 1 << LayerMask.NameToLayer("Player");
+        // nav.acceleration = Mathf.Infinity;
     }
 
     void Update()
@@ -70,13 +76,15 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     public void ActivateAttackEffect()
     {
-        // ???????? ???????? ???????? ???????? ?????? ??????????.
-        Vector3 effectPosition = player.transform.position + Vector3.forward; // ???????? ?????? ????
-        //Instantiate(attackEffectPrefab, effectPosition, Quaternion.identity);
-
-        // ???????? ?????? ???? ?????? ?????? ?? ????????.
+        //playerLayer
+        if (Vector3.Distance(transform.position, player.transform.position) <= 2f)
+        {
+            //Debug.LogWarning("왑왑 깨물기");
+            // PlayerAttack();
+        }
     }
 
 

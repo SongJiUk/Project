@@ -4886,6 +4886,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114206164606355450, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: Repeating
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114206164606355450, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: StartTime
+      value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114206164606355450, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: RepeatTime
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 198026034677794528, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
       propertyPath: playOnAwake
       value: 1

@@ -11,6 +11,7 @@ public class DemonMeteor : MonoBehaviour
     void Start()
     {
         Invoke("Meteor", 5f);
+        Invoke("MeteorDemege", 5.6f);
         Invoke("DestroyMeteor", 7f);
     }
 
@@ -18,6 +19,11 @@ public class DemonMeteor : MonoBehaviour
     {
         magicCircleObj.SetActive(false);
         MeteorObj.SetActive(true);
+    }
+
+    void MeteorDemege()
+    {
+        MeteorObj.transform.GetComponent<SphereCollider>().enabled = true;
     }
 
     void DestroyMeteor()

@@ -21,6 +21,18 @@ public class DragonBreath : MonoBehaviour
 
         particle = obj.GetComponent<ParticleSystem>();
     }
+
+    private void Update()
+    {
+        if (particle.isPlaying)
+        {
+            if (Vector3.Distance(player.transform.position, transform.position) <= 4.2f)
+            {
+                //Debug.LogWarning("¾Ñ¶ß°Å¿Í");
+            }
+        }
+    }
+
     public void DragonAttack()
     {
         transform.LookAt(player.transform);

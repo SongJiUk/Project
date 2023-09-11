@@ -27,4 +27,9 @@ public class BloodBall : MonoBehaviour
     {
         transform.position += Dir * Time.deltaTime * 3f;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("PlayerHit");
+    }
 }
