@@ -88,10 +88,10 @@ public class Enemy : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter(Collider other)
-    {
-        Debug.Log(other.gameObject) ;
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    Debug.Log(other.gameObject) ;
+    //}
 
     void EnemyHit(int value)
     {
