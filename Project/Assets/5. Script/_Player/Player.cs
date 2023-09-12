@@ -27,6 +27,9 @@ public class Player : Singleton<Player>
     Rigidbody rigid;
     public Rigidbody RIGID { get { return rigid; } private set { } }
 
+
+    public GameObject EquipWeapon_back;
+    public GameObject EquipWeapon_hand;
     private void Awake()
     {
         //if (null == instance) instance = this;
@@ -37,10 +40,13 @@ public class Player : Singleton<Player>
 
     }
 
+    private void Update()
+    {
 
+    }
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject);
+
     }
 }

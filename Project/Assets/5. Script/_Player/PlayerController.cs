@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     AnimationState stateMachine;
 
 
+    #region 플레이어 장비 장착 및 해제
+    bool isEquip = false;
+    #endregion
 
     #region 플레이어 콤보공격, 스킬 관련
     private int comboCount = 0;
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour
     float playerHeight;
     float groundHeight;
     bool isJump = false;
+    bool isJumpKeyClick = false;
     bool isGround = false;
     #endregion
 
@@ -138,10 +142,8 @@ public class PlayerController : MonoBehaviour
     public void OnLeftClickOn(InputAction.CallbackContext context)
     {
 
-        if (context.performed && !isAttack)
-        {
-            isAttack = true;
-        }
+        if(isEquip)
+            if (context.performed && !isAttack) isAttack = true;
     }
 
     public void ComboPossible()
@@ -187,8 +189,9 @@ public class PlayerController : MonoBehaviour
     {
         if (isGround)
         {
-            if (context.performed)
+            if (context.performed && !isJump && !isJumpKeyClick)
             {
+                isJumpKeyClick = true;
                 player.ANIM.SetTrigger("JumpStart");
                 player.NAV.enabled = false;
                 player.RIGID.velocity = new Vector3(player.RIGID.velocity.x, 8f, player.RIGID.velocity.z);
@@ -206,15 +209,33 @@ public class PlayerController : MonoBehaviour
     {
         player.NAV.enabled = true;
         isJump = false;
+        isJumpKeyClick = false;
     }
 
     #endregion
 
     #region 장비 장착 및 해제
-    public void OnEquip()
+    public void OnEquip(InputAction.CallbackContext context)
     {
-        // input.x
+        if(context.performed)
+        {
+            isEquip = !isEquip;
+            player.ANIM.SetTrigger("PressX");
+            player.ANIM.SetBool("IsEquip", isEquip);
+            player.ANIM.SetInteger("EquipNum", 1);
+        }
+    }
 
+    public void Unequip()
+    {
+        player.EquipWeapon_hand.SetActive(isEquip);
+        player.EquipWeapon_back.SetActive(!isEquip);
+    }
+
+    public void Equip()
+    {
+        player.EquipWeapon_hand.SetActive(isEquip);
+        player.EquipWeapon_back.SetActive(!isEquip);
     }
 
     #endregion
@@ -225,6 +246,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+
         #region Jump Code
         Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Object"));
         playerHeight = player.transform.position.y;
@@ -234,7 +256,11 @@ public class PlayerController : MonoBehaviour
         else isGround = false;
 
         if (isJump)
-            if (isGround) player.ANIM.SetTrigger("JumpEnd");
+            if (isGround)
+            {
+                player.ANIM.SetTrigger("JumpEnd");
+                isJump = false;
+            }
 
         #endregion
 
@@ -279,13 +305,14 @@ public class PlayerController : MonoBehaviour
             }
 
             MoveAnim = MoveDirection == Vector3.zero ? 0f : 1f;
+            //player.ANIM.SetFloat("Velocity", MoveAnim, 0.5f, Time.deltaTime * 5f);
             player.ANIM.SetFloat("Velocity", MoveAnim, 0.5f, Time.deltaTime * 5f);
-        }
-
-
-      
-
-        
+            if (MoveAnim != player.ANIM.GetFloat("Velocity"))
+            {
+                
+                //player.ANIM.SetFloat("Velocity", MoveAnim);
+            }
+        }        
     }
 
 
