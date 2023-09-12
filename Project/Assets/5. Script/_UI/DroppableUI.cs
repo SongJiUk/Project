@@ -11,9 +11,16 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler , IDropHandler , 
     private GameObject child;
     Transform CurrentItem = null;
 
+    bool inventory = false;
+    bool equip = false;
+    bool useitem = false;
+    int num = 0;
+
+    bool fullslot = false;
+
     private void Awake()
     {
-        if (transform.childCount <= 1)
+        if (transform.childCount >= 1)
         {
             CurrentItem = transform.GetChild(0);
         }
@@ -21,6 +28,34 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler , IDropHandler , 
        // child = gameObject.GetComponentInChildren
         image = GetComponent<Image>();
         rect = GetComponent<RectTransform>();
+    }
+
+    public void setting(int op, int numbering)
+    {
+        if(op==0)
+        {
+            inventory = true;
+            equip = false;
+            useitem = false;
+        }
+        else if(op==1)
+        {
+            equip = true;
+            inventory = false;
+            useitem = false;
+        }
+        else if(op==2)
+        {
+            useitem = true;
+            inventory = false;
+            equip = false;
+        }
+        else
+        {
+
+        }
+        num = numbering;
+        Debug.Log(numbering);
     }
 
     //마우스 포인터가 현재 아이템 슬롯 영역 내부로 들어갈 때 1회 호출
@@ -39,31 +74,92 @@ public class DroppableUI : MonoBehaviour, IPointerEnterHandler , IDropHandler , 
     //현재 아이템 슬롯 영역 내부에서 드롭을 했을 때 1회 호출
     public void OnDrop(PointerEventData eventData)
     {
-        if(eventData.pointerDrag !=null&& eventData.pointerDrag.tag != "InventorySlot")
+        if(useitem)
         {
-            if (CurrentItem == null)
+            if (eventData.pointerDrag != null && eventData.pointerDrag.tag != "InventorySlot")
             {
-                CurrentItem = eventData.pointerDrag.transform;
-                eventData.pointerDrag.transform.SetParent(transform);
-                eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                if (CurrentItem == null)
+                {
+                    CurrentItem = eventData.pointerDrag.transform;
+                    eventData.pointerDrag.transform.SetParent(transform);
+                    eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                }
+                else
+                {
+                    DraggableUI d = eventData.pointerDrag.transform.GetComponent<DraggableUI>();
+                    CurrentItem.SetParent(d.previousParentreturn());
+                    CurrentItem.localPosition = Vector3.zero;
+                    CurrentItem = null;
+
+
+
+                    CurrentItem = eventData.pointerDrag.transform;
+                    eventData.pointerDrag.transform.SetParent(transform);
+                    eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                }
+
+                //transform
+
+                //child = transform.GetChild(0);
             }
-            else
+        }
+        else if(equip)
+        {
+            if (eventData.pointerDrag != null && eventData.pointerDrag.tag != "InventorySlot")
             {
-                DraggableUI d =  eventData.pointerDrag.transform.GetComponent<DraggableUI>();
-                CurrentItem.SetParent(d.previousParentreturn());
-                CurrentItem.localPosition = Vector3.zero;
-                CurrentItem = null;
+                if (CurrentItem == null)
+                {
+                    CurrentItem = eventData.pointerDrag.transform;
+                    eventData.pointerDrag.transform.SetParent(transform);
+                    eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                }
+                else
+                {
+                    DraggableUI d = eventData.pointerDrag.transform.GetComponent<DraggableUI>();
+                    CurrentItem.SetParent(d.previousParentreturn());
+                    CurrentItem.localPosition = Vector3.zero;
+                    CurrentItem = null;
 
 
 
-                CurrentItem = eventData.pointerDrag.transform;
-                eventData.pointerDrag.transform.SetParent(transform);
-                eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                    CurrentItem = eventData.pointerDrag.transform;
+                    eventData.pointerDrag.transform.SetParent(transform);
+                    eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                }
+
+                //transform
+
+                //child = transform.GetChild(0);
             }
+        }
+        else if(inventory)
+        {
+            if (eventData.pointerDrag != null && eventData.pointerDrag.tag != "InventorySlot")
+            {
+                if (CurrentItem == null)
+                {
+                    CurrentItem = eventData.pointerDrag.transform;
+                    eventData.pointerDrag.transform.SetParent(transform);
+                    eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                }
+                else
+                {
+                    DraggableUI d = eventData.pointerDrag.transform.GetComponent<DraggableUI>();
+                    CurrentItem.SetParent(d.previousParentreturn());
+                    CurrentItem.localPosition = Vector3.zero;
+                    CurrentItem = null;
 
-            //transform
 
-            //child = transform.GetChild(0);
+
+                    CurrentItem = eventData.pointerDrag.transform;
+                    eventData.pointerDrag.transform.SetParent(transform);
+                    eventData.pointerDrag.GetComponent<RectTransform>().position = rect.position;
+                }
+
+                //transform
+
+                //child = transform.GetChild(0);
+            }
         }
     }
 }

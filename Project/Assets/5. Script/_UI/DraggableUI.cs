@@ -10,6 +10,10 @@ public class DraggableUI : MonoBehaviour, IBeginDragHandler,IDragHandler, IEndDr
     private RectTransform rect;
     private CanvasGroup canvasGroup;
 
+    int num = 0;
+    //0 = 잡템, 1 = 사용가능 아이템, 2 = 무기, 3 = 상의장비, 4=하의장비,5=신발;
+
+
     private void Awake()
     {
         canvas = FindObjectOfType<Canvas>().transform;
