@@ -4827,6 +4827,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe5c6418fb36ed4787c57940397d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 3956593315915952353}
+  angleRange: 55
+  radius: 21
 --- !u!1001 &3960925627756532203
 PrefabInstance:
   m_ObjectHideFlags: 0
