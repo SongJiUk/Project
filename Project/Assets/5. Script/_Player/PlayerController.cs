@@ -130,7 +130,8 @@ public class PlayerController : MonoBehaviour
     }
     public void EndSkill()
     {
-        player.ANIM.applyRootMotion = true;
+        player.ANIM.applyRootMotion = false;
+        player.RIGID.velocity = Vector3.zero;
         hasStarted = false;
         isUseSkill = false;
     }
@@ -141,14 +142,22 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftClickOn(InputAction.CallbackContext context)
     {
+        
 
-        if(isEquip)
-            if (context.performed && !isAttack) isAttack = true;
+        if (context.canceled && !isAttack)
+        {
+            isAttack = true;
+        }
     }
 
     public void ComboPossible()
     {
         isCombing = false;
+    }
+
+    public void EndCombo()
+    {
+        isAttack = false;
     }
 
     public void StartAttack()
@@ -179,7 +188,8 @@ public class PlayerController : MonoBehaviour
     }
     public void EndDash()
     {
-        player.ANIM.applyRootMotion = true;
+        player.ANIM.applyRootMotion = false;
+        player.RIGID.velocity = Vector3.zero;
         isDash = false;
     }
     #endregion
@@ -222,7 +232,6 @@ public class PlayerController : MonoBehaviour
             isEquip = !isEquip;
             player.ANIM.SetTrigger("PressX");
             player.ANIM.SetBool("IsEquip", isEquip);
-            player.ANIM.SetInteger("EquipNum", 1);
         }
     }
 
@@ -283,7 +292,6 @@ public class PlayerController : MonoBehaviour
         else
         {
             isCombing = false;
-            
             comboCount = 0;
             player.ANIM.SetInteger("ComboCount", 0);
         }
@@ -312,7 +320,28 @@ public class PlayerController : MonoBehaviour
                 
                 //player.ANIM.SetFloat("Velocity", MoveAnim);
             }
-        }        
+        }
+
+
+        if(Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            player.ANIM.SetInteger("EquipNum", 1);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            player.ANIM.SetInteger("EquipNum", 2);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            player.ANIM.SetInteger("EquipNum", 3);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            player.ANIM.SetInteger("EquipNum", 4);
+        }
     }
 
 

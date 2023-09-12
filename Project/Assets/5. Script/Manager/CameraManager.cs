@@ -20,10 +20,10 @@ public class CameraManager : Singleton<CameraManager>
         transform.position = player.transform.position;
         transform.rotation = player.transform.rotation;
         angles.x = 340f;
-        smoothSpeed = 2f;
+        smoothSpeed = 3f;
     }
 
-
+   
     private void LateUpdate()
     {
 
@@ -37,6 +37,7 @@ public class CameraManager : Singleton<CameraManager>
             isRightBtnClick = false;
         }
 
+        //transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime * 10f);;
         transform.position = player.transform.position;
 
         angles = transform.localEulerAngles;
