@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 8004084231813378647}
   - component: {fileID: 698831212720740903}
   - component: {fileID: -3066299789853042544}
-  - component: {fileID: 8195095447974616042}
   m_Layer: 0
   m_Name: DemonAttack3
   m_TagString: Untagged
@@ -4828,24 +4827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fe5c6418fb36ed4787c57940397d376, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 3956593315915952353}
-  angleRange: 55
-  radius: 21
---- !u!114 &8195095447974616042
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3453822876515543781}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10f6725d278427346a0189819f5e5da4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 3956593315915952353}
-  angleRange: 55
-  radius: 21
 --- !u!1001 &3960925627756532203
 PrefabInstance:
   m_ObjectHideFlags: 0
