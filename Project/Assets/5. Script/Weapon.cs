@@ -5,13 +5,16 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] GameData data;
-    BoxCollider boxCollider;
+
     
     void Start()
     {
+        //Debug.Log(data.equipmentType);
+        //Debug.Log(data.equipmentLevel);
+        //Debug.Log(data.equipmentName);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         

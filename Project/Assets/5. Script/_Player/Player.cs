@@ -1,12 +1,12 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.InputSystem;
+
 
 public class Player : Singleton<Player>
 {
+
+
     private int level;
     public int LEVEL { get { return level; } }
 
@@ -19,7 +19,6 @@ public class Player : Singleton<Player>
     private float speed;
     public float SPEED { get { return speed; } set { speed = value; } }
 
-
     Animator anim;
     public Animator ANIM { get { return anim; } private set {  } }
     NavMeshAgent nav;
@@ -27,17 +26,18 @@ public class Player : Singleton<Player>
     Rigidbody rigid;
     public Rigidbody RIGID { get { return rigid; } private set { } }
 
+    WeaponManager weaponManager;
+    
 
-    public GameObject EquipWeapon_back;
-    public GameObject EquipWeapon_hand;
     private void Awake()
     {
+
         //if (null == instance) instance = this;
         if (null == anim) anim = GetComponent<Animator>();
         if (null == nav) nav = GetComponent<NavMeshAgent>();
         if (null == rigid) rigid = GetComponent<Rigidbody>();
+        if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
         SPEED = 3f;
-
     }
 
     private void Update()

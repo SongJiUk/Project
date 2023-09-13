@@ -8,19 +8,17 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     Player player;
-    
+    WeaponManager weaponManager;
    
     AnimationState stateMachine;
 
 
-    #region 플레이어 장비 장착 및 해제
-    bool isEquip = false;
-    #endregion
+    
 
     #region 플레이어 콤보공격, 스킬 관련
     private int comboCount = 0;
     private float comboTimer = 0f;
-    public float comboDelay = 1f;
+    private float comboDelay = 1f;
     bool isAttack = false;
     bool isAttacking = false;
     bool isDash = false;
@@ -56,6 +54,8 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         if (null == player) player = Player.GetInstance;
+        if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
+        comboDelay = 1f;
     }
 
 
@@ -229,23 +229,12 @@ public class PlayerController : MonoBehaviour
     {
         if(context.performed)
         {
-            isEquip = !isEquip;
+            weaponManager.ISEQUIP = !weaponManager.ISEQUIP;
             player.ANIM.SetTrigger("PressX");
-            player.ANIM.SetBool("IsEquip", isEquip);
+            player.ANIM.SetBool("IsEquip", weaponManager.ISEQUIP);
         }
     }
 
-    public void Unequip()
-    {
-        player.EquipWeapon_hand.SetActive(isEquip);
-        player.EquipWeapon_back.SetActive(!isEquip);
-    }
-
-    public void Equip()
-    {
-        player.EquipWeapon_hand.SetActive(isEquip);
-        player.EquipWeapon_back.SetActive(!isEquip);
-    }
 
     #endregion
     public void OnRightClick(InputAction.CallbackContext context)
