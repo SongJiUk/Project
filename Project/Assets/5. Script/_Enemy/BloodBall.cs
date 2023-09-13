@@ -31,5 +31,6 @@ public class BloodBall : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("PlayerHit");
+        Destroy(gameObject);
     }
 }

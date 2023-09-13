@@ -31,5 +31,6 @@ public class SpiderWeb : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("거미거미");
+        Destroy(gameObject);
     }
 }

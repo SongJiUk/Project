@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SpecterAnime
+  m_Controller: {fileID: 9100000, guid: 37dbd113d75f69248b125a119ca6b447, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: cc916eea4e977c84eba08fb438ef64fe, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: cdae34ec8162dc14787b5fb4601e1263, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 51cd5bbf7332fbf40b959599d8c0115d, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 7be4b4bc25e279547888e298d0929d9e, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: b54c9b568f893704f93b860b3f9b577d, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 2f89ae6d44f816846bd44583d9225aa1, type: 3}
+  - m_OriginalClip: {fileID: 7400000, guid: f4bb6823dbca0154183fc6d6f5d11741, type: 3}
+    m_OverrideClip: {fileID: 7400000, guid: 7ba4ceda9c432df4abcb321560043f4c, type: 3}

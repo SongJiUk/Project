@@ -27,6 +27,8 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     float attackRange = 3f;
     int playerLayer; // 플레이어 레이어 마스크 설정
+
+    float originalSpeed;
     void Start()
     {
         timer = attackTime;
@@ -39,6 +41,7 @@ public class Enemy : MonoBehaviour
         //playerLayer = 1 << 5;
         playerLayer = 1 << LayerMask.NameToLayer("Player");
         // nav.acceleration = Mathf.Infinity;
+        originalSpeed = nav.speed;
     }
 
     void Update()
@@ -61,6 +64,7 @@ public class Enemy : MonoBehaviour
                         transform.LookAt(player.transform);
                         Anime.SetTrigger("IsAttack");
                         timer = 0f;
+                        nav.speed = 0f;
                     }
                 }
             }else
@@ -74,6 +78,11 @@ public class Enemy : MonoBehaviour
         {
             EnemyHit(10);
         }
+    }
+
+    public void StopRelease()
+    {
+        nav.speed = originalSpeed;
     }
 
 
