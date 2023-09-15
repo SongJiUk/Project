@@ -32,7 +32,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         timer = attackTime;
-        player = Player.GetInstance;
         nowEnemyHP = maxEnemyHP;
         Anime = GetComponent<Animator>();
         //GameObject obj = GameObject.FindGameObjectWithTag("Player");
@@ -46,38 +45,46 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        // ?????????? ?????? ?????? ???? ????
-        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-        if (nav.enabled == true)
+        if (player == null)
         {
-            // ?????????? ???? ???? ???? ?????? ?????????? ???? ????
-            timer += Time.deltaTime;
-            if (distanceToPlayer <= detectionRange)
+            player = Player.GetInstance;
+        }else
+        {
+            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+            if (nav.enabled == true)
             {
-                Anime.SetBool("IsChasing", true);
-                nav.SetDestination(player.transform.position);
-                if (nav.remainingDistance <= nav.stoppingDistance)
+                // ?????????? ???? ???? ???? ?????? ?????????? ???? ????
+                timer += Time.deltaTime;
+                if (distanceToPlayer <= detectionRange)
                 {
-                    if (timer >= attackTime)
+                    Anime.SetBool("IsChasing", true);
+                    nav.SetDestination(player.transform.position);
+                    if (nav.remainingDistance <= nav.stoppingDistance)
                     {
-                        transform.LookAt(player.transform);
-                        Anime.SetTrigger("IsAttack");
-                        timer = 0f;
-                        nav.speed = 0f;
+                        if (timer >= attackTime)
+                        {
+                            transform.LookAt(player.transform);
+                            Anime.SetTrigger("IsAttack");
+                            timer = 0f;
+                            nav.speed = 0f;
+                        }
                     }
                 }
-            }else
+                else
+                {
+                    nav.SetDestination(transform.position);
+                    Anime.SetBool("IsChasing", false);
+                }
+            }
+            // Debug
+            if (Input.GetKeyDown(KeyCode.B))
             {
-                nav.SetDestination(transform.position);
-                Anime.SetBool("IsChasing", false);
+                EnemyHit(10);
             }
         }
-        // Debug
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            EnemyHit(10);
-        }
+
+        // ?????????? ?????? ?????? ???? ????
     }
 
     public void StopRelease()

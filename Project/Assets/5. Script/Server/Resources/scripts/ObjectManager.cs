@@ -15,10 +15,6 @@ public class ObjectManager : MonoBehaviour
     }
 
     Player player;
-    private void Start()
-    {
-        player = Player.GetInstance;
-    }
 
     [SerializeField]
     GameObject ObjectPrefab;
@@ -39,17 +35,35 @@ public class ObjectManager : MonoBehaviour
         return null;
     }
 
-    public void MoveObject(int playerindex,Vector3 position,float Angle)
+    private void Update()
+    {
+        if (player == null)
+        {
+            player = Player.GetInstance;
+        }
+    }
+
+        public void MoveObject(int playerindex,Vector3 position,float Angle)
     {
         Debug.LogError(playerindex+ "_" + position);
         NetObject findNetObject = FindObject(playerindex);
         if(findNetObject == null)
         {
-            GameObject obj = Instantiate(ObjectPrefab);
-            findNetObject = obj.GetComponent<NetObject>();
-            findNetObject.CreateObejct(playerindex);
-            ObjectArray.Add(findNetObject);
-            obj.name = "Net_" + playerindex;
+            if (player == null)
+            {
+                GameObject obj = Instantiate(ObjectPrefab);
+                findNetObject = obj.GetComponent<NetObject>();
+                findNetObject.CreateObejct(playerindex);
+                ObjectArray.Add(findNetObject);
+                obj.name = "Net_" + playerindex;
+            }else
+            {
+                GameObject obj = Instantiate(OtherPrefab);
+                findNetObject = obj.GetComponent<NetObject>();
+                findNetObject.CreateObejct(playerindex);
+                ObjectArray.Add(findNetObject);
+                obj.name = "Net_" + playerindex;
+            }
         }
         findNetObject.TargetPos = position;
         findNetObject.Angle = Angle;

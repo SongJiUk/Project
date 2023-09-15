@@ -11,7 +11,14 @@ public class BallAttack : MonoBehaviour
     Player player;
     private void Start()
     {
-        player =  Player.GetInstance;
+    }
+
+    private void Update()
+    {
+        if (player == null)
+        {
+            player = Player.GetInstance;
+        }
     }
     public void BallAttacks()
     {

@@ -16,9 +16,6 @@ public class CameraManager : Singleton<CameraManager>
     float DownHeight = 330f;
     private void Start()
     {
-        if (null == player) player = Player.GetInstance;
-        transform.position = player.transform.position;
-        transform.rotation = player.transform.rotation;
         angles.x = 340f;
         smoothSpeed = 3f;
     }
@@ -26,6 +23,12 @@ public class CameraManager : Singleton<CameraManager>
    
     private void LateUpdate()
     {
+        if (player == null)
+        {
+            if (null == player) player = Player.GetInstance;
+            transform.position = player.transform.position;
+            transform.rotation = player.transform.rotation;
+        }
 
         if(Input.GetMouseButtonDown(1))
         {
