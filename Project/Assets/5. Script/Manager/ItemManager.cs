@@ -23,7 +23,7 @@ public class ItemManager : Singleton<ItemManager>
 
     private void Start()
     {
-        WeaponManager.GetInstance.ChangeWeapon(WeaponData["Hand"]);
+        //WeaponManager.GetInstance.ChangeWeapon(WeaponData["Hand"]);
     }
 
     public GameData GetWeaponData(string _name)

@@ -211,7 +211,7 @@
                     "name": "",
                     "id": "877a2b71-9483-4a9a-a59d-7759320ea034",
                     "path": "<Mouse>/leftButton",
-                    "interactions": "Press(behavior=1)",
+                    "interactions": "Press",
                     "processors": "",
                     "groups": "PC",
                     "action": "LeftMouse",

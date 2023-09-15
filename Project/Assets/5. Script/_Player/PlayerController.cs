@@ -143,9 +143,9 @@ public class PlayerController : MonoBehaviour
     public void OnLeftClickOn(InputAction.CallbackContext context)
     {
         
-
         if (context.canceled && !isAttack)
         {
+            Debug.Log("클릭 !");
             isAttack = true;
         }
     }
@@ -163,11 +163,13 @@ public class PlayerController : MonoBehaviour
     public void StartAttack()
     {
         isAttacking = true;
+        weaponManager.weapon.Trail.SetActive(true);
     }
 
     public void EndAttack()
     {
         isAttacking = false;
+        weaponManager.weapon.Trail.SetActive(false);
     }
     #endregion
 
@@ -312,25 +314,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        if(Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            player.ANIM.SetInteger("EquipNum", 1);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            player.ANIM.SetInteger("EquipNum", 2);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            player.ANIM.SetInteger("EquipNum", 3);
-        }
-
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            player.ANIM.SetInteger("EquipNum", 4);
-        }
+        
     }
 
 

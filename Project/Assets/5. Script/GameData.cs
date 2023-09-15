@@ -3,7 +3,7 @@ public enum EquipmentType
 {
     Hand,
     Dagger,
-    OneHandSword,
+    OneHandMace,
     TwoHandSword,
     Axe,
     Spear,
