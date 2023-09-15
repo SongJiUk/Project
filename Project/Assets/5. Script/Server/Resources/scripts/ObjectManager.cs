@@ -17,6 +17,9 @@ public class ObjectManager : MonoBehaviour
     [SerializeField]
     GameObject ObjectPrefab;
 
+    [SerializeField]
+    GameObject OtherPrefab;
+
     List<NetObject> ObjectArray= new List<NetObject>();
 
     public NetObject FindObject(int playerindex)
