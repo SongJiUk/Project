@@ -14,6 +14,12 @@ public class ObjectManager : MonoBehaviour
 
     }
 
+    Player player;
+    private void Start()
+    {
+        player = Player.GetInstance;
+    }
+
     [SerializeField]
     GameObject ObjectPrefab;
 
