@@ -62,6 +62,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        
         input = context.ReadValue<Vector2>();
         if (input != null)
         {
@@ -163,13 +164,13 @@ public class PlayerController : MonoBehaviour
     public void StartAttack()
     {
         isAttacking = true;
-        weaponManager.weapon.Trail.SetActive(true);
+        //weaponManager.weapon.Trail.SetActive(true);
     }
 
     public void EndAttack()
     {
         isAttacking = false;
-        weaponManager.weapon.Trail.SetActive(false);
+        //weaponManager.weapon.Trail.SetActive(false);
     }
     #endregion
 

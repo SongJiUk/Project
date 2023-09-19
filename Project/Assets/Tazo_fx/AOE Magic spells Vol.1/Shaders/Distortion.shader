@@ -1,4 +1,4 @@
-Shader "ErbGameArt/Particles/Distortion"
+Shader "Hovl/Particles/Distortion"
 {
 	Properties
 	{
