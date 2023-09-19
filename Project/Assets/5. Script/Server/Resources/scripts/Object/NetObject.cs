@@ -39,9 +39,9 @@ public class NetObject : MonoBehaviour
             transform.position =  Vector3.Lerp(transform.position,TargetPos,Time.deltaTime * 6f);
 
             if(Vector3.Distance(transform.position,TargetPos) < 0.1f)
-                GetComponent<Animator>().SetBool("IsMove",false);
+                GetComponent<Animator>().SetBool("IsWalk",false);
             else
-                GetComponent<Animator>().SetBool("IsMove", true);
+                GetComponent<Animator>().SetBool("IsWalk", true);
 
             transform.rotation = Quaternion.Lerp(transform.rotation,
                 Quaternion.Euler(0, Angle, 0), Time.deltaTime * 10f);
