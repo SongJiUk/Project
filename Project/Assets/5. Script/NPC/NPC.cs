@@ -10,10 +10,16 @@ public class NPC : MonoBehaviour
     [SerializeField]
     GameObject TextBox;
 
-    UnityEngine.UI.Text QuestText;
     bool textTrue = false;
 
+    [SerializeField]
+    GameObject QuestText;
+
+    bool QuestActive = false;
+    bool Quest1 = false;
+
     Player player;
+
     void Start()
     {
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
@@ -34,20 +40,44 @@ public class NPC : MonoBehaviour
             {
                 TextBox.SetActive(true);
             }
-
-            if (Input.GetKeyDown(KeyCode.C))
+            if (!Quest1)
             {
-                Debug.Log("Äù½ºÆ® ¹Þ±â");
-                textTrue = true;
-                TextBox.SetActive(false);
+                if (Input.GetKeyDown(KeyCode.C))
+                {
+                    textTrue = true;
+                    TextBox.SetActive(false);
+                    QuestText.SetActive(true);
+                    QuestActive = true;
+                }
+            }
+
+            if (QuestActive)
+            {
+                if (Input.GetKeyDown(KeyCode.V))
+                {
+                    Debug.Log("Äù½ºÆ® ¼ö¶ô");
+                    Quest1 = true;
+                    TextBox.GetComponent<UnityEngine.UI.Text>().text = "»¡¸® ÇØ°áÇØ Áà!";
+                    QuestText.SetActive(false);
+                    QuestActive = false;
+                    TextBox.SetActive(true);
+                } else if (Input.GetKeyDown(KeyCode.B))
+                {
+                    Debug.Log("Äù½ºÆ® °ÅÀý");
+                    QuestText.SetActive(false);
+                    QuestActive = false;
+                    TextBox.SetActive(true);
+                }
             }
         }else
         {
             if (!textTrue)
             {
                 TextBox.SetActive(false);
-                textTrue = false;
+                QuestText.SetActive(false);
+                QuestActive = false;
             }
+            textTrue = false;
         }
     }
 }
