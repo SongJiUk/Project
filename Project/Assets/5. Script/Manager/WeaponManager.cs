@@ -42,6 +42,8 @@ public class WeaponManager : Singleton<WeaponManager>
     #region 끼고있던 장비 정보
     public GameData B_Weapondata;
     public GameData B_ShiledData;
+    GameObject B_handWeapon;
+    GameObject B_handShiled;
 
     #endregion
 
@@ -66,16 +68,26 @@ public class WeaponManager : Singleton<WeaponManager>
                 Equip -> UnEquip -> Equip
             무기가 등 뒤에있으면 등 뒤에 있는 상태에서 바꿔준다.
                 UnEquip -> Equip
-        5. 
-         */
-        B_Weapondata = Weapondata;
-        B_ShiledData = ShiledData;
+        5.
 
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+           ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
+            무기의 정보를 건내줌
+            Player.GetInstance.ANIM.SetInteger("EquipNum", 1);
+            모두 바뀌면 EquipNum를 1로 바꿔준다.
+        }
+         */
+
+        // 전에 끼던 무기 정보 저장
+        if (handWeapon != null) B_handWeapon = handWeapon;
+        if (handShiled != null) B_handShiled = handShiled;
+        // 교체할 무기 저장
         Weapondata = _weaponData;
-        ShiledData = _shiledData; //여기서 스탯 얻어오기
+        ShiledData = _shiledData; 
         
 
-
+        //웨폰 리스트에서 맞는 정보를 가져와서 저장해줌
         for (int i = 0; i < WeaponList.Count; i++)
         {
             if (Weapondata.equipmentName == WeaponList[i].name) handWeapon = WeaponList[i];
@@ -127,7 +139,8 @@ public class WeaponManager : Singleton<WeaponManager>
     {
         EquipWeapon_back.SetActive(!isEquip);
         EquipWeapon_hand.SetActive(isEquip);
-
+        if(B_handWeapon != null) B_handWeapon.SetActive(false);
+        if (B_handShiled != null) B_handShiled.SetActive(false);
         //EquipShiled_back.SetActive(!isEquip);
         //EquipShiled_hand.SetActive(isEquip);
 
@@ -147,7 +160,6 @@ public class WeaponManager : Singleton<WeaponManager>
         {
            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
             Player.GetInstance.ANIM.SetInteger("EquipNum", 1);
-
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))

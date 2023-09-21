@@ -116,7 +116,6 @@ public class Enemy : MonoBehaviour
         nowEnemyHP -= value;
         Anime.SetTrigger("IsHit");
     }
-
     public void SkillHit()
     {
         if(!isSkillHit)
