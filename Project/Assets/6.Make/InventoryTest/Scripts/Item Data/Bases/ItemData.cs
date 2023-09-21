@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// 날짜 : 2021-03-07 PM 8:45:55
-// 작성자 : Rito
-
 namespace Rito.InventorySystem
 {
     /*

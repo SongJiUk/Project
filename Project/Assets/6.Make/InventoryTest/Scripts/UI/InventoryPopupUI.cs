@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// 날짜 : 2021-04-13 PM 7:47:35
-// 작성자 : Rito
-
 namespace Rito
 {
     /// <summary> 인벤토리 UI 위에 띄울 작은 팝업들 관리 </summary>

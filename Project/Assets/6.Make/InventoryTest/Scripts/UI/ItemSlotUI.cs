@@ -5,9 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-// 날짜 : 2021-03-07 PM 10:20:05
-// 작성자 : Rito
-
 namespace Rito.InventorySystem
 {
     public class ItemSlotUI : MonoBehaviour

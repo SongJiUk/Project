@@ -38,9 +38,6 @@ using UnityEngine.EventSystems;
     - InvertMouse(bool) : 마우스 좌클릭/우클릭 반전 여부 설정
 */
 
-// 날짜 : 2021-03-07 PM 7:34:31
-// 작성자 : Rito
-
 namespace Rito.InventorySystem
 {
     public class InventoryUI : MonoBehaviour

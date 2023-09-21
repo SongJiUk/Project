@@ -49,9 +49,6 @@ using UnityEngine;
     - void SortAll() : 앞에서부터 아이템 슬롯 채우면서 정렬
 */
 
-// 날짜 : 2021-03-07 PM 7:33:52
-// 작성자 : Rito
-
 namespace Rito.InventorySystem
 {
     public class Inventory : MonoBehaviour
@@ -490,6 +487,7 @@ namespace Rito.InventorySystem
             if (!IsValidIndex(index)) return;
             if (_items[index] == null) return;
 
+
             // 사용 가능한 아이템인 경우
             if (_items[index] is IUsableItem uItem)
             {
@@ -499,6 +497,26 @@ namespace Rito.InventorySystem
                 if (succeeded)
                 {
                     UpdateSlot(index);
+                }
+            }
+            else if (_items[index] is EquipmentItem uItem2)
+            {
+
+                if (uItem2.EquipmentData.Type == Types.Head)
+                {
+
+                }
+                else if (uItem2.EquipmentData.Type == Types.Top)
+                {
+
+                }
+                else if (uItem2.EquipmentData.Type == Types.Bottom)
+                {
+
+                }
+                else
+                {
+
                 }
             }
         }

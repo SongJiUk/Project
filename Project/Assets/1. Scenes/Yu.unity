@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -4190,8 +4190,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   guids:
   - 35ed523b-7394-4b2f-a65b-4ecfa8472a53
+  - 6fbe7382-e298-416e-91b8-4538863845c6
   objects:
   - {fileID: 925597370}
+  - {fileID: 1699230453}
 --- !u!4 &499546340
 Transform:
   m_ObjectHideFlags: 0
@@ -5327,7 +5329,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 343, y: -13}
+  m_AnchoredPosition: {x: 295, y: 48}
   m_SizeDelta: {x: 556, y: 636}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &657549055
@@ -5469,7 +5471,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Inventory: {fileID: 657549053}
-  Equipment: {fileID: 0}
+  Equipment: {fileID: 467670447}
+  Skill: {fileID: 0}
+  InventoryButton: {fileID: 1973445296}
+  EquipmentButton: {fileID: 2026990891}
+  SkillButton: {fileID: 0}
 --- !u!4 &657602124
 Transform:
   m_ObjectHideFlags: 0

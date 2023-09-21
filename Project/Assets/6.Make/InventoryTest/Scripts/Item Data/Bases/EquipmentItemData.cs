@@ -3,8 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 날짜 : 2021-03-27 PM 11:07:41
-// 작성자 : Rito
+public enum Types
+{
+    Head = 0,    
+    Top = 1,    
+    Bottom = 2,    
+    Sword = 3,
+    Bow = 4,
+    Spear = 5,
+
+
+}
 
 namespace Rito.InventorySystem
 {
@@ -13,6 +22,8 @@ namespace Rito.InventorySystem
     {
         /// <summary> 최대 내구도 </summary>
         public int MaxDurability => _maxDurability;
+
+        public Types Type;
 
         [SerializeField] private int _maxDurability = 100;
     }
