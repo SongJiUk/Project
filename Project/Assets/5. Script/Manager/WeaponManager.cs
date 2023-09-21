@@ -8,6 +8,7 @@ public class WeaponManager : Singleton<WeaponManager>
     [SerializeField] List<GameObject> WeaponList = new List<GameObject>();
     [SerializeField] List<GameObject> BackWeaponList = new List<GameObject>();
     [SerializeField] List<GameObject> ShiledList = new List<GameObject>();
+    [SerializeField] List<GameObject> BackShiledList = new List<GameObject>();
 
     #endregion
 
@@ -56,6 +57,7 @@ public class WeaponManager : Singleton<WeaponManager>
         }
     }
 
+    bool isEquipShiled = false;
     public void ChangeWeapon(GameData _weaponData, GameData _shiledData = null)
     {
         /*
@@ -97,7 +99,22 @@ public class WeaponManager : Singleton<WeaponManager>
         EquipWeapon_back = backWeapon;
         EquipWeapon_hand = handWeapon;
 
-        if (EquipWeapon_hand != null) weapon = EquipWeapon_hand.GetComponent<Weapon>();
+        if (_shiledData != null)
+        {
+            isEquipShiled = true;
+            for (int i = 0; i < ShiledList.Count; i++)
+            {
+                if (ShiledData.equipmentName == ShiledList[i].name) handShiled = ShiledList[i];
+                if (ShiledData.equipmentName == BackShiledList[i].name) backShiled = BackShiledList[i];
+            }
+
+            EquipShiled_back = handShiled;
+            EquipShiled_hand = backShiled;
+
+        }
+        else isEquipShiled = false;
+
+        //if (EquipWeapon_hand != null) weapon = EquipWeapon_hand.GetComponent<Weapon>();
 
         if (isEquip)
         {
@@ -113,16 +130,8 @@ public class WeaponManager : Singleton<WeaponManager>
             Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
         }
 
-        //if (handWeapon != null) handWeapon.SetActive(false);
-        //if (backWeapon != null) backWeapon.SetActive(false);
-        //if (handShiled != null) handShiled.SetActive(false);
-        //if (backShiled != null) backShiled.SetActive(false);
     }
 
-    public void DisableWeapon()
-    {
-       
-    }
 
     #region 애니메이션에서 실행
     public void Equip()
@@ -130,8 +139,12 @@ public class WeaponManager : Singleton<WeaponManager>
         EquipWeapon_back.SetActive(!isEquip);
         EquipWeapon_hand.SetActive(isEquip);
 
-        //EquipShiled_back.SetActive(!isEquip);
-        //EquipShiled_hand.SetActive(isEquip);
+        if(isEquipShiled)
+        {
+            EquipShiled_back.SetActive(!isEquip);
+            EquipShiled_hand.SetActive(isEquip);
+        }
+        
     }
 
 
@@ -141,8 +154,18 @@ public class WeaponManager : Singleton<WeaponManager>
         EquipWeapon_hand.SetActive(isEquip);
         if(B_handWeapon != null) B_handWeapon.SetActive(false);
         if (B_handShiled != null) B_handShiled.SetActive(false);
-        //EquipShiled_back.SetActive(!isEquip);
-        //EquipShiled_hand.SetActive(isEquip);
+
+        if(isEquipShiled)
+        {
+            EquipShiled_back.SetActive(!isEquip);
+            EquipShiled_hand.SetActive(isEquip);
+        }
+        else
+        {
+            EquipShiled_back.SetActive(false);
+            EquipShiled_hand.SetActive(false);
+        }
+        
 
         if (isChangeWeapon)
         {

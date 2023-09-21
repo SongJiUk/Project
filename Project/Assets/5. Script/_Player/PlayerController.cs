@@ -79,55 +79,67 @@ public class PlayerController : MonoBehaviour
     #region Skill
     public void OnPressQBtn(InputAction.CallbackContext context)
     {
-
-        if (context.performed && !hasStarted)
+        if(weaponManager.ISEQUIP)
         {
-            isUseSkill = true;
-            hasStarted = true;
-            player.ANIM.SetTrigger("PressQ");
-            player.ANIM.applyRootMotion = true;
-            player.NAV.ResetPath();
+            if (context.performed && !hasStarted)
+            {
+                isUseSkill = true;
+                hasStarted = true;
+                player.ANIM.SetTrigger("PressQ");
+                player.ANIM.applyRootMotion = true;
+                player.NAV.ResetPath();
+            }
         }
+        
     }
     public void OnPressEBtn(InputAction.CallbackContext context)
     {
-
-        if (context.performed && !hasStarted)
+        if (weaponManager.ISEQUIP)
         {
-            isUseSkill = true;
-            hasStarted = true;
-            player.ANIM.SetTrigger("PressE");
-            player.ANIM.applyRootMotion = true;
-            player.NAV.ResetPath();
+            if (context.performed && !hasStarted)
+            {
+                isUseSkill = true;
+                hasStarted = true;
+                player.ANIM.SetTrigger("PressE");
+                player.ANIM.applyRootMotion = true;
+                player.NAV.ResetPath();
+            }
         }
+        
 
     }
 
     public void OnPressRBtn(InputAction.CallbackContext context)
     {
-
-        if (context.performed && !hasStarted)
+        if (weaponManager.ISEQUIP)
         {
-            isUseSkill = true;
-            hasStarted = true;
-            player.ANIM.SetTrigger("PressR");
-            player.ANIM.applyRootMotion = true;
-            player.NAV.ResetPath();
+            if (context.performed && !hasStarted)
+            {
+                isUseSkill = true;
+                hasStarted = true;
+                player.ANIM.SetTrigger("PressR");
+                player.ANIM.applyRootMotion = true;
+                player.NAV.ResetPath();
+            }
         }
+        
 
     }
 
     public void OnPressFBtn(InputAction.CallbackContext context)
     {
-
-        if (context.performed && !hasStarted)
+        if (weaponManager.ISEQUIP)
         {
-            isUseSkill = true;
-            hasStarted = true;
-            player.ANIM.SetTrigger("PressF");
-            player.ANIM.applyRootMotion = true;
-            player.NAV.ResetPath();
+            if (context.performed && !hasStarted)
+            {
+                isUseSkill = true;
+                hasStarted = true;
+                player.ANIM.SetTrigger("PressF");
+                player.ANIM.applyRootMotion = true;
+                player.NAV.ResetPath();
+            }
         }
+        
     }
     public void EndSkill()
     {

@@ -116,7 +116,8 @@ public class Enemy : MonoBehaviour
         nowEnemyHP -= value;
         Anime.SetTrigger("IsHit");
     }
-    public void SkillHit()
+
+  public void SkillHit()
     {
         if(!isSkillHit)
         {
@@ -135,6 +136,14 @@ public class Enemy : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //Debug.Log("???"); 
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
+        {
+            Debug.Log("맞았다 ");
+        }
     }
 }
 
