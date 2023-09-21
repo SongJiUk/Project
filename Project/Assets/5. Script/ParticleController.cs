@@ -5,11 +5,18 @@ using UnityEngine;
 public class ParticleController : MonoBehaviour
 {
     ParticleSystem ParticleSystem;
-
+    public float DAMAGE;
+    public bool CheckScriptLoad;
+    public bool isDestory;
+    public bool isHit = false;
     private void Awake()
     {
-        if (null == ParticleSystem) ParticleSystem = this.GetComponent<ParticleSystem>();
-        ParticleSystem.Stop();
+        if(!CheckScriptLoad)
+        {
+            if (null == ParticleSystem) ParticleSystem = this.GetComponent<ParticleSystem>();
+            ParticleSystem.Stop();
+        }
+        
     }
 
     private void OnEnable()
@@ -20,5 +27,23 @@ public class ParticleController : MonoBehaviour
     public void PlayEffect()
     {
         ParticleSystem.Play();
+    }
+
+    void OnParticleCollision(GameObject other)
+    {
+
+        if (other.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            other.GetComponent<Enemy>().SkillHit();
+        }
+        
+        
+
+        if(isDestory)
+        {
+            Destroy(this);
+        }
+
+
     }
 }

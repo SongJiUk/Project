@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
     {
         if (null == player) player = Player.GetInstance;
         if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
-        comboDelay = 1f;
+        comboDelay = 1.5f;
     }
 
 
@@ -146,7 +146,6 @@ public class PlayerController : MonoBehaviour
         
         if (context.canceled && !isAttack)
         {
-            Debug.Log("클릭 !");
             isAttack = true;
         }
     }

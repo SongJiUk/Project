@@ -701,7 +701,7 @@ ModelImporter:
     second: Spear
   - first:
       74: 7400000
-    second: 2Hand-Spear-Run-Forward
+    second: Two_Hand_Spear_Run
   - first:
       95: 9500000
     second: //RootNode
@@ -747,7 +747,7 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: 2Hand-Spear-Run-Forward
+      name: Two_Hand_Spear_Run
       takeName: Take 001
       internalID: 7400000
       firstFrame: 0

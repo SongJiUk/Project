@@ -39,6 +39,12 @@ public class WeaponManager : Singleton<WeaponManager>
     GameObject backShiled;
     #endregion
 
+    #region 끼고있던 장비 정보
+    public GameData B_Weapondata;
+    public GameData B_ShiledData;
+
+    #endregion
+
     private void Start()
     {
         if (EquipWeapon_hand != null)
@@ -62,18 +68,12 @@ public class WeaponManager : Singleton<WeaponManager>
                 UnEquip -> Equip
         5. 
          */
+        B_Weapondata = Weapondata;
+        B_ShiledData = ShiledData;
 
         Weapondata = _weaponData;
         ShiledData = _shiledData; //여기서 스탯 얻어오기
         
-        
-        
-        
-
-        if (handWeapon != null) handWeapon.SetActive(false);
-        if (backWeapon != null) backWeapon.SetActive(false);
-        if (handShiled != null) handShiled.SetActive(false);
-        if (backShiled != null) backShiled.SetActive(false);
 
 
         for (int i = 0; i < WeaponList.Count; i++)
@@ -100,7 +100,11 @@ public class WeaponManager : Singleton<WeaponManager>
             isEquip = !isEquip;
             Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
         }
-        
+
+        //if (handWeapon != null) handWeapon.SetActive(false);
+        //if (backWeapon != null) backWeapon.SetActive(false);
+        //if (handShiled != null) handShiled.SetActive(false);
+        //if (backShiled != null) backShiled.SetActive(false);
     }
 
     public void DisableWeapon()

@@ -26,9 +26,11 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     float attackRange = 3f;
-    int playerLayer; // ÇÃ·¹ÀÌ¾î ·¹ÀÌ¾î ¸¶½ºÅ© ¼³Á¤
+    int playerLayer; // ???????? ?????? ?????? ????
 
     float originalSpeed;
+
+    bool isSkillHit = false;
     void Start()
     {
         timer = attackTime;
@@ -98,7 +100,7 @@ public class Enemy : MonoBehaviour
         //playerLayer
         if (Vector3.Distance(transform.position, player.transform.position) <= 2f)
         {
-            //Debug.LogWarning("¿Ò¿Ò ±ú¹°±â");
+            //Debug.LogWarning("???? ??????");
             // PlayerAttack();
         }
     }
@@ -113,6 +115,27 @@ public class Enemy : MonoBehaviour
     {
         nowEnemyHP -= value;
         Anime.SetTrigger("IsHit");
+    }
+
+    public void SkillHit()
+    {
+        if(!isSkillHit)
+        {
+            isSkillHit = true;
+            Debug.Log("ì•„í”„ë‹¤ : " + this.name);
+            Invoke("HitDelay", 0.5f);
+        }
+        
+    }
+
+    public void HitDelay()
+    {
+        isSkillHit = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        //Debug.Log("???"); 
     }
 }
 

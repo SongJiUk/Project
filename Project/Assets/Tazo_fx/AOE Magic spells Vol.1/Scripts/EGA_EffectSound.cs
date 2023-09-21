@@ -10,12 +10,14 @@ public class EGA_EffectSound : MonoBehaviour
     public bool RandomVolume;
     public float minVolume = .4f;
     public float maxVolume = 1f;
+    private AudioClip clip;
 
     private AudioSource soundComponent;
 
-    void OnEnable ()
+    void Start ()
     {
         soundComponent = GetComponent<AudioSource>();
+        clip = soundComponent.clip;
         if (RandomVolume == true)
         {
             soundComponent.volume = Random.Range(minVolume, maxVolume);
@@ -29,6 +31,6 @@ public class EGA_EffectSound : MonoBehaviour
 
     void RepeatSound()
     {
-        soundComponent.Play(0);
+        soundComponent.PlayOneShot(clip);
     }
 }
