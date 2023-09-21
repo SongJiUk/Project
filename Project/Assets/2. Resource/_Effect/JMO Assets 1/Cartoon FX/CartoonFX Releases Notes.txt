@@ -1,10 +1,7 @@
 ﻿Cartoon FX Pack
 Release Notes
-© 2013,2014 - Jean Moreno
+© 2013, Jean Moreno
 ============================
-v2.63
-- updated CFX Editor
-
 v2.62
 - Bug and compatibility fixes
 

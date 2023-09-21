@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-// Cartoon FX  - (c) 2015 Jean Moreno
+// Cartoon FX  - (c) 2013, Jean Moreno
 
 // Script handling the Demo scene of CartoonFX particles.
 

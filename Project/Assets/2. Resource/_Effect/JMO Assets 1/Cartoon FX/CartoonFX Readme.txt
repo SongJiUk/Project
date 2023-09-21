@@ -1,6 +1,6 @@
-﻿Cartoon FX Pack, version 2.63
-2013/12/06
-© 2013,2014 - Jean Moreno
+﻿Cartoon FX Pack, version 2.62
+2013/08/05
+© 2013, Jean Moreno
 =============================
 
 
