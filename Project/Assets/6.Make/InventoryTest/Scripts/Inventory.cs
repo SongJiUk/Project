@@ -79,6 +79,11 @@ namespace Rito.InventorySystem
 
         [SerializeField]
         private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
+        [SerializeField]
+        private Equipment _Equipment; // 연결된 장비창
+        [SerializeField]
+        private EquipmentUI _EquipmentUI; // 연결된 장비창
+
 
         /// <summary> 아이템 목록 </summary>
         [SerializeField]
@@ -501,23 +506,16 @@ namespace Rito.InventorySystem
             }
             else if (_items[index] is EquipmentItem uItem2)
             {
-
-                if (uItem2.EquipmentData.Type == Types.Head)
+                Item A = _Equipment.EquipmentItem(uItem2);
+                if (A == null)
                 {
-
-                }
-                else if (uItem2.EquipmentData.Type == Types.Top)
-                {
-
-                }
-                else if (uItem2.EquipmentData.Type == Types.Bottom)
-                {
-
+                    Remove(index);
                 }
                 else
                 {
-
+                    _items[index] = A;
                 }
+                UpdateSlot(index);
             }
         }
 

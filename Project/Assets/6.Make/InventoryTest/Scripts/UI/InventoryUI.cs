@@ -217,7 +217,7 @@ namespace Rito.InventorySystem
                 return rt;
             }
         }
-
+        
         private void InitButtonEvents()
         {
             _trimButton.onClick.AddListener(() => _inventory.TrimAll());
@@ -535,7 +535,7 @@ namespace Rito.InventorySystem
             // 툴팁 위치 조정
             _itemTooltip.SetRectPosition(slot.SlotRect);
         }
-
+        
         #endregion
         /***********************************************************************
         *                               Public Methods
@@ -822,7 +822,7 @@ namespace Rito.InventorySystem
                 }
             }
         }
-
+        
         private class PreviewItemSlot : MonoBehaviour { }
 
         [UnityEditor.InitializeOnLoad]

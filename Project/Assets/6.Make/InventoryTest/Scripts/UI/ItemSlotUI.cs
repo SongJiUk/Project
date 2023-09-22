@@ -213,7 +213,7 @@ namespace Rito.InventorySystem
         /// <summary> 슬롯에 아이템 등록 </summary>
         public void SetItem(Sprite itemSprite)
         {
-            //if (!this.IsAccessible) return;
+            if (!this.IsAccessible) return;
 
             if (itemSprite != null)
             {
