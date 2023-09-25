@@ -26,7 +26,10 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     float attackRange = 3f;
-    int playerLayer; // ???????? ?????? ?????? ????
+    int playerLayer; // 플레이어 레이어 마스크 설정
+
+    [SerializeField]
+    int enemyID;
 
     float originalSpeed;
 
@@ -50,7 +53,8 @@ public class Enemy : MonoBehaviour
         if (player == null)
         {
             player = Player.GetInstance;
-        }else
+        }
+        else
         {
             float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
@@ -100,7 +104,7 @@ public class Enemy : MonoBehaviour
         //playerLayer
         if (Vector3.Distance(transform.position, player.transform.position) <= 2f)
         {
-            //Debug.LogWarning("???? ??????");
+            //Debug.LogWarning("왑왑 깨물기");
             // PlayerAttack();
         }
     }
@@ -117,15 +121,26 @@ public class Enemy : MonoBehaviour
         Anime.SetTrigger("IsHit");
     }
 
-  public void SkillHit()
+    public int GetEnemyID()
     {
-        if(!isSkillHit)
+        return enemyID;
+    }
+
+    private void OnDestroy()
+    {
+        QuestManager quest = QuestManager.QuestCurrent;
+        //quest.QuestCountUp(enemyID);
+    }
+
+    public void SkillHit()
+    {
+        if (!isSkillHit)
         {
             isSkillHit = true;
             Debug.Log("아프다 : " + this.name);
             Invoke("HitDelay", 0.5f);
         }
-        
+
     }
 
     public void HitDelay()
@@ -133,14 +148,9 @@ public class Enemy : MonoBehaviour
         isSkillHit = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        //Debug.Log("???"); 
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
         {
             Debug.Log("맞았다 ");
         }

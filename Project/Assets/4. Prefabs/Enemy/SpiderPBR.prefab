@@ -707,6 +707,7 @@ MonoBehaviour:
   attackEffectPrefab: {fileID: 2376959826022144281, guid: 11ee4850e130a2941ae3940161bd82ce, type: 3}
   attackTime: 3.5
   attackRange: 1
+  enemyID: 6
 --- !u!114 &95690966414396962
 MonoBehaviour:
   m_ObjectHideFlags: 0

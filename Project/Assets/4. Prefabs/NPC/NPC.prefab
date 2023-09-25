@@ -22174,6 +22174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TextBox: {fileID: 0}
   QuestText: {fileID: 0}
+  QuestClearSelect: {fileID: 0}
 --- !u!1 &6639616417000092795
 GameObject:
   m_ObjectHideFlags: 0

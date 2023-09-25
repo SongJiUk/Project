@@ -790,6 +790,7 @@ MonoBehaviour:
   attackEffectPrefab: {fileID: 0}
   attackTime: 2.5
   attackRange: 1
+  enemyID: 5
 --- !u!65 &3751779048483840240
 BoxCollider:
   m_ObjectHideFlags: 0
