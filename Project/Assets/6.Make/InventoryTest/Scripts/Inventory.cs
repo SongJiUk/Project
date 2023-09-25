@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
 /*
@@ -80,9 +81,9 @@ namespace Rito.InventorySystem
         [SerializeField]
         private InventoryUI _inventoryUI; // 연결된 인벤토리 UI
         [SerializeField]
-        private Equipment _Equipment; // 연결된 장비창
+        private Equipment _equipment; // 연결된 장비창
         [SerializeField]
-        private EquipmentUI _EquipmentUI; // 연결된 장비창
+        private EquipmentUI _equipmentUI; // 연결된 장비창UI
 
 
         /// <summary> 아이템 목록 </summary>
@@ -423,7 +424,7 @@ namespace Rito.InventorySystem
             _inventoryUI.RemoveItem(index);
         }
 
-        /// <summary> 두 인덱스의 아이템 위치를 서로 교체 </summary>
+        /// <summary> 두 인덱스의 아이템 위치를 서로 교체 </summary> 인벤토리와 인벤토리
         public void Swap(int indexA, int indexB)
         {
             if (!IsValidIndex(indexA)) return;
@@ -461,6 +462,26 @@ namespace Rito.InventorySystem
 
             // 두 슬롯 정보 갱신
             UpdateSlot(indexA, indexB);
+        }
+
+        /// <summary> 두 인덱스의 아이템 위치를 서로 교체 </summary> 인벤토리와 인벤토리
+        public void SwapE(int indexA, int indexB)
+        {
+            if (_equipment.slot(indexA) == null) return;
+            if (!IsValidIndex(indexB)) return;
+            if (_items[indexB] is EquipmentItem itemB) ;
+            else return;
+            if (_items[indexB] is EquipmentItem itemA) ;
+            else return;
+            if (itemA.EquipmentData == itemB.EquipmentData)
+            {
+                _items[indexA] = itemB;
+                _items[indexB] = itemA;
+            }
+            else return;
+            // 두 슬롯 정보 갱신
+            _equipment.UpdateSlot(indexA);
+            UpdateSlot(indexB);
         }
 
         /// <summary> 셀 수 있는 아이템의 수량 나누기(A -> B 슬롯으로) </summary>
@@ -506,7 +527,7 @@ namespace Rito.InventorySystem
             }
             else if (_items[index] is EquipmentItem uItem2)
             {
-                Item A = _Equipment.EquipmentItem(uItem2);
+                Item A = _equipment.EquipmentItem(uItem2);
                 if (A == null)
                 {
                     Remove(index);

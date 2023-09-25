@@ -86,7 +86,10 @@ namespace Rito.InventorySystem
         #region .
 
         /// <summary> 연결된 인벤토리 </summary>
+        [SerializeField]
         private Inventory _inventory;
+        [SerializeField]
+        private EquipmentUI _equipmentUI;
 
         private List<ItemSlotUI> _slotUIList = new List<ItemSlotUI>();
         private GraphicRaycaster _gr;
@@ -250,7 +253,7 @@ namespace Rito.InventorySystem
             => EventSystem.current.IsPointerOverGameObject();
 
         /// <summary> 레이캐스트하여 얻은 첫 번째 UI에서 컴포넌트 찾아 리턴 </summary>
-        private T RaycastAndGetFirstComponent<T>() where T : Component
+        public T RaycastAndGetFirstComponent<T>() where T : Component
         {
             _rrList.Clear();
 
@@ -466,7 +469,7 @@ namespace Rito.InventorySystem
                 EditorLog($"Drag End(Do Nothing)");
             }
         }
-
+        
         #endregion
         /***********************************************************************
         *                               Private Methods
