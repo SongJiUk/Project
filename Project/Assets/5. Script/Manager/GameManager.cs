@@ -4,58 +4,56 @@ using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
-    public UnityEngine.UI.Text talkText;
-    public TalkManager talkManager;
-    public GameObject TalkImage;
-    public GameObject scanObject;
-    public UnityEngine.UI.Image portraitImage;
-    public UnityEngine.UI.Text questText;
-
-    public bool isMove;
-    public int talkIndex;
-
+    [SerializeField]
+    TalkManager talkManager;
     QuestManager questManager;
+    [SerializeField]
+    GameObject talkPanel;
+    [SerializeField]
+    UnityEngine.UI.Text talkText;
+    [SerializeField]
+    GameObject scanObject;
+    [SerializeField]
+    bool isAction;
+    [SerializeField]
+    int talkIndex;
 
-    void Start()
+    private void Start()
     {
-        questManager = QuestManager.QuestCurrent;
-        questText.text = questManager.CheckQuest();
-        Debug.Log(questManager.CheckQuest());
+        questManager = QuestManager.GetInstance;
     }
 
-    void OnTalk(int id, bool isNpc)
+    public void Action(GameObject scanObj)
     {
-        string talkData = talkManager.GetTalk(id, talkIndex);
+        scanObject = scanObj;
+        ObjectData objData = scanObject.GetComponent<ObjectData>();
+        Talk(objData.id, objData.isNpc);
+        talkPanel.SetActive(isAction);
+    }
+
+    void Talk(int id, bool isNpc)
+    {
+        int questTalkIndex = questManager.GetQuestTalkIndex(id);
+        string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
 
         if (talkData == null)
         {
-            isMove = false;
+            isAction = false;
             talkIndex = 0;
+            Debug.Log(questManager.CheckQuest(id));
             return;
         }
 
         if (isNpc)
         {
             talkText.text = talkData;
-            portraitImage.sprite = talkManager.GetSprite(id);
-            portraitImage.color = new Color(1, 1, 1, 1);
         }
         else
         {
             talkText.text = talkData;
-            portraitImage.color = new Color(1, 1, 1, 0);
         }
 
-        isMove = true;
+        isAction = true;
         talkIndex++;
-    }
-
-    public void ShowText(GameObject scanObj)
-    {
-        scanObject = scanObj;
-        ObjectData objectData = scanObject.GetComponent<ObjectData>();
-        OnTalk(objectData.id, objectData.isNpc);
-
-        TalkImage.SetActive(isMove);
     }
 }

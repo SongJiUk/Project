@@ -15,7 +15,7 @@ public class NPC : MonoBehaviour
     GameObject scanObj;
     void Start()
     {
-        //manager.ShowText(scanObj);
+        manager = GameManager.GetInstance;
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
     }
     void Update()
@@ -23,6 +23,26 @@ public class NPC : MonoBehaviour
         if (player == null)
         {
             player = Player.GetInstance;
+        }
+
+        float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+        if (distanceToPlayer <= nav.stoppingDistance)
+        {
+            Vector3 dir = player.transform.position - transform.position;
+            dir.y = 0f;
+            Quaternion rot = Quaternion.LookRotation(dir.normalized);
+            transform.rotation = rot;
+
+            scanObj = gameObject;
+            if (Input.GetKeyDown(KeyCode.C) && scanObj != null)
+            {
+                manager.Action(scanObj);
+            }
+        }
+        else
+        {
+            scanObj = null;
         }
     }
 }

@@ -128,7 +128,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDestroy()
     {
-        QuestManager quest = QuestManager.QuestCurrent;
+        QuestManager questManager = QuestManager.GetInstance;
         //quest.QuestCountUp(enemyID);
     }
 
