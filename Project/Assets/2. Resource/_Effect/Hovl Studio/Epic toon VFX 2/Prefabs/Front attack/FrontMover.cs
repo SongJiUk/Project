@@ -11,23 +11,42 @@ public class FrontMover : MonoBehaviour
     public float repeatingTime = 1f;
 
     private float startSpeed = 0f;
+    bool isStart;
 
+    private void Awake()
+    {
+        effect.Stop();
+    }
     void Start()
     {
-        InvokeRepeating("StartAgain", 0f, repeatingTime);
-        effect.Play();
+       
         startSpeed = speed;
+    }
+
+    private void OnEnable()
+    {
+        StartAgain();
+    }
+
+    private void OnDisable()
+    {
+        isStart = false;
     }
 
     void StartAgain()
     {
         startSpeed = speed;
         transform.position = pivot.position;
+        isStart = true;
     }
 
     void Update()
     {
-        startSpeed = startSpeed * drug;
-        transform.position += transform.forward * (startSpeed * Time.deltaTime);
+        if(isStart)
+        {
+            startSpeed = startSpeed * drug;
+            transform.position += transform.forward * (startSpeed * Time.deltaTime);
+        }
+        
     }
 }

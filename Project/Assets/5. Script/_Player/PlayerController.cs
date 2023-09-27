@@ -13,18 +13,21 @@ public class PlayerController : MonoBehaviour
     AnimationState stateMachine;
 
 
-    
+  
 
     #region 플레이어 콤보공격, 스킬 관련
     private int comboCount = 0;
     private float comboTimer = 0f;
-    private float comboDelay = 1f;
+    private float comboDelay;
     bool isAttack = false;
     bool isAttacking = false;
     bool isDash = false;
     bool isCombing = false;
     bool hasStarted = false;
     bool isUseSkill = false;
+
+    [SerializeField] GameObject[] Mage_LongDistanceAttackObj;
+    [SerializeField] GameObject[] Archer_LongDistanceAttackOb;
     #endregion
 
     #region 플레이어 점프 관련
@@ -51,13 +54,18 @@ public class PlayerController : MonoBehaviour
     Quaternion targetRotation;
     #endregion
 
-    private void Awake()
+
+
+    private void Start()
     {
         if (null == player) player = Player.GetInstance;
         if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
-        comboDelay = 1.5f;
-    }
 
+        if (null != player.playerStat)
+        {
+            comboDelay = player.playerStat.ComboDelay;
+        }
+    }
 
 
     public void OnMove(InputAction.CallbackContext context)
@@ -170,25 +178,44 @@ public class PlayerController : MonoBehaviour
     public void EndCombo()
     {
         isAttack = false;
+        comboCount = 0;
+        player.ANIM.SetInteger("ComboCount", comboCount);
     }
 
     public void StartAttack()
     {
         isAttacking = true;
-        //weaponManager.weapon.Trail.SetActive(true);
+
     }
 
     public void EndAttack()
     {
         isAttacking = false;
-        //weaponManager.weapon.Trail.SetActive(false);
+        comboTimer = 0f;
     }
+
+    public void LongDistanceAttack()
+    {
+        if(weaponManager.Weapondata.equipmentType == EquipmentType.Staff)
+        {
+            var StaffObj = Instantiate(Mage_LongDistanceAttackObj[0]);
+            StaffObj.transform.position = transform.position + Vector3.up;
+        }
+        else if(weaponManager.Weapondata.equipmentType == EquipmentType.Orb)
+        {
+            var StaffObj = Instantiate(Mage_LongDistanceAttackObj[1]);
+            StaffObj.transform.position = transform.position + Vector3.up;
+
+        }
+        
+    }
+
     #endregion
 
     #region Dash
     public void OnDash(InputAction.CallbackContext context)
     {
-        if(!isJump && !isUseSkill && !isAttacking)
+        if(!isJump && !isUseSkill && !isAttacking && !isUseSkill)
         {
             if (context.performed && !isDash)
             {
@@ -249,6 +276,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    
 
     #endregion
     public void OnRightClick(InputAction.CallbackContext context)
@@ -258,7 +286,6 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-
         #region Jump Code
         Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Object"));
         playerHeight = player.transform.position.y;
@@ -288,6 +315,7 @@ public class PlayerController : MonoBehaviour
             player.ANIM.SetTrigger("Attack");
         }
 
+
         if (comboTimer > 0f)
         {
             comboTimer -= Time.deltaTime;
@@ -296,8 +324,10 @@ public class PlayerController : MonoBehaviour
         {
             isCombing = false;
             comboCount = 0;
-            player.ANIM.SetInteger("ComboCount", 0);
+            player.ANIM.SetInteger("ComboCount", comboCount);
         }
+
+        
         #endregion
 
         if (!isUseSkill && !isAttacking)

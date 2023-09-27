@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f45eca17a3a4640ce82c345f9d57c3c4, type: 3}
+  m_Name: Staff_1
+  m_EditorClassIdentifier: 
+  playerjob: 1
+  equipmentType: 8
+  equipmentNum: 1
+  equipmentName: Staff_1
+  equipmentLevel: 1
+  damage: 10
+  defense: 0

@@ -21,7 +21,7 @@ public class ParticleController : MonoBehaviour
 
     private void OnEnable()
     {
-        
+
     }
 
     public void PlayEffect()
@@ -31,6 +31,8 @@ public class ParticleController : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+
+        Debug.Log("아야아");
 
         if (other.layer == LayerMask.NameToLayer("Enemy"))
         {

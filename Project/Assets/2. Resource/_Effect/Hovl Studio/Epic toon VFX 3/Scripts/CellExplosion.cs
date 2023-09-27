@@ -24,7 +24,7 @@ public class CellExplosion : MonoBehaviour
             {
                 var rb = t.GetComponent<Rigidbody>();
                 rb.AddExplosionForce(Random.Range(minForce, maxForce), transform.position, radious);
-                StartCoroutine(ChangeSize(t.GetComponent<Transform>()));
+                //StartCoroutine(ChangeSize(t.GetComponent<Transform>()));
             }
         }
     }

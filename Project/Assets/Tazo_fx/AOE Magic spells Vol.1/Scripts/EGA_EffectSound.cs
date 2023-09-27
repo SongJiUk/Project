@@ -11,8 +11,10 @@ public class EGA_EffectSound : MonoBehaviour
     public float minVolume = .4f;
     public float maxVolume = 1f;
     private AudioClip clip;
-
+    public bool isStart = false;
     private AudioSource soundComponent;
+
+    [SerializeField] List<GameObject> effect = new List<GameObject>();
 
     void Start ()
     {
@@ -32,5 +34,23 @@ public class EGA_EffectSound : MonoBehaviour
     void RepeatSound()
     {
         soundComponent.PlayOneShot(clip);
+    }
+
+    void RepeatEffect()
+    {
+        for(int i=0; i< effect.Count; i++)
+        {
+            if (effect[i] != null) effect[i].SetActive(true);
+        }
+    }
+
+    private void Update()
+    {
+        if (isStart == true)
+        {
+            isStart = false;
+            RepeatSound();
+            RepeatEffect();
+        }
     }
 }

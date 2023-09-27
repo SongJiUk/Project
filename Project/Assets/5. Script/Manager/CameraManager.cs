@@ -23,6 +23,7 @@ public class CameraManager : Singleton<CameraManager>
    
     private void LateUpdate()
     {
+        
         if (player == null)
         {
             if (null == player) player = Player.GetInstance;
@@ -39,6 +40,32 @@ public class CameraManager : Singleton<CameraManager>
         {
             isRightBtnClick = false;
         }
+
+
+        // 카메라와 캐릭터 사이에 있는 물체 투명화
+
+
+        Vector3 distance = player.transform.position - Camera.main.transform.position;
+        RaycastHit[] hit = Physics.RaycastAll(Camera.main.transform.position, distance,Mathf.Infinity);
+
+        for(int i=0; i <hit.Length; i++)
+        {
+            if(hit[i].transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
+            {
+                var a = hit[i].transform.GetComponent<MeshRenderer>().materials[0];
+                Color color = a.color;
+                
+                if(color.a > 0.3f)
+                {
+                    color.a -= Time.deltaTime;
+                    a.color = color;
+                }
+                
+
+            }
+            
+        }
+
 
         //transform.position = Vector3.Lerp(transform.position, player.transform.position, Time.deltaTime * 10f);;
         transform.position = player.transform.position;
