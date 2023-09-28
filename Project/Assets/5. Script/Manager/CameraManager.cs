@@ -107,9 +107,9 @@ public class CameraManager : Singleton<CameraManager>
     #endregion
 
     #region 오른쪽 마우스 클릭 안하고 카메라 이동
-    public Transform player;
+    Transform player;
     public Vector3 cameraPos = new Vector3(0, 0, 0);
-    public float currDistance = 5.0f;
+    public float currDistance = 3.0f; // 카메라랑 캐릭터 거리
     public float xRotate = 250.0f;
     public float yRotate = 120.0f;
     public float yMinLimit = -20f;
