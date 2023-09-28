@@ -166,6 +166,7 @@ public class PlayerController : MonoBehaviour
 
             StopCoroutine(a());
             TargetMarker.SetActive(false);
+            player.ANIM.SetTrigger("ReleaseF");
         }
         
 
@@ -190,6 +191,14 @@ public class PlayerController : MonoBehaviour
             {
                 //aim.enabled = true;
                 TargetMarker.SetActive(false);
+            }
+
+            if(Input.GetMouseButtonDown(0))
+            {
+                Debug.Log("눌렀어!!!");
+                player.ANIM.SetTrigger("SkillClick");
+                TargetMarker.SetActive(false);
+                break;
             }
         }
     }

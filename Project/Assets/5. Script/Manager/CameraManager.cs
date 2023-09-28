@@ -1,4 +1,4 @@
-using System.Collections;
+    using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -155,18 +155,19 @@ public class CameraManager : Singleton<CameraManager>
             if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
-            x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.02);
-            y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.02);
+            x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
+            y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);
             y = ClampAngle(y, yMinLimit, yMaxLimit);
             var rotation = Quaternion.Euler(y, x, 0);
             var position = rotation * new Vector3(0, 0, -currDistance) + targetPos;
             
-
+            Debug.DrawLine(targetPos, position - targetPos, Color.red);
             if (Physics.Raycast(targetPos, position - targetPos, out hit, (position - targetPos).magnitude, collidingLayers))
             {
                 transform.position = hit.point;
                 //Min(4) distance from ground for camera target point
-                distanceHit = Mathf.Clamp(Vector3.Distance(targetPos, hit.point), 4, 600);
+                distanceHit = Mathf.Clamp(Vector3.Distance(targetPos, hit.point), 2, 600);
+                
 
             }
             else

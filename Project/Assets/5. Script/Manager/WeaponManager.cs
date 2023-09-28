@@ -251,15 +251,15 @@ public class WeaponManager : Singleton<WeaponManager>
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-           //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
-           ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
+           ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
+           //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
             Player.GetInstance.ANIM.SetInteger("EquipNum", 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"), ItemManager.GetInstance.GetWeaponData("Shiled_1"));
-            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
+            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"), ItemManager.GetInstance.GetWeaponData("Shiled_1"));
+            //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
             Player.GetInstance.ANIM.SetInteger("EquipNum", 2);
 
         }
