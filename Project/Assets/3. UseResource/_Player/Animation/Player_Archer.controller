@@ -1548,7 +1548,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mage_Staff_Combo2
+  m_Name: Archer_CrossBow_Combo2
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1698,32 +1698,6 @@ AnimatorState:
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
   m_Motion: {fileID: 7400000, guid: dbdf79c306a13c94cbf622823bcb831e, type: 3}
-  m_Tag: 
-  m_SpeedParameter: 
-  m_MirrorParameter: 
-  m_CycleOffsetParameter: 
-  m_TimeParameter: 
---- !u!1102 &-4957863441829280397
-AnimatorState:
-  serializedVersion: 6
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_Name: Staff_Attack1
-  m_Speed: 1
-  m_CycleOffset: 0
-  m_Transitions: []
-  m_StateMachineBehaviours: []
-  m_Position: {x: 50, y: 50, z: 0}
-  m_IKOnFeet: 0
-  m_WriteDefaultValues: 1
-  m_Mirror: 0
-  m_SpeedParameterActive: 0
-  m_MirrorParameterActive: 0
-  m_CycleOffsetParameterActive: 0
-  m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 88b6aaa32fc7f495b94c89683550f11e, type: 2}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
@@ -2082,7 +2056,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mage_Staff_Combo3
+  m_Name: Archer_CrossBow_Combo3
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -3007,7 +2981,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Mage_Staff_Combo1
+  m_Name: Archer_CrossBow_Combo1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -4058,13 +4032,10 @@ AnimatorStateMachine:
   - serializedVersion: 1
     m_State: {fileID: -2589505180009727860}
     m_Position: {x: 1198.353, y: 749.7726, z: 0}
-  - serializedVersion: 1
-    m_State: {fileID: -4957863441829280397}
-    m_Position: {x: 520.59546, y: 392.307, z: 0}
   m_ChildStateMachines:
   - serializedVersion: 1
     m_StateMachine: {fileID: -5995648438215326428}
-    m_Position: {x: -180, y: 290, z: 0}
+    m_Position: {x: -170, y: 290, z: 0}
   - serializedVersion: 1
     m_StateMachine: {fileID: -8575014941781539765}
     m_Position: {x: 540, y: 270, z: 0}
@@ -5647,7 +5618,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -673878172749769613}
-    m_Position: {x: 380, y: 240, z: 0}
+    m_Position: {x: 390, y: 240, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -5232789700730190865}
     m_Position: {x: 380, y: 320, z: 0}
