@@ -42,7 +42,7 @@ public class Player : Singleton<Player>
         if (null == rigid) rigid = GetComponent<Rigidbody>();
         if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
         playerStat = PlayerStat.GetInstance;
-        playerStat.InitStat(UnitCode.MAGE);
+        playerStat.InitStat(UnitCode.ARCHER);
         SPEED = 3f;
     }
 

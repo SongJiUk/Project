@@ -26,6 +26,11 @@ public class PlayerStat : Singleton<PlayerStat>
             case UnitCode.MAGE:
                 ComboDelay = 2f;
                 break;
+
+            case UnitCode.ARCHER:
+                ComboDelay = 1f;
+                break;
+
         }
     }
 }

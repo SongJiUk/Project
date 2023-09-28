@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 
 [RequireComponent(typeof(Player))]
 public class PlayerController : MonoBehaviour
@@ -13,7 +14,8 @@ public class PlayerController : MonoBehaviour
     AnimationState stateMachine;
 
 
-  
+    public GameObject TargetMarker;
+    public LayerMask collidingLayer = ~0;
 
     #region 플레이어 콤보공격, 스킬 관련
     private int comboCount = 0;
@@ -145,9 +147,51 @@ public class PlayerController : MonoBehaviour
                 player.ANIM.SetTrigger("PressF");
                 player.ANIM.applyRootMotion = true;
                 player.NAV.ResetPath();
+               
             }
         }
+
+        if(context.performed)
+        {
+            if (context.interaction is HoldInteraction)
+            {
+                StartCoroutine(a());
+            }
+            
+ 
+        }
+
+        if (context.canceled)
+        {
+
+            StopCoroutine(a());
+            TargetMarker.SetActive(false);
+        }
         
+
+    }
+
+    IEnumerator a()
+    {
+        TargetMarker.SetActive(true);
+        while (true)
+        {
+            yield return null;
+            var forwardCamera = Camera.main.transform.forward;
+            forwardCamera.y = 0.0f;
+            RaycastHit hit;
+            Ray ray = new Ray(Camera.main.transform.position + new Vector3(0, 2, 0), Camera.main.transform.forward);
+            if (Physics.Raycast(ray, out hit, Mathf.Infinity, collidingLayer))
+            {
+                TargetMarker.transform.position = hit.point;
+                TargetMarker.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal) * Quaternion.LookRotation(forwardCamera);
+            }
+            else
+            {
+                //aim.enabled = true;
+                TargetMarker.SetActive(false);
+            }
+        }
     }
     public void EndSkill()
     {
@@ -281,7 +325,7 @@ public class PlayerController : MonoBehaviour
     #endregion
     public void OnRightClick(InputAction.CallbackContext context)
     {
-       
+           
     }
 
     private void FixedUpdate()

@@ -266,7 +266,7 @@
                     "name": "",
                     "id": "4b302973-7ccb-40fc-910b-4b86a49c111c",
                     "path": "<Keyboard>/f",
-                    "interactions": "",
+                    "interactions": "Hold,Press(behavior=1)",
                     "processors": "",
                     "groups": "",
                     "action": "SkillF",
