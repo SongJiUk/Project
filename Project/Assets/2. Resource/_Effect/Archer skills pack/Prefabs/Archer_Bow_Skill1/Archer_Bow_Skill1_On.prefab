@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 198237339140893002}
   - component: {fileID: 199835858389738708}
   m_Layer: 0
-  m_Name: ArrowAOE
+  m_Name: Archer_Bow_Skill1_On
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
