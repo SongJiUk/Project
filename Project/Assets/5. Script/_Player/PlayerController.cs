@@ -31,6 +31,12 @@ public class PlayerController : MonoBehaviour
     bool isCastSkillPress = false;
     [SerializeField] GameObject[] Mage_LongDistanceAttackObj;
     [SerializeField] GameObject[] Archer_LongDistanceAttackOb;
+
+    [SerializeField] GameObject[] Archer_Bow_Skill;
+    [SerializeField] GameObject[] Archer_Bow_Cast;
+    [SerializeField] GameObject[] Archer_CrossBow_Skill;
+    [SerializeField] GameObject[] Archer_CrossBow_Cast;
+
     #endregion
 
     #region 플레이어 점프 관련
@@ -92,17 +98,35 @@ public class PlayerController : MonoBehaviour
     {
         if(weaponManager.ISEQUIP)
         {
-            if (context.performed && !SkillStarted)
+            if(weaponManager.Weapondata.playerjob == PlayerJobs.Warrior)
             {
-                isUseSkill = true;
-                SkillStarted = true;
-                player.ANIM.SetTrigger("PressQ");
-                //player.ANIM.applyRootMotion = true;
-               // player.NAV.ResetPath();
+                if (context.performed && !SkillStarted)
+                {
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressQ");
+                }
             }
-        }
 
-        /*
+            else if(weaponManager.Weapondata.playerjob == PlayerJobs.Mage)
+            {
+                if (context.performed && !SkillStarted)
+                {
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressQ");
+                }
+            }
+            else if(weaponManager.Weapondata.playerjob == PlayerJobs.Archer)
+            {
+                if (context.performed && !SkillStarted)
+                {
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressQ");
+                }
+
+                /*
          * Bow
          * 
         StartCoroutine(Attack(1)); 
@@ -181,19 +205,47 @@ public class PlayerController : MonoBehaviour
                 yield return new WaitForSeconds(1.5f);
             }
         */
+            }
+
+        }
+
+        
     }
     public void OnPressEBtn(InputAction.CallbackContext context)
     {
         if (weaponManager.ISEQUIP)
         {
-            if (context.performed && !SkillStarted)
+            if (weaponManager.Weapondata.playerjob == PlayerJobs.Warrior)
             {
-                isUseSkill = true;
-                SkillStarted = true;
-                player.ANIM.SetTrigger("PressE");
-                //player.ANIM.applyRootMotion = true;
-               // player.NAV.ResetPath();
+                if (context.performed && !SkillStarted)
+                {
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressE");
+                }
             }
+
+            else if (weaponManager.Weapondata.playerjob == PlayerJobs.Mage)
+            {
+                if (context.performed && !SkillStarted)
+                {
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressE");
+                }
+            }
+            else if (weaponManager.Weapondata.playerjob == PlayerJobs.Archer)
+            {
+                if (context.performed && !SkillStarted)
+                {
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressE");
+                }
+            }
+
+
+         
         }
         /*
         * Bow
@@ -241,6 +293,9 @@ public class PlayerController : MonoBehaviour
     {
         if (weaponManager.ISEQUIP)
         {
+
+
+
             if (context.performed && !SkillStarted)
             {
                 isUseSkill = true;

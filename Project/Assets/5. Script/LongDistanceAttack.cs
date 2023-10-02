@@ -49,4 +49,39 @@ public class LongDistanceAttack : MonoBehaviour
     {
         Destroy(gameObject);
     }
+
+    /*
+     * 
+    void Update()
+    {
+        if (target == null)
+        {
+            foreach (var detachedPrefab in Detached)
+            {
+                if (detachedPrefab != null)
+                {
+                    detachedPrefab.transform.parent = null;
+                }
+            }
+            Destroy(gameObject);
+            return;
+        }
+
+        Vector3 forward = ((target.position + targetOffset) - transform.position);
+        Vector3 crossDirection = Vector3.Cross(forward, Vector3.up);
+        Quaternion randomDeltaRotation = Quaternion.Euler(0, randomSideAngle, 0) * Quaternion.AngleAxis(randomUpAngle, crossDirection);
+        Vector3 direction = randomDeltaRotation * ((target.position + targetOffset) - transform.position);
+
+        float distanceThisFrame = Time.deltaTime * speed;
+
+        if (direction.magnitude <= distanceThisFrame)
+        {
+            HitTarget();
+            return;
+        }
+
+        transform.Translate(direction.normalized * distanceThisFrame, Space.World);
+        transform.rotation = Quaternion.LookRotation(direction);
+    }
+     */
 }
