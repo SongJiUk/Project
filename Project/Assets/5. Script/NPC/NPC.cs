@@ -13,10 +13,15 @@ public class NPC : MonoBehaviour
 
     [SerializeField]
     GameObject scanObj;
+
+    [SerializeField]
+    GameObject InteretionText;
+    bool interection = false;
     void Start()
     {
         manager = GameManager.GetInstance;
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
+        interection = false;
     }
     void Update()
     {
@@ -29,6 +34,11 @@ public class NPC : MonoBehaviour
 
         if (distanceToPlayer <= nav.stoppingDistance)
         {
+            if (!interection && scanObj != null)
+            {
+                interection = true;
+                InteretionText.SetActive(true);
+            }
             Vector3 dir = player.transform.position - transform.position;
             dir.y = 0f;
             Quaternion rot = Quaternion.LookRotation(dir.normalized);
@@ -37,11 +47,17 @@ public class NPC : MonoBehaviour
             scanObj = gameObject;
             if (Input.GetKeyDown(KeyCode.C) && scanObj != null)
             {
+                InteretionText.SetActive(false);
                 manager.Action(scanObj);
             }
         }
         else
         {
+            if (interection)
+            {
+                interection = false;
+                InteretionText.SetActive(false);
+            }
             scanObj = null;
         }
     }

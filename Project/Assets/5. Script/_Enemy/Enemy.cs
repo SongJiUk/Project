@@ -48,6 +48,7 @@ public class Enemy : MonoBehaviour
         originalSpeed = nav.speed;
     }
 
+    bool die = false;
     void Update()
     {
         if (player == null)
@@ -56,37 +57,40 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
-
-            if (nav.enabled == true)
+            if (!die)
             {
-                // ?????????? ???? ???? ???? ?????? ?????????? ???? ????
-                timer += Time.deltaTime;
-                if (distanceToPlayer <= detectionRange)
+                float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+                if (nav.enabled == true)
                 {
-                    Anime.SetBool("IsChasing", true);
-                    nav.SetDestination(player.transform.position);
-                    if (nav.remainingDistance <= nav.stoppingDistance)
+                    // ?????????? ???? ???? ???? ?????? ?????????? ???? ????
+                    timer += Time.deltaTime;
+                    if (distanceToPlayer <= detectionRange)
                     {
-                        if (timer >= attackTime)
+                        Anime.SetBool("IsChasing", true);
+                        nav.SetDestination(player.transform.position);
+                        if (nav.remainingDistance <= nav.stoppingDistance)
                         {
-                            transform.LookAt(player.transform);
-                            Anime.SetTrigger("IsAttack");
-                            timer = 0f;
-                            nav.speed = 0f;
+                            if (timer >= attackTime)
+                            {
+                                transform.LookAt(player.transform);
+                                Anime.SetTrigger("IsAttack");
+                                timer = 0f;
+                                nav.speed = 0f;
+                            }
                         }
                     }
+                    else
+                    {
+                        nav.SetDestination(transform.position);
+                        Anime.SetBool("IsChasing", false);
+                    }
                 }
-                else
+                // Debug
+                if (Input.GetKeyDown(KeyCode.B))
                 {
-                    nav.SetDestination(transform.position);
-                    Anime.SetBool("IsChasing", false);
+                    EnemyHit(10);
                 }
-            }
-            // Debug
-            if (Input.GetKeyDown(KeyCode.B))
-            {
-                EnemyHit(10);
             }
         }
 
@@ -118,7 +122,13 @@ public class Enemy : MonoBehaviour
     void EnemyHit(int value)
     {
         nowEnemyHP -= value;
-        Anime.SetTrigger("IsHit");
+        if (nowEnemyHP <= 0)
+        {
+            EnemyDie();
+        } else
+        {
+            Anime.SetTrigger("IsHit");
+        }
     }
 
     public int GetEnemyID()
@@ -154,6 +164,14 @@ public class Enemy : MonoBehaviour
         {
             Debug.Log("맞았다 ");
         }
+    }
+
+    void EnemyDie()
+    {
+        Destroy(gameObject, 3f);
+        die = true;
+        Anime.SetTrigger("IsDie");
+        //Anime.enabled = true;
     }
 }
 

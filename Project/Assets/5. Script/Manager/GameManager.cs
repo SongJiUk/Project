@@ -21,6 +21,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         questManager = QuestManager.GetInstance;
+        Debug.Log(questManager.CheckQuest());
     }
 
     public void Action(GameObject scanObj)
