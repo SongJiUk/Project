@@ -22,8 +22,15 @@ public class ParticleCollisionInstance : MonoBehaviour
         part = GetComponent<ParticleSystem>();
     }
     void OnParticleCollision(GameObject other)
-    {      
-        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);     
+    {
+        Debug.Log("Hithit");
+        int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
+
+        if (other.layer == LayerMask.NameToLayer("Enemy"))
+        {
+            other.GetComponent<Enemy>().SkillHit();
+        }
+
         for (int i = 0; i < numCollisionEvents; i++)
         {
             foreach (var effect in EffectsOnCollision)

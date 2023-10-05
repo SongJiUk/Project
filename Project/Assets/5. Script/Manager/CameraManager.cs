@@ -154,6 +154,7 @@ public class CameraManager : Singleton<CameraManager>
             else dpiScale = Screen.dpi / 200f;
             if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
             Cursor.visible = false;
+            //마우스 잠구는거
             Cursor.lockState = CursorLockMode.Locked;
             x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
             y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);

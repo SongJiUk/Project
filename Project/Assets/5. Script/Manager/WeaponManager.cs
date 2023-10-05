@@ -231,6 +231,11 @@ public class WeaponManager : Singleton<WeaponManager>
         }
         else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
         {
+            if (EquipWeapon_back != null) EquipWeapon_back.SetActive(!isEquip);
+            if (EquipWeapon_hand != null) EquipWeapon_hand.SetActive(isEquip);
+
+            if (B_handWeapon != null) B_handWeapon.SetActive(false);
+            if (B_handShiled != null) B_handShiled.SetActive(false);
 
         }
 
@@ -251,15 +256,17 @@ public class WeaponManager : Singleton<WeaponManager>
     {
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-           ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
+           //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
            //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
+           ChangeWeapon(ItemManager.GetInstance.GetWeaponData("CrossBow_1"));
             Player.GetInstance.ANIM.SetInteger("EquipNum", 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"), ItemManager.GetInstance.GetWeaponData("Shiled_1"));
+            //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"), ItemManager.GetInstance.GetWeaponData("Shiled_1"));
             //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
+            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Bow_1"));
             Player.GetInstance.ANIM.SetInteger("EquipNum", 2);
 
         }

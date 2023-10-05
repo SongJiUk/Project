@@ -30,6 +30,8 @@ public class Player : Singleton<Player>
     public Rigidbody RIGID { get { return rigid; } private set { } }
 
     WeaponManager weaponManager;
+    PlayerController playerController;
+    public PlayerController PController { get { return playerController; } }
 
     public RuntimeAnimatorController[] a;
 
@@ -41,6 +43,8 @@ public class Player : Singleton<Player>
         if (null == nav) nav = GetComponent<NavMeshAgent>();
         if (null == rigid) rigid = GetComponent<Rigidbody>();
         if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
+        if (null == playerController) playerController = GetComponent<PlayerController>();
+
         playerStat = PlayerStat.GetInstance;
         playerStat.InitStat(UnitCode.ARCHER);
         SPEED = 3f;

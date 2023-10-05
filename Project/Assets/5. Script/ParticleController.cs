@@ -32,7 +32,7 @@ public class ParticleController : MonoBehaviour
     void OnParticleCollision(GameObject other)
     {
 
-        Debug.Log("아야아");
+        Debug.Log(this.name);
 
         if (other.layer == LayerMask.NameToLayer("Enemy"))
         {

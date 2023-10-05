@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     AnimationState stateMachine;
 
 
-    public GameObject TargetMarker;
+    public GameObject TargetMarker_Front;
+    public GameObject TargetMarker_PreCast;
     public LayerMask collidingLayer = ~0;
 
     #region 플레이어 콤보공격, 스킬 관련
@@ -36,11 +37,17 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject[] Archer_Bow_Cast;
     [SerializeField] GameObject[] Archer_CrossBow_Skill;
     [SerializeField] GameObject[] Archer_CrossBow_Cast;
-
+    Coroutine myCoroutine;
+    RaycastHit Markerhit;
+    public bool isGuided = false;
+    [SerializeField] GameObject[] Archer_FirePos;
+    private bool rotateState = false;
+    public float fireRate = 0.1f;
+    bool isRealeseHold = false;
     #endregion
 
     #region 플레이어 점프 관련
-    RaycastHit hit;
+    RaycastHit Jumphit;
     float maxHeightDifference = 0.2f;
     float playerHeight;
     float groundHeight;
@@ -63,7 +70,10 @@ public class PlayerController : MonoBehaviour
     Quaternion targetRotation;
     #endregion
 
-
+    private void Awake()
+    {
+        
+    }
 
     private void Start()
     {
@@ -98,7 +108,7 @@ public class PlayerController : MonoBehaviour
     {
         if(weaponManager.ISEQUIP)
         {
-            if(weaponManager.Weapondata.playerjob == PlayerJobs.Warrior)
+            if(player.playerStat.unitCode == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -108,7 +118,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            else if(weaponManager.Weapondata.playerjob == PlayerJobs.Mage)
+            else if(player.playerStat.unitCode == UnitCode.MAGE)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -117,95 +127,85 @@ public class PlayerController : MonoBehaviour
                     player.ANIM.SetTrigger("PressQ");
                 }
             }
-            else if(weaponManager.Weapondata.playerjob == PlayerJobs.Archer)
+            else if(player.playerStat.unitCode == UnitCode.ARCHER)
             {
-                if (context.performed && !SkillStarted)
+
+                if(weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
                 {
-                    isUseSkill = true;
-                    SkillStarted = true;
-                    player.ANIM.SetTrigger("PressQ");
-                }
-
-                /*
-         * Bow
-         * 
-        StartCoroutine(Attack(1)); 
-        PrefabsCast[3].GetComponent<ParticleSystem>().Play();
-        if (PrefabsCast[3].GetComponent<AudioSource>())
-        {
-            soundComponentCast = PrefabsCast[3].GetComponent<AudioSource>();
-            clip = soundComponentCast.clip;
-            soundComponentCast.PlayOneShot(clip);
-        }
-
-        if (EffectNumber == 1)
-        {
-            anim.SetTrigger("AoE");
-       //////////// 0.3초?////////////
-            yield return new WaitForSeconds(castingTime[EffectNumber]);
-            parentObject = Prefabs[EffectNumber].transform.parent;
-            Prefabs[EffectNumber].transform.parent = null;
-            Prefabs[EffectNumber].GetComponent<ParticleSystem>().Play();
-            StartCoroutine(cameraShaker.Shake(0.4f, 7, 0.6f, 0));
-            yield return new WaitForSeconds(castingTime[EffectNumber]);
-        }
-
-
-        CrossBow
-        aimTimer = 2;
-            if (activeTarger)
-            {
-                if (fireCountdown <= 0f)
-                {
-                    if (rotateState == false)
+                    if (context.performed && !SkillStarted)
                     {
-                        StartCoroutine(RotateToTarget(fireRate, target.position));
-                        //enable turn animation if the turn deviation to the target is more than 20 degrees
-                        var lookPos = target.position - transform.position;
-                        lookPos.y = 0;
-                        var rotation = Quaternion.LookRotation(lookPos);
-                        var angle = Quaternion.Angle(transform.rotation, rotation);
-                        if (angle > 20)
-                        {
-                            //turn animation
-                            anim.SetFloat("InputX", 0.3f);
-                        }
-                    }             
-                    StartCoroutine(cameraShaker.Shake(0.4f, 3, 0.3f, 0.9f));
-                    fireCountdown = 0;
-                    fireCountdown += fireRate;
-                }
-                PrefabsCast[9].GetComponent<ParticleSystem>().Play();
-                PrefabsCast[10].GetComponent<ParticleSystem>().Play();
-                if (PrefabsCast[10].GetComponent<AudioSource>())
-                {
-                    soundComponentCast = PrefabsCast[10].GetComponent<AudioSource>();
-                    clip = soundComponentCast.clip;
-                    soundComponentCast.PlayOneShot(clip);
-                }
-                StartCoroutine(Attack(6));
-            }
+                        isUseSkill = true;
+                        SkillStarted = true;
+                        
 
-        if (EffectNumber == 6)
-            {
-                anim.SetTrigger("MaskAttack2");
-                secondLayerWeight = Mathf.Lerp(secondLayerWeight, 1f, Time.deltaTime * 60);
-                yield return new WaitForSeconds(castingTime[EffectNumber]);
-                parentObject = Prefabs[EffectNumber].transform.parent;
-                Prefabs[EffectNumber].transform.parent = null;
-                Prefabs[EffectNumber].transform.position = target.position;
-                Prefabs[EffectNumber].GetComponent<ParticleSystem>().Play();
-                if (Prefabs[EffectNumber].GetComponent<AudioSource>())
-                {
-                    soundComponent = Prefabs[EffectNumber].GetComponent<AudioSource>();
-                    clip = soundComponent.clip;
-                    soundComponent.PlayOneShot(clip);
+                        StartCoroutine(InstantSkill(0));
+                        Archer_Bow_Cast[0].GetComponent<ParticleSystem>().Play();
+                        //if (Archer_Bow_Cast[0].GetComponent<AudioSource>())
+                        //{
+                        //    soundComponentCast = Archer_Bow_Cast[3].GetComponent<AudioSource>();
+                        //    clip = soundComponentCast.clip;
+                        //    soundComponentCast.PlayOneShot(clip);
+                        //}
+
+
+                    }
                 }
-                StartCoroutine(cameraShaker.Shake(0.3f, 8, 1.1f, 0.2f));
-                yield return new WaitForSeconds(1.5f);
-            }
-        */
-            }
+                else if(weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+                {
+                    var Enemy = FindNearEnemy();
+
+                    if (Enemy != null)
+                    {
+                        //가장 가까운적에게 5번 공격
+                        if (context.performed && !SkillStarted)
+                        {
+                            isUseSkill = true;
+                            SkillStarted = true;
+                            //aimTimer = 2;
+                            //if (activeTarger)
+                            //{
+                            //    if (fireCountdown <= 0f)
+                            //    {
+                            //        if (rotateState == false)
+                            //        {
+                            //            StartCoroutine(RotateToTarget(fireRate, target.position));
+                            //            //enable turn animation if the turn deviation to the target is more than 20 degrees
+                            //            var lookPos = target.position - transform.position;
+                            //            lookPos.y = 0;
+                            //            var rotation = Quaternion.LookRotation(lookPos);
+                            //            var angle = Quaternion.Angle(transform.rotation, rotation);
+                            //            if (angle > 20)
+                            //            {
+                            //                //turn animation
+                            //                anim.SetFloat("InputX", 0.3f);
+                            //            }
+                            //        }
+                            //        //StartCoroutine(cameraShaker.Shake(0.4f, 3, 0.3f, 0.9f));
+                            //        fireCountdown = 0;
+                            //        fireCountdown += fireRate;
+                            //    }
+                            Archer_CrossBow_Cast[0].GetComponent<ParticleSystem>().Play();
+                            Archer_CrossBow_Cast[1].GetComponent<ParticleSystem>().Play();
+                            //if (Archer_CrossBow_Cast[10].GetComponent<AudioSource>())
+                            //{
+                            //    soundComponentCast = Archer_CrossBow_Cast[10].GetComponent<AudioSource>();
+                            //    clip = soundComponentCast.clip;
+                            //    soundComponentCast.PlayOneShot(clip);
+                            //}
+                            StartCoroutine(InstantSkill(1));
+                            player.ANIM.SetTrigger("PressQ");
+                        }
+                    }
+                    else
+                    {
+                        //적이 없음을 알려줌
+                    }
+                    
+
+                    
+                    }
+
+                }
 
         }
 
@@ -215,7 +215,8 @@ public class PlayerController : MonoBehaviour
     {
         if (weaponManager.ISEQUIP)
         {
-            if (weaponManager.Weapondata.playerjob == PlayerJobs.Warrior)
+            
+            if (player.playerStat.unitCode == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -225,7 +226,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            else if (weaponManager.Weapondata.playerjob == PlayerJobs.Mage)
+            else if (player.playerStat.unitCode == UnitCode.MAGE)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -234,143 +235,190 @@ public class PlayerController : MonoBehaviour
                     player.ANIM.SetTrigger("PressE");
                 }
             }
-            else if (weaponManager.Weapondata.playerjob == PlayerJobs.Archer)
+            else if (player.playerStat.unitCode == UnitCode.ARCHER)
             {
-                if (context.performed && !SkillStarted)
+                if(weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
                 {
-                    isUseSkill = true;
-                    SkillStarted = true;
-                    player.ANIM.SetTrigger("PressE");
+                    if (context.performed && !SkillStarted)
+                    {
+                        isUseSkill = true;
+                        SkillStarted = true;
+                        player.ANIM.SetTrigger("PressE");
+                    }
+
+                    //캐스트 스킬들 ( 수정 해야됨)
+                    if (context.performed)
+                    {
+                        if (context.interaction is HoldInteraction)
+                        {
+                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.Front, 1));
+                            isCastSkillPress = true;
+                            player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                        }
+                    }
+
+                    if (context.canceled)
+                    {
+                        isRealeseHold = true;
+                        //StopCoroutine(myCoroutine);
+                        TargetMarker_Front.SetActive(false);
+                        TargetMarker_PreCast.SetActive(false);
+                        isCastSkillPress = false;
+                        SkillStarted = false;
+                        isUseSkill = false;
+                        player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                    }
                 }
+                else if (weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+                {
+                    //위로 쏴서 빙결 
+                    if (context.performed && !SkillStarted)
+                    {
+                        isUseSkill = true;
+                        SkillStarted = true;
+                        player.ANIM.SetTrigger("PressE");
+                        
+                    }
+
+                    //캐스트 스킬들 ( 수정 해야됨)
+                    if (context.performed)
+                    {
+                        if (context.interaction is HoldInteraction)
+                        {
+                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.PreCast, 4));
+                            isCastSkillPress = true;
+                            player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                        }
+                        
+                    }
+
+                    if (context.canceled)
+                    {
+                        //StopCoroutine(myCoroutine);
+                        isRealeseHold = true;
+                        TargetMarker_Front.SetActive(false);
+                        TargetMarker_PreCast.SetActive(false);
+                        isCastSkillPress = false;
+                        SkillStarted = false;
+                        isUseSkill = false;
+                        player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                    }
+
+
+                    
+                }
+                
             }
 
 
          
         }
-        /*
-        * Bow
-        if (EffectNumber == 2)
-                   {
-                       PrefabsCast[4].GetComponent<ParticleSystem>().Play();
-                       soundComponentCast = PrefabsCast[4].GetComponent<AudioSource>();
-                       clip = soundComponentCast.clip;
-                       soundComponentCast.PlayOneShot(clip);
-                   } 
-        *
-        *
-        *CrossBow
-        *if (EffectNumber == 7)
-                    {
-                        anim.SetTrigger("UpAttack2");
-                        StartCoroutine(cameraShaker.Shake(0.4f, 8, 0.4f, 0.2f));
-                        PrefabsCast[11].GetComponent<ParticleSystem>().Play();
-                        if (PrefabsCast[11].GetComponent<AudioSource>())
-                        {
-                            soundComponentCast = PrefabsCast[11].GetComponent<AudioSource>();
-                            clip = soundComponentCast.clip;
-                            soundComponentCast.PlayOneShot(clip);
-                        }
-                        PrefabsCast[12].GetComponent<ParticleSystem>().Play();
-                        yield return new WaitForSeconds(castingTime[EffectNumber]);
-                        StartCoroutine(cameraShaker.Shake(0.3f, 7, 0.4f, 0));
-                        parentObject = Prefabs[7].transform.parent;
-                        Prefabs[7].transform.position = hit.point;
-                        Prefabs[7].transform.rotation = Quaternion.LookRotation(forwardCamera);
-                        Prefabs[7].transform.parent = null;
-                        Prefabs[7].GetComponent<ParticleSystem>().Play();
-                        if (Prefabs[7].GetComponent<AudioSource>())
-                        {
-                            soundComponent = Prefabs[7].GetComponent<AudioSource>();
-                            clip = soundComponent.clip;
-                            soundComponent.PlayOneShot(clip);
-                        }
-                    }
-        */
+        
 
     }
+   
 
     public void OnPressRBtn(InputAction.CallbackContext context)
     {
         if (weaponManager.ISEQUIP)
         {
-
-
-
-            if (context.performed && !SkillStarted)
+            if (player.playerStat.unitCode == UnitCode.WARRIOR)
             {
-                isUseSkill = true;
-                SkillStarted = true;
-                player.ANIM.SetTrigger("PressR");
-                //player.ANIM.applyRootMotion = true;
-               // player.NAV.ResetPath();
-            }
-
-            //캐스트 스킬들 ( 수정 해야됨)
-            if (context.performed)
-            {
-                if (context.interaction is HoldInteraction)
+                if (context.performed && !SkillStarted)
                 {
-                    StartCoroutine(CastSkill());
-                    isCastSkillPress = true;
-                    player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressR");
                 }
             }
-
-            if (context.canceled)
+            else if (player.playerStat.unitCode == UnitCode.MAGE)
             {
+                if (context.performed && !SkillStarted)
+                {
+                    isUseSkill = true;
+                    SkillStarted = true;
+                    player.ANIM.SetTrigger("PressR");
+                }
+            }
+            else if (player.playerStat.unitCode == UnitCode.ARCHER)
+            {
+                if (weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
+                {
+                    if (context.performed && !SkillStarted)
+                    {
+                        isUseSkill = true;
+                        SkillStarted = true;
+                        player.ANIM.SetTrigger("PressR");
+                    }
 
-                StopCoroutine(CastSkill());
-                TargetMarker.SetActive(false);
-                isCastSkillPress = false;
-                SkillStarted = false;
-                isUseSkill = false;
-                player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                    if (context.performed)
+                    {
+                        if (context.interaction is HoldInteraction)
+                        {
+                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.PreCast, 3));
+                            isCastSkillPress = true;
+                            player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                        }
+                    }
+
+                    if (context.canceled)
+                    {
+                        isRealeseHold = true;
+
+                        TargetMarker_Front.SetActive(false);
+                        TargetMarker_PreCast.SetActive(false);
+                        isCastSkillPress = false;
+                        SkillStarted = false;
+                        isUseSkill = false;
+                        player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                    }
+                }
+                else if (weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+                {
+                    //앞으로 용발
+                    if (context.performed && !SkillStarted)
+                    {
+                        isUseSkill = true;
+                        SkillStarted = true;
+                        player.ANIM.SetTrigger("PressR");
+
+                    }
+
+                    //캐스트 스킬들 ( 수정 해야됨)
+                    if (context.performed)
+                    {
+                        if (context.interaction is HoldInteraction)
+                        {
+                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.Front, 3));
+                            isCastSkillPress = true;
+                            player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                        }
+
+
+
+                    }
+
+                    if (context.canceled)
+                    {
+                        isRealeseHold = true;
+                        //StopCoroutine(myCorout
+                        //ine);
+                        TargetMarker_Front.SetActive(false);
+                        TargetMarker_PreCast.SetActive(false);
+                        isCastSkillPress = false;
+                        SkillStarted = false;
+                        isUseSkill = false;
+                        player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                    }
+
+
+                        
+                    }
+
+
             }
         }
-        /*
-       * Bow
-       *  if (EffectNumber == 3)
-                  {
-                      anim.SetTrigger("UpAttack");
-                      if (PrefabsCast[5].GetComponent<AudioSource>())
-                      {
-                          soundComponentCast = PrefabsCast[5].GetComponent<AudioSource>();
-                          clip = soundComponentCast.clip;
-                          soundComponentCast.PlayOneShot(clip);
-                      }
-                      StartCoroutine(cameraShaker.Shake(0.4f, 9, 0.4f, 0.2f));
-                      for (int i = 5; i <= 6; i++)
-                      {
-                          PrefabsCast[i].GetComponent<ParticleSystem>().Play();
-                      }
-                      yield return new WaitForSeconds(castingTime[EffectNumber]);
-                      StartCoroutine(cameraShaker.Shake(0.5f, 7, 1.4f, 0));
-                      parentObject = Prefabs[3].transform.parent;
-                      Prefabs[3].transform.position = hit.point;
-                      Prefabs[3].transform.rotation = Quaternion.LookRotation(forwardCamera);
-                      Prefabs[3].transform.parent = null;
-                      Prefabs[3].GetComponent<ParticleSystem>().Play();
-                      if (PrefabsCast[3].GetComponent<AudioSource>())
-                      {
-                          soundComponent = Prefabs[3].GetComponent<AudioSource>();
-                          clip = soundComponent.clip;
-                          soundComponent.PlayOneShot(clip);
-                      }
-                  }
-
-      CrossBow
-                            if (EffectNumber == 8)
-                    {
-                        if (PrefabsCast[13].GetComponent<AudioSource>())
-                        {
-                            soundComponentCast = PrefabsCast[13].GetComponent<AudioSource>();
-                            clip = soundComponentCast.clip;
-                            soundComponentCast.PlayOneShot(clip);
-                        }
-                        PrefabsCast[13].GetComponent<ParticleSystem>().Play();
-                        yield return new WaitForSeconds(castingTime[EffectNumber]);
-                    }
-       */
+      
 
     }
 
@@ -403,50 +451,266 @@ public class PlayerController : MonoBehaviour
             if (context.canceled)
             {
 
-                StopCoroutine(CastSkill());
-                TargetMarker.SetActive(false);
+                
+                TargetMarker_PreCast.SetActive(false);
                 isCastSkillPress = false;
                 SkillStarted = false;
                 isUseSkill = false;
                 player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
             }
         }
-
-       
     }
 
-    IEnumerator CastSkill()
+    public Enemy FindNearEnemy()
     {
-        TargetMarker.SetActive(true);
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+
+
+
+        Enemy closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (Enemy enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            // 현재까지 가장 가까운 적보다 더 가까운 적을 찾았을 때 업데이트
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+        return closestEnemy;
+    }
+
+    public IEnumerator RotateToTarget(float rotatingTime, Vector3 targetPoint)
+    {
+        rotateState = true;
+        float delay = rotatingTime;
+        var lookPos = targetPoint - transform.position;
+        lookPos.y = 0;
+        var rotation = Quaternion.LookRotation(lookPos);
+        while (true)
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, rotation, Time.deltaTime * 20);
+            delay -= Time.deltaTime;
+            if (delay <= 0 || transform.rotation == rotation)
+            {
+                rotateState = false;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
+
+    IEnumerator InstantSkill(int _effectNum)
+    {
+        while(true)
+        {
+            if(_effectNum == 0)
+            {
+                player.ANIM.SetTrigger("PressQ");
+                yield return new WaitForSeconds(0.3f);
+                //parentObject = Prefabs[EffectNumber].transform.parent;
+                //Archer_Bow_Skill[_num].transform.parent = null;
+                Archer_Bow_Skill[_effectNum].GetComponent<ParticleSystem>().Play();
+                //StartCoroutine(cameraShaker.Shake(0.4f, 7, 0.6f, 0));
+                yield return new WaitForSeconds(0.3f);
+            }
+            else if(_effectNum == 1)
+            {
+                player.ANIM.SetTrigger("PressQ");
+                //secondLayerWeight = Mathf.Lerp(secondLayerWeight, 1f, Time.deltaTime * 60);
+                yield return new WaitForSeconds(1.2f);
+                var Enemy = FindNearEnemy();
+                Archer_CrossBow_Skill[0].transform.position = Enemy.transform.position;
+                Archer_CrossBow_Skill[0].GetComponent<ParticleSystem>().Play();
+                //if (Archer_CrossBow_Skill[0].GetComponent<AudioSource>())
+                //{
+                //    soundComponent = Prefabs[EffectNumber].GetComponent<AudioSource>();
+                //    clip = soundComponent.clip;
+                //    soundComponent.PlayOneShot(clip);
+                //}
+                //StartCoroutine(cameraShaker.Shake(0.3f, 8, 1.1f, 0.2f));
+                yield return new WaitForSeconds(1.5f);
+            }
+            yield break;
+        }
+    }
+
+    IEnumerator CastSkill(EffectCastType _markerNum = EffectCastType.None,
+        int _effectNum = 999)
+    {
+        if (_markerNum == EffectCastType.Front) TargetMarker_Front.SetActive(true);
+        else if (_markerNum == EffectCastType.PreCast) TargetMarker_PreCast.SetActive(true);
+
+        var forwardCamera = Vector3.zero;
         while (true)
         {
             yield return null;
-            var forwardCamera = Camera.main.transform.forward;
-            forwardCamera.y = 0.0f;
-            RaycastHit hit;
-            Ray ray = new Ray(Camera.main.transform.position + new Vector3(0, 2, 0), Camera.main.transform.forward);
-            if (Physics.Raycast(ray, out hit, Mathf.Infinity, collidingLayer))
-            {
-                TargetMarker.transform.position = hit.point;
-                TargetMarker.transform.rotation = Quaternion.FromToRotation(Vector3.up, hit.normal) * Quaternion.LookRotation(forwardCamera);
-            }
-            else
-            {
-                //aim.enabled = true;
-                TargetMarker.SetActive(false);
-            }
 
-            if(Input.GetMouseButtonDown(0) && isCastSkillPress)
+            if (_markerNum == EffectCastType.Front)
             {
-                Debug.Log("눌렀어!!!");
+                forwardCamera = Camera.main.transform.forward;
+                forwardCamera.y = 0.0f;
+                TargetMarker_Front.transform.rotation = Quaternion.LookRotation(forwardCamera);
+                transform.rotation = Quaternion.LookRotation(forwardCamera);
+
+            }
+            else if(_markerNum == EffectCastType.PreCast)
+            {
+                forwardCamera = Camera.main.transform.forward;
+                forwardCamera.y = 0.0f;
+                transform.rotation = Quaternion.LookRotation(forwardCamera);
+                Ray ray = new Ray(Camera.main.transform.position + new Vector3(0, 2, 0), Camera.main.transform.forward);
+                if (Physics.Raycast(ray, out Markerhit, Mathf.Infinity, collidingLayer))
+                {
+                    TargetMarker_PreCast.transform.position = Markerhit.point;
+                    TargetMarker_PreCast.transform.rotation = Quaternion.FromToRotation(Vector3.up, Markerhit.normal) * Quaternion.LookRotation(forwardCamera);
+                }
+                else
+                {
+                    TargetMarker_PreCast.SetActive(false);
+                }
+            }
+            
+            if (Input.GetMouseButtonDown(0) && isCastSkillPress)
+            {
                 player.ANIM.SetTrigger("SkillClick");
-                TargetMarker.SetActive(false);
+                TargetMarker_PreCast.SetActive(false);
+                TargetMarker_Front.SetActive(false);
+                //if (rotateState == false)
+                //{
+                //    StartCoroutine(RotateToTarget(0.5f, vecPos));
+                //}
                 isUseSkill = false;
                 SkillStarted = false;
-                break;
+
+                if (_markerNum == EffectCastType.Front)
+                {
+                    if (_effectNum == 1)
+                    {
+                        Archer_Bow_Cast[1].GetComponent<ParticleSystem>().Play();
+                        //    //soundComponentCast = PrefabsCast[4].GetComponent<AudioSource>();
+                        //    //clip = soundComponentCast.clip;
+                        //    //soundComponentCast.PlayOneShot(clip);
+                    }
+                    else if (_effectNum == 2)
+                    {
+                        Archer_Bow_Cast[2].GetComponent<ParticleSystem>().Play();
+                    }
+                    else if(_effectNum == 3)
+                    {
+                        
+                            //if (Archer_CrossBow_Cast[4].GetComponent<AudioSource>())
+                            //{
+                            //    soundComponentCast = Archer_CrossBow_Cast[4].GetComponent<AudioSource>();
+                            //    clip = soundComponentCast.clip;
+                            //    soundComponentCast.PlayOneShot(clip);
+                            //}
+                            Archer_CrossBow_Cast[4].GetComponent<ParticleSystem>().Play();
+                            yield return new WaitForSeconds(0.15f); //0.15s
+                        
+                    }
+
+                    if (_effectNum == 1) //위에가 Bow 밑이 CrossBow /
+                    {
+                        Archer_Bow_Skill[1].transform.rotation = Quaternion.LookRotation(forwardCamera);
+                        var effect = Archer_Bow_Skill[1].GetComponent<ParticleSystem>();
+                        effect.Play();
+                        //StartCoroutine(cameraShaker.Shake(0.5f, 7, 0.6f, 0.26f));
+                        yield return new WaitForSeconds(1.3f);
+                        Archer_Bow_Skill[1].transform.localPosition = new Vector3(0, 1, 0);
+                        Archer_Bow_Skill[1].transform.localRotation = Quaternion.identity;
+                        
+                    }
+                    else if(_effectNum == 3)
+                    {
+                        //StartCoroutine(cameraShaker.Shake(0.5f, 6, 1.3f, 0.0f));
+
+                        foreach (var component in Archer_CrossBow_Skill[2].GetComponentsInChildren<FrontAttack>())
+                        {
+                            component.playMeshEffect = true;
+                        }
+                        yield return new WaitForSeconds(1f);
+                        Archer_CrossBow_Skill[2].transform.localPosition = new Vector3(0, 0, 0);
+                        Archer_CrossBow_Skill[2].transform.localRotation = Quaternion.identity;
+
+                    }
+                }
+                else if(_markerNum == EffectCastType.PreCast)
+                {
+                    if (_effectNum == 3)
+                    {
+
+                        //if (PrefabsCast[5].GetComponent<AudioSource>())
+                        //{
+                        //    soundComponentCast = PrefabsCast[5].GetComponent<AudioSource>();
+                        //    clip = soundComponentCast.clip;
+                        //    soundComponentCast.PlayOneShot(clip);
+                        //}
+                        //StartCoroutine(cameraShaker.Shake(0.4f, 9, 0.4f, 0.2f));
+                        for (int i = 2; i <= 3; i++)
+                        {
+                            Archer_Bow_Cast[i].GetComponent<ParticleSystem>().Play();
+                        }
+                        yield return new WaitForSeconds(0.8f);
+                        //StartCoroutine(cameraShaker.Shake(0.5f, 7, 1.4f, 0));
+
+                        Archer_Bow_Skill[2].transform.position = Markerhit.point;
+                        Archer_Bow_Skill[2].transform.rotation = Quaternion.LookRotation(forwardCamera);
+                        Archer_Bow_Skill[2].GetComponent<ParticleSystem>().Play();
+
+                        //if (Archer_Bow_Cast[3].GetComponent<AudioSource>())
+                        //{
+                        //    soundComponent = Prefabs[3].GetComponent<AudioSource>();
+                        //    clip = soundComponent.clip;
+                        //    soundComponent.PlayOneShot(clip);
+                        //}
+                    }
+                    else if(_effectNum == 4)
+                    {
+                        //StartCoroutine(cameraShaker.Shake(0.4f, 8, 0.4f, 0.2f));
+                        Archer_CrossBow_Cast[2].GetComponent<ParticleSystem>().Play();
+                        //if (Archer_CrossBow_Cast[2].GetComponent<AudioSource>())
+                        //{
+                        //    soundComponentCast = Archer_CrossBow_Cast[2].GetComponent<AudioSource>();
+                        //    clip = soundComponentCast.clip;
+                        //    soundComponentCast.PlayOneShot(clip);
+                        //}
+                        Archer_CrossBow_Cast[3].GetComponent<ParticleSystem>().Play();
+                        yield return new WaitForSeconds(0.8f);
+                        //StartCoroutine(cameraShaker.Shake(0.3f, 7, 0.4f, 0));
+
+                        Archer_CrossBow_Skill[1].transform.position = Markerhit.point;
+                        Archer_CrossBow_Skill[1].transform.rotation = Quaternion.LookRotation(forwardCamera);
+                        Archer_CrossBow_Skill[1].transform.parent = null;
+                        Archer_CrossBow_Skill[1].GetComponent<ParticleSystem>().Play();
+                        //if (Archer_CrossBow_Skill[1].GetComponent<AudioSource>())
+                        //{
+                        //    soundComponent = Archer_CrossBow_Skill[1].GetComponent<AudioSource>();
+                        //    clip = soundComponent.clip;
+                        //    soundComponent.PlayOneShot(clip);
+                        //}
+                    }
+
+                    if (_effectNum == 4)
+                    {
+                        yield return new WaitForSeconds(2f);
+                        Archer_CrossBow_Skill[1].transform.localPosition = new Vector3(0, 1, 0);
+                        Archer_CrossBow_Skill[1].transform.localRotation = Quaternion.identity;
+                    }
+                }
+
+
+                yield break;
             }
         }
     }
+
+  
     public void EndSkill()
     {
         //player.ANIM.applyRootMotion = false;
@@ -473,6 +737,7 @@ public class PlayerController : MonoBehaviour
         if (context.canceled && !isAttack && !isCastSkillPress)
         {
             isAttack = true;
+
         }
     }
 
@@ -502,17 +767,37 @@ public class PlayerController : MonoBehaviour
 
     public void LongDistanceAttack()
     {
-        if(weaponManager.Weapondata.equipmentType == EquipmentType.Staff)
-        {
-            var StaffObj = Instantiate(Mage_LongDistanceAttackObj[0]);
-            StaffObj.transform.position = transform.position + Vector3.up;
-        }
-        else if(weaponManager.Weapondata.equipmentType == EquipmentType.Orb)
-        {
-            var StaffObj = Instantiate(Mage_LongDistanceAttackObj[1]);
-            StaffObj.transform.position = transform.position + Vector3.up;
 
+        if(player.playerStat.unitCode == UnitCode.MAGE)
+        {
+            if (weaponManager.Weapondata.equipmentType == EquipmentType.Staff)
+            {
+                var StaffObj = Instantiate(Mage_LongDistanceAttackObj[0]);
+                StaffObj.transform.position = transform.position + Vector3.up;
+            }
+            else if (weaponManager.Weapondata.equipmentType == EquipmentType.Orb)
+            {
+                var OrbObj = Instantiate(Mage_LongDistanceAttackObj[1]);
+                OrbObj.transform.position = transform.position + Vector3.up;
+            }
         }
+        else if(player.playerStat.unitCode == UnitCode.ARCHER)
+        {
+            var ArrowObj = Instantiate(Archer_LongDistanceAttackOb[0]);
+            if (weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
+            {
+                ArrowObj.transform.position = Archer_FirePos[0].transform.position;
+                ArrowObj.transform.rotation = transform.rotation;
+            }
+            else if(weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+            {
+                ArrowObj.transform.position = Archer_FirePos[1].transform.position;
+                ArrowObj.transform.rotation = transform.rotation;
+            }
+            
+            
+        }
+        
         
     }
 
@@ -593,9 +878,9 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         #region Jump Code
-        Physics.Raycast(transform.position, Vector3.down, out hit, Mathf.Infinity, LayerMask.GetMask("Object"));
+        Physics.Raycast(transform.position, Vector3.down, out Jumphit, Mathf.Infinity, LayerMask.GetMask("Object"));
         playerHeight = player.transform.position.y;
-        groundHeight = hit.point.y;
+        groundHeight = Jumphit.point.y;
 
         if (playerHeight - groundHeight <= maxHeightDifference) isGround = true;
         else isGround = false;

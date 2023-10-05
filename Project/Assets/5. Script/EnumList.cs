@@ -19,6 +19,7 @@ public enum EquipmentType
     Spear,
     Shield,
     Bow,
+    CrossBow,
     Staff,
     Orb
 }
@@ -29,4 +30,12 @@ public enum PlayerJobs
     Warrior,
     Mage,
     Archer
+}
+
+[Serializable]
+public enum EffectCastType
+{
+    None,
+    Front,
+    PreCast
 }
