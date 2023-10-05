@@ -469,19 +469,18 @@ namespace Rito.InventorySystem
         {
             if (_equipment.slot(indexA) == null) return;
             if (!IsValidIndex(indexB)) return;
-            if (_items[indexB] is EquipmentItem itemB) ;
-            else return;
-            if (_items[indexB] is EquipmentItem itemA) ;
-            else return;
+            if (_items[indexB] is not EquipmentItem itemB) return;
+            if (_equipment.slot(indexA) is not EquipmentItem itemA) return;
             if (itemA.EquipmentData == itemB.EquipmentData)
             {
-                _items[indexA] = itemB;
+                _equipment.EquipmentItem(itemB);
                 _items[indexB] = itemA;
             }
             else return;
             // 두 슬롯 정보 갱신
             _equipment.UpdateSlot(indexA);
             UpdateSlot(indexB);
+            return;
         }
 
         /// <summary> 셀 수 있는 아이템의 수량 나누기(A -> B 슬롯으로) </summary>

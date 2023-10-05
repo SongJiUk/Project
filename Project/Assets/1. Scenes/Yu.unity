@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2704,6 +2704,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 522468136}
     m_Modifications:
+    - target: {fileID: 6760252695751329049, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
+      propertyPath: _currentSetSlotOption
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6760252695751329054, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6279,6 +6283,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 522468136}
     m_Modifications:
+    - target: {fileID: 6760252695751329049, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
+      propertyPath: _currentSetSlotOption
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6760252695751329054, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -13425,6 +13433,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 522468136}
     m_Modifications:
+    - target: {fileID: 6760252695751329049, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
+      propertyPath: _currentSetSlotOption
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6760252695751329054, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -14083,6 +14095,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 522468136}
     m_Modifications:
+    - target: {fileID: 6760252695751329049, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
+      propertyPath: _currentSetSlotOption
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6760252695751329054, guid: 6a291d34fe375b04d9dfdafdef4d2d27, type: 3}
       propertyPath: m_Pivot.x
       value: 0

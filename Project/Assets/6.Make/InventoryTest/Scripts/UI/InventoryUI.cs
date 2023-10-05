@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using static Rito.InventorySystem.ItemSlotUI;
 
 /*
     [기능 - 에디터 전용]
@@ -408,15 +409,26 @@ namespace Rito.InventorySystem
         private void EndDrag()
         {
             ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
+            if(endDragSlot != null && endDragSlot._currentSetSlotOption == IsWhereSlot.Equipment)
+            {
+
+                return;
+            }
+
+            if (endDragSlot != null && endDragSlot._currentSetSlotOption == IsWhereSlot.UseItemSlot)
+            {
+
+                return;
+            }
 
             // 아이템 슬롯끼리 아이콘 교환 또는 이동
-            if (endDragSlot != null && endDragSlot.IsAccessible)
+            if (endDragSlot != null && endDragSlot.IsAccessible && endDragSlot._currentSetSlotOption == IsWhereSlot.Inventory)
             {
                 // 수량 나누기 조건
                 // 1) 마우스 클릭 떼는 순간 좌측 Ctrl 또는 Shift 키 유지
                 // 2) begin : 셀 수 있는 아이템 / end : 비어있는 슬롯
                 // 3) begin 아이템의 수량 > 1
-                bool isSeparatable = 
+                bool isSeparatable =
                     (Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.LeftShift)) &&
                     (_inventory.IsCountableItem(_beginDragSlot.Index) && !_inventory.HasItem(endDragSlot.Index));
 
@@ -435,7 +447,7 @@ namespace Rito.InventorySystem
                 }
 
                 // 1. 개수 나누기
-                if(isSeparation)
+                if (isSeparation)
                     TrySeparateAmount(_beginDragSlot.Index, endDragSlot.Index, currentAmount);
                 // 2. 교환 또는 이동
                 else
@@ -455,10 +467,10 @@ namespace Rito.InventorySystem
                 int amount = _inventory.GetCurrentAmount(index);
 
                 // 셀 수 있는 아이템의 경우, 수량 표시
-                if(amount > 1)
+                if (amount > 1)
                     itemName += $" x{amount}";
 
-                if(_showRemovingPopup)
+                if (_showRemovingPopup)
                     _popup.OpenConfirmationPopup(() => TryRemoveItem(index), itemName);
                 else
                     TryRemoveItem(index);

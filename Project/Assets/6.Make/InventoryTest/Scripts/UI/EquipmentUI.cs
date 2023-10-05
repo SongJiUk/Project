@@ -33,7 +33,7 @@ public class EquipmentUI : MonoBehaviour
     /***********************************************************************
         *                               Private Fields
         ***********************************************************************/
-
+    #region .
     /// <summary> 연결된 인벤토리 </summary>
     [SerializeField]
     private Equipment _equipment;
@@ -61,7 +61,7 @@ public class EquipmentUI : MonoBehaviour
         All, Equipment, Portion
     }
     private FilterOption _currentFilterOption = FilterOption.All;
-
+    #endregion 
     /***********************************************************************
        *                               Unity Events
        ***********************************************************************/
@@ -274,21 +274,26 @@ public class EquipmentUI : MonoBehaviour
                 _beginDragIconTransform = null;
             }
         }
+
     }
 
     private void EndDrag()
     {
         ItemSlotUI endDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
+
         if(endDragSlot==null)
         {
             endDragSlot = _inventoryUI.RaycastAndGetFirstComponent<ItemSlotUI>();
+            return;
+        }
+        if (endDragSlot._currentSetSlotOption != IsWhereSlot.Inventory)
+        {
+            return;
         }
         // 아이템 슬롯끼리 아이콘 교환 또는 이동
-        if (endDragSlot != null && endDragSlot.IsAccessible)
+        if (endDragSlot != null && endDragSlot.IsAccessible && endDragSlot._currentSetSlotOption == IsWhereSlot.Inventory)
         {
-
-                
-            }
+           
             
 
 

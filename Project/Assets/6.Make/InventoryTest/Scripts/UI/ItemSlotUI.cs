@@ -49,7 +49,7 @@ namespace Rito.InventorySystem
         /// <summary> 접근 가능한 슬롯인지 여부 </summary>
         public enum IsWhereSlot
         {
-            Inventory, Equipment, Portion
+            Inventory, Equipment, UseItemSlot
         }
         public IsWhereSlot _currentSetSlotOption = IsWhereSlot.Inventory;
 
@@ -280,6 +280,13 @@ namespace Rito.InventorySystem
                 _highlightRect.SetAsLastSibling();
             else
                 _highlightRect.SetAsFirstSibling();
+        }
+
+        /// <summary> 중심다시 잡기 </summary>
+        public void SetSenter()
+        {
+            _iconImage.rectTransform.offsetMin = new Vector2(0, 0);
+            _iconImage.rectTransform.offsetMax = new Vector2(0, 0);
         }
 
         #endregion
