@@ -286,9 +286,6 @@ public class EquipmentUI : MonoBehaviour
         // 아이템 슬롯끼리 아이콘 교환 또는 이동
         if (endDragSlot != null && endDragSlot.IsAccessible)
         {
-            Debug.Log("GASGAGESGSGAG");
-            if (endDragSlot._currentSetSlotOption == IsWhereSlot.Inventory)
-            {
 
                 
             }

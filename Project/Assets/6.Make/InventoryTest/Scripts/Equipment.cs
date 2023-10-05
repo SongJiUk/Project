@@ -243,5 +243,4 @@ public class Equipment : MonoBehaviour
             UpdateSlot(index);
         }
     }
-
 }
