@@ -4,46 +4,5 @@ using UnityEngine;
 
 public class PlayerData : Singleton<PlayerData>
 {
-    GameData WeaponData;
-    GameData ShiledData;
-    int level;
-    float exp;
-
-    public int LEVEL
-    {
-        get { return level; }
-        set { level = value;}
-    }
-
-    public float EXP
-    {
-        get { return exp; }
-        set { exp = value; }
-    }
-
-    public GameData WEAPONDATA
-    {
-        get { return WeaponData; }
-        set { WeaponData = value; }
-    }
-
-    public GameData SHILEDDATA
-    {
-        get { return ShiledData; }
-        set { ShiledData = value; }
-    }
-
-    public void SaveData()
-    {
-        PlayerPrefs.SetFloat("exp", exp);
-        PlayerPrefs.SetInt("level", level);
-
-    }
-
-
-    public void LoadData()
-    {
-        level = PlayerPrefs.GetInt("level", level);
-        exp = PlayerPrefs.GetFloat("exp", exp);
-    }
+   
 }

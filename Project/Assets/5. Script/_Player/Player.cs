@@ -33,7 +33,7 @@ public class Player : Singleton<Player>
     PlayerController playerController;
     public PlayerController PController { get { return playerController; } }
 
-    public RuntimeAnimatorController[] a;
+    public RuntimeAnimatorController[] PlayerJob;
 
     private void Awake()
     {
@@ -54,14 +54,18 @@ public class Player : Singleton<Player>
     {
         if(Input.GetKeyDown(KeyCode.Alpha9))
         {
-            anim.runtimeAnimatorController = a[0];
+            anim.runtimeAnimatorController = PlayerJob[0];
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha8))
         {
-            anim.runtimeAnimatorController = a[1];
+            anim.runtimeAnimatorController = PlayerJob[1];
         }
 
+        if(Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            anim.runtimeAnimatorController = PlayerJob[2];
+        }
     }
 
     private void OnTriggerEnter(Collider other)

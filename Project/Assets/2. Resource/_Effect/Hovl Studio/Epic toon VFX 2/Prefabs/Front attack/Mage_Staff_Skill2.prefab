@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4256518317311090}
   - component: {fileID: 198646586896715728}
   - component: {fileID: 199887412845190880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailsUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -41,14 +41,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007852326048918}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -4952,7 +4952,8 @@ GameObject:
   - component: {fileID: 198379148210225472}
   - component: {fileID: 199322647168737682}
   - component: {fileID: 114086311527006708}
-  m_Layer: 0
+  - component: {fileID: 1196002882}
+  m_Layer: 8
   m_Name: Tornado Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4989,9 +4990,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1015248825211168}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5054,7 +5055,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -9847,6 +9848,19 @@ MonoBehaviour:
   speed: 10
   drug: 0.99
   repeatingTime: 3
+--- !u!65 &1196002882
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1015248825211168}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.408898, y: 3.7991238, z: 1.6683474}
+  m_Center: {x: -0.12534988, y: 2.1349626, z: 0.44314408}
 --- !u!1 &1053346944179474
 GameObject:
   m_ObjectHideFlags: 0
@@ -9858,7 +9872,7 @@ GameObject:
   - component: {fileID: 4427342866276862}
   - component: {fileID: 198685560430380636}
   - component: {fileID: 199503314008941586}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundWind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9888,14 +9902,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1053346944179474}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -14740,7 +14754,7 @@ GameObject:
   - component: {fileID: 4725315364616252}
   - component: {fileID: 198127940391185104}
   - component: {fileID: 199679545183915194}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailsUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14770,14 +14784,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1066456562417960}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -19681,7 +19695,8 @@ GameObject:
   - component: {fileID: 198776523554445286}
   - component: {fileID: 199127338886767296}
   - component: {fileID: 114790097081427692}
-  m_Layer: 0
+  - component: {fileID: 1908362611}
+  m_Layer: 8
   m_Name: Tornado Middle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19718,9 +19733,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1127297447389340}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -19783,7 +19798,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -23349,7 +23364,7 @@ ParticleSystem:
   CollisionModule:
     enabled: 0
     serializedVersion: 4
-    type: 0
+    type: 1
     collisionMode: 0
     colliderForce: 0
     multiplyColliderForceByParticleSize: 0
@@ -24576,6 +24591,19 @@ MonoBehaviour:
   speed: 11
   drug: 0.99
   repeatingTime: 3
+--- !u!65 &1908362611
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1127297447389340}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.408898, y: 3.7991238, z: 1.6683474}
+  m_Center: {x: -0.12534988, y: 2.1349626, z: 0.44314408}
 --- !u!1 &1139322173746566
 GameObject:
   m_ObjectHideFlags: 0
@@ -24587,7 +24615,8 @@ GameObject:
   - component: {fileID: 4681218797464440}
   - component: {fileID: 198684194374049616}
   - component: {fileID: 199511056894365742}
-  m_Layer: 0
+  - component: {fileID: 453994926}
+  m_Layer: 8
   m_Name: Wind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24618,9 +24647,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1139322173746566}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 3
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -24683,7 +24712,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -29478,6 +29507,22 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &453994926
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1139322173746566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 301376e2bc7fc44bd8e179e444d0136c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DAMAGE: 0
+  CheckScriptLoad: 0
+  isDestory: 0
+  isHit: 0
 --- !u!1 &1141587948525162
 GameObject:
   m_ObjectHideFlags: 0
@@ -29489,7 +29534,7 @@ GameObject:
   - component: {fileID: 4862785942323292}
   - component: {fileID: 198000694178441970}
   - component: {fileID: 199721114267563482}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailsUp
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29519,7 +29564,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1141587948525162}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -29584,7 +29629,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -34429,7 +34474,7 @@ GameObject:
   - component: {fileID: 4649774820187682}
   - component: {fileID: 198471552190566978}
   - component: {fileID: 199736472454993938}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34459,7 +34504,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1150990222880482}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -34524,7 +34569,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -39311,7 +39356,7 @@ GameObject:
   - component: {fileID: 4809251917965954}
   - component: {fileID: 198988458964722014}
   - component: {fileID: 199059263879003700}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaveSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39341,7 +39386,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1158188622644576}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -39406,7 +39451,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -44202,7 +44247,7 @@ GameObject:
   - component: {fileID: 4041195582530016}
   - component: {fileID: 198982325393356444}
   - component: {fileID: 199899275123663400}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaveBorders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44232,14 +44277,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160364306301620}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -49093,7 +49138,7 @@ GameObject:
   - component: {fileID: 4701961526019508}
   - component: {fileID: 198980478451932606}
   - component: {fileID: 199311699865798566}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundWind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -49123,14 +49168,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1294976325329074}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -53975,7 +54020,7 @@ GameObject:
   - component: {fileID: 4306988979391918}
   - component: {fileID: 198914072898354342}
   - component: {fileID: 199520003520610266}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundWind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54005,7 +54050,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1346688992248722}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -54070,7 +54115,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -58858,7 +58903,8 @@ GameObject:
   - component: {fileID: 198240252530160060}
   - component: {fileID: 199907518970239626}
   - component: {fileID: 114231271439623666}
-  m_Layer: 0
+  - component: {fileID: 462467564}
+  m_Layer: 8
   m_Name: Tornado Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58895,9 +58941,9 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413858425479080}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
-  stopAction: 0
+  stopAction: 1
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -58960,7 +59006,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -63753,6 +63799,19 @@ MonoBehaviour:
   speed: 10
   drug: 0.99
   repeatingTime: 3
+--- !u!65 &462467564
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1413858425479080}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.408898, y: 3.7991238, z: 1.6683474}
+  m_Center: {x: -0.12534988, y: 2.1349626, z: 0.44314408}
 --- !u!1 &1419341094091650
 GameObject:
   m_ObjectHideFlags: 0
@@ -63764,7 +63823,7 @@ GameObject:
   - component: {fileID: 4431874661239912}
   - component: {fileID: 198023883273300880}
   - component: {fileID: 199224539647326384}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaveBorders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63794,7 +63853,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1419341094091650}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -63859,7 +63918,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -68655,7 +68714,7 @@ GameObject:
   - component: {fileID: 4923768356165860}
   - component: {fileID: 198438427493053098}
   - component: {fileID: 199247222830864118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaveBorders
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68685,14 +68744,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1424448172566200}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -73546,7 +73605,7 @@ GameObject:
   - component: {fileID: 4555776301633556}
   - component: {fileID: 198468157555187918}
   - component: {fileID: 199910820639336394}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73576,14 +73635,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1525198011461080}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -78486,7 +78545,7 @@ GameObject:
   - component: {fileID: 4343746179183306}
   - component: {fileID: 198761487708139750}
   - component: {fileID: 199525374538662318}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TornadoCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78516,7 +78575,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1561322884612420}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -78581,7 +78640,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 1
   randomSeed: 0
@@ -83368,7 +83427,7 @@ GameObject:
   - component: {fileID: 4151864968792922}
   - component: {fileID: 198585617022439972}
   - component: {fileID: 199181942675693908}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaveSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83398,14 +83457,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1565700846117254}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -88259,7 +88318,7 @@ GameObject:
   - component: {fileID: 4637601182176282}
   - component: {fileID: 198855686972356778}
   - component: {fileID: 199862472883324098}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88289,7 +88348,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1585373052918300}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
@@ -88354,7 +88413,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -93199,7 +93258,7 @@ GameObject:
   - component: {fileID: 4432544564160830}
   - component: {fileID: 198581580054605560}
   - component: {fileID: 199129659469562386}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: WaveSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93229,14 +93288,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1663516789676348}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -98090,7 +98149,7 @@ GameObject:
   - component: {fileID: 4392542944516382}
   - component: {fileID: 198036503576266878}
   - component: {fileID: 199052213101067570}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TrailMiddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -98120,14 +98179,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1696950462448480}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -103030,7 +103089,7 @@ GameObject:
   - component: {fileID: 4840876256553890}
   - component: {fileID: 198714532587455782}
   - component: {fileID: 199280175194761108}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: BackWaves
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103125,7 +103184,7 @@ ParticleSystem:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  moveWithTransform: 1
+  moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 0
   randomSeed: 0
@@ -107912,7 +107971,7 @@ GameObject:
   - component: {fileID: 4890661163536772}
   - component: {fileID: 198012934231319166}
   - component: {fileID: 199315992497732728}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -107942,14 +108001,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1807998122387590}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -112794,7 +112853,7 @@ GameObject:
   - component: {fileID: 4769412440945850}
   - component: {fileID: 198092550805860696}
   - component: {fileID: 199170287992588118}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TornadoCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112824,14 +112883,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1817026995322192}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -117676,7 +117735,7 @@ GameObject:
   - component: {fileID: 4487503144707118}
   - component: {fileID: 198609855102832540}
   - component: {fileID: 199389979127897252}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: TornadoCore
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -117706,14 +117765,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825754772570806}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
@@ -122558,7 +122617,7 @@ GameObject:
   - component: {fileID: 4482667667957796}
   - component: {fileID: 82042799657155836}
   - component: {fileID: 114400086242495470}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Mage_Staff_Skill2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122719,12 +122778,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a79ba5bb0b3780b4a98ce45e779b6441, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Repeating: 1
+  Repeating: 0
   RepeatTime: 3
   StartTime: 0
   RandomVolume: 0
   minVolume: 0.4
   maxVolume: 1
+  isStart: 0
+  effect:
+  - {fileID: 1127297447389340}
+  - {fileID: 1413858425479080}
+  - {fileID: 1015248825211168}
+  - {fileID: 1139322173746566}
 --- !u!1 &1936486386836222
 GameObject:
   m_ObjectHideFlags: 0
@@ -122736,7 +122801,7 @@ GameObject:
   - component: {fileID: 4746579978630128}
   - component: {fileID: 198713579082240852}
   - component: {fileID: 199713862176419858}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: GroundSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122766,14 +122831,14 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1936486386836222}
   serializedVersion: 8
-  lengthInSec: 3
+  lengthInSec: 2
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 1
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   emitterVelocityMode: 0
-  looping: 1
+  looping: 0
   prewarm: 0
   playOnAwake: 1
   useUnscaledTime: 0
