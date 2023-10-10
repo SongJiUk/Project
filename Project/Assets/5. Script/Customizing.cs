@@ -200,4 +200,10 @@ public class Customizing : MonoBehaviour
         }
     }
     #endregion
+
+
+    public void CreateCharacter()
+    {
+
+    }
 }
