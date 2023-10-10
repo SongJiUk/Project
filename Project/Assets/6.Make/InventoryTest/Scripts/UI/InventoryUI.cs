@@ -329,6 +329,7 @@ namespace Rito.InventorySystem
         private void OnPointerDown()
         {
             // Left Click : Begin Drag
+            
             if (Input.GetMouseButtonDown(_leftClick))
             {
                 _beginDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();

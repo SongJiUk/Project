@@ -7,7 +7,7 @@ public enum Types
 {
     Head = 0,    
     Top = 1,    
-    Bottom = 2,    
+    Bottom = 2,
     Sword = 3,
     Bow = 4,
     Spear = 5,

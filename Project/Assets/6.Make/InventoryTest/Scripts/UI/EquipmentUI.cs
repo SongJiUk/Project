@@ -199,6 +199,7 @@ public class EquipmentUI : MonoBehaviour
     private void OnPointerDown()
     {
         // Left Click : Begin Drag
+        /*
         if (Input.GetMouseButtonDown(_leftClick))
         {
             _beginDragSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
@@ -225,9 +226,9 @@ public class EquipmentUI : MonoBehaviour
                 _beginDragSlot = null;
             }
         }
-
+        */
         // Right Click : Use Item
-        else if (Input.GetMouseButtonDown(_rightClick))
+        if (Input.GetMouseButtonDown(_rightClick) || Input.GetMouseButtonDown(_leftClick))
         {
             ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
 

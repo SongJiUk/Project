@@ -118,6 +118,8 @@ public class CameraManager : Singleton<CameraManager>
     private float x = 0.0f;
     private float y = 0.0f;
 
+    private bool OnOff = true;
+
     //For camera colliding
     RaycastHit hit;
     public LayerMask collidingLayers = ~0; //Target marker can only collide with scene layer
@@ -134,64 +136,82 @@ public class CameraManager : Singleton<CameraManager>
         y = angles.x;
     }
 
+    //Alt클릭에 마우스 보이고 움직일수있게 추가
+
     void LateUpdate()
     {
-        if (currDistance < 2)
+        if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            currDistance = 2;
+            OnOff = false;
         }
-
-        // (currDistance - 2) / 3.5f - constant for far camera position
-        var targetPos = player.position + new Vector3(0, (distanceHit - 2) / 3f + cameraPos[1], 0);
-
-        currDistance -= Input.GetAxis("Mouse ScrollWheel") * 2;
-        if (player)
+        if (Input.GetKeyUp(KeyCode.LeftAlt))
         {
-            var pos = Input.mousePosition;
-            float dpiScale = 1;
-            if (Screen.dpi < 1) dpiScale = 1;
-            if (Screen.dpi < 200) dpiScale = 1;
-            else dpiScale = Screen.dpi / 200f;
-            if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
-            Cursor.visible = false;
-            //마우스 잠구는거
-            Cursor.lockState = CursorLockMode.Locked;
-            x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
-            y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);
-            y = ClampAngle(y, yMinLimit, yMaxLimit);
-            var rotation = Quaternion.Euler(y, x, 0);
-            var position = rotation * new Vector3(0, 0, -currDistance) + targetPos;
-            
-            Debug.DrawLine(targetPos, position - targetPos, Color.red);
-            if (Physics.Raycast(targetPos, position - targetPos, out hit, (position - targetPos).magnitude, collidingLayers))
+            OnOff = true;
+        }
+        if (OnOff)
+        {
+            if (currDistance < 2)
             {
-                transform.position = hit.point;
-                //Min(4) distance from ground for camera target point
-                distanceHit = Mathf.Clamp(Vector3.Distance(targetPos, hit.point), 2, 600);
-                
+                currDistance = 2;
+            }
 
+            // (currDistance - 2) / 3.5f - constant for far camera position
+            var targetPos = player.position + new Vector3(0, (distanceHit - 2) / 3f + cameraPos[1], 0);
+
+            currDistance -= Input.GetAxis("Mouse ScrollWheel") * 2;
+            if (player)
+            {
+                var pos = Input.mousePosition;
+                float dpiScale = 1;
+                if (Screen.dpi < 1) dpiScale = 1;
+                if (Screen.dpi < 200) dpiScale = 1;
+                else dpiScale = Screen.dpi / 200f;
+                if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
+                Cursor.visible = false;
+                //마우스 잠구는거
+                Cursor.lockState = CursorLockMode.Locked;
+                x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
+                y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);
+                y = ClampAngle(y, yMinLimit, yMaxLimit);
+                var rotation = Quaternion.Euler(y, x, 0);
+                var position = rotation * new Vector3(0, 0, -currDistance) + targetPos;
+
+                Debug.DrawLine(targetPos, position - targetPos, Color.red);
+                if (Physics.Raycast(targetPos, position - targetPos, out hit, (position - targetPos).magnitude, collidingLayers))
+                {
+                    transform.position = hit.point;
+                    //Min(4) distance from ground for camera target point
+                    distanceHit = Mathf.Clamp(Vector3.Distance(targetPos, hit.point), 2, 600);
+
+
+                }
+                else
+                {
+                    transform.position = position;
+                    distanceHit = currDistance;
+                }
+                transform.rotation = rotation;
             }
             else
             {
-                transform.position = position;
-                distanceHit = currDistance;
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
-            transform.rotation = rotation;
+
+            if (prevDistance != currDistance)
+            {
+                prevDistance = currDistance;
+                var rot = Quaternion.Euler(y, x, 0);
+
+                var po = rot * new Vector3(0, 0, -currDistance) + targetPos;
+                transform.rotation = rot;
+                transform.position = po;
+            }
         }
         else
         {
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-        }
-
-        if (prevDistance != currDistance)
-        {
-            prevDistance = currDistance;
-            var rot = Quaternion.Euler(y, x, 0);
-           
-            var po = rot * new Vector3(0, 0, -currDistance) + targetPos;
-            transform.rotation = rot;
-            transform.position = po;
         }
     }
 

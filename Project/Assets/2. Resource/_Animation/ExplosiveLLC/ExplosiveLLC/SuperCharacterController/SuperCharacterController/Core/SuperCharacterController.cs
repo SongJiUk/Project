@@ -146,7 +146,7 @@ public class SuperCharacterController : MonoBehaviour
             Debug.LogError("[SuperCharacterController] Feet not found on controller");
 
         if (head == null)
-            Debug.LogError("[SuperCharacterController] Head not found on controller");
+            Debug.LogError("[SuperCharacterController] MpPotion not found on controller");
 
         if (defaultCollisionType == null)
             defaultCollisionType = new GameObject("DefaultSuperCollisionType", typeof(SuperCollisionType)).GetComponent<SuperCollisionType>();
