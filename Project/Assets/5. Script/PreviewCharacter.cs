@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class PreviewCharacter : MonoBehaviour
 {
-    [SerializeField] List<GameObject> HandWeapon;
-    [SerializeField] List<GameObject> BackWeapon;
+    [SerializeField] List<GameObject> RHandWeapon;
+    [SerializeField] GameObject LHandWeapon;
 
     [SerializeField] GameObject[] Archer_Bow_Skill;
     [SerializeField] GameObject[] Archer_Bow_Cast;
     [SerializeField] GameObject[] Archer_CrossBow_Skill;
     [SerializeField] GameObject[] Archer_CrossBow_Cast;
+
+    [SerializeField] GameObject[] LongDistanceAttackOb;
+    [SerializeField] GameObject[] Archer_FirePos;
+    Quaternion OriginRot = new Quaternion(0f, 180f, 0f, 0f);
+    Quaternion SkillRot = new Quaternion(0f, 0f, 0f, 0f);
 
     Animator anim;
     int num;
@@ -23,18 +28,28 @@ public class PreviewCharacter : MonoBehaviour
     {
         num = _num;
         anim.SetInteger("ClickNum", _num);
+        transform.rotation = SkillRot;
     }
 
 
+    public void WeaponEquipAndUnEquip(bool _isEquip)
+    {
+        RHandWeapon[num - 1].SetActive(_isEquip);
+
+        if (num == 2) if (LHandWeapon != null) LHandWeapon.SetActive(_isEquip);
+    }
+
     public void Equip()
     {
-        
+        WeaponEquipAndUnEquip(true);
     }
 
 
     public void UnEquip()
     {
         anim.SetInteger("ClickNum", 0);
+        transform.rotation = OriginRot;
+        WeaponEquipAndUnEquip(false);
     }
 
 
@@ -97,15 +112,77 @@ public class PreviewCharacter : MonoBehaviour
     public void WaitEndSkill()
     {
 
-        Invoke("Waittime", 1f);
+        Invoke("Waittime", 1.5f);
     }
 
-    public void Waittime()
+    void Waittime()
     {
-
+        anim.SetTrigger("WaitTime");   
     }
-      
-     
+
+    public void LongDistanceAttack()
+    {
+        if(LongDistanceAttackOb.Length == 1)
+        {
+            var ArrowObj = Instantiate(LongDistanceAttackOb[0]);
+            if(num == 1)
+            {
+                ArrowObj.transform.position = Archer_FirePos[0].transform.position;
+                ArrowObj.transform.rotation = transform.rotation;
+
+            }
+            else
+            {
+                ArrowObj.transform.position = Archer_FirePos[1].transform.position;
+                ArrowObj.transform.rotation = transform.rotation;
+
+            }
+            
+        }
+        else
+        {
+            if (num == 1)
+            {   
+                var StaffObj = Instantiate(LongDistanceAttackOb[0]);
+                StaffObj.transform.position = transform.position + Vector3.up;
+
+
+            }
+            else
+            {
+                var StaffObj = Instantiate(LongDistanceAttackOb[1]);
+                StaffObj.transform.position = transform.position + Vector3.up;
+            }
+        }
+        
+        //if (player.playerStat.unitCode == UnitCode.MAGE)
+        //{
+        //    if (weaponManager.Weapondata.equipmentType == EquipmentType.Staff)
+        //    {
+        //        var StaffObj = Instantiate(Mage_LongDistanceAttackObj[0]);
+        //        StaffObj.transform.position = transform.position + Vector3.up;
+        //    }
+        //    else if (weaponManager.Weapondata.equipmentType == EquipmentType.Orb)
+        //    {
+        //        var OrbObj = Instantiate(Mage_LongDistanceAttackObj[1]);
+        //        OrbObj.transform.position = transform.position + Vector3.up;
+        //    }
+        //}
+        //else if (player.playerStat.unitCode == UnitCode.ARCHER)
+        //{
+        //    var ArrowObj = Instantiate(Archer_LongDistanceAttackOb[0]);
+        //    if (weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
+        //    {
+        //        ArrowObj.transform.position = Archer_FirePos[0].transform.position;
+        //        ArrowObj.transform.rotation = transform.rotation;
+        //    }
+        //    else if (weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+        //    {
+        //        ArrowObj.transform.position = Archer_FirePos[1].transform.position;
+        //        ArrowObj.transform.rotation = transform.rotation;
+        //    }
+        //}
+    }
 
     IEnumerator InstantSkill(int _effectNum)
     {
