@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Customizing : MonoBehaviour
 {
+    [Header("캐릭터 커스터마이징")]
     public List<GameObject> Gender = new List<GameObject>();
     public List<GameObject> Hair = new List<GameObject>();
     public List<GameObject> Female_Face = new List<GameObject>();
@@ -11,8 +12,19 @@ public class Customizing : MonoBehaviour
     public List<GameObject> male_Face = new List<GameObject>();
     public List<GameObject> male_Eyebrow = new List<GameObject>();
     public List<GameObject> male_Mustache = new List<GameObject>();
-    
-    
+    public List<GameObject> Female_Top = new List<GameObject>();
+    public List<GameObject> Female_Pants = new List<GameObject>();
+    public List<GameObject> male_Top = new List<GameObject>();
+    public List<GameObject> male_Pants = new List<GameObject>();
+
+    [Header("UI 버튼")]
+    [SerializeField] GameObject AppearanceOBJ;
+    [SerializeField] GameObject ClothesOBJ;
+
+    [SerializeField] GameObject BackBtn;
+    [SerializeField] GameObject NextBtn;
+
+
     int GenderNum;
     int HairNum;
     int Female_FaceNum;
@@ -20,6 +32,10 @@ public class Customizing : MonoBehaviour
     int Female_EyebrowNum;
     int male_EyebrowNum;
     int MustacheNum;
+    int Female_TopNum;
+    int Female_PantsNum;
+    int male_TopNum;
+    int male_PantsNum;
     Coroutine myCoruotine;
 
     private void Awake()
@@ -31,6 +47,11 @@ public class Customizing : MonoBehaviour
         Female_EyebrowNum = 0;
         male_EyebrowNum = 0;
         MustacheNum = 0;
+        Female_TopNum = 0;
+        Female_PantsNum = 0;
+        male_TopNum = 0;
+        male_PantsNum = 0;
+
     }
     public void ChangeCustomizingPrev(int _num)
     {
@@ -99,6 +120,38 @@ public class Customizing : MonoBehaviour
                 }
                 break;
 
+            //Top
+            case 5:
+                if (GenderNum.Equals(0))
+                {
+                    Female_Top[Female_TopNum--].SetActive(false);
+                    if (Female_TopNum < 0) Female_TopNum = Female_Top.Count - 1;
+                    Female_Top[Female_TopNum].SetActive(true);
+                }
+                else if (GenderNum.Equals(1))
+                {
+                    male_Top[male_TopNum--].SetActive(false);
+                    if (male_TopNum < 0) male_TopNum = male_Top.Count - 1;
+                    male_Top[male_TopNum].SetActive(true);
+                }
+                break;
+
+            //Pants
+            case 6:
+                if (GenderNum.Equals(0))
+                {
+                    Female_Pants[Female_PantsNum--].SetActive(false);
+                    if (Female_PantsNum < 0) Female_PantsNum = Female_Pants.Count - 1;
+                    Female_Pants[Female_PantsNum].SetActive(true);
+                }
+                else if (GenderNum.Equals(1))
+                {
+                    male_Pants[male_PantsNum--].SetActive(false);
+                    if (male_PantsNum < 0) male_PantsNum = male_Pants.Count - 1;
+                    male_Pants[male_PantsNum].SetActive(true);
+                }
+                break;
+
         }
     }
 
@@ -164,6 +217,37 @@ public class Customizing : MonoBehaviour
                 }
                 break;
 
+            //Top
+            case 5:
+                if (GenderNum.Equals(0))
+                {
+                    Female_Top[Female_TopNum++].SetActive(false);
+                    if (Female_TopNum > Female_Top.Count - 1) Female_TopNum = 0;
+                    Female_Top[Female_TopNum].SetActive(true);
+                }
+                else if (GenderNum.Equals(1))
+                {
+                    male_Top[male_TopNum++].SetActive(false);
+                    if (male_TopNum > male_Top.Count - 1) male_TopNum = 0;
+                    male_Top[male_TopNum].SetActive(true);
+                }
+                break;
+
+            //Pants
+            case 6:
+                if (GenderNum.Equals(0))
+                {
+                    Female_Pants[Female_PantsNum++].SetActive(false);
+                    if (Female_PantsNum > Female_Pants.Count - 1) Female_PantsNum = 0;
+                    Female_Pants[Female_PantsNum].SetActive(true);
+                }
+                else if (GenderNum.Equals(1))
+                {
+                    male_Pants[male_PantsNum++].SetActive(false);
+                    if (male_PantsNum > male_Pants.Count - 1) male_PantsNum = 0;
+                    male_Pants[male_PantsNum].SetActive(true);
+                }
+                break;
         }
     }
 
@@ -201,6 +285,21 @@ public class Customizing : MonoBehaviour
     }
     #endregion
 
+    public void Back_Appearance()
+    {
+        AppearanceOBJ.SetActive(true);
+        ClothesOBJ.SetActive(false);
+        BackBtn.SetActive(false);
+        NextBtn.SetActive(true);
+    }
+
+    public void Select_Over_Appearance()
+    {
+        AppearanceOBJ.SetActive(false);
+        ClothesOBJ.SetActive(true);
+        BackBtn.SetActive(true);
+        NextBtn.SetActive(false);
+    }
 
     public void CreateCharacter()
     {

@@ -5015,7 +5015,7 @@ GameObject:
   - component: {fileID: 4784334834578132}
   - component: {fileID: 137272955219922312}
   m_Layer: 0
-  m_Name: Chr_Hips_Female_28
+  m_Name: Female_Pants_Base_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8131,7 +8131,7 @@ GameObject:
   - component: {fileID: 4663701922147800}
   - component: {fileID: 137451892654295778}
   m_Layer: 0
-  m_Name: Chr_Hips_Female_14
+  m_Name: Female_Pants_Base_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16874,7 +16874,7 @@ GameObject:
   - component: {fileID: 4862072205685906}
   - component: {fileID: 137621084079322456}
   m_Layer: 0
-  m_Name: Chr_Hips_Female_02
+  m_Name: Female_Pants_Base_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17423,7 +17423,7 @@ GameObject:
   - component: {fileID: 4884606519785306}
   - component: {fileID: 137368889194769132}
   m_Layer: 0
-  m_Name: Chr_Torso_Female_03
+  m_Name: Female_Top_Base_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -26898,12 +26898,12 @@ GameObject:
   - component: {fileID: 4554959239714166}
   - component: {fileID: 137272817260019674}
   m_Layer: 0
-  m_Name: Chr_Hips_Female_00
+  m_Name: Female_Pants_Base_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4554959239714166
 Transform:
   m_ObjectHideFlags: 0
@@ -27076,7 +27076,7 @@ GameObject:
   - component: {fileID: 4743151278139440}
   - component: {fileID: 137992643221699742}
   m_Layer: 0
-  m_Name: Chr_Torso_Female_14
+  m_Name: Female_Top_Base_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30977,7 +30977,7 @@ GameObject:
   - component: {fileID: 4582389807327704}
   - component: {fileID: 137677190203124528}
   m_Layer: 0
-  m_Name: Chr_Torso_Female_02
+  m_Name: Female_Top_Base_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -35321,7 +35321,7 @@ GameObject:
   - component: {fileID: 4038053763244866}
   - component: {fileID: 137135335124982558}
   m_Layer: 0
-  m_Name: Chr_Hips_Female_03
+  m_Name: Female_Pants_Base_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38761,7 +38761,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4662057682800430
 Transform:
   m_ObjectHideFlags: 0
@@ -39334,7 +39334,7 @@ GameObject:
   - component: {fileID: 4134282323410318}
   - component: {fileID: 137647416128582724}
   m_Layer: 0
-  m_Name: Chr_Torso_Female_28
+  m_Name: Female_Top_Base_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42696,6 +42696,27 @@ MonoBehaviour:
   - {fileID: 1197161715626954}
   - {fileID: 1926947375171700}
   - {fileID: 1542135251184754}
+  Female_Top:
+  - {fileID: 1781274051103368}
+  - {fileID: 1619443222759786}
+  - {fileID: 1426576932452582}
+  - {fileID: 1229369799984420}
+  - {fileID: 1371645148636924}
+  - {fileID: 1549721869077292}
+  Female_Pants:
+  - {fileID: 1370738156654134}
+  - {fileID: 1899253298439486}
+  - {fileID: 1222765786733010}
+  - {fileID: 1480905618894740}
+  - {fileID: 1099430309568700}
+  - {fileID: 1928599557919708}
+  - {fileID: 1060575249721118}
+  male_Top: []
+  male_Pants: []
+  AppearanceOBJ: {fileID: 0}
+  ClothesOBJ: {fileID: 0}
+  BackBtn: {fileID: 0}
+  NextBtn: {fileID: 0}
 --- !u!1 &1595597176900030
 GameObject:
   m_ObjectHideFlags: 0
@@ -44423,12 +44444,12 @@ GameObject:
   - component: {fileID: 4076441307460550}
   - component: {fileID: 137820176279514480}
   m_Layer: 0
-  m_Name: Chr_Torso_Female_01
+  m_Name: Female_Top_Base_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4076441307460550
 Transform:
   m_ObjectHideFlags: 0
@@ -55429,12 +55450,12 @@ GameObject:
   - component: {fileID: 4484450598183952}
   - component: {fileID: 137044862737601356}
   m_Layer: 0
-  m_Name: Chr_Torso_Female_00
+  m_Name: Female_Top_Base_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4484450598183952
 Transform:
   m_ObjectHideFlags: 0
@@ -63112,12 +63133,12 @@ GameObject:
   - component: {fileID: 4689448821472682}
   - component: {fileID: 137850048653807256}
   m_Layer: 0
-  m_Name: Chr_Hips_Female_01
+  m_Name: Female_Pants_Base_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4689448821472682
 Transform:
   m_ObjectHideFlags: 0
@@ -64606,7 +64627,7 @@ GameObject:
   - component: {fileID: 4061881587911022}
   - component: {fileID: 137680222369088688}
   m_Layer: 0
-  m_Name: Chr_Hips_Female_26
+  m_Name: Female_Pants_Base_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -78022,6 +78043,10 @@ PrefabInstance:
     - target: {fileID: 1264632408015700, guid: f4ed8369959a0be4a8d08b39112e3c01, type: 3}
       propertyPath: m_Name
       value: Archer_Bow_Skill3_Hit
+      objectReference: {fileID: 0}
+    - target: {fileID: 1264632408015700, guid: f4ed8369959a0be4a8d08b39112e3c01, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4589912777637092, guid: f4ed8369959a0be4a8d08b39112e3c01, type: 3}
       propertyPath: m_RootOrder
