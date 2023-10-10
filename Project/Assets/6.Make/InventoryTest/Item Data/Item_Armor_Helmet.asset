@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b50f428ada62c3a40b63fb5674b59ee3, type: 3}
+  m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
   m_Name: Item_Armor_Helmet
   m_EditorClassIdentifier: 
   _id: 5

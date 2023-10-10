@@ -138,6 +138,11 @@ public class CameraManager : Singleton<CameraManager>
 
     //Alt클릭에 마우스 보이고 움직일수있게 추가
 
+    public bool getOnOff()
+    {
+        return OnOff;
+    }
+
     void LateUpdate()
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt))

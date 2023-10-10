@@ -21,7 +21,7 @@ public class UISettingKey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitButtonEvents();
+        InitButtonEvents();   
     }
 
     private void InitButtonEvents()
@@ -34,7 +34,6 @@ public class UISettingKey : MonoBehaviour
     public void Inventoryend()
     {
         Inventory.gameObject.SetActive(false);
-        Debug.Log("00000000");
     }
 
     public void Equipmentend()
@@ -59,7 +58,7 @@ public class UISettingKey : MonoBehaviour
         {
             Equipment.gameObject.SetActive(!Equipment.gameObject.activeSelf);
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Skill.gameObject.SetActive(!Skill.gameObject.activeSelf);
@@ -69,7 +68,7 @@ public class UISettingKey : MonoBehaviour
         {
 
         }
-
+        */
 
     }
 }

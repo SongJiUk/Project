@@ -70,6 +70,8 @@ public class PlayerController : MonoBehaviour
     Quaternion targetRotation;
     #endregion
 
+    [SerializeField] CameraManager _cameraManager;
+
     private void Awake()
     {
         
@@ -733,11 +735,10 @@ public class PlayerController : MonoBehaviour
 
     public void OnLeftClickOn(InputAction.CallbackContext context)
     {
-        
-        if (context.canceled && !isAttack && !isCastSkillPress)
+
+        if (context.canceled && !isAttack && !isCastSkillPress && _cameraManager.getOnOff())
         {
             isAttack = true;
-
         }
     }
 
