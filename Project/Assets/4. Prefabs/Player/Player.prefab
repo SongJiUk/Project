@@ -986,7 +986,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4513077854706264
 Transform:
   m_ObjectHideFlags: 0
@@ -1918,7 +1918,7 @@ GameObject:
   - component: {fileID: 4017981833939642}
   - component: {fileID: 137318027342646888}
   m_Layer: 0
-  m_Name: Chr_Hips_Male_05
+  m_Name: Male_Pants_Base_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3448,12 +3448,12 @@ GameObject:
   - component: {fileID: 4063969837628530}
   - component: {fileID: 137455345486435446}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_01
+  m_Name: Male_Top_Base_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4063969837628530
 Transform:
   m_ObjectHideFlags: 0
@@ -4424,7 +4424,7 @@ GameObject:
   - component: {fileID: 4143433360503128}
   - component: {fileID: 137930677212801056}
   m_Layer: 0
-  m_Name: Chr_Hips_Male_02
+  m_Name: Male_Pants_Base_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6280,7 +6280,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4816573250590606
 Transform:
   m_ObjectHideFlags: 0
@@ -6886,7 +6886,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4015612102487908
 Transform:
   m_ObjectHideFlags: 0
@@ -10701,7 +10701,7 @@ GameObject:
   - component: {fileID: 4436511606813380}
   - component: {fileID: 137446866926002636}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_02
+  m_Name: Male_Top_Base_2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13527,7 +13527,7 @@ GameObject:
   - component: {fileID: 4431125624530548}
   - component: {fileID: 137189315502302092}
   m_Layer: 0
-  m_Name: Chr_Hips_Male_00
+  m_Name: Male_Pants_Base_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14491,7 +14491,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4399711529414150
 Transform:
   m_ObjectHideFlags: 0
@@ -15149,7 +15149,7 @@ GameObject:
   - component: {fileID: 4950763742130008}
   - component: {fileID: 137397926706032792}
   m_Layer: 0
-  m_Name: Chr_Hips_Male_03
+  m_Name: Male_Pants_Base_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17694,7 +17694,7 @@ GameObject:
   - component: {fileID: 4079714653483066}
   - component: {fileID: 137093424679099120}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_05
+  m_Name: Male_Top_Base_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -17788,7 +17788,7 @@ GameObject:
   - component: {fileID: 4727728045836474}
   - component: {fileID: 137300445214138522}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_03
+  m_Name: Male_Top_Base_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18913,7 +18913,7 @@ GameObject:
   - component: {fileID: 4309591548798218}
   - component: {fileID: 137989881176824760}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_06
+  m_Name: Male_Top_Base_5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -25030,7 +25030,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4067951519729886
 Transform:
   m_ObjectHideFlags: 0
@@ -29138,7 +29138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4845609753973042
 Transform:
   m_ObjectHideFlags: 0
@@ -33066,7 +33066,7 @@ GameObject:
   - component: {fileID: 4602108589682236}
   - component: {fileID: 137895736069839316}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_08
+  m_Name: Male_Top_Base_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36300,7 +36300,7 @@ GameObject:
   - component: {fileID: 4812388827544522}
   - component: {fileID: 137768976148139320}
   m_Layer: 0
-  m_Name: Chr_Hips_Male_01
+  m_Name: Male_Pants_Base_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36390,7 +36390,7 @@ GameObject:
   - component: {fileID: 4027515767678604}
   - component: {fileID: 137608339824373922}
   m_Layer: 0
-  m_Name: Chr_Hips_Male_04
+  m_Name: Male_Pants_Base_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -42467,6 +42467,7 @@ MonoBehaviour:
   - {fileID: 1808636071}
   - {fileID: 5365681643501856009}
   fireRate: 0.1
+  _cameraManager: {fileID: 0}
 --- !u!114 &2788925038701508672
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -42711,8 +42712,23 @@ MonoBehaviour:
   - {fileID: 1099430309568700}
   - {fileID: 1928599557919708}
   - {fileID: 1060575249721118}
-  male_Top: []
-  male_Pants: []
+  male_Top:
+  - {fileID: 1754573331911336}
+  - {fileID: 1037885335657484}
+  - {fileID: 1140154806078480}
+  - {fileID: 1232688174533562}
+  - {fileID: 1230244504661508}
+  - {fileID: 1248603447699360}
+  - {fileID: 1454911622489344}
+  - {fileID: 1676377238109560}
+  male_Pants:
+  - {fileID: 1177597340799552}
+  - {fileID: 1494467546165656}
+  - {fileID: 1049562983899556}
+  - {fileID: 1202231938361704}
+  - {fileID: 1495885825739974}
+  - {fileID: 1018696693454186}
+  - {fileID: 1833197257542392}
   AppearanceOBJ: {fileID: 0}
   ClothesOBJ: {fileID: 0}
   BackBtn: {fileID: 0}
@@ -48143,7 +48159,7 @@ GameObject:
   - component: {fileID: 4874370409817060}
   - component: {fileID: 137250964407662310}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_28
+  m_Name: Male_Top_Base_7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -53029,12 +53045,12 @@ GameObject:
   - component: {fileID: 4000298824463172}
   - component: {fileID: 137686984570588134}
   m_Layer: 0
-  m_Name: Chr_Torso_Male_00
+  m_Name: Male_Top_Base_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4000298824463172
 Transform:
   m_ObjectHideFlags: 0
@@ -59537,7 +59553,7 @@ GameObject:
   - component: {fileID: 4044167528185714}
   - component: {fileID: 137285341382450974}
   m_Layer: 0
-  m_Name: Chr_Hips_Male_06
+  m_Name: Male_Pants_Base_6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -77099,6 +77115,10 @@ PrefabInstance:
     - target: {fileID: 4580310151280710, guid: 79c4351b20273454690cfc1f0c35f12a, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198912143899810336, guid: 79c4351b20273454690cfc1f0c35f12a, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c4351b20273454690cfc1f0c35f12a, type: 3}

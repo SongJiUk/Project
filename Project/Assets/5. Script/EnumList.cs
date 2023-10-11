@@ -3,7 +3,7 @@ using System;
 [Serializable]
 public enum UnitCode
 {
-    WARRIOR,
+    WARRIOR = 0,
     MAGE,
     ARCHER
 }

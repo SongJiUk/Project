@@ -81,6 +81,7 @@ public class PlayerController : MonoBehaviour
     {
         if (null == player) player = Player.GetInstance;
         if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
+        if (null == _cameraManager) _cameraManager = CameraManager.GetInstance;
 
         if (null != player.playerStat)
         {

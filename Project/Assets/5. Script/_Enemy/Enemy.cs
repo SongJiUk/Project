@@ -147,7 +147,9 @@ public class Enemy : MonoBehaviour
         if (!isSkillHit)
         {
             isSkillHit = true;
-            Debug.Log("아프다 : " + this.name);
+
+            EnemyHit(10);
+            Debug.Log("아프다 : " + this.name + nowEnemyHP);
             Invoke("HitDelay", 0.5f);
         }
 
@@ -162,7 +164,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
         {
-            Debug.Log("맞았다 ");
+            EnemyHit(10);
         }
     }
 
