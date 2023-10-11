@@ -33,8 +33,8 @@ public class WeaponManager : Singleton<WeaponManager>
     #region 현재 끼고있는 장비 정보
 
     public Weapon weapon;
-    public GameData Weapondata;
-    public GameData ShiledData;
+    public WeaponItemData Weapondata;
+    public WeaponItemData ShiledData;
     GameObject handWeapon;
     GameObject backWeapon;
     GameObject handShiled;
@@ -61,7 +61,7 @@ public class WeaponManager : Singleton<WeaponManager>
     }
 
    
-    public void ChangeWeapon(GameData _weaponData, GameData _shiledData = null)
+    public void ChangeWeapon(WeaponItemData _weaponData, WeaponItemData _shiledData = null)
     {
         /*
         
@@ -90,9 +90,6 @@ public class WeaponManager : Singleton<WeaponManager>
         Weapondata = _weaponData;
         ShiledData = _shiledData;
 
-        Debug.Log(Weapondata.equipmentName);
-        Debug.Log(Weapondata.equipmentType);
-        Debug.Log(Weapondata.equipmentLevel);
 
         handWeapon = null;
         backWeapon = null;
@@ -100,12 +97,12 @@ public class WeaponManager : Singleton<WeaponManager>
         //웨폰 리스트에서 맞는 정보를 가져와서 저장해줌
         for (int i = 0; i < WeaponList.Count; i++)
         {
-            if (Weapondata.equipmentName == WeaponList[i].name) handWeapon = WeaponList[i];
+            if (Weapondata.Name == WeaponList[i].name) handWeapon = WeaponList[i];
         }
 
         for( int i=0; i<BackWeaponList.Count; i++)
         {
-            if (Weapondata.equipmentName == BackWeaponList[i].name) backWeapon = BackWeaponList[i];
+            if (Weapondata.Name == BackWeaponList[i].name) backWeapon = BackWeaponList[i];
         }
 
         if(backWeapon != null) EquipWeapon_back = backWeapon;
@@ -131,7 +128,7 @@ public class WeaponManager : Singleton<WeaponManager>
             isEquip = !isEquip;
             isChangeWeapon = true;
             Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
-            Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata.equipmentNum);
+            Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
             
         }
         else
@@ -150,8 +147,8 @@ public class WeaponManager : Singleton<WeaponManager>
             isEquipShiled = true;
             for (int i = 0; i < ShiledList.Count; i++)
             {
-                if (ShiledData.equipmentName == ShiledList[i].name) handShiled = ShiledList[i];
-                if (ShiledData.equipmentName == BackShiledList[i].name) backShiled = BackShiledList[i];
+                if (ShiledData.Name == ShiledList[i].name) handShiled = ShiledList[i];
+                if (ShiledData.Name == BackShiledList[i].name) backShiled = BackShiledList[i];
             }
 
             EquipShiled_back = handShiled;
@@ -163,11 +160,11 @@ public class WeaponManager : Singleton<WeaponManager>
 
     public void MageEquipmentChange()
     {
-        if (Weapondata.equipmentType == EquipmentType.Orb)
+        if (Weapondata.Type == Types.Orb)
         {
             for (int i = 0; i < BackOrbList.Count; i++)
             {
-                if (Weapondata.equipmentName == BackOrbList[i].name) backOrb = BackOrbList[i];
+                if (Weapondata.Name == BackOrbList[i].name) backOrb = BackOrbList[i];
             }
 
             EquipOrb_back = backOrb;
@@ -262,34 +259,86 @@ public class WeaponManager : Singleton<WeaponManager>
 
     private void Update()
     {
+
+
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-           //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
-           //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
-           ChangeWeapon(ItemManager.GetInstance.GetWeaponData("CrossBow_1"));
+            if(Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
+            }
+            else if(Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
+            }
+            else if(Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("CrossBow_1"));
+            }
+           //
+           //
+           
             Player.GetInstance.ANIM.SetInteger("EquipNum", 1);
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"), ItemManager.GetInstance.GetWeaponData("Shiled_1"));
-            //ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
-            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Bow_1"));
+            if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"),
+                    ItemManager.GetInstance.GetWeaponData("Shiled_1"));
+            }
+            else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
+            }
+            else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Bow_1"));
+            }
+            //
+            //
+            
             Player.GetInstance.ANIM.SetInteger("EquipNum", 2);
 
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("TwoHandSword_1"));
-            Player.GetInstance.ANIM.SetInteger("EquipNum", 3);
+            if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("TwoHandSword_1"));
+                Player.GetInstance.ANIM.SetInteger("EquipNum", 3);
+
+            }
+            else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            {
+
+            }
+            else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            {
+
+            }
+            
 
         }
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Spear_1"));
-            Player.GetInstance.ANIM.SetInteger("EquipNum", 4);
+            if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            {
+                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Spear_1"));
+                Player.GetInstance.ANIM.SetInteger("EquipNum", 4);
+            }
+            else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            {
+
+            }
+            else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            {
+
+            }
+            
 
         }
     }

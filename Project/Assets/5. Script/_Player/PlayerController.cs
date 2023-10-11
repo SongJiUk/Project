@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
     Coroutine myCoroutine_SkillCast_2;
     RaycastHit Markerhit;
     public bool isGuided = false;
+    [SerializeField] GameObject Mage_FirePos;
     [SerializeField] GameObject[] Archer_FirePos;
     private bool rotateState = false;
     public float fireRate = 0.1f;
@@ -136,7 +137,7 @@ public class PlayerController : MonoBehaviour
             else if(player.playerStat.unitCode == UnitCode.ARCHER)
             {
 
-                if(weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
+                if(weaponManager.Weapondata.Type == Types.Bow)
                 {
                     if (context.performed && !SkillStarted)
                     {
@@ -156,7 +157,7 @@ public class PlayerController : MonoBehaviour
 
                     }
                 }
-                else if(weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+                else if(weaponManager.Weapondata.Type == Types.CrossBow)
                 {
                     var Enemy = FindNearEnemy();
 
@@ -243,7 +244,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (player.playerStat.unitCode == UnitCode.ARCHER)
             {
-                if(weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
+                if(weaponManager.Weapondata.Type == Types.Bow)
                 {
                     if (context.performed && !SkillStarted)
                     {
@@ -276,7 +277,7 @@ public class PlayerController : MonoBehaviour
                         player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
                     }
                 }
-                else if (weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+                else if (weaponManager.Weapondata.Type == Types.CrossBow)
                 {
                     //위로 쏴서 빙결 
                     if (context.performed && !SkillStarted)
@@ -351,7 +352,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (player.playerStat.unitCode == UnitCode.ARCHER)
             {
-                if (weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
+                if (weaponManager.Weapondata.Type == Types.Bow)
                 {
                     if (context.performed && !SkillStarted)
                     {
@@ -384,7 +385,7 @@ public class PlayerController : MonoBehaviour
                         player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
                     }
                 }
-                else if (weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+                else if (weaponManager.Weapondata.Type == Types.CrossBow)
                 {
                     //앞으로 용발
                     if (context.performed && !SkillStarted)
@@ -788,26 +789,28 @@ public class PlayerController : MonoBehaviour
 
         if(player.playerStat.unitCode == UnitCode.MAGE)
         {
-            if (weaponManager.Weapondata.equipmentType == EquipmentType.Staff)
+            if (weaponManager.Weapondata.Type == Types.Staff)
             {
                 var StaffObj = Instantiate(Mage_LongDistanceAttackObj[0]);
-                StaffObj.transform.position = transform.position + Vector3.up;
+                StaffObj.transform.position = Mage_FirePos.transform.position;
+                StaffObj.transform.rotation = transform.rotation;
             }
-            else if (weaponManager.Weapondata.equipmentType == EquipmentType.Orb)
+            else if (weaponManager.Weapondata.Type == Types.Orb)
             {
                 var OrbObj = Instantiate(Mage_LongDistanceAttackObj[1]);
-                OrbObj.transform.position = transform.position + Vector3.up;
+                OrbObj.transform.position = Mage_FirePos.transform.position;
+                OrbObj.transform.rotation = transform.rotation;
             }
         }
         else if(player.playerStat.unitCode == UnitCode.ARCHER)
         {
             var ArrowObj = Instantiate(Archer_LongDistanceAttackOb[0]);
-            if (weaponManager.Weapondata.equipmentType == EquipmentType.Bow)
+            if (weaponManager.Weapondata.Type == Types.Bow)
             {
                 ArrowObj.transform.position = Archer_FirePos[0].transform.position;
                 ArrowObj.transform.rotation = transform.rotation;
             }
-            else if(weaponManager.Weapondata.equipmentType == EquipmentType.CrossBow)
+            else if(weaponManager.Weapondata.Type == Types.CrossBow)
             {
                 ArrowObj.transform.position = Archer_FirePos[1].transform.position;
                 ArrowObj.transform.rotation = transform.rotation;
@@ -899,15 +902,29 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region 장비 장착 및 해제
+    int LastWeaponNum;
     public void OnEquip(InputAction.CallbackContext context)
     {
         if(context.performed)
         {
-            weaponManager.ISEQUIP = !weaponManager.ISEQUIP;
-            player.ANIM.SetTrigger("PressX");
-            player.ANIM.SetBool("IsEquip", weaponManager.ISEQUIP);
+            if (weaponManager.Weapondata != null)
+            {
+                weaponManager.ISEQUIP = !weaponManager.ISEQUIP;
 
-            if(!weaponManager.ISEQUIP) Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
+                if (!weaponManager.ISEQUIP)
+                {
+                    LastWeaponNum = weaponManager.Weapondata._EquipmentNum;
+                    Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
+                }
+                else
+                    Player.GetInstance.ANIM.SetInteger("EquipNum", LastWeaponNum);
+
+                player.ANIM.SetTrigger("PressX");
+                player.ANIM.SetBool("IsEquip", weaponManager.ISEQUIP);
+
+                
+            }
+                
         }
     }
 

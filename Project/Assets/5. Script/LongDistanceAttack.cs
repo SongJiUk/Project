@@ -27,17 +27,24 @@ public class LongDistanceAttack : MonoBehaviour
         {
             var enemy = FindObjectOfType<Enemy>();
             timer += Time.deltaTime;
+            if(enemy != null)
+            {
+                Vector3 pos = transform.position;
+                pos.y = Mathf.Sin(timer) * 3f;
+                transform.position = Vector3.Lerp(startpos, enemy.transform.position + Vector3.up, timer * 0.4f);
+                transform.position = new Vector3(transform.position.x, pos.y, transform.position.z);
 
 
-            Vector3 pos = transform.position;
-            pos.y = Mathf.Sin(timer) * 3f;
-            transform.position = Vector3.Lerp(startpos, enemy.transform.position + Vector3.up, timer * 0.4f);
-            transform.position = new Vector3(transform.position.x, pos.y, transform.position.z);
+                Vector3 dis = (enemy.transform.position + Vector3.up - transform.position).normalized;
+                Quaternion rotation = Quaternion.LookRotation(dis);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10f * Time.deltaTime);
+            }
+            else
+            {
+                rigid.velocity = transform.forward * 10f;
+            }
 
-
-            Vector3 dis = (enemy.transform.position + Vector3.up - transform.position).normalized;
-            Quaternion rotation = Quaternion.LookRotation(dis);
-            transform.rotation = Quaternion.Slerp(transform.rotation, rotation, 10f * Time.deltaTime);
+            
         }
         else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
         {
@@ -109,7 +116,7 @@ public class LongDistanceAttack : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
-            Instantiate(hit, transform);
+            if(hit != null) Instantiate(hit, transform);
             Destroy(gameObject);
         }
     }

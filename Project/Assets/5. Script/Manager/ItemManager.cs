@@ -5,9 +5,9 @@ using UnityEngine;
 public class ItemManager : Singleton<ItemManager>
 {
 
-    [SerializeField] List<GameData> WeaponLists = new List<GameData>();
+    [SerializeField] List<WeaponItemData> WeaponLists = new List<WeaponItemData>();
 
-    Dictionary<string, GameData> WeaponData = new Dictionary<string, GameData>();
+    Dictionary<string, WeaponItemData> WeaponData = new Dictionary<string, WeaponItemData>();
 
 
     private void Awake()
@@ -16,7 +16,7 @@ public class ItemManager : Singleton<ItemManager>
         {
             if (WeaponLists[i] != null)
             {
-                WeaponData.Add(WeaponLists[i].equipmentName, WeaponLists[i]);
+                WeaponData.Add(WeaponLists[i].Name, WeaponLists[i]);
             }
         }
     }
@@ -26,7 +26,7 @@ public class ItemManager : Singleton<ItemManager>
         //WeaponManager.GetInstance.ChangeWeapon(WeaponData["Hand"]);
     }
 
-    public GameData GetWeaponData(string _name)
+    public WeaponItemData GetWeaponData(string _name)
     {
         if(WeaponData.ContainsKey(_name))
         {

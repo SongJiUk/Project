@@ -19,7 +19,7 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 0}
   Type: 8
   ClassPrivateItem: 0
-  _EquipmentNum: 3
+  _EquipmentNum: 4
   _EquipmentLevel: 1
   _maxDurability: 100
   _damage: 1
