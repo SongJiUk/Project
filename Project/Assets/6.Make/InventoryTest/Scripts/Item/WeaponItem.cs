@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rito.InventorySystem
-{
     /// <summary> 장비 - 무기 아이템 </summary>
     public class WeaponItem : EquipmentItem, EquipmentItemsSetting
     {
@@ -21,4 +19,3 @@ namespace Rito.InventorySystem
             return 0;
         }
     }
-}

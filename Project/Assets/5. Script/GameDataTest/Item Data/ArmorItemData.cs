@@ -5,28 +5,25 @@ using UnityEngine;
 
 
 
-namespace Rito.InventorySystem
+
+/// <summary> 장비 - 방어구 아이템 </summary>
+[CreateAssetMenu(fileName = "Item_Armor_", menuName = "Inventory System/Item Data/Armor", order = 2)]
+public class ArmorItemData : EquipmentItemData
 {
+    /// <summary> 방어력 </summary>
+    public int Defence => _defence;
 
-    /// <summary> 장비 - 방어구 아이템 </summary>
-    [CreateAssetMenu(fileName = "Item_Armor_", menuName = "Inventory System/Item Data/Armor", order = 2)]
-    public class ArmorItemData : EquipmentItemData
+
+    private void Start()
     {
-        /// <summary> 방어력 </summary>
-        public int Defence => _defence;
 
-        
-        private void Start()
-        {
-
-        }
+    }
 
 
 
-        [SerializeField] private int _defence = 1;
-        public override Item CreateItem()
-        {
-            return new ArmorItem(this);
-        }
+    [SerializeField] private int _defence = 1;
+    public override Item CreateItem()
+    {
+        return new ArmorItem(this);
     }
 }

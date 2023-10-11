@@ -1,11 +1,9 @@
-using Rito.InventorySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.Port;
 using static UnityEditor.Progress;
-using Item = Rito.InventorySystem.Item;
 
 public class UseItem : MonoBehaviour
 {

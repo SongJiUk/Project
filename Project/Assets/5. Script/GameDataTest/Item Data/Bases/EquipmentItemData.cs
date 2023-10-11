@@ -29,22 +29,20 @@ public enum ClassPrivateItems
     ARCHER
 }
 
-namespace Rito.InventorySystem
+
+/// <summary> 장비 아이템 </summary>
+public abstract class EquipmentItemData : ItemData
 {
-    /// <summary> 장비 아이템 </summary>
-    public abstract class EquipmentItemData : ItemData
-    {
-        /// <summary> 최대 내구도 </summary>
-        public int MaxDurability => _maxDurability;
+    /// <summary> 최대 내구도 </summary>
+    public int MaxDurability => _maxDurability;
 
-        public Types Type;
+    public Types Type;
 
-        public ClassPrivateItems ClassPrivateItem;
+    public ClassPrivateItems ClassPrivateItem;
 
-        [SerializeField] public int _EquipmentNum = 0;
+    [SerializeField] public int _EquipmentNum = 0;
 
-        [SerializeField] public int _EquipmentLevel = 1;
+    [SerializeField] public int _EquipmentLevel = 1;
 
-        [SerializeField] private int _maxDurability = 100;
-    }
+    [SerializeField] private int _maxDurability = 100;
 }

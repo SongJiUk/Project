@@ -5,8 +5,6 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-namespace Rito.InventorySystem
-{
     public class ItemSlotUI : MonoBehaviour
     {
         /***********************************************************************
@@ -339,4 +337,3 @@ namespace Rito.InventorySystem
 
         #endregion
     }
-}

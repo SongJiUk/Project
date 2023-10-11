@@ -1,12 +1,10 @@
-using Rito;
-using Rito.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
-using static Rito.InventorySystem.ItemSlotUI;
+using static ItemSlotUI;
 
 public class EquipmentUI : MonoBehaviour
 {

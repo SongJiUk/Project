@@ -1,6 +1,5 @@
 using System;
 using FreeNet;
-using Rito.InventorySystem;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;

@@ -152,7 +152,8 @@ GameObject:
   - component: {fileID: 5506815767933028022}
   - component: {fileID: 1638281799028348490}
   - component: {fileID: 1150949046468036367}
-  - component: {fileID: 1128185962095603012}
+  - component: {fileID: 3022000859787254415}
+  - component: {fileID: 366940344904480608}
   m_Layer: 0
   m_Name: Dagger_1
   m_TagString: Untagged
@@ -239,7 +240,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.093790054, y: 0.21526614, z: 0.033006042}
   m_Center: {x: 0.017739363, y: 0.16923086, z: 0.000000055821147}
---- !u!114 &1128185962095603012
+--- !u!114 &3022000859787254415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -248,8 +249,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 3407319306585721684}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4f107ab692dcb400aba8f2cfc9ecb94f, type: 3}
+  m_Script: {fileID: 11500000, guid: c6b360a088983d34faf19482c59ed49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  data: {fileID: 11400000, guid: 15553508fcbd847e89d8951123e9cb75, type: 2}
-  Trail: {fileID: 2273497210281114532}
+  _itemdata: {fileID: 11400000, guid: 88febfbe6f2d23d499271e73329b991f, type: 2}
+  isOrb: 0
+--- !u!135 &366940344904480608
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3407319306585721684}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.1760647
+  m_Center: {x: 0.017739132, y: 0.100797564, z: 1.2604411e-16}

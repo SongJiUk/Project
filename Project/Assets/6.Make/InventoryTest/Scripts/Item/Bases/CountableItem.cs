@@ -3,8 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Rito.InventorySystem
-{
     /// <summary> 수량을 셀 수 있는 아이템 </summary>
     public abstract class CountableItem : Item
     {
@@ -59,4 +57,3 @@ namespace Rito.InventorySystem
 
         protected abstract CountableItem Clone(int amount);
     }
-}

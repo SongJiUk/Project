@@ -1,11 +1,9 @@
-using Rito.InventorySystem;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.Experimental.GraphView.Port;
 using static UnityEditor.Progress;
-using Item = Rito.InventorySystem.Item;
 
 public class Equipment : MonoBehaviour
 {
@@ -40,7 +38,7 @@ public class Equipment : MonoBehaviour
 
         if (A.EquipmentData.Type == Types.Head)
         {
-            if(Head !=null)
+            if (Head != null)
             {
                 returnItem = Head;
                 Head = A;
@@ -80,7 +78,7 @@ public class Equipment : MonoBehaviour
             }
             UpdateSlot(3);
         }
-        else 
+        else
         {
             if (Weapon != null)
             {
@@ -211,7 +209,7 @@ public class Equipment : MonoBehaviour
     /// <para/> 넣는 데 실패한 잉여 아이템 개수 리턴
     /// <para/> 리턴이 0이면 넣는데 모두 성공했다는 의미
     /// </summary>
-   
+
     /// <summary> 해당 슬롯의 아이템 제거 </summary>
     public void Remove(int index)
     {

@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Rito.InventorySystem;
 
 // 날짜 : 2021-03-19 PM 11:01:36
 // 작성자 : Rito
