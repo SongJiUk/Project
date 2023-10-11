@@ -277,7 +277,7 @@
                     "name": "",
                     "id": "d94cd346-72bd-4ea0-b644-e1f98ee096c8",
                     "path": "<Keyboard>/shift",
-                    "interactions": "",
+                    "interactions": "Hold(duration=0.2)",
                     "processors": "",
                     "groups": "PC",
                     "action": "Dash",

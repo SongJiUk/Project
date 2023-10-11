@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     bool isAttack = false;
     bool isAttacking = false;
     bool isDash = false;
+    bool isRun = false;
     bool isCombing = false;
     bool SkillStarted = false;
     bool isUseSkill = false;
@@ -825,13 +826,37 @@ public class PlayerController : MonoBehaviour
     {
         if(!isJump && !isUseSkill && !isAttacking && !isUseSkill)
         {
-            if (context.performed && !isDash)
+            if (player.ANIM.GetInteger("EquipNum") != 0)
             {
-                player.ANIM.SetTrigger("Dash");
-                player.ANIM.applyRootMotion = true;
-                isDash = true;
+                if (context.performed && !isDash)
+                {
+                    player.ANIM.SetTrigger("Dash");
+                    player.ANIM.applyRootMotion = true;
+                    isDash = true;
+                }
 
             }
+            else
+            {
+                if (context.interaction is HoldInteraction)
+                {
+                    isRun = true;
+                    player.ANIM.SetBool("isRun", isRun);
+                    player.ANIM.SetTrigger("RunStart");
+                }
+
+                if(context.canceled)
+                {
+                    isRun = false;
+                    Debug.Log(isRun);
+                    player.ANIM.SetBool("isRun", isRun);
+                }
+            }
+
+            
+
+            
+
         }
         
     }
@@ -848,7 +873,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGround)
         {
-            if (context.performed && !isJump && !isJumpKeyClick)
+            if (context.performed && !isJump && !isJumpKeyClick && !isDash && !isRun)
             {
                 isJumpKeyClick = true;
                 player.ANIM.SetTrigger("JumpStart");
@@ -881,6 +906,8 @@ public class PlayerController : MonoBehaviour
             weaponManager.ISEQUIP = !weaponManager.ISEQUIP;
             player.ANIM.SetTrigger("PressX");
             player.ANIM.SetBool("IsEquip", weaponManager.ISEQUIP);
+
+            if(!weaponManager.ISEQUIP) Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
         }
     }
 

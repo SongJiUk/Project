@@ -90,7 +90,7 @@ public class WeaponManager : Singleton<WeaponManager>
         Weapondata = _weaponData;
         ShiledData = _shiledData;
 
-        Debug.Log(Weapondata.name);
+        Debug.Log(Weapondata.equipmentName);
         Debug.Log(Weapondata.equipmentType);
         Debug.Log(Weapondata.equipmentLevel);
 
@@ -138,6 +138,7 @@ public class WeaponManager : Singleton<WeaponManager>
         {
             isEquip = !isEquip;
             Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
+            Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
         }
 
     }
@@ -243,6 +244,7 @@ public class WeaponManager : Singleton<WeaponManager>
 
         }
 
+       
 
         if (isChangeWeapon)
         {
@@ -250,6 +252,8 @@ public class WeaponManager : Singleton<WeaponManager>
             Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
             isChangeWeapon = false;
         }
+
+
     }
     #endregion
 

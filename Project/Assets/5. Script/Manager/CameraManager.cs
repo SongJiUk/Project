@@ -192,7 +192,7 @@ public class CameraManager : Singleton<CameraManager>
                     //Min(4) distance from ground for camera target point
                     //distanceHit = Mathf.Clamp(Vector3.Distance(targetPos, hit.point), 2, 5);
                     distanceHit = currDistance;
-                    Debug.Log("1");
+
                 }
                 else
                 {
@@ -200,7 +200,7 @@ public class CameraManager : Singleton<CameraManager>
                     //transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 40f);
                     transform.position = position;
                     distanceHit = currDistance;
-                    Debug.Log("2");
+
                 }
                 transform.rotation = rotation;
             }

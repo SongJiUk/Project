@@ -1234,6 +1234,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 95241917264262668, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 4e74ab95e3ec94deeb0dd7c0bad974ef, type: 2}
     - target: {fileID: 4679631779997510275, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.5
