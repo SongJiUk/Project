@@ -8,11 +8,25 @@ public enum Types
     Head = 0,    
     Top = 1,    
     Bottom = 2,
-    Sword = 3,
-    Bow = 4,
-    Spear = 5,
+    Hand,
+    Dagger,
+    OneHandMace,
+    TwoHandSword,
+    Axe,
+    Spear,
+    Shield,
+    Bow,
+    CrossBow,
+    Staff,
+    Orb
 
+}
 
+public enum ClassPrivateItems
+{
+    WARRIOR,
+    MAGE,
+    ARCHER
 }
 
 namespace Rito.InventorySystem
@@ -24,6 +38,12 @@ namespace Rito.InventorySystem
         public int MaxDurability => _maxDurability;
 
         public Types Type;
+
+        public ClassPrivateItems ClassPrivateItem;
+
+        [SerializeField] public int _EquipmentNum = 0;
+
+        [SerializeField] public int _EquipmentLevel = 1;
 
         [SerializeField] private int _maxDurability = 100;
     }

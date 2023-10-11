@@ -9,12 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f45eca17a3a4640ce82c345f9d57c3c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
   m_Name: Dagger_2
   m_EditorClassIdentifier: 
-  equipmentType: 1
-  equipmentNum: 1
-  equipmentName: Dagger_2
-  equipmentLevel: 1
-  damage: 10
-  defense: 0
+  _itemcode: 0
+  _name: Dagger_2
+  _tooltip: 
+  _iconSprite: {fileID: 0}
+  _dropItemPrefab: {fileID: 0}
+  Type: 4
+  ClassPrivateItem: 0
+  _EquipmentNum: 1
+  _EquipmentLevel: 1
+  _maxDurability: 100
+  _damage: 1

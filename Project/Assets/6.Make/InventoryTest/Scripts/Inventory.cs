@@ -105,8 +105,8 @@ namespace Rito.InventorySystem
         {
             public int Compare(Item a, Item b)
             {
-                return (a.Data.ID + _sortWeightDict[a.Data.GetType()])
-                     - (b.Data.ID + _sortWeightDict[b.Data.GetType()]);
+                return (a.Data.ItemCode + _sortWeightDict[a.Data.GetType()])
+                     - (b.Data.ItemCode + _sortWeightDict[b.Data.GetType()]);
             }
         }
         private static readonly ItemComparer _itemComparer = new ItemComparer();
