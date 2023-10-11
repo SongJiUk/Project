@@ -23,7 +23,6 @@ public class ParticleCollisionInstance : MonoBehaviour
     }
     void OnParticleCollision(GameObject other)
     {
-        Debug.Log("Hithit");
         int numCollisionEvents = part.GetCollisionEvents(other, collisionEvents);
 
         if (other.layer == LayerMask.NameToLayer("Enemy"))

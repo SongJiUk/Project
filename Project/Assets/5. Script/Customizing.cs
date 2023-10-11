@@ -51,8 +51,8 @@ public class Customizing : MonoBehaviour
         Female_PantsNum = 0;
         male_TopNum = 0;
         male_PantsNum = 0;
-
     }
+
     public void ChangeCustomizingPrev(int _num)
     {
         switch(_num)
@@ -291,7 +291,7 @@ public class Customizing : MonoBehaviour
         ClothesOBJ.SetActive(false);
         BackBtn.SetActive(false);
         NextBtn.SetActive(true);
-    }
+    }   
 
     public void Select_Over_Appearance()
     {

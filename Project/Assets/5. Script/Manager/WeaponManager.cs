@@ -90,6 +90,10 @@ public class WeaponManager : Singleton<WeaponManager>
         Weapondata = _weaponData;
         ShiledData = _shiledData;
 
+        Debug.Log(Weapondata.name);
+        Debug.Log(Weapondata.equipmentType);
+        Debug.Log(Weapondata.equipmentLevel);
+
         handWeapon = null;
         backWeapon = null;
 
