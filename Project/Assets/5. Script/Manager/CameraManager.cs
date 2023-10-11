@@ -155,15 +155,19 @@ public class CameraManager : Singleton<CameraManager>
         }
         if (OnOff)
         {
-            if (currDistance < 2)
-            {
-                currDistance = 2;
-            }
+            float scrollValue = Input.GetAxis("Mouse ScrollWheel");
+            float velocity = 0f;
+            currDistance = Mathf.SmoothDamp(currDistance,
+                currDistance - scrollValue * 2f, ref velocity, Time.deltaTime);
+
+            currDistance = Mathf.Clamp(currDistance, 2, 5);
+
 
             // (currDistance - 2) / 3.5f - constant for far camera position
-            var targetPos = player.position + new Vector3(0, (distanceHit - 2) / 3f + cameraPos[1], 0);
+            //var targetPos = player.position + new Vector3(0, (distanceHit - 2) / 3f + cameraPos[1], 0);
+            var targetPos = player.position;
 
-            currDistance -= Input.GetAxis("Mouse ScrollWheel") * 2;
+
             if (player)
             {
                 var pos = Input.mousePosition;
@@ -181,19 +185,22 @@ public class CameraManager : Singleton<CameraManager>
                 var rotation = Quaternion.Euler(y, x, 0);
                 var position = rotation * new Vector3(0, 0, -currDistance) + targetPos;
 
-                Debug.DrawLine(targetPos, position - targetPos, Color.red);
                 if (Physics.Raycast(targetPos, position - targetPos, out hit, (position - targetPos).magnitude, collidingLayers))
                 {
-                    transform.position = hit.point;
+                    transform.position = position;
+                    //transform.position = Vector3.Lerp(transform.position, hit.point, Time.deltaTime * 40f);
                     //Min(4) distance from ground for camera target point
-                    distanceHit = Mathf.Clamp(Vector3.Distance(targetPos, hit.point), 2, 600);
-
-
+                    //distanceHit = Mathf.Clamp(Vector3.Distance(targetPos, hit.point), 2, 5);
+                    distanceHit = currDistance;
+                    Debug.Log("1");
                 }
                 else
                 {
+                    //position
+                    //transform.position = Vector3.Lerp(transform.position, position, Time.deltaTime * 40f);
                     transform.position = position;
                     distanceHit = currDistance;
+                    Debug.Log("2");
                 }
                 transform.rotation = rotation;
             }
@@ -218,21 +225,22 @@ public class CameraManager : Singleton<CameraManager>
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
-    }
 
-    static float ClampAngle(float angle, float min, float max)
-    {
-        if (angle < -360)
+
+
+        static float ClampAngle(float angle, float min, float max)
         {
-            angle += 360;
+            if (angle < -360)
+            {
+                angle += 360;
+            }
+            if (angle > 360)
+            {
+                angle -= 360;
+            }
+            return Mathf.Clamp(angle, min, max);
         }
-        if (angle > 360)
-        {
-            angle -= 360;
-        }
-        return Mathf.Clamp(angle, min, max);
+
+        #endregion
     }
-
-    #endregion
-
 }

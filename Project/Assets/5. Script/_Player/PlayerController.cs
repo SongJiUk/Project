@@ -30,6 +30,7 @@ public class PlayerController : MonoBehaviour
     bool isUseSkill = false;
 
     bool isCastSkillPress = false;
+    bool isCastOff_noPress = false;
     [SerializeField] GameObject[] Mage_LongDistanceAttackObj;
     [SerializeField] GameObject[] Archer_LongDistanceAttackOb;
 
@@ -37,7 +38,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject[] Archer_Bow_Cast;
     [SerializeField] GameObject[] Archer_CrossBow_Skill;
     [SerializeField] GameObject[] Archer_CrossBow_Cast;
-    Coroutine myCoroutine;
+    Coroutine myCoroutine_SkillCast_1;
+    Coroutine myCoroutine_SkillCast_2;
     RaycastHit Markerhit;
     public bool isGuided = false;
     [SerializeField] GameObject[] Archer_FirePos;
@@ -254,16 +256,17 @@ public class PlayerController : MonoBehaviour
                     {
                         if (context.interaction is HoldInteraction)
                         {
-                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.Front, 1));
+                            myCoroutine_SkillCast_1 = StartCoroutine(CastSkill(EffectCastType.Front, 1));
                             isCastSkillPress = true;
                             player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                            isCastOff_noPress = true;
                         }
                     }
 
                     if (context.canceled)
                     {
                         isRealeseHold = true;
-                        //StopCoroutine(myCoroutine);
+                        if(myCoroutine_SkillCast_1 != null && isCastOff_noPress) StopCoroutine(myCoroutine_SkillCast_1);
                         TargetMarker_Front.SetActive(false);
                         TargetMarker_PreCast.SetActive(false);
                         isCastSkillPress = false;
@@ -288,16 +291,18 @@ public class PlayerController : MonoBehaviour
                     {
                         if (context.interaction is HoldInteraction)
                         {
-                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.PreCast, 4));
+                            myCoroutine_SkillCast_1 = StartCoroutine(CastSkill(EffectCastType.PreCast, 4));
                             isCastSkillPress = true;
                             player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                            isCastOff_noPress = true;
                         }
                         
                     }
 
                     if (context.canceled)
                     {
-                        //StopCoroutine(myCoroutine);
+                        if(myCoroutine_SkillCast_1 != null && isCastOff_noPress) StopCoroutine(myCoroutine_SkillCast_1);
+
                         isRealeseHold = true;
                         TargetMarker_Front.SetActive(false);
                         TargetMarker_PreCast.SetActive(false);
@@ -358,9 +363,10 @@ public class PlayerController : MonoBehaviour
                     {
                         if (context.interaction is HoldInteraction)
                         {
-                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.PreCast, 3));
+                            myCoroutine_SkillCast_2 = StartCoroutine(CastSkill(EffectCastType.PreCast, 3));
                             isCastSkillPress = true;
                             player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                            isCastOff_noPress = true;
                         }
                     }
 
@@ -368,6 +374,7 @@ public class PlayerController : MonoBehaviour
                     {
                         isRealeseHold = true;
 
+                        if (myCoroutine_SkillCast_2 == null && isCastOff_noPress) StopCoroutine(myCoroutine_SkillCast_2);
                         TargetMarker_Front.SetActive(false);
                         TargetMarker_PreCast.SetActive(false);
                         isCastSkillPress = false;
@@ -392,9 +399,10 @@ public class PlayerController : MonoBehaviour
                     {
                         if (context.interaction is HoldInteraction)
                         {
-                            myCoroutine = StartCoroutine(CastSkill(EffectCastType.Front, 3));
+                            myCoroutine_SkillCast_2 = StartCoroutine(CastSkill(EffectCastType.Front, 3));
                             isCastSkillPress = true;
                             player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
+                            isCastOff_noPress = true;
                         }
 
 
@@ -404,8 +412,7 @@ public class PlayerController : MonoBehaviour
                     if (context.canceled)
                     {
                         isRealeseHold = true;
-                        //StopCoroutine(myCorout
-                        //ine);
+                        if (myCoroutine_SkillCast_2 != null && isCastOff_noPress) StopCoroutine(myCoroutine_SkillCast_2);
                         TargetMarker_Front.SetActive(false);
                         TargetMarker_PreCast.SetActive(false);
                         isCastSkillPress = false;
@@ -570,7 +577,7 @@ public class PlayerController : MonoBehaviour
                 Ray ray = new Ray(Camera.main.transform.position + new Vector3(0, 2, 0), Camera.main.transform.forward);
                 if (Physics.Raycast(ray, out Markerhit, Mathf.Infinity, collidingLayer))
                 {
-                    TargetMarker_PreCast.transform.position = Markerhit.point;
+                    TargetMarker_PreCast.transform.position = Markerhit.point + new Vector3(0,0.2f,0);
                     TargetMarker_PreCast.transform.rotation = Quaternion.FromToRotation(Vector3.up, Markerhit.normal) * Quaternion.LookRotation(forwardCamera);
                 }
                 else
@@ -581,6 +588,7 @@ public class PlayerController : MonoBehaviour
             
             if (Input.GetMouseButtonDown(0) && isCastSkillPress)
             {
+                isCastOff_noPress = false;
                 player.ANIM.SetTrigger("SkillClick");
                 TargetMarker_PreCast.SetActive(false);
                 TargetMarker_Front.SetActive(false);
@@ -604,18 +612,19 @@ public class PlayerController : MonoBehaviour
                     {
                         Archer_Bow_Cast[2].GetComponent<ParticleSystem>().Play();
                     }
-                    else if(_effectNum == 3)
+                    else if (_effectNum == 3)
                     {
-                        
-                            //if (Archer_CrossBow_Cast[4].GetComponent<AudioSource>())
-                            //{
-                            //    soundComponentCast = Archer_CrossBow_Cast[4].GetComponent<AudioSource>();
-                            //    clip = soundComponentCast.clip;
-                            //    soundComponentCast.PlayOneShot(clip);
-                            //}
-                            Archer_CrossBow_Cast[4].GetComponent<ParticleSystem>().Play();
-                            yield return new WaitForSeconds(0.15f); //0.15s
-                        
+                        isAttacking = true;
+
+                        //if (Archer_CrossBow_Cast[4].GetComponent<AudioSource>())
+                        //{
+                        //    soundComponentCast = Archer_CrossBow_Cast[4].GetComponent<AudioSource>();
+                        //    clip = soundComponentCast.clip;
+                        //    soundComponentCast.PlayOneShot(clip);
+                        //}
+                        Archer_CrossBow_Cast[4].GetComponent<ParticleSystem>().Play();
+                        yield return new WaitForSeconds(0.15f); //0.15s
+
                     }
 
                     if (_effectNum == 1) //위에가 Bow 밑이 CrossBow /
@@ -640,6 +649,8 @@ public class PlayerController : MonoBehaviour
                         yield return new WaitForSeconds(1f);
                         Archer_CrossBow_Skill[2].transform.localPosition = new Vector3(0, 0, 0);
                         Archer_CrossBow_Skill[2].transform.localRotation = Quaternion.identity;
+                        
+                        Invoke("WaitForEndSkill", 1.5f);
 
                     }
                 }
@@ -728,7 +739,11 @@ public class PlayerController : MonoBehaviour
         SkillStarted = false;
         player.ANIM.SetBool("isCastSkillPress", isCastSkillPress);
     }
-  
+
+    public void WaitForEndSkill()
+    {
+        isAttacking = false;
+    }
     #endregion
 
 
