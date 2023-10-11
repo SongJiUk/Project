@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// 날짜 : 2021-03-28 PM 10:55:00
-// 작성자 : Rito
-
     /// <summary> 장비 아이템</summary>
     public abstract class EquipmentItem : Item
     {

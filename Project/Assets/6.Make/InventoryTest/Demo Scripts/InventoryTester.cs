@@ -4,9 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-// 날짜 : 2021-03-19 PM 11:01:36
-// 작성자 : Rito
-
 public class InventoryTester : MonoBehaviour
 {
     public Inventory _inventory;

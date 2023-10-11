@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ItemDataManager : MonoBehaviour
 {
-
     [SerializeField]
     List<ItemData> itemList;
 

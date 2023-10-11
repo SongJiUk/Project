@@ -23,15 +23,14 @@ public class ItemDataPickup : MonoBehaviour
         if (isOrb)
             if (WeaponManager.GetInstance.ISEQUIP)
                 transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
-
     }
 
 
 
-    public void PickUp()
+    public ItemData PickUp()
     {
-        ItemData  d = ItemDataManager.current.GetItemData(ItemCode);
-
+        ItemData  _itemData = ItemDataManager.current.GetItemData(ItemCode);
+        return _itemData;
     }
 
     public void Drop()
