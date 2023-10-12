@@ -11,18 +11,35 @@ public class PlayerAround : MonoBehaviour
         _playerpickuporuse = PlayerPickupOrUse;
     }
 
-    private void OnCollisionEnter(Collision collision)
+    private void OnTriggerEnter(Collider target)
+    {
+        ItemDataPickup sc;
+        if (target.GetComponent<ItemDataPickup>() != null)
+        {
+            sc = target.GetComponent<ItemDataPickup>();
+
+            GameObject targetObject = target.gameObject;
+
+            _playerpickuporuse.AroundIn(targetObject);
+        }
+
+    }
+
+    private void OnTriggerStay(Collider target)
     {
 
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnTriggerExit(Collider target)
     {
+        ItemDataPickup sc;
+        if (target.GetComponent<ItemDataPickup>() != null)
+        {
+            sc = target.GetComponent<ItemDataPickup>();
 
-    }
+            GameObject targetObject = target.gameObject;
 
-    private void OnCollisionExit(Collision collision)
-    {
-
+            _playerpickuporuse.AroundOut(targetObject);
+        }
     }
 }

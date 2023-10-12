@@ -29,8 +29,7 @@ public class ItemDataPickup : MonoBehaviour
 
     public ItemData PickUp()
     {
-        ItemData  _itemData = ItemDataManager.current.GetItemData(ItemCode);
-        return _itemData;
+        return _itemdata;
     }
 
     public void Drop()

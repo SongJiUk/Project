@@ -14,6 +14,8 @@ public class ItemDataManager : MonoBehaviour
             current = this;
     }
 
+    
+
     public ItemData GetItemData(int index)
     {
         return itemList[index];
