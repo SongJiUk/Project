@@ -34,6 +34,8 @@ public class Enemy : MonoBehaviour
     float originalSpeed;
 
     bool isSkillHit = false;
+
+    BoxCollider collider;
     void Start()
     {
         timer = attackTime;
@@ -164,15 +166,21 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
         {
+            Debug.Log("asdfa");
             EnemyHit(10);
         }
     }
 
     void EnemyDie()
     {
-        Destroy(gameObject, 3f);
+        //콜라이더 제거
+        if (null == collider) collider = GetComponent<BoxCollider>();
+        if (collider != null) collider.enabled = false;
+        //타겟 제거
+        player = null;
         die = true;
         Anime.SetTrigger("IsDie");
+        Destroy(gameObject, 3f);
         //Anime.enabled = true;
     }
 }

@@ -1235,7 +1235,7 @@ PrefabInstance:
     - target: {fileID: 95241917264262668, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: d840b1a2422c344a7bd240cb84ae2f31, type: 2}
+      objectReference: {fileID: 9100000, guid: 099f8e0d8bf1b64469ff2654ff6baee2, type: 2}
     - target: {fileID: 4679631779997510275, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
       propertyPath: InitialModule.startSize.scalar
       value: 0.5
@@ -1243,6 +1243,18 @@ PrefabInstance:
     - target: {fileID: 4679631779997510275, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
       propertyPath: CollisionModule.collisionMessages
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668480155946628946, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6668480155946628946, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7519752286646032083, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
