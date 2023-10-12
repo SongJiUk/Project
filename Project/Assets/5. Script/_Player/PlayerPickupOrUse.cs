@@ -11,18 +11,21 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     [SerializeField] PlayerAround _playeraround;
 
+    [SerializeField] PickUpUI _pickUpUI;
+
     List<GameObject> AroundItemList = new List<GameObject>();
 
     void Awake()
     {
         _playeraround.SettingStart(this);
+        _pickUpUI.SettingStart(this);
     }
 
     public void AroundIn(GameObject item)
     {
         ItemData sc = item.GetComponent<ItemDataPickup>().PickUp();
         AddList(item);
-
+        
 
 
     }
@@ -38,6 +41,7 @@ public class PlayerPickupOrUse : MonoBehaviour
         if (!AroundItemList.Contains(item))
         {
             AroundItemList.Add(item);
+            _pickUpUI.AddList(item);
         }
     }
 
@@ -46,6 +50,7 @@ public class PlayerPickupOrUse : MonoBehaviour
         if (AroundItemList.Contains(item))
         {
             AroundItemList.Remove(item);
+            _pickUpUI.RemoveList(item);
         }
     }
 
@@ -77,6 +82,7 @@ public class PlayerPickupOrUse : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Debug.Log("sdf");
+                
             }
         }
     }

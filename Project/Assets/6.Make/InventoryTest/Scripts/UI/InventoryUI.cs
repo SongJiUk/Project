@@ -151,7 +151,7 @@ public class InventoryUI : MonoBehaviour
         // Graphic Raycaster
         _ped = new PointerEventData(EventSystem.current);
         _rrList = new List<RaycastResult>(10);
-
+        
         // Item Tooltip UI
         if (_itemTooltip == null)
         {
@@ -185,7 +185,7 @@ public class InventoryUI : MonoBehaviour
             for (int i = 0; i < _horizontalSlotCount; i++)
             {
                 int slotIndex = (_horizontalSlotCount * j) + i;
-
+                
                 var slotRT = CloneSlot();
                 slotRT.pivot = new Vector2(0f, 1f); // Left Top
                 slotRT.anchoredPosition = curPos;
@@ -215,7 +215,7 @@ public class InventoryUI : MonoBehaviour
             GameObject slotGo = Instantiate(_slotUiPrefab);
             RectTransform rt = slotGo.GetComponent<RectTransform>();
             rt.SetParent(_contentAreaRT);
-
+            
             return rt;
         }
     }
