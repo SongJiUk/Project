@@ -33,6 +33,8 @@ public class Player : Singleton<Player>
     PlayerController playerController;
     public PlayerController PController { get { return playerController; } }
 
+    Customizing customizing;
+
     public RuntimeAnimatorController[] PlayerJob;
 
     private void Awake()
@@ -44,9 +46,10 @@ public class Player : Singleton<Player>
         if (null == rigid) rigid = GetComponent<Rigidbody>();
         if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
         if (null == playerController) playerController = GetComponent<PlayerController>();
-
+        if (null == customizing) customizing = GetComponent<Customizing>();
         playerStat = PlayerStat.GetInstance;
         playerStat.InitStat(UnitCode.ARCHER);
+        PlayerSetting();
         SPEED = 3f;
     }
 
@@ -69,6 +72,11 @@ public class Player : Singleton<Player>
             anim.runtimeAnimatorController = PlayerJob[2];
             playerStat.InitStat(UnitCode.ARCHER);
         }
+    }
+
+    private void PlayerSetting()
+    {
+        customizing.InitPlayer();
     }
 
     private void OnTriggerEnter(Collider other)
