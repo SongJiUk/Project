@@ -39,3 +39,9 @@ public enum EffectCastType
     Front,
     PreCast
 }
+
+public enum DataType
+{
+    Quest,
+    Enemy
+}

@@ -6,10 +6,19 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/1. Scenes/Customizing.unity
+    path: Assets/1. Scenes/0. TitleScene.unity
+    guid: d23df3929e9e802488f7d90d140bc800
+  - enabled: 1
+    path: Assets/1. Scenes/1. PlayerSlotScene.unity
+    guid: d9464dd657cde4821ad09f94d3a15685
+  - enabled: 1
+    path: Assets/1. Scenes/2. CharacterSelect.unity
+    guid: 240fabf649ed849c1a330d6c9447632a
+  - enabled: 1
+    path: Assets/1. Scenes/3. Customizing.unity
     guid: fd9d99c5e7cbe48efad79b03e9ca3da1
   - enabled: 1
-    path: Assets/1. Scenes/Song.unity
+    path: Assets/1. Scenes/4. Song.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: c50b50bb4ee480847a3d83d2303267c8, type: 2}

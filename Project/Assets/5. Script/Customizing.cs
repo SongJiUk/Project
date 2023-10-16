@@ -61,25 +61,44 @@ public class Customizing : MonoBehaviour
         male_TopNum = 0;
         male_PantsNum = 0;
         if (null == Selectanim) Selectanim = GetComponent<Animator>();
-        DataManager.GetInstance.LoadData();
     }
 
     float time;
 
     private void Update()
     {
-        RandNum = Random.Range(0, 50);
-        time += Time.deltaTime;
-        if (time > 1f)
-        {
-            time = 0;
-            if (Selectanim != null) Selectanim.SetInteger("RandNum", RandNum);
+        ////캐릭터 애니메이션
+        //RandNum = Random.Range(0, 50);
+        //time += Time.deltaTime;
+        //if (time > 1f)
+        //{
+        //    time = 0;
+        //    if (Selectanim != null) Selectanim.SetInteger("RandNum", RandNum);
 
-        }
+        //}
         
+     
     }
+    #region 캐릭터 Select씬
+    int slotNum;
+    public void SelectSlot(int _num)
+    {
+        gameObject.SetActive(false);
 
-    public void InitPlayer()
+        slotNum = _num;
+        if(DataManager.GetInstance.ISSLOTOPEN[_num])
+        {
+            InitPlayer(_num);
+            gameObject.SetActive(true);
+        }
+        else
+        {
+            //여기서 생성하시겠습니까? 띄워주기
+        }
+
+    }
+    #endregion
+    public void InitPlayer(int _num)
     {
         switch(GenderNum)
         {
@@ -441,7 +460,7 @@ public class Customizing : MonoBehaviour
 
         }
 
-        DataManager.GetInstance.SaveData();
+        DataManager.GetInstance.SaveData(slotNum);
 
         var operation = SceneManager.LoadSceneAsync("Song");
         operation.allowSceneActivation = true;

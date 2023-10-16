@@ -76,7 +76,7 @@ public class Player : Singleton<Player>
 
     private void PlayerSetting()
     {
-        customizing.InitPlayer();
+        //customizing.InitPlayer();
     }
 
     private void OnTriggerEnter(Collider other)

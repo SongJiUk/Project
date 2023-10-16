@@ -43,8 +43,8 @@ public class WeaponManager : Singleton<WeaponManager>
     #endregion
 
     #region 끼고있던 장비 정보
-    public GameData B_Weapondata;
-    public GameData B_ShiledData;
+    public WeaponItemData B_Weapondata;
+    public WeaponItemData B_ShiledData;
     GameObject B_handWeapon;
     GameObject B_handShiled;
 

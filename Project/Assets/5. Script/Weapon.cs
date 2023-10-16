@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] GameData data;
+    [SerializeField] WeaponItemData data;
 
     bool isOrb = false;
     private void OnEnable()
     {
         if(data != null)
         {
-            if (data.equipmentType == EquipmentType.Orb) isOrb = true;
+            if (data.Type == Types.Orb) isOrb = true;
             else isOrb = false;
         }
         
