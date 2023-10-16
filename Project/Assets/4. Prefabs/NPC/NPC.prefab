@@ -22062,6 +22062,7 @@ GameObject:
   - component: {fileID: 7855522696607744907}
   - component: {fileID: 6638591285820443042}
   - component: {fileID: 6733828804209617632}
+  - component: {fileID: 1025328313}
   m_Layer: 6
   m_Name: NPC
   m_TagString: Untagged
@@ -22101,7 +22102,7 @@ NavMeshAgent:
   m_Acceleration: Infinity
   avoidancePriority: 50
   m_AngularSpeed: Infinity
-  m_StoppingDistance: 6
+  m_StoppingDistance: 4.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -22172,9 +22173,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5f5a16fe789f171449f743b9dd68f76e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TextBox: {fileID: 0}
-  QuestText: {fileID: 0}
-  QuestClearSelect: {fileID: 0}
+  scanObj: {fileID: 0}
+  InteretionText: {fileID: 0}
+--- !u!114 &1025328313
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6639614879348589007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e37028a0081a144802912aac2659e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: 1000
+  isNpc: 1
 --- !u!1 &6639616417000092795
 GameObject:
   m_ObjectHideFlags: 0
@@ -69705,11 +69719,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 47efdcff5eb40864490bbb47786eda40, type: 3}
---- !u!1 &6638591285935148625 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100000, guid: 47efdcff5eb40864490bbb47786eda40, type: 3}
-  m_PrefabInstance: {fileID: 6638591285935114481}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6638591285935148631 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 100006, guid: 47efdcff5eb40864490bbb47786eda40, type: 3}
@@ -69728,7 +69737,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   data: {fileID: 0}
-  Trail: {fileID: 6638591285935148625}
 --- !u!4 &6638591285935247991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400006, guid: 47efdcff5eb40864490bbb47786eda40, type: 3}

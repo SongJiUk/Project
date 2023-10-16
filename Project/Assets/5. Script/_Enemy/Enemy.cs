@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     float maxEnemyHP = 50; // ???????? ????HP
     float nowEnemyHP; // ???????? ????HP
 
+    ObjectPoolManager objectPoolManager;
+
     [SerializeField]
     Player player; // ?????????? ?????? ???????? ???? ????
     [SerializeField]
@@ -30,6 +32,8 @@ public class Enemy : MonoBehaviour
 
     [SerializeField]
     int enemyID;
+    [SerializeField]
+    float EXP;
 
     float originalSpeed;
 
@@ -48,6 +52,7 @@ public class Enemy : MonoBehaviour
         playerLayer = 1 << LayerMask.NameToLayer("Player");
         // nav.acceleration = Mathf.Infinity;
         originalSpeed = nav.speed;
+        objectPoolManager = ObjectPoolManager.GetInstance;
     }
 
     bool die = false;
@@ -180,8 +185,16 @@ public class Enemy : MonoBehaviour
         player = null;
         die = true;
         Anime.SetTrigger("IsDie");
-        Destroy(gameObject, 3f);
+        gameObject.SetActive(false);
+        objectPoolManager.ObjectDie(gameObject);
         //Anime.enabled = true;
+    }
+
+    private void OnEnable() // 오브젝트 풀링에의해 다시 활성화될시 정보 초기화
+    {
+        if (null == collider) collider = GetComponent<BoxCollider>();
+        if (collider != null) collider.enabled = true;
+        die = false;
     }
 }
 
