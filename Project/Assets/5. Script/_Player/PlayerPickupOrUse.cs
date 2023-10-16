@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using static UnityEditor.Progress;
 
@@ -15,6 +16,8 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     List<GameObject> AroundItemList = new List<GameObject>();
 
+    int numList = 0;
+
     void Awake()
     {
         _playeraround.SettingStart(this);
@@ -25,9 +28,6 @@ public class PlayerPickupOrUse : MonoBehaviour
     {
         ItemData sc = item.GetComponent<ItemDataPickup>().PickUp();
         AddList(item);
-        
-
-
     }
 
     public void AroundOut(GameObject item)
@@ -49,8 +49,8 @@ public class PlayerPickupOrUse : MonoBehaviour
     {
         if (AroundItemList.Contains(item))
         {
-            AroundItemList.Remove(item);
             _pickUpUI.RemoveList(item);
+            AroundItemList.Remove(item);
         }
     }
 
@@ -77,13 +77,30 @@ public class PlayerPickupOrUse : MonoBehaviour
     {
         CheckAround();
 
-        if (Around) 
+        if (Around)
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
                 Debug.Log("sdf");
-                
+
             }
+        }
+        if (AroundItemList != null)
+        {
+            float wheelInput = Input.GetAxis("Mouse ScrollWheel");
+            if (wheelInput > 0)
+            {
+                numList = numList - (int)(wheelInput * 10);
+            }
+            else if (wheelInput < 0)
+            {
+                numList = numList - (int)(wheelInput * 10);
+            }
+            Mathf.Clamp(numList, 0, AroundItemList.Count);
+        }
+        else
+        {
+            numList = 0;
         }
     }
 

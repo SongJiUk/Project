@@ -13,6 +13,8 @@ public class PickUpUIPrefab : MonoBehaviour
     [Tooltip("아이템 이름 텍스트")]
     [SerializeField] private Text _amountText;
 
+    private GameObject _aroundItemObj;
+
     public void SetIconImage(Sprite icon)
     {
         _iconImage.sprite = icon;
@@ -21,5 +23,22 @@ public class PickUpUIPrefab : MonoBehaviour
     public void SetText(string text)
     {
         _amountText.text = text;
+    }
+
+    public void SetObj(GameObject obj)
+    {
+        _aroundItemObj = obj;
+    }
+
+    public GameObject FindObj(GameObject obj)
+    {
+        if(obj== _aroundItemObj)
+        {
+            return this.gameObject;
+        }
+        else
+        {
+            return null;
+        }
     }
 }

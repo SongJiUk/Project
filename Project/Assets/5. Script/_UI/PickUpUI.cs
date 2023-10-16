@@ -27,7 +27,7 @@ public class PickUpUI : MonoBehaviour
 
         slotGo.GetComponent<PickUpUIPrefab>().SetIconImage(_iconImage);
         slotGo.GetComponent<PickUpUIPrefab>().SetText(_text);
-
+        slotGo.GetComponent<PickUpUIPrefab>().SetObj(item);
 
 
         _pickUpUIList.Add(slotGo);
@@ -42,19 +42,30 @@ public class PickUpUI : MonoBehaviour
         int idx = _pickUpUIList.FindIndex(a=>(item));
         slotRT.gameObject.name = $"Item Slot [{idx}]";
 
-
     }
 
     public void RemoveList(GameObject item)
     {
-        
-        int idx = _pickUpUIList.FindIndex(a => (item));
-        Destroy(_contentAreaRT.Find(item.name));
-        _pickUpUIList.Remove(item);
+        for(int i=0; i< _pickUpUIList.Count; i++)
+        {
+            if(_pickUpUIList[i].GetComponent<PickUpUIPrefab>().FindObj(item)!=null)
+            {
+                Destroy(_pickUpUIList[i]);
+                _pickUpUIList.RemoveAt(i);
+            }
+        }
+    }
+
+    public void PickUpItem(int num)
+    {
+        Destroy(_pickUpUIList[num]);
+        _pickUpUIList.RemoveAt(num);
 
     }
 
-    // Update is called once per frame
+
+
+    // Update is called once per frame  
     void UpdateList()
     {
         
