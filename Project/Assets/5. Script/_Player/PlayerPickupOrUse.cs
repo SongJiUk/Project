@@ -113,8 +113,9 @@ public class PlayerPickupOrUse : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                if(true)
+                if (true)
                 {
+                    numList = Mathf.Clamp(numList, 0, AroundItemList.Count - 1);
                     Debug.Log(numList);
                     GameObject item = AroundItemList[numList];
                     ItemData a = item.GetComponent<ItemDataPickup>().PickUp();
