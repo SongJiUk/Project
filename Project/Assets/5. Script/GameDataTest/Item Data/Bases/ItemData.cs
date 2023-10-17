@@ -18,13 +18,24 @@ using UnityEngine.UI;
 
 */
 
+public enum Ratings
+{
+    Common,
+    Rare,
+    Unique,
+    Legendary,
+    Mythic
+}
+
 public abstract class ItemData : ScriptableObject
 {
     public int ItemCode => _itemcode;
     public string Name => _name;
     public string Tooltip => _tooltip;
     public Sprite IconSprite => _iconSprite;
+    public Ratings Rating => _rating;
 
+    [SerializeField] private Ratings _rating;
     [SerializeField] private int _itemcode;
     [SerializeField] private string _name;    // 아이템 이름
     [Multiline]

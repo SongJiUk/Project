@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
   m_Name: Axe_4
   m_EditorClassIdentifier: 
+  _rating: 1
   _itemcode: 0
   _name: Axe_4
   _tooltip: 
-  _iconSprite: {fileID: 0}
-  _dropItemPrefab: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 3e9f17c78c41b490b84b6b075167c20f, type: 3}
+  _dropItemPrefab: {fileID: 1823571815354484, guid: 18debdec3524d0e4caef8e05167d10b0, type: 3}
   Type: 7
   ClassPrivateItem: 0
   _EquipmentNum: 3

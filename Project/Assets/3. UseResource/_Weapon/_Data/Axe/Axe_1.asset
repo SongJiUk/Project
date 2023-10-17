@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
   m_Name: Axe_1
   m_EditorClassIdentifier: 
+  _rating: 4
   _itemcode: 0
   _name: Axe_1
   _tooltip: 
