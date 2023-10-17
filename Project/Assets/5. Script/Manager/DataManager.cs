@@ -12,7 +12,7 @@ public class DataManager : Singleton<DataManager>
 2. 아이템 - 무기번호, 골드, 물약 등
 
 */
-    static int SlotCount = 3;
+    public static int SlotCount = 3;
     Dictionary<int, PlayerJobs> SlotJob = new Dictionary<int, PlayerJobs>();
 
     public PlayerJobs PLAYERJOBS(int _slot)

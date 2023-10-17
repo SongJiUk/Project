@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class PlayerSlotScene : MonoBehaviour
 {
+
     [SerializeField] GameObject selectPopup;
     [SerializeField] Text slot_txt;
     [SerializeField] Customizing player;
@@ -13,17 +14,34 @@ public class PlayerSlotScene : MonoBehaviour
     [SerializeField] GameObject gameStartPopup;
     [SerializeField] Text gameStart_txt;
 
+
+    public List<GameObject> playerInfos = new List<GameObject>();
+    public List<Text> playerName_txt = new List<Text>();
+    public List<Text> playerJob_txt = new List<Text>();
+    public List<Text> playerLevel_txt = new List<Text>();
     private void Start()
     {
         if (null == player) player = GetComponent<Customizing>();
+        for(int i =0; i<DataManager.SlotCount; i++)
+        {
+            if(DataManager.GetInstance.ISSLOTOPEN(i))
+            {
+                playerInfos[i].SetActive(true);
+                playerName_txt[i].text = $"{DataManager.GetInstance.PLAYER_ID(i)}";
+                playerJob_txt[i].text = $"{DataManager.GetInstance.PLAYERJOBS(i).ToString()}";
+                playerLevel_txt[i].text = $"{DataManager.GetInstance.PLAYER_LEVEL(i)}";
+            }
+            else
+            {
+                playerInfos[i].SetActive(false);
+            }
+        }
     }
 
-    int slotNum;
     public void SelectSlot(int _num)
     {
         player.gameObject.SetActive(false);
 
-        slotNum = _num;
         //Debug.Log("DataManager : "+DataManager.GetInstance.SLOT_NUM);
         if (DataManager.GetInstance.ISSLOTOPEN(_num))
         {
