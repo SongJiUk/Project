@@ -147,22 +147,24 @@ public class CameraManager : Singleton<CameraManager>
     {
         if (Input.GetKeyDown(KeyCode.LeftAlt))
         {
-            OnOff = false;
+            OnOff = !OnOff;
         }
-        if (Input.GetKeyUp(KeyCode.LeftAlt))
-        {
-            OnOff = true;
-        }
+        
         if (OnOff)
         {
+
+
             float scrollValue = Input.GetAxis("Mouse ScrollWheel");
             float velocity = 0f;
-            currDistance = Mathf.SmoothDamp(currDistance,
+
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+                currDistance = Mathf.SmoothDamp(currDistance,
                 currDistance - scrollValue * 2f, ref velocity, Time.deltaTime);
 
-            currDistance = Mathf.Clamp(currDistance, 2, 5);
-
-
+                currDistance = Mathf.Clamp(currDistance, 2, 5);
+            }
+            
             // (currDistance - 2) / 3.5f - constant for far camera position
             //var targetPos = player.position + new Vector3(0, (distanceHit - 2) / 3f + cameraPos[1], 0);
             var targetPos = player.position;
