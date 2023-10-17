@@ -27,7 +27,7 @@ public enum EquipmentType
 [Serializable]
 public enum PlayerJobs
 {
-    Warrior,
+    Warrior = 0,
     Mage,
     Archer
 }

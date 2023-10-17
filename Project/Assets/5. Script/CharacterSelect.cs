@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CharacterSelect : MonoBehaviour
 {
@@ -42,7 +43,17 @@ public class CharacterSelect : MonoBehaviour
         Job_btn.SetActive(true);
         Back_btn.SetActive(false);
         Job_KingBtn[num].SetActive(false);
+    }
 
+    public void SelectCharacter(int _num)
+    {
+        PlayerJobs _jobs = (PlayerJobs)_num;
+        
+        DataManager.GetInstance.PLAYERJOBS(DataManager.GetInstance.SLOT_NUM, _jobs);
+
+
+        var operation = SceneManager.LoadSceneAsync("3_Customizing");
+        operation.allowSceneActivation = true;
     }
 
 
@@ -65,5 +76,7 @@ public class CharacterSelect : MonoBehaviour
            
         }
     }
+
+
 }
 

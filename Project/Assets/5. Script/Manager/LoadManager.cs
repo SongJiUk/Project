@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LoadManager : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class LoadManager : MonoBehaviour
         
     }
 
+
+    public void ClickNextScene()
+    {
+        var operation = SceneManager.LoadSceneAsync("1_PlayerSlotScene");
+        operation.allowSceneActivation = true;
+
+    }
 
     //private IEnumerator GoToNextSceneCoroutine()
     //{

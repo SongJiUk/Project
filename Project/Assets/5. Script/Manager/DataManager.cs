@@ -13,135 +13,39 @@ public class DataManager : Singleton<DataManager>
 
 */
     static int SlotCount = 3;
+    Dictionary<int, PlayerJobs> SlotJob = new Dictionary<int, PlayerJobs>();
+
+    public PlayerJobs PLAYERJOBS(int _slot)
+    {
+        return SlotJob[_slot];
+    }
+
+    public void PLAYERJOBS(int _slot, PlayerJobs _vaule)
+    {
+        if(!SlotJob.ContainsKey(_slot))
+        {
+            SlotJob.Add(_slot, _vaule);
+        }
+
+    }
+
+
     private void Start()
     {
-        DontDestroyOnLoad(this);
+        DontDestroyOnLoad(gameObject);
     }
 
 
-    bool[] isSlotOpen;
+    bool[] isSlotOpen = new bool[SlotCount];
 
-    public bool[] ISSLOTOPEN
+    public bool ISSLOTOPEN(int _slot)
     {
-        get
-        {
-            if (isSlotOpen == null)
-            {
-                isSlotOpen = new bool[3];
-            }
-            return isSlotOpen;
-        }
-        set => isSlotOpen = value;
+        return isSlotOpen[_slot];
     }
-
-    #region 플레이어 커스터마이징
-    int GenderNum;
-    int HairNum;
-    int Female_FaceNum;
-    int male_FaceNum;
-    int Female_EyebrowNum;
-    int male_EyebrowNum;
-    int MustacheNum;
-    int Female_TopNum;
-    int Female_PantsNum;
-    int male_TopNum;
-    int male_PantsNum;
-
-    
-    public int GENDERNUM
+    public void ISSLOTOPEN(int _slot, bool value)
     {
-        get { return GenderNum; }
-        set { GenderNum = value; }
+        isSlotOpen[_slot] = value;
     }
-
-    public int HAIRNUM
-    {
-        get { return HairNum; }
-        set { HairNum = value; }
-    }
-
-    public int FEMALE_FACENUM
-    {
-        get { return Female_FaceNum; }
-        set { Female_FaceNum = value; }
-    }
-
-    public int MALE_FACENUM
-    {
-        get { return male_FaceNum; }
-        set { male_FaceNum = value; }
-    }
-
-    public int FEMALE_EYEBROWNUM
-    {
-        get { return Female_EyebrowNum; }
-        set { Female_EyebrowNum = value; }
-    }
-
-    public int MALE_EYEBROWNUM
-    {
-        get { return male_EyebrowNum; }
-        set { male_EyebrowNum = value; }
-    }
-    public int MUSTACHENUM
-    {
-        get { return MustacheNum; }
-        set { MustacheNum = value; }
-    }
-
-    public int FEMALE_TOPNUM
-    {
-        get { return Female_TopNum; }
-        set { Female_TopNum = value; }
-    }
-    public int FEMALE_PANTSNUM
-    {
-        get { return Female_PantsNum; }
-        set { Female_PantsNum = value; }
-    }
-    public int MALE_TOPNUM
-    {
-        get { return male_TopNum; }
-        set { male_TopNum = value; }
-    } public int MALE_PANTSNUM
-    {
-        get { return male_PantsNum; }
-        set { male_PantsNum = value; }
-    }
-
-
-    #endregion
-    int Slot_Num;
-
-    string player_id;
-    int player_level;
-    float player_exp;
-    
-    public int SLOT_NUM
-    {
-        get => Slot_Num;
-        set => Slot_Num = value;
-    }
-
-
-    public string PLAYER_ID
-    {
-        get { return player_id; }
-        set { player_id = value; }
-    }
-
-    public int PLAYER_LEVEL
-    {
-        get { return player_level; }
-        set { player_level = value; }
-    }
-
-    public float PLAYER_EXP
-    {
-        get { return player_exp; }
-        set { player_exp = value; }
-    }
-
 
     public static void SetBool(string key, bool value)
     {
@@ -153,7 +57,7 @@ public class DataManager : Singleton<DataManager>
 
     public static bool? GetBool(string key)
     {
-        int tmp = PlayerPrefs.GetInt(key,-100);
+        int tmp = PlayerPrefs.GetInt(key, -100);
         if (tmp == 1)
             return true;
         else if (tmp == -100)
@@ -162,6 +66,176 @@ public class DataManager : Singleton<DataManager>
             return null;
     }
 
+    #region 플레이어 커스터마이징
+    int[] GenderNum = new int[SlotCount];
+    int[] HairNum = new int[SlotCount];
+    int[] Female_FaceNum = new int[SlotCount];
+    int[] male_FaceNum = new int[SlotCount];
+    int[] Female_EyebrowNum = new int[SlotCount];
+    int[] male_EyebrowNum = new int[SlotCount];
+    int[] MustacheNum = new int[SlotCount];
+    int[] Female_TopNum = new int[SlotCount];
+    int[] Female_PantsNum = new int[SlotCount];
+    int[] male_TopNum = new int[SlotCount];
+    int[] male_PantsNum = new int[SlotCount];
+
+    public int GENDERNUM(int _slot)
+    {
+        return GenderNum[_slot];
+    }
+    public void GENDERNUM(int _slot, int value)
+    {
+        GenderNum[_slot] = value;
+    }
+
+    public int HAIRNUM(int _slot)
+    {
+        return HairNum[_slot];
+    }
+
+    public void HAIRNUM(int _slot, int value)
+    {
+       HairNum[_slot] = value;
+    }
+    
+    public int FEMALE_FACENUM(int _slot)
+    {
+        return Female_FaceNum[_slot];
+    }
+
+    public void FEMALE_FACENUM(int _slot, int value)
+    {
+        Female_FaceNum[_slot] = value;
+    }
+
+
+    public int MALE_FACENUM(int _slot)
+    {
+        return male_FaceNum[_slot];
+    }
+
+    public void MALE_FACENUM(int _slot, int value)
+    {
+        male_FaceNum[_slot] = value;
+    }
+
+    public int FEMALE_EYEBROWNUM(int _slot)
+    {
+        return Female_EyebrowNum[_slot];
+    }
+
+    public void FEMALE_EYEBROWNUM(int _slot, int value)
+    {
+        Female_EyebrowNum[_slot] = value;
+    }
+
+    public int MALE_EYEBROWNUM(int _slot)
+    {
+        return male_EyebrowNum[_slot];
+    }
+
+    public void MALE_EYEBROWNUM(int _slot, int value)
+    {
+        male_EyebrowNum[_slot] = value;
+    }
+
+    public int MUSTACHENUM(int _slot)
+    {
+        return MustacheNum[_slot];
+    }
+
+    public void MUSTACHENUM(int _slot, int value)
+    {
+        MustacheNum[_slot] = value;
+    }
+
+    public int FEMALE_TOPNUM(int _slot)
+    {
+        return Female_TopNum[_slot];
+    }
+
+    public void FEMALE_TOPNUM(int _slot, int value)
+    {
+        Female_TopNum[_slot] = value;
+    }
+
+    public int FEMALE_PANTSNUM(int _slot)
+    {
+        return Female_PantsNum[_slot];
+    }
+
+    public void FEMALE_PANTSNUM(int _slot, int value)
+    {
+        Female_PantsNum[_slot] = value;
+    }
+
+    public int MALE_TOPNUM(int _slot)
+    {
+        return male_TopNum[_slot];
+    }
+
+    public void MALE_TOPNUM(int _slot, int value)
+    {
+        male_TopNum[_slot] = value;
+    }
+
+    public int MALE_PANTSNUM(int _slot)
+    {
+        return male_PantsNum[_slot];
+    }
+
+    public void MALE_PANTSNUM(int _slot, int value)
+    {
+        male_PantsNum[_slot] = value;
+    }
+
+    #endregion
+    int Slot_Num;
+
+    PlayerJobs[] playerJobs;
+    string[] player_id = new string[SlotCount];
+    int[] player_level = new int[SlotCount];
+    float[] player_exp = new float[SlotCount];
+    
+    public int SLOT_NUM
+    {
+        get => Slot_Num;
+        set => Slot_Num = value;
+    }
+
+
+    public string PLAYER_ID(int _slot)
+    {
+        return player_id[_slot];
+    }
+
+    public void PLAYER_ID(int _slot, string value)
+    {
+        player_id[_slot] = value;
+    }
+
+    public int PLAYER_LEVEL(int _slot)
+    {
+        return player_level[_slot];
+    }
+
+    public void PLAYER_LEVEL(int _slot, int value)
+    {
+        player_level[_slot] = value;
+    }
+
+    public float PLAYER_EXP(int _slot)
+    {
+        return player_exp[_slot];
+    }
+
+    public void PLAYER_EXP(int _slot, float value)
+    {
+        player_exp[_slot] = value;
+    }
+
+    
+
 
     public void SaveData(int _index)
     {
@@ -169,24 +243,26 @@ public class DataManager : Singleton<DataManager>
         isSlotOpen[_index] = true;
         SetBool("isSlotOpen" + _index, isSlotOpen[_index]);
 
-        PlayerPrefs.SetFloat("player_exp" + _index, player_exp);
-        PlayerPrefs.SetInt("player_level" + _index, player_level);
-        PlayerPrefs.SetString("player_id" + _index, player_id);
+        PlayerPrefs.SetInt("SlotJob"+_index, (int)SlotJob[_index]);
 
-        PlayerPrefs.SetInt("GenderNum" + _index, GenderNum);
-        PlayerPrefs.SetInt("Female_FaceNum" + _index, Female_FaceNum);
-        PlayerPrefs.SetInt("male_FaceNum" + _index, male_FaceNum);
-        PlayerPrefs.SetInt("Female_EyebrowNum" + _index, Female_EyebrowNum);
-        PlayerPrefs.SetInt("male_EyebrowNum" + _index, male_EyebrowNum);
-        PlayerPrefs.SetInt("MustacheNum" + _index, MustacheNum);
-        PlayerPrefs.SetInt("Female_TopNum" + _index, Female_TopNum);
-        PlayerPrefs.SetInt("male_TopNum" + _index, male_TopNum);
-        PlayerPrefs.SetInt("Female_PantsNum" + _index, Female_PantsNum);
-        PlayerPrefs.SetInt("male_PantsNum" + _index, male_PantsNum);
+        PlayerPrefs.SetFloat("player_exp" + _index, player_exp[_index]);
+        PlayerPrefs.SetInt("player_level" + _index, player_level[_index]);
+        PlayerPrefs.SetString("player_id" + _index, player_id[_index]);
 
-        int equipindex = 0;
+        PlayerPrefs.SetInt("GenderNum" + _index, GenderNum[_index]);
+        PlayerPrefs.SetInt("Female_FaceNum" + _index, Female_FaceNum[_index]);
+        PlayerPrefs.SetInt("male_FaceNum" + _index, male_FaceNum[_index]);
+        PlayerPrefs.SetInt("Female_EyebrowNum" + _index, Female_EyebrowNum[_index]);
+        PlayerPrefs.SetInt("male_EyebrowNum" + _index, male_EyebrowNum[_index]);
+        PlayerPrefs.SetInt("MustacheNum" + _index, MustacheNum[_index]);
+        PlayerPrefs.SetInt("Female_TopNum" + _index, Female_TopNum[_index]);
+        PlayerPrefs.SetInt("male_TopNum" + _index, male_TopNum[_index]);
+        PlayerPrefs.SetInt("Female_PantsNum" + _index, Female_PantsNum[_index]);
+        PlayerPrefs.SetInt("male_PantsNum" + _index, male_PantsNum[_index]);
 
-        PlayerPrefs.SetInt("Equip_" + equipindex +"_"+ _index, male_PantsNum);
+        //int equipindex = 0;
+
+        //PlayerPrefs.SetInt("Equip_" + equipindex +"_"+ _index, male_PantsNum);
 
 
         PlayerPrefs.Save();
@@ -198,26 +274,32 @@ public class DataManager : Singleton<DataManager>
 
         for(int i = 0; i< SlotCount; i++)
         {
-            isSlotOpen[i] = GetBool("isSlotOpen"+i).HasValue;
+
+            string isSlotOpenKey = "isSlotOpen" + i;
+            if (PlayerPrefs.HasKey(isSlotOpenKey)) isSlotOpen[i] = GetBool(isSlotOpenKey).HasValue;
+            else isSlotOpen[i] = false;
 
             if (isSlotOpen[i])
             {
-                player_level = PlayerPrefs.GetInt("player_level" + i);
-                player_exp = PlayerPrefs.GetFloat("player_exp" + i);
-                player_id = PlayerPrefs.GetString("player_id" + i);
+                SlotJob[i] = (PlayerJobs)PlayerPrefs.GetInt("SlotJob" + i);
 
-                GenderNum = PlayerPrefs.GetInt("GenderNum" + i);
-                Female_FaceNum = PlayerPrefs.GetInt("Female_FaceNum" + i);
-                male_FaceNum = PlayerPrefs.GetInt("male_FaceNum" + i);
-                Female_EyebrowNum = PlayerPrefs.GetInt("Female_EyebrowNum" + i);
-                male_EyebrowNum = PlayerPrefs.GetInt("male_EyebrowNum" + i);
-                MustacheNum = PlayerPrefs.GetInt("MustacheNum" + i);
-                Female_TopNum = PlayerPrefs.GetInt("Female_TopNum" + i);
-                male_TopNum = PlayerPrefs.GetInt("male_TopNum" + i);
-                Female_PantsNum = PlayerPrefs.GetInt("Female_PantsNum" + i);
-                male_PantsNum = PlayerPrefs.GetInt("male_PantsNum" + i);
+                player_level[i] = PlayerPrefs.GetInt("player_level" + i);
+                player_exp[i] = PlayerPrefs.GetFloat("player_exp" + i);
+                player_id[i] = PlayerPrefs.GetString("player_id" + i);
+
+                GenderNum[i] = PlayerPrefs.GetInt("GenderNum" + i);
+                Female_FaceNum[i] = PlayerPrefs.GetInt("Female_FaceNum" + i);
+                male_FaceNum[i] = PlayerPrefs.GetInt("male_FaceNum" + i);
+                Female_EyebrowNum[i] = PlayerPrefs.GetInt("Female_EyebrowNum" + i);
+                male_EyebrowNum[i] = PlayerPrefs.GetInt("male_EyebrowNum" + i);
+                MustacheNum[i] = PlayerPrefs.GetInt("MustacheNum" + i);
+                Female_TopNum[i] = PlayerPrefs.GetInt("Female_TopNum" + i);
+                male_TopNum[i] = PlayerPrefs.GetInt("male_TopNum" + i);
+                Female_PantsNum[i] = PlayerPrefs.GetInt("Female_PantsNum" + i);
+                male_PantsNum[i] = PlayerPrefs.GetInt("male_PantsNum" + i);
             }
 
+            if(SlotJob.ContainsKey(i)) Debug.Log(SlotJob[i]);
         }
         
     }

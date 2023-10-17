@@ -19,6 +19,7 @@ public class ItemManager : Singleton<ItemManager>
                 WeaponData.Add(WeaponLists[i].Name, WeaponLists[i]);
             }
         }
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()

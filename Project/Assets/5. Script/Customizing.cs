@@ -80,27 +80,30 @@ public class Customizing : MonoBehaviour
      
     }
     #region 캐릭터 Select씬
-    int slotNum;
-    public void SelectSlot(int _num)
-    {
-        gameObject.SetActive(false);
+    //int slotNum;
+    //public void SelectSlot(int _num)
+    //{
+    //    gameObject.SetActive(false);
 
-        slotNum = _num;
-        if(DataManager.GetInstance.ISSLOTOPEN[_num])
-        {
-            InitPlayer(_num);
-            gameObject.SetActive(true);
-        }
-        else
-        {
-            //여기서 생성하시겠습니까? 띄워주기
-        }
+    //    slotNum = _num;
+    //    //Debug.Log("DataManager : "+DataManager.GetInstance.SLOT_NUM);
+    //    if(DataManager.GetInstance.ISSLOTOPEN(_num))
+    //    {
+    //        DataManager.GetInstance.SLOT_NUM = _num;
+    //        InitPlayer(_num);
+    //        gameObject.SetActive(true);
 
-    }
+    //    }
+    //    else
+    //    {
+    //        //여기서 생성하시겠습니까? 띄워주기
+    //        Debug.Log("생성하자!!");
+    //    }
+    //}
     #endregion
     public void InitPlayer(int _num)
     {
-        switch(GenderNum)
+        switch(DataManager.GetInstance.GENDERNUM(_num))
         {
             case 0:
 
@@ -108,34 +111,34 @@ public class Customizing : MonoBehaviour
                 {
                     obj.SetActive(false);
                 }
-                Gender[DataManager.GetInstance.GENDERNUM].SetActive(true);
+                Gender[DataManager.GetInstance.GENDERNUM(_num)].SetActive(true);
 
                 foreach (var obj in Hair)
                 {
                     obj.SetActive(false);
                 }
-                Hair[DataManager.GetInstance.HAIRNUM].SetActive(true);
+                Hair[DataManager.GetInstance.HAIRNUM(_num)].SetActive(true);
                 foreach (var obj in Female_Face)
                 {
                     obj.SetActive(false);
                 }
-                Female_Face[DataManager.GetInstance.FEMALE_FACENUM].SetActive(true);
+                Female_Face[DataManager.GetInstance.FEMALE_FACENUM(_num)].SetActive(true);
                 foreach (var obj in Female_Eyebrow)
                 {
                     obj.SetActive(false);
                 }
-                Female_Eyebrow[DataManager.GetInstance.FEMALE_EYEBROWNUM].SetActive(true);
+                Female_Eyebrow[DataManager.GetInstance.FEMALE_EYEBROWNUM(_num)].SetActive(true);
                 foreach (var obj in Female_Top)
                 {
                     obj.SetActive(false);
                 }
-                Female_Top[DataManager.GetInstance.FEMALE_TOPNUM].SetActive(true);
+                Female_Top[DataManager.GetInstance.FEMALE_TOPNUM(_num)].SetActive(true);
 
                 foreach (var obj in Female_Pants)
                 {
                     obj.SetActive(false);
                 }
-                Female_Pants[DataManager.GetInstance.FEMALE_PANTSNUM].SetActive(true);
+                Female_Pants[DataManager.GetInstance.FEMALE_PANTSNUM(_num)].SetActive(true);
 
                 break;
 
@@ -148,34 +151,34 @@ public class Customizing : MonoBehaviour
                 {
                     obj.SetActive(false);
                 }
-                Gender[DataManager.GetInstance.GENDERNUM].SetActive(true);
+                Gender[DataManager.GetInstance.GENDERNUM(_num)].SetActive(true);
 
                 foreach (var obj in Hair)
                 {
                     obj.SetActive(false);
                 }
-                Hair[DataManager.GetInstance.HAIRNUM].SetActive(true);
+                Hair[DataManager.GetInstance.HAIRNUM(_num)].SetActive(true);
                 foreach (var obj in male_Face)
                 {
                     obj.SetActive(false);
                 }
-                male_Face[DataManager.GetInstance.MALE_FACENUM].SetActive(true);
+                male_Face[DataManager.GetInstance.MALE_FACENUM(_num)].SetActive(true);
                 foreach (var obj in male_Eyebrow)
                 {
                     obj.SetActive(false);
                 }
-                male_Eyebrow[DataManager.GetInstance.MALE_EYEBROWNUM].SetActive(true);
+                male_Eyebrow[DataManager.GetInstance.MALE_EYEBROWNUM(_num)].SetActive(true);
                 foreach (var obj in male_Top)
                 {
                     obj.SetActive(false);
                 }
-                male_Top[DataManager.GetInstance.MALE_TOPNUM].SetActive(true);
+                male_Top[DataManager.GetInstance.MALE_TOPNUM(_num)].SetActive(true);
 
                 foreach (var obj in male_Pants)
                 {
                     obj.SetActive(false);
                 }
-                male_Pants[DataManager.GetInstance.MALE_PANTSNUM].SetActive(true);
+                male_Pants[DataManager.GetInstance.MALE_PANTSNUM(_num)].SetActive(true);
                 
                 break;
 
@@ -442,27 +445,29 @@ public class Customizing : MonoBehaviour
         {
             //female
             case 0:
-                DataManager.GetInstance.HAIRNUM = HairNum;
-                DataManager.GetInstance.FEMALE_FACENUM = Female_FaceNum;
-                DataManager.GetInstance.FEMALE_EYEBROWNUM = Female_EyebrowNum;
-                DataManager.GetInstance.FEMALE_TOPNUM = Female_TopNum;
-                DataManager.GetInstance.FEMALE_PANTSNUM = Female_PantsNum;
+                DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM, GenderNum);
+                DataManager.GetInstance.HAIRNUM(DataManager.GetInstance.SLOT_NUM, HairNum);
+                DataManager.GetInstance.FEMALE_FACENUM(DataManager.GetInstance.SLOT_NUM, Female_FaceNum);
+                DataManager.GetInstance.FEMALE_EYEBROWNUM(DataManager.GetInstance.SLOT_NUM, Female_EyebrowNum);
+                DataManager.GetInstance.FEMALE_TOPNUM(DataManager.GetInstance.SLOT_NUM, Female_TopNum);
+                DataManager.GetInstance.FEMALE_PANTSNUM(DataManager.GetInstance.SLOT_NUM, Female_PantsNum);
                 break;
 
                 //male
             case 1:
-                DataManager.GetInstance.HAIRNUM = HairNum;
-                DataManager.GetInstance.MALE_FACENUM = male_FaceNum;
-                DataManager.GetInstance.MALE_EYEBROWNUM = male_EyebrowNum;
-                DataManager.GetInstance.MALE_TOPNUM = male_TopNum;
-                DataManager.GetInstance.MALE_PANTSNUM = male_PantsNum;
+                DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM, GenderNum);
+                DataManager.GetInstance.HAIRNUM(DataManager.GetInstance.SLOT_NUM, HairNum);
+                DataManager.GetInstance.MALE_FACENUM(DataManager.GetInstance.SLOT_NUM, male_FaceNum);
+                DataManager.GetInstance.MALE_EYEBROWNUM(DataManager.GetInstance.SLOT_NUM, male_EyebrowNum);
+                DataManager.GetInstance.MALE_TOPNUM(DataManager.GetInstance.SLOT_NUM, male_TopNum);
+                DataManager.GetInstance.MALE_PANTSNUM(DataManager.GetInstance.SLOT_NUM, male_PantsNum);
                 break;
 
         }
 
-        DataManager.GetInstance.SaveData(slotNum);
+        DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
 
-        var operation = SceneManager.LoadSceneAsync("Song");
+        var operation = SceneManager.LoadSceneAsync("4_Song");
         operation.allowSceneActivation = true;
     }
     #endregion
