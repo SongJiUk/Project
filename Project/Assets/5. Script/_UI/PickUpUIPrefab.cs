@@ -7,6 +7,9 @@ using UnityEngine.UIElements;
 
 public class PickUpUIPrefab : MonoBehaviour
 {
+    [Tooltip("화살표 아이콘")]
+    [SerializeField] private UnityEngine.UI.Image _pickUpNowImage;
+
     [Tooltip("아이템 아이콘 이미지")]
     [SerializeField] private UnityEngine.UI.Image _iconImage;
 
@@ -30,6 +33,16 @@ public class PickUpUIPrefab : MonoBehaviour
         _aroundItemObj = obj;
     }
 
+    public void SetObjPickUpOn()
+    {
+        _pickUpNowImage.color = new Color(1, 1, 1, 1);
+    }
+
+    public void SetObjPickUpOff()
+    {
+        _pickUpNowImage.color = new Color(1, 1, 1, 0);
+    }
+
     public GameObject FindObj(GameObject obj)
     {
         if(obj== _aroundItemObj)
@@ -40,5 +53,10 @@ public class PickUpUIPrefab : MonoBehaviour
         {
             return null;
         }
+    }
+
+    public GameObject ReturnObj()
+    {
+        return this.gameObject;
     }
 }

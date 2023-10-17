@@ -59,16 +59,16 @@ public class PickUpUI : MonoBehaviour
     public void PickUpItem(int num)
     {
         Destroy(_pickUpUIList[num]);
-        _pickUpUIList.RemoveAt(num);
-
     }
 
-
-
-    // Update is called once per frame  
-    void UpdateList()
+    public void PickUpNow(int num)
     {
-        
+        _pickUpUIList[num].GetComponent<PickUpUIPrefab>().SetObjPickUpOn();
+    }
+
+    public void PickUpNotNow(int num)
+    {
+        _pickUpUIList[num].GetComponent<PickUpUIPrefab>().SetObjPickUpOff();
     }
 
 }

@@ -15,7 +15,7 @@ MonoBehaviour:
   _itemcode: 0
   _name: Dagger_1
   _tooltip: 
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: d015a3df8f7da44148a4be824b72d166, type: 3}
   _dropItemPrefab: {fileID: 0}
   Type: 4
   ClassPrivateItem: 0

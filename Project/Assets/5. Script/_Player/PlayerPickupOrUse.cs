@@ -16,6 +16,8 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     List<GameObject> AroundItemList = new List<GameObject>();
 
+    [SerializeField] Inventory _inventory;
+
     int numList = 0;
 
     void Awake()
@@ -47,17 +49,16 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     private void RemoveList(GameObject item)
     {
+
         if (AroundItemList.Contains(item))
         {
             _pickUpUI.RemoveList(item);
             AroundItemList.Remove(item);
         }
-    }
-
-    
-
-    private void CountAround()
-    {
+        if (AroundItemList.Count == numList)
+        {
+            PickUpNow(numList);
+        }
 
     }
 
@@ -73,6 +74,37 @@ public class PlayerPickupOrUse : MonoBehaviour
         }
     }
 
+    private void PickUpNow(int num)
+    {
+        for (int i = 0; i < AroundItemList.Count; i++)
+        {
+            if (num == i)
+            {
+                _pickUpUI.PickUpNow(i);
+            }
+            else
+            {
+                _pickUpUI.PickUpNotNow(i);
+            }
+        }
+    }
+    private void PickUpNum()
+    {
+        if (Around)
+        {
+            if (Input.GetKey(KeyCode.LeftControl))
+            {
+               
+            }
+            else
+            {
+                float wheelInput = Input.GetAxis("Mouse ScrollWheel");
+                numList -= (int)(wheelInput * 10);
+            }
+        }
+        numList = Mathf.Clamp(numList, 0, AroundItemList.Count - 1);
+    }
+    
     private void Update()
     {
         CheckAround();
@@ -81,22 +113,18 @@ public class PlayerPickupOrUse : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.F))
             {
-                Debug.Log("sdf");
-
+                if(true)
+                {
+                    Debug.Log(numList);
+                    GameObject item = AroundItemList[numList];
+                    ItemData a = item.GetComponent<ItemDataPickup>().PickUp();
+                    _inventory.Add(a);
+                    RemoveList(item);
+                    Destroy(item);
+                }
             }
-        }
-        if (AroundItemList != null)
-        {
-            float wheelInput = Input.GetAxis("Mouse ScrollWheel");
-            if (wheelInput > 0)
-            {
-                numList = numList - (int)(wheelInput * 10);
-            }
-            else if (wheelInput < 0)
-            {
-                numList = numList - (int)(wheelInput * 10);
-            }
-            Mathf.Clamp(numList, 0, AroundItemList.Count);
+            PickUpNum();
+            PickUpNow(numList);
         }
         else
         {
