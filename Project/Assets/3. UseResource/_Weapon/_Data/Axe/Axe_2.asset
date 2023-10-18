@@ -18,7 +18,7 @@ MonoBehaviour:
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: 57c4a2470afed42ed8c7b1f84cde3cb3, type: 3}
   _dropItemPrefab: {fileID: 1766167583569624, guid: f8bd7e5e98451564e91faec0966ec91e, type: 3}
-  Type: 7
+  Type: 8
   ClassPrivateItem: 0
   _EquipmentNum: 3
   _EquipmentLevel: 1

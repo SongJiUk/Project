@@ -107,7 +107,7 @@ public class EquipmentUI : MonoBehaviour
 
     private void slotnum()
     {
-        for (int i = 0; i < 4; i++)
+        for (int i = 0; i < 6; i++)
         {
             _slotUIList[i].SetSlotIndex(i);
         }

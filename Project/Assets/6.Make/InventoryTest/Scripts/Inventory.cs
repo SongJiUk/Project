@@ -303,6 +303,7 @@ public class Inventory : MonoBehaviour
     *                               Public Methods
     ***********************************************************************/
     #region .
+
     /// <summary> 인벤토리 UI 연결 </summary>
     public void ConnectUI(InventoryUI inventoryUI)
     {

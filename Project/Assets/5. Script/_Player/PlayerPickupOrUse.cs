@@ -22,8 +22,11 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     void Awake()
     {
-        if(_playeraround != null) _playeraround.SettingStart(this);
-        if(_pickUpUI!= null) _pickUpUI.SettingStart(this);
+        if (_playeraround != null) _playeraround.SettingStart(this);
+        else _playeraround = GetComponent<PlayerAround>();
+        if (_pickUpUI!= null) _pickUpUI.SettingStart(this);
+        else _pickUpUI = GetComponent<PickUpUI>();
+        if (_inventory == null) _inventory = GetComponent<Inventory>();
     }
 
     public void AroundIn(GameObject item)
