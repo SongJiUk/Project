@@ -203,9 +203,12 @@ public class CameraManager : Singleton<CameraManager>
             else dpiScale = Screen.dpi / 200f;
             if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
 
-
-            x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
-            y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);
+            if(OnOff)
+            {
+                x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
+                y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);
+            }
+           
             y = ClampAngle(y, yMinLimit, yMaxLimit);
             var rotation = Quaternion.Euler(y, x, 0);
             var position = rotation * new Vector3(0, 0, -currDistance) + targetPos;
