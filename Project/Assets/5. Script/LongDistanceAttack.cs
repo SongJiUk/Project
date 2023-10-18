@@ -23,7 +23,7 @@ public class LongDistanceAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+        if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
         {
             var enemy = FindObjectOfType<Enemy>();
             timer += Time.deltaTime;
@@ -46,7 +46,7 @@ public class LongDistanceAttack : MonoBehaviour
 
             
         }
-        else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
         {
             if(Player.GetInstance.PController.isGuided)
             {

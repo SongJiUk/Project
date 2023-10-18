@@ -48,7 +48,7 @@ public class Player : Singleton<Player>
         if (null == playerController) playerController = GetComponent<PlayerController>();
         if (null == customizing) customizing = GetComponent<Customizing>();
         playerStat = PlayerStat.GetInstance;
-        playerStat.InitStat(UnitCode.ARCHER);
+        playerStat.InitStat(DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM));
         PlayerSetting();
         SPEED = 3f;
     }
@@ -76,7 +76,7 @@ public class Player : Singleton<Player>
 
     private void PlayerSetting()
     {
-        //customizing.InitPlayer();
+        customizing.InitPlayer(DataManager.GetInstance.SLOT_NUM);
     }
 
     private void OnTriggerEnter(Collider other)

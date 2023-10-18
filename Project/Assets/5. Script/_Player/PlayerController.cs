@@ -115,7 +115,7 @@ public class PlayerController : MonoBehaviour
     {
         if(weaponManager.ISEQUIP)
         {
-            if(player.playerStat.unitCode == UnitCode.WARRIOR)
+            if(player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            else if(player.playerStat.unitCode == UnitCode.MAGE)
+            else if(player.playerStat.UnitCodes == UnitCode.MAGE)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -134,7 +134,7 @@ public class PlayerController : MonoBehaviour
                     player.ANIM.SetTrigger("PressQ");
                 }
             }
-            else if(player.playerStat.unitCode == UnitCode.ARCHER)
+            else if(player.playerStat.UnitCodes == UnitCode.ARCHER)
             {
 
                 if(weaponManager.Weapondata.Type == Types.Bow)
@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
         if (weaponManager.ISEQUIP)
         {
             
-            if (player.playerStat.unitCode == UnitCode.WARRIOR)
+            if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -233,7 +233,7 @@ public class PlayerController : MonoBehaviour
                 }
             }
 
-            else if (player.playerStat.unitCode == UnitCode.MAGE)
+            else if (player.playerStat.UnitCodes == UnitCode.MAGE)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -242,7 +242,7 @@ public class PlayerController : MonoBehaviour
                     player.ANIM.SetTrigger("PressE");
                 }
             }
-            else if (player.playerStat.unitCode == UnitCode.ARCHER)
+            else if (player.playerStat.UnitCodes == UnitCode.ARCHER)
             {
                 if(weaponManager.Weapondata.Type == Types.Bow)
                 {
@@ -332,7 +332,7 @@ public class PlayerController : MonoBehaviour
     {
         if (weaponManager.ISEQUIP)
         {
-            if (player.playerStat.unitCode == UnitCode.WARRIOR)
+            if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -341,7 +341,7 @@ public class PlayerController : MonoBehaviour
                     player.ANIM.SetTrigger("PressR");
                 }
             }
-            else if (player.playerStat.unitCode == UnitCode.MAGE)
+            else if (player.playerStat.UnitCodes == UnitCode.MAGE)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -350,7 +350,7 @@ public class PlayerController : MonoBehaviour
                     player.ANIM.SetTrigger("PressR");
                 }
             }
-            else if (player.playerStat.unitCode == UnitCode.ARCHER)
+            else if (player.playerStat.UnitCodes == UnitCode.ARCHER)
             {
                 if (weaponManager.Weapondata.Type == Types.Bow)
                 {
@@ -787,7 +787,7 @@ public class PlayerController : MonoBehaviour
     public void LongDistanceAttack()
     {
 
-        if(player.playerStat.unitCode == UnitCode.MAGE)
+        if(player.playerStat.UnitCodes == UnitCode.MAGE)
         {
             if (weaponManager.Weapondata.Type == Types.Staff)
             {
@@ -802,7 +802,7 @@ public class PlayerController : MonoBehaviour
                 OrbObj.transform.rotation = transform.rotation;
             }
         }
-        else if(player.playerStat.unitCode == UnitCode.ARCHER)
+        else if(player.playerStat.UnitCodes == UnitCode.ARCHER)
         {
             var ArrowObj = Instantiate(Archer_LongDistanceAttackOb[0]);
             if (weaponManager.Weapondata.Type == Types.Bow)

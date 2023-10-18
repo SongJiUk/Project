@@ -25,14 +25,6 @@ public enum EquipmentType
 }
 
 [Serializable]
-public enum PlayerJobs
-{
-    Warrior = 0,
-    Mage,
-    Archer
-}
-
-[Serializable]
 public enum EffectCastType
 {
     None,

@@ -28,7 +28,7 @@ public class PlayerSlotScene : MonoBehaviour
             {
                 playerInfos[i].SetActive(true);
                 playerName_txt[i].text = $"{DataManager.GetInstance.PLAYER_ID(i)}";
-                playerJob_txt[i].text = $"{DataManager.GetInstance.PLAYERJOBS(i).ToString()}";
+                playerJob_txt[i].text = $"{DataManager.GetInstance.UnitCodes(i).ToString()}";
                 playerLevel_txt[i].text = $"{DataManager.GetInstance.PLAYER_LEVEL(i)}";
             }
             else

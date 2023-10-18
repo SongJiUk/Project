@@ -13,14 +13,14 @@ public class DataManager : Singleton<DataManager>
 
 */
     public static int SlotCount = 3;
-    Dictionary<int, PlayerJobs> SlotJob = new Dictionary<int, PlayerJobs>();
+    Dictionary<int, UnitCode> SlotJob = new Dictionary<int, UnitCode>();
 
-    public PlayerJobs PLAYERJOBS(int _slot)
+    public UnitCode UnitCodes(int _slot)
     {
         return SlotJob[_slot];
     }
 
-    public void PLAYERJOBS(int _slot, PlayerJobs _vaule)
+    public void UnitCodes(int _slot, UnitCode _vaule)
     {
         if(!SlotJob.ContainsKey(_slot))
         {
@@ -192,7 +192,6 @@ public class DataManager : Singleton<DataManager>
     #endregion
     int Slot_Num;
 
-    PlayerJobs[] playerJobs;
     string[] player_id = new string[SlotCount];
     int[] player_level = new int[SlotCount];
     float[] player_exp = new float[SlotCount];
@@ -281,7 +280,7 @@ public class DataManager : Singleton<DataManager>
 
             if (isSlotOpen[i])
             {
-                SlotJob[i] = (PlayerJobs)PlayerPrefs.GetInt("SlotJob" + i);
+                SlotJob[i] = (UnitCode)PlayerPrefs.GetInt("SlotJob" + i);
 
                 player_level[i] = PlayerPrefs.GetInt("player_level" + i);
                 player_exp[i] = PlayerPrefs.GetFloat("player_exp" + i);

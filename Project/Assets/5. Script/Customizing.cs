@@ -26,8 +26,8 @@ public class Customizing : MonoBehaviour
     [SerializeField] GameObject NextBtn;
 
     [SerializeField] GameObject CreateBtn;
-
-
+    [SerializeField] GameObject SelectName_Popup;
+    [SerializeField] CustomizingScene customizingscene;
     Animator Selectanim;
     int RandNum;
 
@@ -426,6 +426,7 @@ public class Customizing : MonoBehaviour
         NextBtn.SetActive(true);
 
         CreateBtn.SetActive(false);
+
     }   
 
     public void Select_Over_Appearance()
@@ -436,12 +437,17 @@ public class Customizing : MonoBehaviour
         NextBtn.SetActive(false);
 
         CreateBtn.SetActive(true);
+
+    }
+
+    public void SelectNamePopupOn()
+    {
+        SelectName_Popup.SetActive(true);
     }
 
     public void CreateCharacter()
     {
-
-        switch(GenderNum)
+        switch (GenderNum)
         {
             //female
             case 0:
@@ -453,7 +459,7 @@ public class Customizing : MonoBehaviour
                 DataManager.GetInstance.FEMALE_PANTSNUM(DataManager.GetInstance.SLOT_NUM, Female_PantsNum);
                 break;
 
-                //male
+            //male
             case 1:
                 DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM, GenderNum);
                 DataManager.GetInstance.HAIRNUM(DataManager.GetInstance.SLOT_NUM, HairNum);
@@ -467,8 +473,7 @@ public class Customizing : MonoBehaviour
 
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
 
-        var operation = SceneManager.LoadSceneAsync("4_Song");
-        operation.allowSceneActivation = true;
+
     }
     #endregion
 }

@@ -109,15 +109,15 @@ public class WeaponManager : Singleton<WeaponManager>
         if(handWeapon != null) EquipWeapon_hand = handWeapon;
 
 
-        if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+        if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
         {
             WarriorEquipmentChange();
         }
-        else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
         {
             MageEquipmentChange();
         }
-        else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
         {
             ArcherEquipmentChange();
         }
@@ -196,7 +196,7 @@ public class WeaponManager : Singleton<WeaponManager>
 
     public void UnEquip()
     {
-        if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+        if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
         {
             if (EquipWeapon_back != null) EquipWeapon_back.SetActive(!isEquip);
             if (EquipWeapon_hand != null) EquipWeapon_hand.SetActive(isEquip);
@@ -215,7 +215,7 @@ public class WeaponManager : Singleton<WeaponManager>
                 if (EquipShiled_hand != null) EquipShiled_hand.SetActive(false);
             }
         }
-        else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
         {
             if (EquipWeapon_hand != null) EquipWeapon_hand.SetActive(isEquip);
             if (B_handWeapon != null) B_handWeapon.SetActive(false);
@@ -231,7 +231,7 @@ public class WeaponManager : Singleton<WeaponManager>
                 if (EquipWeapon_back != null) EquipWeapon_back.SetActive(!isEquip);
             }
         }
-        else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
         {
             if (EquipWeapon_back != null) EquipWeapon_back.SetActive(!isEquip);
             if (EquipWeapon_hand != null) EquipWeapon_hand.SetActive(isEquip);
@@ -263,15 +263,15 @@ public class WeaponManager : Singleton<WeaponManager>
 
         if (Input.GetKeyDown(KeyCode.Alpha1))
         {
-            if(Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            if(Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
             }
-            else if(Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            else if(Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
             }
-            else if(Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            else if(Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("CrossBow_1"));
             }
@@ -283,16 +283,16 @@ public class WeaponManager : Singleton<WeaponManager>
 
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
-            if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"),
                     ItemManager.GetInstance.GetWeaponData("Shiled_1"));
             }
-            else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
             }
-            else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Bow_1"));
             }
@@ -305,17 +305,17 @@ public class WeaponManager : Singleton<WeaponManager>
 
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
-            if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("TwoHandSword_1"));
                 Player.GetInstance.ANIM.SetInteger("EquipNum", 3);
 
             }
-            else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
             {
 
             }
-            else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
             {
 
             }
@@ -325,17 +325,18 @@ public class WeaponManager : Singleton<WeaponManager>
 
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
-            if (Player.GetInstance.playerStat.unitCode == UnitCode.WARRIOR)
+            if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Spear_1"));
                 Player.GetInstance.ANIM.SetInteger("EquipNum", 4);
             }
-            else if (Player.GetInstance.playerStat.unitCode == UnitCode.MAGE)
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
             {
 
             }
-            else if (Player.GetInstance.playerStat.unitCode == UnitCode.ARCHER)
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
             {
+           
 
             }
             

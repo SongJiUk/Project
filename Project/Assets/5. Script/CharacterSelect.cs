@@ -47,9 +47,9 @@ public class CharacterSelect : MonoBehaviour
 
     public void SelectCharacter(int _num)
     {
-        PlayerJobs _jobs = (PlayerJobs)_num;
+        UnitCode _code = (UnitCode)_num;
         
-        DataManager.GetInstance.PLAYERJOBS(DataManager.GetInstance.SLOT_NUM, _jobs);
+        DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM, _code);
 
 
         var operation = SceneManager.LoadSceneAsync("3_Customizing");
