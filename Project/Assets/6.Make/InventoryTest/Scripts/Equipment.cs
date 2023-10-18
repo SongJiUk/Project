@@ -26,10 +26,12 @@ public class Equipment : MonoBehaviour
     [SerializeField]
     private Inventory _inventory;
 
-    private Item Weapon;
+    private Item WeaponL;
     private Item Head;
     private Item Top;
     private Item Bottom;
+    private Item Shoes;
+    private Item WeaponR;
 
     public Item EquipmentItem(EquipmentItem A)
     {
@@ -78,17 +80,45 @@ public class Equipment : MonoBehaviour
             }
             UpdateSlot(3);
         }
-        else
+        else if (A.EquipmentData.Type == Types.Shoes)
         {
-            if (Weapon != null)
+            if (Shoes != null)
             {
-                returnItem = Weapon;
-                Weapon = A;
+                returnItem = Shoes;
+                Shoes = A;
             }
             else
             {
                 returnItem = null;
-                Weapon = A;
+                Shoes = A;
+            }
+            UpdateSlot(4);
+        }
+        else if (A.EquipmentData.Type == Types.Bottom)
+        {
+            if (Bottom != null)
+            {
+                returnItem = Bottom;
+                Bottom = A;
+            }
+            else
+            {
+                returnItem = null;
+                Bottom = A;
+            }
+            UpdateSlot(5);
+        }
+        else
+        {
+            if (WeaponL != null)
+            {
+                returnItem = WeaponL;
+                WeaponL = A;
+            }
+            else
+            {
+                returnItem = null;
+                WeaponL = A;
             }
             UpdateSlot(0);
         }
@@ -101,7 +131,7 @@ public class Equipment : MonoBehaviour
         Item item = null;
         if (index == 0)
         {
-            item = Weapon;
+            item = WeaponL;
         }
         else if (index == 1)
         {
@@ -114,6 +144,14 @@ public class Equipment : MonoBehaviour
         else if (index == 3)
         {
             item = Bottom;
+        }
+        else if (index == 4)
+        {
+            item = Shoes;
+        }
+        else if (index == 5)
+        {
+            item = WeaponR;
         }
         else
         {
@@ -214,14 +252,17 @@ public class Equipment : MonoBehaviour
     public void Remove(int index)
     {
         if (index == 0)
-            Weapon = null;
+            WeaponL = null;
         else if (index == 1)
             Head = null;
         else if (index == 2)
             Top = null;
         else if (index == 3)
             Bottom = null;
-
+        else if (index == 4)
+            Shoes = null;
+        else if (index == 5)
+            WeaponR = null;
         _equipmentUI.RemoveItem(index);
     }
 

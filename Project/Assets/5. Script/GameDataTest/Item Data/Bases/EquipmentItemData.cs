@@ -8,6 +8,7 @@ public enum Types
     Head = 0,    
     Top = 1,    
     Bottom = 2,
+    Shoes = 3,
     Hand,
     Dagger,
     OneHandMace,
