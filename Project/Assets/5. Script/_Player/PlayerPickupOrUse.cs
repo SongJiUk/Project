@@ -22,8 +22,8 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     void Awake()
     {
-        _playeraround.SettingStart(this);
-        _pickUpUI.SettingStart(this);
+        if(_playeraround != null) _playeraround.SettingStart(this);
+        if(_pickUpUI!= null) _pickUpUI.SettingStart(this);
     }
 
     public void AroundIn(GameObject item)
