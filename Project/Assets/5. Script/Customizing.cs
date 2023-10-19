@@ -500,5 +500,10 @@ public class Customizing : MonoBehaviour
 
     }
     #endregion
+
+    public void Helmate(ItemData item)
+    {
+
+    }
 }
 

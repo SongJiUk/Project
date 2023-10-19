@@ -26,6 +26,8 @@ public class Equipment : MonoBehaviour
     private InventoryUI _inventoryUI;
     [SerializeField]
     private Inventory _inventory;
+    [SerializeField]
+    private Customizing _customizingEquipment;
 
     private Item WeaponL;
     private Item Head;
@@ -273,6 +275,8 @@ public class Equipment : MonoBehaviour
     public void Swap(int indexA, int indexB)
     {
         _inventory.SwapE(indexA, indexB);
+        UpdateSlotEquipment(indexA);
+        UpdateSlotEquipment(indexA);
     }
 
     /// <summary> 해당 슬롯의 아이템 사용 </summary>
@@ -283,6 +287,26 @@ public class Equipment : MonoBehaviour
             _inventory.Add(slot(index).Data, 1);
             Remove(index);
             UpdateSlot(index);
+            UpdateSlotEquipment(index);
+        }
+    }
+
+    public void UpdateSlotEquipment(int index) 
+    { 
+        if(index==0)
+        {
+
+        }
+        else if(index==3)
+        {
+            _customizingEquipment.Helmate(GetItemData(index));
+        }
+        else
+        {
+            if(true)
+            {
+                
+            }
         }
     }
 }
