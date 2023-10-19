@@ -19,6 +19,8 @@ public class Customizing : MonoBehaviour
     public List<GameObject> male_Pants = new List<GameObject>();
 
     [Header("캐릭터 장비(갑옷 등)")]
+    public List<GameObject> Helmats = new List<GameObject>();
+
     public GameObject Female_Default_Body;
     public GameObject Female_Default_Hand;
     public GameObject Female_Default_Shoes;
