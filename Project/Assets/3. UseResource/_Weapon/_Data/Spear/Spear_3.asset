@@ -18,7 +18,7 @@ MonoBehaviour:
   _tooltip: 
   _iconSprite: {fileID: 0}
   _dropItemPrefab: {fileID: 0}
-  Type: 9
+  Type: 10
   ClassPrivateItem: 0
   _EquipmentNum: 4
   _EquipmentLevel: 1

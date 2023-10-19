@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 0e623789235554a11b73802653b3b06e, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -490,14 +490,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79f578e03eade124e98c65ad4bbda897, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  guids:
-  - a2712f35-31c8-47dd-888b-db693b2e8773
-  - b78afff8-f8cd-41d0-b63c-67032d7839ab
-  - e5e29cf9-5c60-47b4-a131-b395c2f9fe3d
-  objects:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  guids: []
+  objects: []
 --- !u!4 &476035904
 Transform:
   m_ObjectHideFlags: 0
@@ -983,6 +977,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4005077195242232, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5479403125759625490, guid: db263f14b2b6b384dade4dd3792b669e, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

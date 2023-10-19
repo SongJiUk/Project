@@ -77,6 +77,10 @@ public class Player : Singleton<Player>
     private void PlayerSetting()
     {
         customizing.InitPlayer(DataManager.GetInstance.SLOT_NUM);
+
+        //애니메이션 변경
+        var unitcode = DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM);
+        ANIM.runtimeAnimatorController = PlayerJob[(int)unitcode];
     }
 
     private void OnTriggerEnter(Collider other)

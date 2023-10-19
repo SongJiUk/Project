@@ -21,9 +21,6 @@ public class DataManager : Singleton<DataManager>
         set => Slot_Num = value;
     }
 
-   
-
-
     private void Start()
     {
         DontDestroyOnLoad(gameObject);
