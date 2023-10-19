@@ -177,6 +177,7 @@ MonoBehaviour:
   _highlightImage: {fileID: 6760252696082473462}
   _highlightAlpha: 0.5
   _highlightFadeDuration: 0.2
+  _currentSetSlotOption: 0
 --- !u!1 &6760252695982924217
 GameObject:
   m_ObjectHideFlags: 0

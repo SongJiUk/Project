@@ -7,9 +7,10 @@ public enum Types
 {
     Head = 0,    
     Top = 1,    
-    Bottom = 2,
+    Pants = 2,
     Shoes = 3,
-    Hand,
+    Hand = 4,
+    HandAttack,
     Dagger,
     OneHandMace,
     TwoHandSword,
