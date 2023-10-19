@@ -24,9 +24,13 @@ public class PlayerPickupOrUse : MonoBehaviour
     {
         if (_playeraround != null) _playeraround.SettingStart(this);
         else _playeraround = GetComponent<PlayerAround>();
-        if (_pickUpUI!= null) _pickUpUI.SettingStart(this);
+
+        if (_pickUpUI != null) _pickUpUI.SettingStart(this);
         else _pickUpUI = GetComponent<PickUpUI>();
         if (_inventory == null) _inventory = GetComponent<Inventory>();
+
+        if (_pickUpUI != null) _pickUpUI.SettingStart(this);
+
     }
 
     public void AroundIn(GameObject item)
@@ -65,9 +69,9 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     }
 
-    private void CheckAround() 
+    private void CheckAround()
     {
-        if (AroundItemList.Count==0)
+        if (AroundItemList.Count == 0)
         {
             Around = false;
         }
@@ -97,7 +101,7 @@ public class PlayerPickupOrUse : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.LeftControl))
             {
-               
+
             }
             else
             {
@@ -107,7 +111,7 @@ public class PlayerPickupOrUse : MonoBehaviour
         }
         numList = Mathf.Clamp(numList, 0, AroundItemList.Count - 1);
     }
-    
+
     private void Update()
     {
         CheckAround();
