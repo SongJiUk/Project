@@ -17,6 +17,7 @@ public class PreviewCharacter : MonoBehaviour
     Quaternion OriginRot = new Quaternion(0f, 180f, 0f, 0f);
     Quaternion SkillRot = new Quaternion(0f, 0f, 0f, 0f);
 
+    [SerializeField] CharacterSelect CharacterSelect;
     Animator anim;
     int num;
     private void Start()
@@ -28,7 +29,6 @@ public class PreviewCharacter : MonoBehaviour
     {
         num = _num;
         anim.SetInteger("ClickNum", _num);
-        transform.rotation = SkillRot;
     }
 
 
@@ -48,8 +48,9 @@ public class PreviewCharacter : MonoBehaviour
     public void UnEquip()
     {
         anim.SetInteger("ClickNum", 0);
-        transform.rotation = OriginRot;
         WeaponEquipAndUnEquip(false);
+
+        CharacterSelect.isShowSkill = false;
     }
 
 
@@ -218,8 +219,8 @@ public class PreviewCharacter : MonoBehaviour
     IEnumerator CastSkill(EffectCastType _markerNum = EffectCastType.None,
         int _effectNum = 999)
     {
- 
-        var forwardCamera = Vector3.zero;
+
+        var forwardCamera = transform.forward;
         while (true)
         {
             yield return null;
