@@ -14,20 +14,14 @@ public class DataManager : Singleton<DataManager>
 */
     public static int SlotCount = 3;
     Dictionary<int, UnitCode> SlotJob = new Dictionary<int, UnitCode>();
-
-    public UnitCode UnitCodes(int _slot)
+    int Slot_Num;
+    public int SLOT_NUM
     {
-        return SlotJob[_slot];
+        get => Slot_Num;
+        set => Slot_Num = value;
     }
 
-    public void UnitCodes(int _slot, UnitCode _vaule)
-    {
-        if(!SlotJob.ContainsKey(_slot))
-        {
-            SlotJob.Add(_slot, _vaule);
-        }
-
-    }
+   
 
 
     private void Start()
@@ -190,18 +184,32 @@ public class DataManager : Singleton<DataManager>
     }
 
     #endregion
-    int Slot_Num;
 
+    #region 플레이어가 장착하고 있는 장비 및 인벤토리
+
+    #endregion
+
+    
+
+    #region 플레이어 관련
     string[] player_id = new string[SlotCount];
     int[] player_level = new int[SlotCount];
     float[] player_exp = new float[SlotCount];
-    
-    public int SLOT_NUM
+
+
+    public UnitCode UnitCodes(int _slot)
     {
-        get => Slot_Num;
-        set => Slot_Num = value;
+        return SlotJob[_slot];
     }
 
+    public void UnitCodes(int _slot, UnitCode _vaule)
+    {
+        if (!SlotJob.ContainsKey(_slot))
+        {
+            SlotJob.Add(_slot, _vaule);
+        }
+
+    }
 
     public string PLAYER_ID(int _slot)
     {
@@ -232,8 +240,8 @@ public class DataManager : Singleton<DataManager>
     {
         player_exp[_slot] = value;
     }
+    #endregion
 
-    
 
 
     public void SaveData(int _index)

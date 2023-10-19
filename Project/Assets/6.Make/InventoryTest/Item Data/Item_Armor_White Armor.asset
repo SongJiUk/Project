@@ -12,11 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
   m_Name: Item_Armor_White Armor
   m_EditorClassIdentifier: 
-  _id: 4
+  _rating: 0
+  _itemcode: 0
   _name: "\uD558\uC580 \uAC11\uC637"
   _tooltip: "\uD558\uC580 \uAC11\uC637\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: a1f270ff46445564e9afa40d0d9574db, type: 3}
   _dropItemPrefab: {fileID: 0}
   Type: 1
+  ClassPrivateItem: 0
+  _EquipmentNum: 0
+  _EquipmentLevel: 1
   _maxDurability: 150
   _defence: 10

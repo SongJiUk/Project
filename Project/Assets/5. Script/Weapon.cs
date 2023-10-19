@@ -25,4 +25,9 @@ public class Weapon : MonoBehaviour
                 transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
 
     }
+
+    public WeaponItemData UseItemData()
+    {
+        return data;
+    }
 }

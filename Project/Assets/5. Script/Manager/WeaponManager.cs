@@ -90,7 +90,6 @@ public class WeaponManager : Singleton<WeaponManager>
         Weapondata = _weaponData;
         ShiledData = _shiledData;
 
-
         handWeapon = null;
         backWeapon = null;
 

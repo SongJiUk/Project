@@ -18,6 +18,26 @@ public class Customizing : MonoBehaviour
     public List<GameObject> male_Top = new List<GameObject>();
     public List<GameObject> male_Pants = new List<GameObject>();
 
+    [Header("캐릭터 장비(갑옷 등)")]
+    public GameObject Female_Default_Body;
+    public GameObject Female_Default_Hand;
+    public GameObject Female_Default_Shoes;
+    public List<GameObject> Female_Helmat = new List<GameObject>();
+    public List<GameObject> Female_Armor_Top = new List<GameObject>();
+    public List<GameObject> Female_Armor_Bottom = new List<GameObject>();
+    public List<GameObject> Female_hand = new List<GameObject>();
+    public List<GameObject> Female_shoes = new List<GameObject>();
+
+    public GameObject male_Default_Body;
+    public GameObject male_Default_Hand;
+    public GameObject male_Default_Shoes;
+    public List<GameObject> male_Helmat = new List<GameObject>();
+    public List<GameObject> male_Armor_Top = new List<GameObject>();
+    public List<GameObject> male_Armor_Bottom = new List<GameObject>();
+    public List<GameObject> male_hand = new List<GameObject>();
+    public List<GameObject> male_Shoes = new List<GameObject>();
+
+
     [Header("UI 버튼")]
     [SerializeField] GameObject AppearanceOBJ;
     [SerializeField] GameObject ClothesOBJ;
@@ -444,6 +464,8 @@ public class Customizing : MonoBehaviour
     {
         SelectName_Popup.SetActive(true);
     }
+
+
 
     public void CreateCharacter()
     {
