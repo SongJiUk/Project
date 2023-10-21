@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class PlayerEquipmentItemData : MonoBehaviour
 {
-    [SerializeField] public bool _male;
+    [SerializeField] private bool _male;
 
-    public Types _type;
+    [SerializeField] private Types _type;
 
-    public ClassPrivateItems _classPrivateItems;
+    [SerializeField] private ClassPrivateItems _classPrivateItems;
 
-    public int _num;
+    [SerializeField] private int _num;
 
+    public bool ReturnMale()
+    {
+        return _male;
+    }
 
+    public Types ReturnType()
+    {
+        return _type;
+    }
 
-    
+    public ClassPrivateItems ReturnClassPrivateItems()
+    {
+        return _classPrivateItems;
+    }
+
+    public int ReturnNum()
+    {
+        return _num;
+    }
+
+    public void dfdfdf()
+    {
+        
+    }
 }

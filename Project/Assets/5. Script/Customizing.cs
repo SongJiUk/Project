@@ -501,9 +501,10 @@ public class Customizing : MonoBehaviour
     }
     #endregion
 
-    public void Helmate(ItemData item)
-    {
 
-    }
+
+    #region 캐릭터 장비아이템 변경
+
+    #endregion
 }
 

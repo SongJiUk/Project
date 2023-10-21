@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using static UnityEditor.Experimental.GraphView.Port;
 using static UnityEditor.Progress;
+using static UnityEngine.Rendering.VolumeComponent;
 
 public class Equipment : MonoBehaviour
 {
@@ -184,7 +185,7 @@ public class Equipment : MonoBehaviour
         {
             RemoveIcon(index);
         }
-
+        UpdateSlotEquipment(index);
     }
     // 로컬 : 아이콘 제거하기
     void RemoveIcon(int index)
@@ -276,7 +277,6 @@ public class Equipment : MonoBehaviour
     {
         _inventory.SwapE(indexA, indexB);
         UpdateSlotEquipment(indexA);
-        UpdateSlotEquipment(indexA);
     }
 
     /// <summary> 해당 슬롯의 아이템 사용 </summary>
@@ -299,7 +299,9 @@ public class Equipment : MonoBehaviour
         }
         else if(index==3)
         {
+            Debug.Log("sadgsag");
             _customizingEquipment.Helmate(GetItemData(index));
+            
         }
         else
         {
