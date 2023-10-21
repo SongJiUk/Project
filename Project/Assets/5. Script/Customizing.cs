@@ -506,5 +506,26 @@ public class Customizing : MonoBehaviour
     #region 캐릭터 장비아이템 변경
 
     #endregion
+    public void Helmate(ItemData item)
+    {
+        if (item is EquipmentItemData NowItem)
+        {
+            //NowItem._EquipmentNum;
+            for (int i = 0; i < Helmats.Count; i++)
+            {
+                if (NowItem._EquipmentNum == Helmats[i].GetComponent<PlayerEquipmentItemData>().ReturnNum())
+                {
+                    Helmats[i].SetActive(true);
+                }
+                else
+                {
+                    Helmats[i].SetActive(false);
+                }
+            }
+        }
+
+
+
+    }
 }
 
