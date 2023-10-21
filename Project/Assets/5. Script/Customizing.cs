@@ -65,6 +65,8 @@ public class Customizing : MonoBehaviour
     int male_TopNum;
     int male_PantsNum;
 
+    bool male = true;
+
     List<int> playerInfo = new List<int>();
     Dictionary<string, List<int>> PlayerInfoDic = new Dictionary<string, List<int>>();
     Coroutine myCoruotine;
@@ -510,22 +512,56 @@ public class Customizing : MonoBehaviour
     {
         if (item is EquipmentItemData NowItem)
         {
-            //NowItem._EquipmentNum;
-            for (int i = 0; i < Helmats.Count; i++)
+            List<GameObject> NowList = new List<GameObject>();
+            if (NowItem.Type ==Types.Head)
             {
-                if (NowItem._EquipmentNum == Helmats[i].GetComponent<PlayerEquipmentItemData>().ReturnNum())
+                NowList = Helmats;
+            }
+            else if(male)
+            {
+                if (NowItem.Type == Types.Top)
                 {
-                    Helmats[i].SetActive(true);
+                    NowList = Helmats;
+                }
+                else if (NowItem.Type == Types.Pants)
+                {
+
+                }
+                else if (NowItem.Type == Types.Hand)
+                {
+
+                }
+                else if(NowItem.Type == Types.Shoes)
+                {
+
+                }
+            }
+            else if(!male)
+            {
+
+            }
+
+            for (int i = 0; i < NowList.Count; i++)
+            {
+                if (NowItem._EquipmentNum == NowList[i].GetComponent<PlayerEquipmentItemData>().ReturnNum())
+                {
+                    NowList[i].SetActive(true);
                 }
                 else
                 {
-                    Helmats[i].SetActive(false);
+                    NowList[i].SetActive(false);
                 }
             }
         }
 
 
+        
+
+
+
 
     }
+
+
 }
 
