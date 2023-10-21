@@ -5053,7 +5053,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c427d18e4d1b0421fadef6a901e45461, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 29aff765d6fa144a4b3e383d7c062859, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9024,7 +9024,7 @@ Canvas:
   m_GameObject: {fileID: 1642634377}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
+  m_RenderMode: 1
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
@@ -85906,6 +85906,23 @@ MonoBehaviour:
   - {fileID: 1495886835061559}
   - {fileID: 1018695554239131}
   - {fileID: 1833196119381257}
+  Helmats: []
+  Female_Default_Body: {fileID: 0}
+  Female_Default_Hand: {fileID: 0}
+  Female_Default_Shoes: {fileID: 0}
+  Female_Helmat: []
+  Female_Armor_Top: []
+  Female_Armor_Bottom: []
+  Female_hand: []
+  Female_shoes: []
+  male_Default_Body: {fileID: 0}
+  male_Default_Hand: {fileID: 0}
+  male_Default_Shoes: {fileID: 0}
+  male_Helmat: []
+  male_Armor_Top: []
+  male_Armor_Bottom: []
+  male_hand: []
+  male_Shoes: []
   AppearanceOBJ: {fileID: 433434532}
   ClothesOBJ: {fileID: 1266301906}
   BackBtn: {fileID: 548795915}

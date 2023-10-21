@@ -500,5 +500,11 @@ public class Customizing : MonoBehaviour
 
     }
     #endregion
+
+
+
+    #region 캐릭터 장비아이템 변경
+
+    #endregion
 }
 
