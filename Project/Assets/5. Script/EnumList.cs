@@ -37,3 +37,11 @@ public enum DataType
     Quest,
     Enemy
 }
+
+[Serializable]
+public enum EquipmmentGender
+{
+    Female,
+    male
+}
+

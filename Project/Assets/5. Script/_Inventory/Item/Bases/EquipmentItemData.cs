@@ -42,6 +42,8 @@ public abstract class EquipmentItemData : ItemData
 
     public ClassPrivateItems ClassPrivateItem;
 
+    public EquipmmentGender Gender;
+
     [SerializeField] public int _EquipmentNum = 0;
 
     [SerializeField] public int _EquipmentLevel = 1;

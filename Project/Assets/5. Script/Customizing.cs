@@ -24,7 +24,6 @@ public class Customizing : MonoBehaviour
     public GameObject Female_Default_Body;
     public GameObject Female_Default_Hand;
     public GameObject Female_Default_Shoes;
-    public List<GameObject> Female_Helmat = new List<GameObject>();
     public List<GameObject> Female_Armor_Top = new List<GameObject>();
     public List<GameObject> Female_Armor_Bottom = new List<GameObject>();
     public List<GameObject> Female_hand = new List<GameObject>();
@@ -33,7 +32,6 @@ public class Customizing : MonoBehaviour
     public GameObject male_Default_Body;
     public GameObject male_Default_Hand;
     public GameObject male_Default_Shoes;
-    public List<GameObject> male_Helmat = new List<GameObject>();
     public List<GameObject> male_Armor_Top = new List<GameObject>();
     public List<GameObject> male_Armor_Bottom = new List<GameObject>();
     public List<GameObject> male_hand = new List<GameObject>();
@@ -507,8 +505,22 @@ public class Customizing : MonoBehaviour
 
     #region 캐릭터 장비아이템 변경
 
+    public void ChangeEquipmentItem(EquipmentItemData _equipmnetItem)
+    {                                                                                                                                       
+        switch(_equipmnetItem.Gender)
+        {
+            case EquipmmentGender.Female:
+
+                
+                break;
+
+            case EquipmmentGender.male:
+
+                break;
+        }
+    }
     #endregion
-    public void Helmate(ItemData item)
+    public void Helmate(ItemData item) 
     {
         if (item is EquipmentItemData NowItem)
         {
