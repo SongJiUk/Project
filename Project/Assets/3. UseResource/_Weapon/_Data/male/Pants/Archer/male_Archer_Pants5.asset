@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: male_Archer_Pants5
   m_EditorClassIdentifier: 
   _rating: 0
-  _itemcode: 0
+  _itemcode: 2224
   _name: 
   _tooltip: 
   _iconSprite: {fileID: 0}

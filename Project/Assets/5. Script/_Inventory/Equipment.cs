@@ -13,7 +13,7 @@ public class Equipment : MonoBehaviour
         *                               Public Properties
         ***********************************************************************/
     #region .
-    /// <summary> 아이템 수용 한도 </summary>
+    /// <summary> ?????? ???? ???? </summary>
     public int Capacity { get; private set; }
 
     #endregion
@@ -22,7 +22,7 @@ public class Equipment : MonoBehaviour
        ***********************************************************************/
 
     [SerializeField]
-    private EquipmentUI _equipmentUI; // 연결된 장비창
+    private EquipmentUI _equipmentUI; // ?????? ??????
     [SerializeField]
     private InventoryUI _inventoryUI;
     [SerializeField]
@@ -172,22 +172,22 @@ public class Equipment : MonoBehaviour
         //if (!IsValidIndex(index)) return;
         Item item = slot(index);
 
-        // 1. 아이템이 슬롯에 존재하는 경우
+        // 1. ???????? ?????? ???????? ????
         if (item != null)
         {
-            // 아이콘 등록
+            // ?????? ????
             _equipmentUI.SetItemIcon(index, item.Data.IconSprite);
-            // 슬롯 필터 상태 업데이트
+            // ???? ???? ???? ????????
             _equipmentUI.UpdateSlotFilterState(index, item.Data);
         }
-        // 2. 빈 슬롯인 경우 : 아이콘 제거
+        // 2. ?? ?????? ???? : ?????? ????
         else
         {
             RemoveIcon(index);
         }
         UpdateSlotEquipment(index);
     }
-    // 로컬 : 아이콘 제거하기
+    // ???? : ?????? ????????
     void RemoveIcon(int index)
     {
         _equipmentUI.RemoveItem(index);
@@ -214,15 +214,15 @@ public class Equipment : MonoBehaviour
     #region 
 
     /// <summary> 
-    /// 해당 슬롯의 현재 아이템 개수 리턴
-    /// <para/> - 잘못된 인덱스 : -1 리턴
-    /// <para/> - 빈 슬롯 : 0 리턴
-    /// <para/> - 셀 수 없는 아이템 : 1 리턴
+    /// ???? ?????? ???? ?????? ???? ????
+    /// <para/> - ?????? ?????? : -1 ????
+    /// <para/> - ?? ???? : 0 ????
+    /// <para/> - ?? ?? ???? ?????? : 1 ????
     /// </summary>
 
 
 
-    /// <summary> 해당 슬롯의 아이템 정보 리턴 </summary>
+    /// <summary> ???? ?????? ?????? ???? ???? </summary>
     public ItemData GetItemData(int index)
     {
         if (slot(index) == null) return null;
@@ -230,7 +230,7 @@ public class Equipment : MonoBehaviour
         return slot(index).Data;
     }
 
-    /// <summary> 해당 슬롯의 아이템 이름 리턴 </summary>
+    /// <summary> ???? ?????? ?????? ???? ???? </summary>
     public string GetItemName(int index)
     {
         if (slot(index) == null) return "";
@@ -242,19 +242,19 @@ public class Equipment : MonoBehaviour
        *                               Public Methods
        ***********************************************************************/
 
-    /// <summary> 인벤토리 UI 연결 </summary>
+    /// <summary> ???????? UI ???? </summary>
     public void ConnectUI(EquipmentUI equipmentUI)
     {
         _equipmentUI = equipmentUI;
         _equipmentUI.SetEquipmentReference(this);
     }
 
-    /// <summary> 인벤토리에 아이템 추가
-    /// <para/> 넣는 데 실패한 잉여 아이템 개수 리턴
-    /// <para/> 리턴이 0이면 넣는데 모두 성공했다는 의미
+    /// <summary> ?????????? ?????? ????
+    /// <para/> ???? ?? ?????? ???? ?????? ???? ????
+    /// <para/> ?????? 0???? ?????? ???? ?????????? ????
     /// </summary>
 
-    /// <summary> 해당 슬롯의 아이템 제거 </summary>
+    /// <summary> ???? ?????? ?????? ???? </summary>
     public void Remove(int index)
     {
         if (index == 0)
@@ -272,14 +272,14 @@ public class Equipment : MonoBehaviour
         _equipmentUI.RemoveItem(index);
     }
 
-    /// <summary> 두 인덱스의 아이템 위치를 서로 교체 </summary>
+    /// <summary> ?? ???????? ?????? ?????? ???? ???? </summary>
     public void Swap(int indexA, int indexB)
     {
         _inventory.SwapE(indexA, indexB);
         UpdateSlotEquipment(indexA);
     }
 
-    /// <summary> 해당 슬롯의 아이템 사용 </summary>
+    /// <summary> ???? ?????? ?????? ???? </summary>
     public void Use(int index)
     {
         if (slot(index) is EquipmentItem uItem2)
@@ -300,7 +300,7 @@ public class Equipment : MonoBehaviour
         else if(index==3)
         {
             Debug.Log("sadgsag");
-            _customizingEquipment.Helmate(GetItemData(index));
+            //_customizingEquipment.Helmate(GetItemData(index));
             
         }
         else

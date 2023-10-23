@@ -55,23 +55,23 @@ public class Player : Singleton<Player>
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Alpha9))
-        {
-            anim.runtimeAnimatorController = PlayerJob[0];
-            playerStat.InitStat(UnitCode.WARRIOR);
-        }
+        //if(Input.GetKeyDown(KeyCode.Alpha9))
+        //{
+        //    anim.runtimeAnimatorController = PlayerJob[0];
+        //    playerStat.InitStat(UnitCode.WARRIOR);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-        {
-            anim.runtimeAnimatorController = PlayerJob[1];
-            playerStat.InitStat(UnitCode.MAGE);
-        }
+        //if (Input.GetKeyDown(KeyCode.Alpha8))
+        //{
+        //    anim.runtimeAnimatorController = PlayerJob[1];
+        //    playerStat.InitStat(UnitCode.MAGE);
+        //}
 
-        if(Input.GetKeyDown(KeyCode.Alpha7))
-        {
-            anim.runtimeAnimatorController = PlayerJob[2];
-            playerStat.InitStat(UnitCode.ARCHER);
-        }
+        //if(Input.GetKeyDown(KeyCode.Alpha7))
+        //{
+        //    anim.runtimeAnimatorController = PlayerJob[2];
+        //    playerStat.InitStat(UnitCode.ARCHER);
+        //}
     }
 
     private void PlayerSetting()

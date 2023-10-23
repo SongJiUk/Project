@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class EquipMentItemInfo : MonoBehaviour
 {
-    [SerializeField] EquipmentItemData data;
+    [SerializeField] ArmorItemData data;
 
-    public EquipmentItemData DATAS { get { return data; } }
+    public ArmorItemData DATAS { get { return data; } }
 
     void Start()
     {

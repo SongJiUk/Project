@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: male_Archer_Armor3
   m_EditorClassIdentifier: 
   _rating: 0
-  _itemcode: 0
+  _itemcode: 2212
   _name: 
   _tooltip: 
   _iconSprite: {fileID: 0}

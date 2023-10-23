@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Female_Mage_Armor2
   m_EditorClassIdentifier: 
   _rating: 0
-  _itemcode: 0
+  _itemcode: 1111
   _name: 
   _tooltip: 
   _iconSprite: {fileID: 0}

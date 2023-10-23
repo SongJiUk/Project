@@ -39,6 +39,13 @@ public enum DataType
 }
 
 [Serializable]
+public enum EGender
+{
+    Female,
+    male
+}
+
+[Serializable]
 public enum EquipmmentGender
 {
     Female = 0,
