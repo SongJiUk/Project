@@ -5,17 +5,17 @@ using UnityEngine.UI;
 
 public class HPBar : MonoBehaviour
 {
-    public Transform player;
-    public Slider hpBar;
-    public Text hptext;
-    public float maxHP;
-    public float currentHp;
 
-    public GameObject HpLineFolder;
-    float unitHp = 200f;
+    [SerializeField] Slider hpBar;
+    [SerializeField] Slider hpBarfollow;
+    int MaxHp = 0;
+    int NowHp = 0;
+    float value = 0;
+
+
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         
     }
@@ -23,19 +23,58 @@ public class HPBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.position = player.position;
-        hpBar.value = currentHp / maxHP;
-        hptext.text = currentHp + "/" + maxHP;
+        if(NowHp==0|| MaxHp==0)
+        {
+            value = 0;
+        }
+        else
+        {
+            value = ((float)NowHp / (float)MaxHp);
+        }
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            MaxHp = 100;
+            NowHp = MaxHp;
+            SetHpBar();
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GetDamage(10);
+        }
+
     }
 
-    public void GetHpBoost()
+
+
+    public void GetDamage(int damage)
     {
-        float scaleX = (1000f / unitHp) / (maxHP / unitHp);
-        HpLineFolder.GetComponent<HorizontalLayoutGroup>().gameObject.SetActive(false);
-        foreach (Transform child in HpLineFolder.transform)
+        NowHp -= damage;
+        if(NowHp<0)
         {
-            child.gameObject.transform.localScale = new Vector3(scaleX, 1, 1);
+            NowHp = 0;
         }
-        HpLineFolder.GetComponent<HorizontalLayoutGroup>().gameObject.SetActive(true);
+        SetHpBar();
     }
+
+    public void GetHeel(int heel)
+    {
+        NowHp += heel;
+        if (NowHp > MaxHp)
+        {
+            NowHp = MaxHp;
+        }
+        SetHpBar();
+    }
+
+    private void SetHpBar() 
+    {
+        hpBar.value = value;
+        Invoke("SetHpBarFollow",1f);
+    }
+    private void SetHpBarFollow()
+    {
+        hpBarfollow.value = value;
+    }
+
 }
