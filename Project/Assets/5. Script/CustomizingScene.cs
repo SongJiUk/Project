@@ -83,7 +83,7 @@ public class CustomizingScene : MonoBehaviour
         {
             DataManager.GetInstance.PLAYER_ID(DataManager.GetInstance.SLOT_NUM, playerName);
             customizing.CreateCharacter();
-            var operation = SceneManager.LoadSceneAsync("4_Song");
+            var operation = SceneManager.LoadSceneAsync("4_TownMap");
             operation.allowSceneActivation = true;
         }
         else RealUseName_Popup.SetActive(false);

@@ -76037,6 +76037,21 @@ MonoBehaviour:
   - {fileID: 1495886372211845}
   - {fileID: 1018697223214377}
   - {fileID: 1833196727913147}
+  Helmats: []
+  Female_Default_Body: {fileID: 0}
+  Female_Default_Hand: {fileID: 0}
+  Female_Default_Shoes: {fileID: 0}
+  Female_Armor_Top: []
+  Female_Armor_Bottom: []
+  Female_hand: []
+  Female_shoes: []
+  male_Default_Body: {fileID: 0}
+  male_Default_Hand: {fileID: 0}
+  male_Default_Shoes: {fileID: 0}
+  male_Armor_Top: []
+  male_Armor_Bottom: []
+  male_hand: []
+  male_Shoes: []
   AppearanceOBJ: {fileID: 0}
   ClothesOBJ: {fileID: 0}
   BackBtn: {fileID: 0}

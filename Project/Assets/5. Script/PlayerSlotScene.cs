@@ -82,7 +82,7 @@ public class PlayerSlotScene : MonoBehaviour
         if (_isanswer)
         {
             gameStartPopup.SetActive(false);
-            var operation = SceneManager.LoadSceneAsync("4_Song");
+            var operation = SceneManager.LoadSceneAsync("4_TownMap");
             operation.allowSceneActivation = true;
         }
         else
