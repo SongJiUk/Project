@@ -786,11 +786,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnemyHP: 50
   player: {fileID: 0}
-  detectionRange: 10
+  detectionRange: 70
   attackEffectPrefab: {fileID: 0}
   attackTime: 2.5
   attackRange: 1
   enemyID: 5
+  EXP: 0
 --- !u!65 &3751779048483840240
 BoxCollider:
   m_ObjectHideFlags: 0

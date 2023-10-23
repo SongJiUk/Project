@@ -11,6 +11,9 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     GameObject[] Enemy;
     Queue<GameObject> m_queue = new Queue<GameObject>();
 
+    [SerializeField]
+    Transform[] SpawnPoint;
+
     void Start()
     {
         instance = this;
@@ -19,7 +22,8 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         {
             for (int j = 0; j < 10; j++)
             {
-                GameObject t_object = Instantiate(Enemy[i], this.gameObject.transform);
+                int ran = Random.Range(0, Enemy.Length);
+                GameObject t_object = Instantiate(Enemy[ran], this.gameObject.transform);
                 m_queue.Enqueue(t_object);
                 t_object.SetActive(false);
             }
@@ -49,7 +53,8 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
             if (m_queue.Count != 0)
             {
                 GameObject t_object = GetQueue();
-                t_object.transform.position = gameObject.transform.position;
+                int ran = Random.Range(0, SpawnPoint.Length);
+                t_object.transform.position = SpawnPoint[ran].position;
             }
             yield return new WaitForSeconds(spwanTime);
         }

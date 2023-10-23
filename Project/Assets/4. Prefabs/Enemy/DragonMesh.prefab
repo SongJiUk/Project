@@ -643,11 +643,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxEnemyHP: 50
   player: {fileID: 0}
-  detectionRange: 13
+  detectionRange: 100
   attackEffectPrefab: {fileID: 100004, guid: 2a489509f13a8b24581cd3461743f726, type: 3}
   attackTime: 4
   attackRange: 3
   enemyID: 3
+  EXP: 0
 --- !u!114 &1609474332794069831
 MonoBehaviour:
   m_ObjectHideFlags: 0
