@@ -21,6 +21,7 @@ public class PlayerStat : Singleton<PlayerStat>
         {
             case UnitCode.WARRIOR:
                 ComboDelay = 1.5f;
+
                 break;
 
             case UnitCode.MAGE:
@@ -30,7 +31,19 @@ public class PlayerStat : Singleton<PlayerStat>
             case UnitCode.ARCHER:
                 ComboDelay = 1f;
                 break;
-
         }
+    }
+
+    public void ChangeStat(EquipmentItemData _beforeItem, EquipmentItemData _afterItem)
+    {
+
+    }
+
+    public void LevelUp()
+    {
+        MaxHp += 50;
+        MaxMp += 50;
+        Damage += 1f;
+
     }
 }

@@ -37,7 +37,20 @@ public class Customizing : MonoBehaviour
     public List<GameObject> male_hand = new List<GameObject>();
     public List<GameObject> male_Shoes = new List<GameObject>();
 
+    bool isEquipHelmat = false;
+    bool isEquipTop = false;
+    bool isEquipPants = false;
+    bool isEquipHand = false;
+    bool isEquipShoes = false;
 
+    
+    EquipmentItemData HelmatData;
+    EquipmentItemData TopData;
+    EquipmentItemData PantsData;
+    EquipmentItemData HandData;
+    EquipmentItemData ShoesData;
+
+    
     [Header("UI 버튼")]
     [SerializeField] GameObject AppearanceOBJ;
     [SerializeField] GameObject ClothesOBJ;
@@ -89,6 +102,7 @@ public class Customizing : MonoBehaviour
 
     private void Update()
     {
+         var a =EquipMentItemInfo.DATAS
         ////캐릭터 애니메이션
         //RandNum = Random.Range(0, 50);
         //time += Time.deltaTime;
@@ -98,8 +112,8 @@ public class Customizing : MonoBehaviour
         //    if (Selectanim != null) Selectanim.SetInteger("RandNum", RandNum);
 
         //}
-        
-     
+
+
     }
     #region 캐릭터 Select씬
     //int slotNum;
@@ -505,20 +519,169 @@ public class Customizing : MonoBehaviour
 
     #region 캐릭터 장비아이템 변경
 
-    public void ChangeEquipmentItem(EquipmentItemData _equipmnetItem)
-    {                                                                                                                                       
-        switch(_equipmnetItem.Gender)
+    public void ChangeEquipmentItem(EquipmentItemData _equipmnetItem = null)
+    {
+        if(_equipmnetItem != null)
         {
-            case EquipmmentGender.Female:
+            if (_equipmnetItem.Type == Types.Head)
+            {
+                ChangeHead(_equipmnetItem);
+                return;
+            }
 
-                
-                break;
+            if (DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM)
+                .Equals(_equipmnetItem.Gender))
+            {
 
-            case EquipmmentGender.male:
+                if (_equipmnetItem.Type == Types.Top)
+                {
+                    ChangeTop(_equipmnetItem);
+                }
 
-                break;
+                if (_equipmnetItem.Type == Types.Pants)
+                {
+                    ChangePants(_equipmnetItem);
+                }
+
+                if (_equipmnetItem.Type == Types.Hand)
+                {
+                    ChangeHand(_equipmnetItem);
+                }
+
+                if (_equipmnetItem.Type == Types.Shoes)
+                {
+                    ChangeShoes(_equipmnetItem);
+                }
+            }
+            else
+            {
+                //성별이 맞지 않는다 !
+            }
         }
+        else
+        {
+            //오른쪽 클릭해서 장착 해제할때
+        }
+        
+       
     }
+
+    public void ChangeHead(EquipmentItemData _equipmnetItem)
+    {
+
+        if(DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM)
+            .Equals(_equipmnetItem.ClassPrivateItem))
+        {
+            if (isEquipHelmat)
+            {
+                
+                HelmatData = _equipmnetItem;
+
+                //PlayerStat.GetInstance.ChangeStat();
+            }
+            else
+            {
+
+            }
+
+        }
+        else
+        {
+            //직업이 맞지 않는다!
+        }
+        
+       
+    }
+
+    public void ChangeTop(EquipmentItemData _equipmnetItem)
+    {
+        if (DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM)
+           .Equals(_equipmnetItem.ClassPrivateItem))
+        {
+            if (isEquipTop)
+            {
+                TopData = _equipmnetItem;
+            }
+            else
+            {
+
+            }
+
+        }
+        else
+        {
+            //직업이 맞지 않는다!
+        }
+       
+       
+    }
+    public void ChangePants(EquipmentItemData _equipmnetItem)
+    {
+        if (DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM)
+              .Equals(_equipmnetItem.ClassPrivateItem))
+        {
+            if (isEquipPants)
+            {
+                PantsData = _equipmnetItem;
+            }
+            else
+            {
+
+            }
+
+        }
+        else
+        {
+            //직업이 맞지 않는다!
+        }
+       
+       
+    }
+    public void ChangeHand(EquipmentItemData _equipmnetItem)
+    {
+        if (DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM)
+              .Equals(_equipmnetItem.ClassPrivateItem))
+        {
+            if (isEquipHand)
+            {
+                HandData = _equipmnetItem;
+            }
+            else
+            {
+
+            }
+
+        }
+        else
+        {
+            //직업이 맞지 않는다!
+        }
+        
+       
+    }
+    public void ChangeShoes(EquipmentItemData _equipmnetItem)
+    {
+        if (DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM)
+              .Equals(_equipmnetItem.ClassPrivateItem))
+        {
+            if (isEquipShoes)
+            {
+                ShoesData = _equipmnetItem;
+            }
+            else
+            {
+
+            }
+
+        }
+        else
+        {
+            //직업이 맞지 않는다!
+        }
+        
+    }
+
+
     #endregion
     public void Helmate(ItemData item) 
     {

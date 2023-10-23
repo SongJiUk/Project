@@ -193,6 +193,8 @@ public class DataManager : Singleton<DataManager>
     int[] player_level = new int[SlotCount];
     float[] player_exp = new float[SlotCount];
 
+    int[] player_job = new int[SlotCount];
+
 
     public UnitCode UnitCodes(int _slot)
     {
@@ -237,6 +239,16 @@ public class DataManager : Singleton<DataManager>
     {
         player_exp[_slot] = value;
     }
+
+    public int PLAYER_JOB(int _slot)
+    {
+        return player_job[_slot];
+    }
+
+    public void PLAYER_JOB(int _slot, int value)
+    {
+        player_job[_slot] = value;
+    }
     #endregion
 
 
@@ -252,6 +264,7 @@ public class DataManager : Singleton<DataManager>
         PlayerPrefs.SetFloat("player_exp" + _index, player_exp[_index]);
         PlayerPrefs.SetInt("player_level" + _index, player_level[_index]);
         PlayerPrefs.SetString("player_id" + _index, player_id[_index]);
+        PlayerPrefs.SetInt("player_job" + _index, player_job[_index]);
 
         PlayerPrefs.SetInt("GenderNum" + _index, GenderNum[_index]);
         PlayerPrefs.SetInt("Female_FaceNum" + _index, Female_FaceNum[_index]);
@@ -290,6 +303,7 @@ public class DataManager : Singleton<DataManager>
                 player_level[i] = PlayerPrefs.GetInt("player_level" + i);
                 player_exp[i] = PlayerPrefs.GetFloat("player_exp" + i);
                 player_id[i] = PlayerPrefs.GetString("player_id" + i);
+                player_job[i] = PlayerPrefs.GetInt("player_job" + i);
 
                 GenderNum[i] = PlayerPrefs.GetInt("GenderNum" + i);
                 Female_FaceNum[i] = PlayerPrefs.GetInt("Female_FaceNum" + i);
