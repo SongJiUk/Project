@@ -102,7 +102,7 @@ public class Customizing : MonoBehaviour
 
     private void Update()
     {
-         var a =EquipMentItemInfo.DATAS
+        //var a = EquipMentItemInfo.DATAS;
         ////캐릭터 애니메이션
         //RandNum = Random.Range(0, 50);
         //time += Time.deltaTime;
