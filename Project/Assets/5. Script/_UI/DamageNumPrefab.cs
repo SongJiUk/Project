@@ -25,16 +25,17 @@ public class DamageNumPrefab : MonoBehaviour
     float textsize = 0.1f;
 
     float t = 0;
-    
+
+    Vector3 _positioning;
+
     // Start is called before the first frame update
     void Awake()
     {
-        SetColor(1);
-        SetDamage(2000);
         time = timeStart;
     }
     private void Update()
     {
+        transform.position = Camera.main.WorldToScreenPoint(_positioning);
         if (time >= 0)
             time -= Time.deltaTime;
 
@@ -59,6 +60,11 @@ public class DamageNumPrefab : MonoBehaviour
 
         transform.localScale = new Vector3(textsize, textsize, textsize);
 
+    }
+
+    public void SetPosition(Vector3 positioning)
+    {
+        _positioning = positioning;
     }
 
     public void SetDamage(int damage)

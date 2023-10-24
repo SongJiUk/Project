@@ -11,30 +11,46 @@ public class DamageNum : MonoBehaviour
     [SerializeField] private GameObject _damageText;
 
     [SerializeField] private Transform _transformto;
+
+    [SerializeField] private Transform _canvas;
+
+    public static DamageNum instance;
+
     // Start is called before the first frame update
     void Awake()
     {
-        
+        if(instance == null)
+        {
+            instance = this;
+        }
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.L))
         {
-            Damage();
+            Damage(2000,1);
+        }
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            Damage(20000, 2);
         }
     }
 
 
 
-    public void Damage()
+    public void Damage(int damage, int color)
     {
-
-        GameObject DamageUI = Instantiate(_damageText, _transformto.position, _transformto.rotation);
-
+        
+        GameObject DamageUI = Instantiate(_damageText, _canvas);
+        Vector3 positionUI = (_transformto.position + (Random.insideUnitSphere * 1f));
+        DamageUI.transform.position = Camera.main.WorldToScreenPoint(positionUI);
         DamageUI.SetActive(true);
-
-
+        DamageNumPrefab DamageUIValue = DamageUI.GetComponent<DamageNumPrefab>();
+        DamageUIValue.SetPosition(positionUI);
+        DamageUIValue.SetDamage(damage);
+        DamageUIValue.SetColor(color);
+        
 
     }
 

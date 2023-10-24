@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 
 public class HPBar : MonoBehaviour
 {
@@ -11,9 +13,11 @@ public class HPBar : MonoBehaviour
     int MaxHp = 0;
     int NowHp = 0;
     float value = 0;
+    float followtimeMax = 2;
+    float followtime = 0;
 
-
-
+    [SerializeField]
+    Transform target;
     // Start is called before the first frame update
     void Awake()
     {
@@ -23,15 +27,12 @@ public class HPBar : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(NowHp==0|| MaxHp==0)
+        if (followtime >= 0)
+            followtime -= Time.deltaTime;
+        if (followtime == 0)
         {
-            value = 0;
+            SetHpBarFollow();
         }
-        else
-        {
-            value = ((float)NowHp / (float)MaxHp);
-        }
-
         if (Input.GetKeyDown(KeyCode.A))
         {
             MaxHp = 100;
@@ -43,9 +44,22 @@ public class HPBar : MonoBehaviour
             GetDamage(10);
         }
 
+        Debug.Log(MaxHp);
+        Debug.Log(NowHp);
+        Debug.Log(value);
     }
 
-
+    private void CheckHp()
+    {
+        if (NowHp <= 0 || MaxHp <= 0)
+        {
+            value = 0;
+        }
+        else
+        {
+            value = ((float)NowHp / (float)MaxHp);
+        }
+    }
 
     public void GetDamage(int damage)
     {
@@ -54,7 +68,9 @@ public class HPBar : MonoBehaviour
         {
             NowHp = 0;
         }
+        SetHpBarFollowTime();
         SetHpBar();
+        DamageNum.instance.Damage(damage, 1);
     }
 
     public void GetHeel(int heel)
@@ -69,8 +85,12 @@ public class HPBar : MonoBehaviour
 
     private void SetHpBar() 
     {
+        CheckHp();
         hpBar.value = value;
-        Invoke("SetHpBarFollow",1f);
+    }
+    private void SetHpBarFollowTime()
+    {
+        followtime = followtimeMax;
     }
     private void SetHpBarFollow()
     {
