@@ -29,10 +29,11 @@ public class HPBar : MonoBehaviour
     {
         if (followtime >= 0)
             followtime -= Time.deltaTime;
-        if (followtime == 0)
+        else
         {
             SetHpBarFollow();
         }
+
         if (Input.GetKeyDown(KeyCode.A))
         {
             MaxHp = 100;
@@ -44,9 +45,8 @@ public class HPBar : MonoBehaviour
             GetDamage(10);
         }
 
-        Debug.Log(MaxHp);
-        Debug.Log(NowHp);
-        Debug.Log(value);
+        Debug.Log(followtime);
+
     }
 
     private void CheckHp()
