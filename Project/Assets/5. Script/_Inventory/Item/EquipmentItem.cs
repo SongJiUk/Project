@@ -7,7 +7,6 @@ using UnityEngine;
     public abstract class EquipmentItem : Item
     {
         public EquipmentItemData EquipmentData { get; private set; }
-
         /// <summary> 현재 내구도 </summary>
         public int Durability
         {

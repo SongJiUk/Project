@@ -217,7 +217,7 @@ public class Inventory : MonoBehaviour
         {
             RemoveIcon();
         }
-
+        
         // 로컬 : 아이콘 제거하기
         void RemoveIcon()
         {
@@ -302,7 +302,7 @@ public class Inventory : MonoBehaviour
     /***********************************************************************
     *                               Public Methods
     ***********************************************************************/
-    #region .
+    #region 
 
     /// <summary> 인벤토리 UI 연결 </summary>
     public void ConnectUI(InventoryUI inventoryUI)
@@ -525,6 +525,7 @@ public class Inventory : MonoBehaviour
         }
         else if (_items[index] is EquipmentItem uItem2)
         {
+
             Item A = _equipment.EquipmentItem(uItem2);
             if (A == null)
             {

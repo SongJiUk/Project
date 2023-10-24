@@ -18,9 +18,17 @@ public class ArmorItemData : EquipmentItemData
     {
 
     }
+    public override void GetDatas()
+    {
+        
+    }
 
-
-
+    //여기다가 함수를 만드는게 낫다
+    public ArmorItemData CallArmorItemData()
+    {
+        return this;
+    }
+     
     [SerializeField] private int _defence = 1;
     public override Item CreateItem()
     {

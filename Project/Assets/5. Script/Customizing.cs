@@ -526,620 +526,278 @@ public class Customizing : MonoBehaviour
 
     public void ChangeEquipmentItem(ArmorItemData _equipmnetItem = null)
     {
-        if(_equipmnetItem != null)
+        if (_equipmnetItem == null)
         {
-            if (_equipmnetItem.Type == Types.Head)
-            {
+            // 오른쪽 클릭해서 장착 해제할 때
+            return;
+        }
+
+        // 필요한 데이터 가져오기
+        int slotGender = DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM);
+        int playerJob = DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM);
+        int playerLevel = PlayerStat.GetInstance.Level;
+        var equipGender = _equipmnetItem.Gender;
+        var equipClassPrivateItem = _equipmnetItem.ClassPrivateItem;
+        int equipLevel = _equipmnetItem._EquipmentLevel;
+
+        // 레벨 체크
+        if (playerLevel < equipLevel)
+        {
+            // 레벨이 부족 UI
+            Debug.Log("Low Level");
+            return;
+        }
+
+        // 성별 체크
+        if (!slotGender.Equals(equipGender))
+        {
+            // 성별이 맞지 않음 UI
+            Debug.Log("Diffrent Gender");
+            return;
+        }
+
+        // 직업 체크
+        if (!playerJob.Equals(equipClassPrivateItem))
+        {
+            // 직업이 맞지 않음 UI
+            Debug.Log("Diffrent Job");
+            return;
+        }
+
+        // 아이템 타입에 따라 장비 교체
+        switch (_equipmnetItem.Type)
+        {
+            case Types.Head:
                 ChangeHead(_equipmnetItem);
-                return;
-            }
-
-            if (DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM)
-                .Equals(_equipmnetItem.Gender))
-            {
-
-                if (_equipmnetItem.Type == Types.Top)
-                {
-                    ChangeTop(_equipmnetItem);
-                }
-
-                if (_equipmnetItem.Type == Types.Pants)
-                {
-                    ChangePants(_equipmnetItem);
-                }
-
-                if (_equipmnetItem.Type == Types.Hand)
-                {
-                    ChangeHand(_equipmnetItem);
-                }
-
-                if (_equipmnetItem.Type == Types.Shoes)
-                {
-                    ChangeShoes(_equipmnetItem);
-                }
-            }
-            else
-            {
-                //성별이 맞지 않는다 !
-            }
-        }
-        else
-        {
-            //오른쪽 클릭해서 장착 해제할때
+                break;
+            case Types.Top:
+                ChangeTop(_equipmnetItem);
+                break;
+            case Types.Pants:
+                ChangePants(_equipmnetItem);
+                break;
+            case Types.Hand:
+                ChangeHands(_equipmnetItem);
+                break;
+            case Types.Shoes:
+                ChangeShoes(_equipmnetItem);
+                break;
         }
         
-       
     }
 
-    public void ChangeHead(ArmorItemData _equipmnetItem)
+    public int FindItemIndex(List<EquipMentItemInfo> _item, int _itemCode)
+    {
+        for(int i=0; i<_item.Count; i++)
+        {
+            if(_item[i].DATAS.ItemCode.Equals(_itemCode))
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    void ChangeHead(ArmorItemData _equipmentItem)
+    {
+        //장착 되어있을때 교체
+        if (isEquipHelmat)
+        {
+            PlayerStat.GetInstance.ChangeStat(HelmatData, _equipmentItem);
+            Helmats[EquipHelmatNum].gameObject.SetActive(false);
+        }
+        else //아니면 그냥 장착
+        {
+            PlayerStat.GetInstance.ChangeStat(_equipmentItem);
+        }
+
+        // 장비 교체
+        EquipHelmatNum = FindItemIndex(Helmats, _equipmentItem.ItemCode);
+        Helmats[EquipHelmatNum].gameObject.SetActive(true);
+        HelmatData = _equipmentItem;
+        isEquipHelmat = true;
+    }
+
+    void ChangeTop(ArmorItemData _equipmentItem)
     {
 
-        if(DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM)
-            .Equals(_equipmnetItem.ClassPrivateItem))
+        switch(_equipmentItem.Gender)
         {
-            if(DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                >= _equipmnetItem._EquipmentLevel)
-            {
-                //장착 가능
-                if (isEquipHelmat)
+            case EquipmmentGender.Female:
+
+                if (isEquipTop)
                 {
-                    PlayerStat.GetInstance.ChangeStat(HelmatData, _equipmnetItem);
-                    for(int i=0; i<Helmats.Count; i++)
-                    {
-                        if(Helmats[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                        {
-                            Helmats[EquipHelmatNum].gameObject.SetActive(false);
-                            EquipHelmatNum = i;
-                            Helmats[EquipHelmatNum].gameObject.SetActive(true);
-                            HelmatData = _equipmnetItem;
-                        }
-                    }
-                    
+                    PlayerStat.GetInstance.ChangeStat(TopData, _equipmentItem);
+                    Female_Armor_Top[EquipTopNum].gameObject.SetActive(false);
                 }
-                else
+                else //아니면 그냥 장착
                 {
-                    PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-                    for (int i = 0; i < Helmats.Count; i++)
-                    {
-                        if (Helmats[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                        {
-                            EquipHelmatNum = i;
-                            Helmats[EquipHelmatNum].gameObject.SetActive(true);
-                            isEquipHelmat = true;
-                            HelmatData = _equipmnetItem;
-                        }
-                    }
-                    
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
                 }
 
-            }
-            else
-            {
-                //레벨이 부족
-            }
+                // 장비 교체
+                EquipTopNum = FindItemIndex(Female_Armor_Top, _equipmentItem.ItemCode);
+                Female_Armor_Top[EquipTopNum].gameObject.SetActive(true);
+                TopData = _equipmentItem;
+                isEquipTop = true;
+                break;
 
-        }
-        else
-        {
-            //직업이 맞지 않는다!
+            case EquipmmentGender.male:
+                if (isEquipTop)
+                {
+                    PlayerStat.GetInstance.ChangeStat(TopData, _equipmentItem);
+                    male_Armor_Top[EquipTopNum].gameObject.SetActive(false);
+                }
+                else //아니면 그냥 장착
+                {
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
+                }
+
+                // 장비 교체
+                EquipTopNum = FindItemIndex(male_Armor_Top, _equipmentItem.ItemCode);
+                male_Armor_Top[EquipTopNum].gameObject.SetActive(true);
+                TopData = _equipmentItem;
+                isEquipTop = true;
+                break;
         }
         
-       
     }
 
-    public void ChangeTop(ArmorItemData _equipmnetItem)
+
+    void ChangePants(ArmorItemData _equipmentItem)
     {
-        switch (_equipmnetItem.Gender)
+
+        switch (_equipmentItem.Gender)
         {
             case EquipmmentGender.Female:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.Female))
+                if (isEquipPants)
                 {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < Female_Armor_Top.Count; i++)
-                                {
-                                    if (Female_Armor_Top[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        Female_Armor_Top[EquipTopNum].gameObject.SetActive(false);
-                                        EquipTopNum = i;
-                                        Female_Armor_Top[EquipTopNum].gameObject.SetActive(true);
-                                        TopData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < Female_Armor_Top.Count; i++)
-                                {
-                                    if (Female_Armor_Top[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipTopNum = i;
-                                        Female_Armor_Top[EquipHelmatNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        TopData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
+                    PlayerStat.GetInstance.ChangeStat(PantsData, _equipmentItem);
+                    Female_Armor_Bottom[EquipPantsNum].gameObject.SetActive(false);
                 }
-                else
+                else //아니면 그냥 장착
                 {
-                    //성별이 맞지 않습니다.
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
                 }
+
+                // 장비 교체
+                EquipPantsNum = FindItemIndex(Female_Armor_Bottom, _equipmentItem.ItemCode);
+                Female_Armor_Bottom[EquipPantsNum].gameObject.SetActive(true);
+                PantsData = _equipmentItem;
+                isEquipPants = true;
                 break;
 
             case EquipmmentGender.male:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.male))
+                if (isEquipPants)
                 {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < male_Armor_Top.Count; i++)
-                                {
-                                    if (male_Armor_Top[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        male_Armor_Top[EquipTopNum].gameObject.SetActive(false);
-                                        EquipTopNum = i;
-                                        male_Armor_Top[EquipTopNum].gameObject.SetActive(true);
-                                        TopData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < male_Armor_Top.Count; i++)
-                                {
-                                    if (male_Armor_Top[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipTopNum = i;
-                                        male_Armor_Top[EquipHelmatNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        TopData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
+                    PlayerStat.GetInstance.ChangeStat(PantsData, _equipmentItem);
+                    Helmats[EquipPantsNum].gameObject.SetActive(false);
                 }
-                else
+                else //아니면 그냥 장착
                 {
-                    //성별이 맞지 않습니다.
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
                 }
 
-
+                // 장비 교체
+                EquipPantsNum = FindItemIndex(male_Armor_Bottom, _equipmentItem.ItemCode);
+                male_Armor_Bottom[EquipPantsNum].gameObject.SetActive(true);
+                PantsData = _equipmentItem;
+                isEquipPants = true;
                 break;
-
         }
 
-
-
-
     }
-    public void ChangePants(ArmorItemData _equipmnetItem)
+
+    void ChangeHands(ArmorItemData _equipmentItem)
     {
-        switch (_equipmnetItem.Gender)
+
+        switch (_equipmentItem.Gender)
         {
             case EquipmmentGender.Female:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.Female))
+                if (isEquipHand)
                 {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < Female_Armor_Bottom.Count; i++)
-                                {
-                                    if (Female_Armor_Bottom[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        Female_Armor_Bottom[EquipPantsNum].gameObject.SetActive(false);
-                                        EquipPantsNum = i;
-                                        Female_Armor_Bottom[EquipPantsNum].gameObject.SetActive(true);
-                                        PantsData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < Female_Armor_Bottom.Count; i++)
-                                {
-                                    if (Female_Armor_Bottom[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipPantsNum = i;
-                                        Female_Pants[EquipPantsNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        PantsData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
+                    PlayerStat.GetInstance.ChangeStat(HandData, _equipmentItem);
+                    Female_hand[EquipHandNum].gameObject.SetActive(false);
                 }
-                else
+                else //아니면 그냥 장착
                 {
-                    //성별이 맞지 않습니다.
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
                 }
+
+                // 장비 교체
+                EquipHandNum = FindItemIndex(Female_hand, _equipmentItem.ItemCode);
+                Female_hand[EquipHandNum].gameObject.SetActive(true);
+                HandData = _equipmentItem;
+                isEquipHand = true;
                 break;
 
             case EquipmmentGender.male:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.male))
+                if (isEquipHand)
                 {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < male_Armor_Bottom.Count; i++)
-                                {
-                                    if (male_Armor_Bottom[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        male_Armor_Bottom[EquipPantsNum].gameObject.SetActive(false);
-                                        EquipPantsNum = i;
-                                        male_Armor_Bottom[EquipPantsNum].gameObject.SetActive(true);
-                                        PantsData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < male_Armor_Bottom.Count; i++)
-                                {
-                                    if (male_Armor_Bottom[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipPantsNum = i;
-                                        male_Armor_Bottom[EquipPantsNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        PantsData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
+                    PlayerStat.GetInstance.ChangeStat(HandData, _equipmentItem);
+                    male_hand[EquipHandNum].gameObject.SetActive(false);
                 }
-                else
+                else //아니면 그냥 장착
                 {
-                    //성별이 맞지 않습니다.
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
                 }
 
-
+                // 장비 교체
+                EquipHandNum = FindItemIndex(male_hand, _equipmentItem.ItemCode);
+                male_hand[EquipHandNum].gameObject.SetActive(true);
+                HandData = _equipmentItem;
+                isEquipHand = true;
                 break;
-
         }
 
-
     }
-    public void ChangeHand(ArmorItemData _equipmnetItem)
+
+    void ChangeShoes(ArmorItemData _equipmentItem)
     {
-        switch (_equipmnetItem.Gender)
+
+        switch (_equipmentItem.Gender)
         {
             case EquipmmentGender.Female:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.Female))
+                if (isEquipShoes)
                 {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < Female_hand.Count; i++)
-                                {
-                                    if (Female_hand[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        Female_hand[EquipHandNum].gameObject.SetActive(false);
-                                        EquipHandNum = i;
-                                        Female_hand[EquipHandNum].gameObject.SetActive(true);
-                                        HandData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < Female_hand.Count; i++)
-                                {
-                                    if (Female_hand[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipHandNum = i;
-                                        Female_hand[EquipHandNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        HandData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
+                    PlayerStat.GetInstance.ChangeStat(ShoesData, _equipmentItem);
+                    Female_shoes[EquipShoesNum].gameObject.SetActive(false);
                 }
-                else
+                else //아니면 그냥 장착
                 {
-                    //성별이 맞지 않습니다.
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
                 }
+
+                // 장비 교체
+                EquipShoesNum = FindItemIndex(Female_shoes, _equipmentItem.ItemCode);
+                Female_shoes[EquipShoesNum].gameObject.SetActive(true);
+                ShoesData = _equipmentItem;
+                isEquipShoes = true;
+
                 break;
 
             case EquipmmentGender.male:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.male))
+                if (isEquipShoes)
                 {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < male_hand.Count; i++)
-                                {
-                                    if (male_hand[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        male_hand[EquipHandNum].gameObject.SetActive(false);
-                                        EquipHandNum = i;
-                                        male_hand[EquipHandNum].gameObject.SetActive(true);
-                                        HandData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < male_hand.Count; i++)
-                                {
-                                    if (male_hand[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipHandNum = i;
-                                        male_hand[EquipHandNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        HandData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
+                    PlayerStat.GetInstance.ChangeStat(ShoesData, _equipmentItem);
+                    male_Shoes[EquipShoesNum].gameObject.SetActive(false);
                 }
-                else
+                else //아니면 그냥 장착
                 {
-                    //성별이 맞지 않습니다.
+                    PlayerStat.GetInstance.ChangeStat(_equipmentItem);
                 }
 
+                // 장비 교체
+                EquipShoesNum = FindItemIndex(male_Shoes, _equipmentItem.ItemCode);
+                male_Shoes[EquipShoesNum].gameObject.SetActive(true);
+                ShoesData = _equipmentItem;
+                isEquipShoes = true;
 
                 break;
-
-        }
-
-
-    }
-    public void ChangeShoes(ArmorItemData _equipmnetItem)
-    {
-        switch (_equipmnetItem.Gender)
-        {
-            case EquipmmentGender.Female:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.Female))
-                {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < Female_shoes.Count; i++)
-                                {
-                                    if (Female_shoes[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        Female_shoes[EquipShoesNum].gameObject.SetActive(false);
-                                        EquipShoesNum = i;
-                                        Female_shoes[EquipShoesNum].gameObject.SetActive(true);
-                                        ShoesData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < Female_shoes.Count; i++)
-                                {
-                                    if (Female_shoes[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipShoesNum = i;
-                                        Female_shoes[EquipShoesNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        ShoesData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
-                }
-                else
-                {
-                    //성별이 맞지 않습니다.
-                }
-                break;
-
-            case EquipmmentGender.male:
-
-                if (PlayerStat.GetInstance.gender.Equals(EGender.male))
-                {
-                    if (PlayerStat.GetInstance.UnitCodes.Equals(_equipmnetItem.ClassPrivateItem))
-                    {
-                        if (DataManager.GetInstance.PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM)
-                            >= _equipmnetItem._EquipmentLevel)
-                        {
-                            //장착 가능
-                            if (isEquipTop) //이미 장착중인거 교체
-                            {
-                                for (int i = 0; i < male_Shoes.Count; i++)
-                                {
-                                    if (male_Shoes[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        male_Shoes[EquipShoesNum].gameObject.SetActive(false);
-                                        EquipShoesNum = i;
-                                        male_Shoes[EquipShoesNum].gameObject.SetActive(true);
-                                        ShoesData = _equipmnetItem;
-                                    }
-                                }
-                                PlayerStat.GetInstance.ChangeStat(TopData, _equipmnetItem);
-
-                            }
-                            else //장착x 장착
-                            {
-                                PlayerStat.GetInstance.ChangeStat(_equipmnetItem);
-
-                                for (int i = 0; i < male_Shoes.Count; i++)
-                                {
-                                    if (male_Shoes[i].DATAS.ItemCode.Equals(_equipmnetItem.ItemCode))
-                                    {
-                                        EquipShoesNum = i;
-                                        male_Shoes[EquipShoesNum].gameObject.SetActive(true);
-                                        isEquipTop = true;
-                                        ShoesData = _equipmnetItem;
-                                    }
-                                }
-                            }
-
-                        }
-                        else
-                        {
-                            //레벨이 부족
-                        }
-
-                    }
-                    else
-                    {
-                        //직업이 맞지 않는다!
-                    }
-                }
-                else
-                {
-                    //성별이 맞지 않습니다.
-                }
-
-
-                break;
-
         }
 
     }
+    
 
 
     #endregion
@@ -1190,7 +848,7 @@ public class Customizing : MonoBehaviour
     //    }
 
 
-        
+
 
 
 

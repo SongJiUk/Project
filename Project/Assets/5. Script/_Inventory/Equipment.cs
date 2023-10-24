@@ -42,7 +42,7 @@ public class Equipment : MonoBehaviour
     {
         Item returnItem = null;
 
-
+       
         
         if (A.EquipmentData.Type == Types.Top)
         {
@@ -57,6 +57,7 @@ public class Equipment : MonoBehaviour
                 Top = A;
             }
             UpdateSlot(1);
+            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else if (A.EquipmentData.Type == Types.Pants)
         {
@@ -71,6 +72,7 @@ public class Equipment : MonoBehaviour
                 Pants = A;
             }
             UpdateSlot(2);
+            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else if (A.EquipmentData.Type == Types.Head)
         {
@@ -85,6 +87,7 @@ public class Equipment : MonoBehaviour
                 Head = A;
             }
             UpdateSlot(3);
+            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else if (A.EquipmentData.Type == Types.Hand)
         {
@@ -99,6 +102,7 @@ public class Equipment : MonoBehaviour
                 Hand = A;
             }
             UpdateSlot(4);
+            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else if (A.EquipmentData.Type == Types.Shoes)
         {
@@ -113,6 +117,7 @@ public class Equipment : MonoBehaviour
                 Shoes = A;
             }
             UpdateSlot(5);
+            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else
         {
@@ -127,7 +132,10 @@ public class Equipment : MonoBehaviour
                 WeaponL = A;
             }
             UpdateSlot(0);
+            UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
         }
+
+        
 
         return returnItem;
     }

@@ -148,28 +148,28 @@ public class CameraManager : Singleton<CameraManager>
 
     void LateUpdate()
     {
-
+        
         // 카메라와 캐릭터 사이에 있는 물체 투명화 ( 만약 지나치면 원래대로 되돌려줘야한다.)
-        //Vector3 distance = player.transform.position - Camera.main.transform.position;
-        //RaycastHit[] hit = Physics.RaycastAll(Camera.main.transform.position, distance, Mathf.Infinity);
+        Vector3 dir = (player.transform.position - Camera.main.transform.position).normalized;
+        float distance = Vector3.Distance(Camera.main.transform.position, player.transform.position);
+        RaycastHit[] hits = Physics.RaycastAll(Camera.main.transform.position, dir, distance);
+        Debug.Log(distance);
+        for (int i = 0; i < hits.Length; i++)
+        {
+            if (hits[i].transform.gameObject.layer == LayerMask.NameToLayer("Object"))
+            {
+                
+                var a = hits[i].transform.GetComponent<MeshRenderer>().materials[0];
+                Debug.Log(a.name);
+                Color color = a.color;
 
-        //for (int i = 0; i < hit.Length; i++)
-        //{
-        //    if (hit[i].transform.gameObject.layer == LayerMask.NameToLayer("Wall"))
-        //    {
-        //        var a = hit[i].transform.GetComponent<MeshRenderer>().materials[0];
-        //        Color color = a.color;
-
-        //        if (color.a > 0.3f)
-        //        {
-        //            color.a -= Time.deltaTime;
-        //            a.color = color;
-        //        }
+                color.a = 0.3f;
+                a.color = color;
 
 
-        //    }
+            }
 
-        //}
+        }
 
 
         if (Input.GetKeyDown(KeyCode.LeftAlt))

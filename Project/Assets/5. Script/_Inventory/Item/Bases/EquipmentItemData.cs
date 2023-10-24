@@ -35,6 +35,11 @@ public enum ClassPrivateItems
 /// <summary> 장비 아이템 </summary>
 public abstract class EquipmentItemData : ItemData
 {
+    virtual public void GetDatas()
+    {
+
+    }
+
     /// <summary> 최대 내구도 </summary>
     public int MaxDurability => _maxDurability;
 
@@ -49,4 +54,6 @@ public abstract class EquipmentItemData : ItemData
     [SerializeField] public int _EquipmentLevel = 1;
 
     [SerializeField] private int _maxDurability = 100;
+
+
 }
