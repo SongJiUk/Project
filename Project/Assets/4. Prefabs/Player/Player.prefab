@@ -42768,7 +42768,7 @@ MonoBehaviour:
   TargetMarker_PreCast: {fileID: 7868420252964347333}
   collidingLayer:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 16896
   Mage_LongDistanceAttackObj:
   - {fileID: 100000, guid: bb99bd67c7907fd479199c9049c38594, type: 3}
   - {fileID: 100000, guid: 596382931d8dcfb44962aff3e890a8e8, type: 3}
@@ -43211,6 +43211,11 @@ MonoBehaviour:
   - {fileID: 5634868031661095026}
   - {fileID: 1578113849473336835}
   - {fileID: 183180702467682155}
+  isEquipHelmat: 0
+  isEquipTop: 0
+  isEquipPants: 0
+  isEquipHand: 0
+  isEquipShoes: 0
   AppearanceOBJ: {fileID: 0}
   ClothesOBJ: {fileID: 0}
   BackBtn: {fileID: 0}

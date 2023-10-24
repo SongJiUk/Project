@@ -1,6 +1,7 @@
     using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.InputSystem;
 
 public class CameraManager : Singleton<CameraManager>
@@ -122,7 +123,7 @@ public class CameraManager : Singleton<CameraManager>
 
     Quaternion saveRotation;
     Vector3 savePosition;
-
+    bool isPossibleJoom = false;
     //For camera colliding
     RaycastHit hit;
     public LayerMask collidingLayers = ~0; //Target marker can only collide with scene layer
@@ -137,6 +138,17 @@ public class CameraManager : Singleton<CameraManager>
         var angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
+
+        if (SceneManager.GetActiveScene().name.Equals("5_Dungeon"))
+        {
+            currDistance = 1f;
+            isPossibleJoom = false;
+        }
+        else
+        {
+            currDistance = 2f;
+            isPossibleJoom = true;
+        }
     }
 
     //Alt클릭에 마우스 보이고 움직일수있게 추가
@@ -145,14 +157,32 @@ public class CameraManager : Singleton<CameraManager>
     {
         return OnOff;
     }
-
+    RaycastHit[] hits;
     void LateUpdate()
     {
-        
+
+        if (hits != null)
+        {
+            for (int i = 0; i < hits.Length; i++)
+            {
+                MeshRenderer a = hits[i].transform.GetComponent<MeshRenderer>();
+                if(a != null)
+                {
+                    Material b = a.materials[0];
+                    Color color = b.color;
+
+                    color.a = 1f;
+                    b.color = color;
+                }
+             
+            }
+        }
+
+
         // 카메라와 캐릭터 사이에 있는 물체 투명화 ( 만약 지나치면 원래대로 되돌려줘야한다.)
         Vector3 dir = (player.transform.position - Camera.main.transform.position).normalized;
         float distance = Vector3.Distance(Camera.main.transform.position, player.transform.position);
-        RaycastHit[] hits = Physics.RaycastAll(Camera.main.transform.position, dir, distance);
+        hits = Physics.RaycastAll(Camera.main.transform.position, dir, distance);
         Debug.Log(distance);
         for (int i = 0; i < hits.Length; i++)
         {
@@ -160,10 +190,10 @@ public class CameraManager : Singleton<CameraManager>
             {
                 
                 var a = hits[i].transform.GetComponent<MeshRenderer>().materials[0];
-                Debug.Log(a.name);
+
                 Color color = a.color;
 
-                color.a = 0.3f;
+                color.a = 0.1f;
                 a.color = color;
 
 
@@ -183,10 +213,14 @@ public class CameraManager : Singleton<CameraManager>
 
         if (Input.GetKey(KeyCode.LeftControl))
         {
-            currDistance = Mathf.SmoothDamp(currDistance,
-            currDistance - scrollValue * 2f, ref velocity, Time.deltaTime);
+            if(isPossibleJoom)
+            {
+                currDistance = Mathf.SmoothDamp(currDistance,
+           currDistance - scrollValue * 2f, ref velocity, Time.deltaTime);
 
-            currDistance = Mathf.Clamp(currDistance, 2, 5);
+                currDistance = Mathf.Clamp(currDistance, 2, 5);
+            }
+           
         }
 
         // (currDistance - 2) / 3.5f - constant for far camera position

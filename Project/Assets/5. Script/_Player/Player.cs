@@ -50,7 +50,7 @@ public class Player : Singleton<Player>
         playerStat = PlayerStat.GetInstance;
         playerStat.InitStat(DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM));
         PlayerSetting();
-        SPEED = 3f;
+        SPEED = 10f;
     }
 
     private void Update()
