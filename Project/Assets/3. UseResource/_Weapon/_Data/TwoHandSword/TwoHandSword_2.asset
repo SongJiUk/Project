@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 0
   _name: TwoHandSword_2
   _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 0709c64fa576c0d4286f5453a08c90e2, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 25bb818c5326d214e8e646b6885b646b, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   Type: 8

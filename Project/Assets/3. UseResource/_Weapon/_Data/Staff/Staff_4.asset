@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 0
   _name: Staff_4
   _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 8b2cd9025e9575643b294ffe73df378d, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 4781354959b85bf4f8cc823af6497122, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   Type: 14

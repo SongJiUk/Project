@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 0
   _name: Spear_3
   _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 6a5a9eaae47e9ab4980cea3bc8a3aa10, type: 3}
+  _iconSprite: {fileID: 21300000, guid: d900a1b8048c3bb4eb4c836f8b373c67, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   Type: 10

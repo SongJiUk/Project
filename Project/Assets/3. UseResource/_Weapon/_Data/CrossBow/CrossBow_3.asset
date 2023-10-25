@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 0
   _name: CrossBow_3
   _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 905e9d1448912fe499293e4d5980f78c, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 754a7b478f0d6464abf1a47cebe585af, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   Type: 13

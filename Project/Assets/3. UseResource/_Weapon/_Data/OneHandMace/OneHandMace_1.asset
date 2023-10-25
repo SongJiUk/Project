@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 3
   _name: OneHandMace_1
   _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: a14fde29466c9264480e8fafc8b057e2, type: 3}
+  _iconSprite: {fileID: 21300000, guid: 1958e80d02968b847b4ba0eac544281c, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   Type: 7

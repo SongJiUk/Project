@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 0
   _name: Axe_5
   _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 659e17f70dbf50148bdb8f649c9d3c88, type: 3}
+  _iconSprite: {fileID: 21300000, guid: f80c37486b5e48a4896ccd65bdb0489b, type: 3}
   _dropItemPrefab: {fileID: 1938834402291072, guid: 67f79d2e74b97ba49ac4def6743ec705, type: 3}
   _SettingItem: {fileID: 0}
   Type: 8
