@@ -183,10 +183,138 @@ public class DataManager : Singleton<DataManager>
     #endregion
 
     #region 플레이어가 장착하고 있는 장비 및 인벤토리
+    
+    int[] HelmatCode = new int[SlotCount];
+    int[] TopCode = new int[SlotCount];
+    int[] PantsCode = new int[SlotCount];
+    int[] HandCode = new int[SlotCount];
+    int[] ShoesCode = new int[SlotCount];
 
+    bool[] isEquipHelmat = new bool[SlotCount];
+    bool[] isEquipTop = new bool[SlotCount];
+    bool[] isEquipPants = new bool[SlotCount];
+    bool[] isEquipHand = new bool[SlotCount];
+    bool[] isEquipShoes = new bool[SlotCount];
+
+    int[] WeaponCode = new int[SlotCount];
+    bool[] isEquipWeapon = new bool[SlotCount];
+
+    public int WEAPONCODE(int _slot)
+    {
+        return WeaponCode[_slot];
+    }
+
+    public void WEAPONCODE(int _slot, int value)
+    {
+        WeaponCode[_slot] = value;
+    }
+    public bool ISEQUIPWEAPON(int _slot)
+    {
+        return isEquipWeapon[_slot];
+    }
+    public void ISEQUIPWEAPON(int _slot, bool value)
+    {
+        isEquipWeapon[_slot] = value;
+    }
+
+
+    public int HELMATCODE(int _slot)
+    {
+        return HelmatCode[_slot];
+    }
+
+    public void HELMATCODE(int _slot, int value)
+    {
+        HelmatCode[_slot] = value;
+    }
+
+    public int TOPCODE(int _slot)
+    {
+        return TopCode[_slot];
+    }
+
+    public void TOPCODE(int _slot, int value)
+    {
+        TopCode[_slot] = value;
+    }
+
+    public int PANTSCODE(int _slot)
+    {
+        return PantsCode[_slot];
+    }
+
+    public void PANTSCODE(int _slot, int value)
+    {
+        PantsCode[_slot] = value;
+    }
+
+    public int HANDCODE(int _slot)
+    {
+        return HandCode[_slot];
+    }
+
+    public void HANDCODE(int _slot, int value)
+    {
+        HandCode[_slot] = value;
+    }
+
+    public int SHOESCODE(int _slot)
+    {
+        return ShoesCode[_slot];
+    }
+
+    public void SHOESCODE(int _slot, int value)
+    {
+        ShoesCode[_slot] = value;
+    }
+
+
+    public bool ISEQUIPHELMAT(int _slot)
+    {
+        return isEquipHelmat[_slot];
+    }
+    public void ISEQUIPHELMAT(int _slot, bool value)
+    {
+        isEquipHelmat[_slot] = value;
+    }
+
+    public bool ISEQUIPTOP(int _slot)
+    {
+        return isEquipTop[_slot];
+    }
+    public void ISEQUIPTOP(int _slot, bool value)
+    {
+        isEquipTop[_slot] = value;
+    }
+    public bool ISEQUIPPANTS(int _slot)
+    {
+        return isEquipPants[_slot];
+    }
+    public void ISEQUIPPANTS(int _slot, bool value)
+    {
+        isEquipPants[_slot] = value;
+    }
+    public bool ISEQUIPHAND(int _slot)
+    {
+        return isEquipHand[_slot];
+    }
+
+    public void ISEQUIPHAND(int _slot, bool value)
+    {
+        isEquipHand[_slot] = value;
+    }
+
+    public bool ISEQUIPSHOES(int _slot)
+    {
+        return isEquipShoes[_slot];
+    }
+    public void ISEQUIPSHOES(int _slot, bool value)
+    {
+        isEquipShoes[_slot] = value;
+    }
     #endregion
 
-    
+
 
     #region 플레이어 관련
     string[] player_id = new string[SlotCount];
@@ -252,7 +380,6 @@ public class DataManager : Singleton<DataManager>
     #endregion
 
 
-
     public void SaveData(int _index)
     {
         
@@ -277,6 +404,20 @@ public class DataManager : Singleton<DataManager>
         PlayerPrefs.SetInt("Female_PantsNum" + _index, Female_PantsNum[_index]);
         PlayerPrefs.SetInt("male_PantsNum" + _index, male_PantsNum[_index]);
 
+        PlayerPrefs.SetInt("WeaponCode" + _index, WeaponCode[_index]);
+        PlayerPrefs.SetInt("HelmatCode" + _index, HelmatCode[_index]);
+        PlayerPrefs.SetInt("TopCode" + _index, TopCode[_index]);
+        PlayerPrefs.SetInt("PantsCode" + _index, PantsCode[_index]);
+        PlayerPrefs.SetInt("HandCode" + _index, HandCode[_index]);
+        PlayerPrefs.SetInt("ShoesCode" + _index, HandCode[_index]);
+
+        SetBool("isEquipWeapon" + _index, isEquipWeapon[_index]);
+        SetBool("isEquipHelmat" + _index, isEquipHelmat[_index]);
+        SetBool("isEquipTop" + _index, isEquipTop[_index]);
+        SetBool("isEquipPants" + _index, isEquipPants[_index]);
+        SetBool("isEquipHand" + _index, isEquipHand[_index]);
+        SetBool("isEquipShoes" + _index, isEquipShoes[_index]);
+       
         //int equipindex = 0;
 
         //PlayerPrefs.SetInt("Equip_" + equipindex +"_"+ _index, male_PantsNum);
@@ -315,9 +456,34 @@ public class DataManager : Singleton<DataManager>
                 male_TopNum[i] = PlayerPrefs.GetInt("male_TopNum" + i);
                 Female_PantsNum[i] = PlayerPrefs.GetInt("Female_PantsNum" + i);
                 male_PantsNum[i] = PlayerPrefs.GetInt("male_PantsNum" + i);
+
+                WeaponCode[i] = PlayerPrefs.GetInt("WeaponCode" + i);
+                HelmatCode[i] = PlayerPrefs.GetInt("HelmatCode" + i);
+                TopCode[i] = PlayerPrefs.GetInt("TopCode" + i);
+                PantsCode[i] = PlayerPrefs.GetInt("PantsCode" + i);
+                HandCode[i] = PlayerPrefs.GetInt("HandCode" + i);
+                HandCode[i] = PlayerPrefs.GetInt("HandCode" + i);
+
+                string isEquipWeaponKey = "isEquipWeapon" + i;
+                if (PlayerPrefs.HasKey(isEquipWeaponKey)) isEquipWeapon[i] = GetBool(isEquipWeaponKey).HasValue;
+
+                string isEquipHelmatKey = "isEquipHelmat" + i;
+                if (PlayerPrefs.HasKey(isEquipHelmatKey)) isEquipHelmat[i] = GetBool(isEquipHelmatKey).HasValue;
+
+                string isEquipTopKey = "isEquipTop" + i;
+                if (PlayerPrefs.HasKey(isEquipTopKey)) isEquipTop[i] = GetBool(isEquipTopKey).HasValue;
+
+                string isEquipPantsKey = "isEquipPants" + i;
+                if (PlayerPrefs.HasKey(isEquipPantsKey)) isEquipPants[i] = GetBool(isEquipPantsKey).HasValue;
+
+                string isEquipHandKey = "isEquipHand" + i;
+                if (PlayerPrefs.HasKey(isEquipHandKey)) isEquipHand[i] = GetBool(isEquipHandKey).HasValue;
+
+                string isEquipShoesKey = "isEquipShoes" + i;
+                if (PlayerPrefs.HasKey(isEquipShoesKey)) isEquipShoes[i] = GetBool(isEquipShoesKey).HasValue;
+
             }
 
-            if(SlotJob.ContainsKey(i)) Debug.Log(SlotJob[i]);
         }
         
     }

@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: OneHandMace_1
   m_EditorClassIdentifier: 
   _rating: 0
-  _itemcode: 0
+  _itemcode: 3
   _name: OneHandMace_1
   _tooltip: 
   _iconSprite: {fileID: 0}
   _dropItemPrefab: {fileID: 0}
+  _SettingItem: {fileID: 0}
   Type: 7
   ClassPrivateItem: 0
+  Gender: 0
   _EquipmentNum: 2
   _EquipmentLevel: 1
   _maxDurability: 100

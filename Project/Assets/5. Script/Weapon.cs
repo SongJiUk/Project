@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] WeaponItemData data;
-
+    public WeaponItemData DATA { get { return data; } }
     bool isOrb = false;
     private void OnEnable()
     {

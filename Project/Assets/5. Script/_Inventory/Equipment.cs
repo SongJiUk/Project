@@ -58,6 +58,7 @@ public class Equipment : MonoBehaviour
             }
             UpdateSlot(1);
             UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
+
         }
         else if (A.EquipmentData.Type == Types.Pants)
         {

@@ -5,11 +5,11 @@ using UnityEngine;
 public class WeaponManager : Singleton<WeaponManager>
 {
     #region 현재 캐릭터에 장착되어있는 무기들
-    [SerializeField] List<GameObject> WeaponList = new List<GameObject>();
-    [SerializeField] List<GameObject> BackWeaponList = new List<GameObject>();
-    [SerializeField] List<GameObject> ShiledList = new List<GameObject>();
-    [SerializeField] List<GameObject> BackShiledList = new List<GameObject>();
-    [SerializeField] List<GameObject> BackOrbList = new List<GameObject>();
+    [SerializeField] List<Weapon> WeaponList = new List<Weapon>();
+    [SerializeField] List<Weapon> BackWeaponList = new List<Weapon>();
+    [SerializeField] List<Weapon> ShiledList = new List<Weapon>();
+    [SerializeField] List<Weapon> BackShiledList = new List<Weapon>();
+    [SerializeField] List<Weapon> BackOrbList = new List<Weapon>();
     #endregion
 
     #region 플레이어 장비 장착 및 해제
@@ -60,12 +60,34 @@ public class WeaponManager : Singleton<WeaponManager>
         }
     }
 
-   
+    public void InitEquipMentWeapon(int _num)
+    {
+        if (DataManager.GetInstance.ISEQUIPWEAPON(_num))
+        {
+            for (int i = 0; i < WeaponList.Count; i++)
+            {
+                if (WeaponList[i].DATA.ItemCode ==
+                    DataManager.GetInstance.WEAPONCODE(_num))
+                {
+                    WeaponList[i].gameObject.SetActive(true);
+                }
+            }
+
+            for (int i = 0; i < ShiledList.Count; i++)
+            {
+                if (ShiledList[i].DATA.ItemCode ==
+                    DataManager.GetInstance.WEAPONCODE(_num))
+                {
+                    ShiledList[i].gameObject.SetActive(true);
+                }
+            }
+        }
+    }
+
     public void ChangeWeapon(WeaponItemData _weaponData, WeaponItemData _shiledData = null)
     {
         /*
         
-
         1. 무기 정보를 받아옴
         2. 일단 끼고있는 무기 비활성화
         3. 받아와서 넣어준다.
@@ -96,17 +118,18 @@ public class WeaponManager : Singleton<WeaponManager>
         //웨폰 리스트에서 맞는 정보를 가져와서 저장해줌
         for (int i = 0; i < WeaponList.Count; i++)
         {
-            if (Weapondata.Name == WeaponList[i].name) handWeapon = WeaponList[i];
+            if (Weapondata.ItemCode == WeaponList[i].DATA.ItemCode) handWeapon = WeaponList[i].gameObject;
         }
 
         for( int i=0; i<BackWeaponList.Count; i++)
         {
-            if (Weapondata.Name == BackWeaponList[i].name) backWeapon = BackWeaponList[i];
+            if (Weapondata.ItemCode == BackWeaponList[i].DATA.ItemCode) backWeapon = BackWeaponList[i].gameObject;
         }
 
         if(backWeapon != null) EquipWeapon_back = backWeapon;
         if(handWeapon != null) EquipWeapon_hand = handWeapon;
 
+        DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
 
         if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
         {
@@ -121,6 +144,7 @@ public class WeaponManager : Singleton<WeaponManager>
             ArcherEquipmentChange();
         }
 
+        DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
 
         if (isEquip)
         {
@@ -146,8 +170,8 @@ public class WeaponManager : Singleton<WeaponManager>
             isEquipShiled = true;
             for (int i = 0; i < ShiledList.Count; i++)
             {
-                if (ShiledData.Name == ShiledList[i].name) handShiled = ShiledList[i];
-                if (ShiledData.Name == BackShiledList[i].name) backShiled = BackShiledList[i];
+                if (ShiledData.ItemCode == ShiledList[i].DATA.ItemCode) handShiled = ShiledList[i].gameObject;
+                if (ShiledData.ItemCode == BackShiledList[i].DATA.ItemCode) backShiled = BackShiledList[i].gameObject;
             }
 
             EquipShiled_back = handShiled;
@@ -163,7 +187,7 @@ public class WeaponManager : Singleton<WeaponManager>
         {
             for (int i = 0; i < BackOrbList.Count; i++)
             {
-                if (Weapondata.Name == BackOrbList[i].name) backOrb = BackOrbList[i];
+                if (Weapondata.ItemCode == BackOrbList[i].DATA.ItemCode) backOrb = BackOrbList[i].gameObject;
             }
 
             EquipOrb_back = backOrb;

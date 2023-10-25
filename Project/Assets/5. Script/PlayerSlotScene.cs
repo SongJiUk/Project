@@ -9,7 +9,8 @@ public class PlayerSlotScene : MonoBehaviour
 
     [SerializeField] GameObject selectPopup;
     [SerializeField] Text slot_txt;
-    [SerializeField] Customizing player;
+    [SerializeField] Customizing playercutomizing;
+    [SerializeField] WeaponManager playerWeapon;
 
     [SerializeField] GameObject gameStartPopup;
     [SerializeField] Text gameStart_txt;
@@ -21,8 +22,9 @@ public class PlayerSlotScene : MonoBehaviour
     public List<Text> playerLevel_txt = new List<Text>();
     private void Start()
     {
-        if (null == player) player = GetComponent<Customizing>();
-        for(int i =0; i<DataManager.SlotCount; i++)
+        if (null == playercutomizing) playercutomizing = GetComponent<Customizing>();
+        if (null == playerWeapon) playerWeapon = GetComponent<WeaponManager>();
+        for (int i =0; i<DataManager.SlotCount; i++)
         {
             if(DataManager.GetInstance.ISSLOTOPEN(i))
             {
@@ -40,14 +42,16 @@ public class PlayerSlotScene : MonoBehaviour
 
     public void SelectSlot(int _num)
     {
-        player.gameObject.SetActive(false);
+        playercutomizing.gameObject.SetActive(false);
 
         //Debug.Log("DataManager : "+DataManager.GetInstance.SLOT_NUM);
         if (DataManager.GetInstance.ISSLOTOPEN(_num))
         {
             DataManager.GetInstance.SLOT_NUM = _num;
-            player.InitPlayer(_num);
-            player.gameObject.SetActive(true);
+            playercutomizing.InitPlayer(_num);
+            playercutomizing.InitEquipMentItem(_num);
+            playerWeapon.InitEquipMentWeapon(_num);
+            playercutomizing.gameObject.SetActive(true);
 
             gameStartPopup.SetActive(true);
             gameStart_txt.text = $"{_num +1}번 슬롯의 영웅으로 플레이 하시겠습니까?";
@@ -55,7 +59,7 @@ public class PlayerSlotScene : MonoBehaviour
         else
         {
             DataManager.GetInstance.SLOT_NUM = _num;
-            player.gameObject.SetActive(false);
+            playercutomizing.gameObject.SetActive(false);
             //여기서 생성하시겠습니까? 띄워주기
             Debug.Log("생성하자!!");
             selectPopup.SetActive(true);
@@ -82,8 +86,9 @@ public class PlayerSlotScene : MonoBehaviour
         if (_isanswer)
         {
             gameStartPopup.SetActive(false);
+            var operation = SceneManager.LoadSceneAsync("4_Song");
             //var operation = SceneManager.LoadSceneAsync("4_TownMap");
-            var operation = SceneManager.LoadSceneAsync("5_Dungeon");
+            //var operation = SceneManager.LoadSceneAsync("5_Dungeon");
             operation.allowSceneActivation = true;
         }
         else

@@ -181,6 +181,9 @@ public class Customizing : MonoBehaviour
                 }
                 Female_Pants[DataManager.GetInstance.FEMALE_PANTSNUM(_num)].SetActive(true);
 
+                Female_Default_Body.SetActive(true);
+                Female_Default_Hand.SetActive(true);
+                Female_Default_Shoes.SetActive(true);
                 break;
 
                
@@ -220,11 +223,177 @@ public class Customizing : MonoBehaviour
                     obj.SetActive(false);
                 }
                 male_Pants[DataManager.GetInstance.MALE_PANTSNUM(_num)].SetActive(true);
-                
+
+
+                male_Default_Body.SetActive(true);
+                male_Default_Hand.SetActive(true);
+                male_Default_Shoes.SetActive(true);
                 break;
 
         }
     }
+
+    public void InitEquipMentItem(int _num)
+    {
+        
+        switch (DataManager.GetInstance.GENDERNUM(_num))
+        {
+            case 0:
+
+                if (DataManager.GetInstance.ISEQUIPHELMAT(_num))
+                {
+                    if(DataManager.GetInstance.PLAYER_JOB(_num).Equals(UnitCode.WARRIOR))
+                    {
+                        Female_Face[DataManager.GetInstance.FEMALE_FACENUM(_num)].SetActive(false);
+                    }
+
+                    for (int i = 0; i < Helmats.Count; i++)
+                    {
+                        if (Helmats[i].DATAS.ItemCode == DataManager.GetInstance.HELMATCODE(_num))
+                        {
+                            Helmats[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+
+                if (DataManager.GetInstance.ISEQUIPTOP(_num))
+                {
+                    Female_Top[DataManager.GetInstance.FEMALE_TOPNUM(_num)].gameObject.SetActive(false);
+                    Female_Default_Body.SetActive(false);
+                    for (int i = 0; i < Female_Armor_Top.Count; i++)
+                    {
+                        if (Female_Armor_Top[i].DATAS.ItemCode == DataManager.GetInstance.TOPCODE(_num))
+                        {
+                            Female_Armor_Top[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+                if (DataManager.GetInstance.ISEQUIPPANTS(_num))
+                {
+                    Female_Pants[DataManager.GetInstance.FEMALE_PANTSNUM(_num)].gameObject.SetActive(false);
+                    for (int i = 0; i < Female_Armor_Bottom.Count; i++)
+                    {
+                        if (Female_Armor_Bottom[i].DATAS.ItemCode == DataManager.GetInstance.PANTSCODE(_num))
+                        {
+                            Female_Armor_Bottom[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+                if (DataManager.GetInstance.ISEQUIPHAND(_num))
+                {
+                    Female_Default_Hand.SetActive(false);
+                    for (int i = 0; i < Female_hand.Count; i++)
+                    {
+                        if (Female_hand[i].DATAS.ItemCode == DataManager.GetInstance.HANDCODE(_num))
+                        {
+                            Female_hand[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+                if (DataManager.GetInstance.ISEQUIPSHOES(_num))
+                {
+                    Female_Default_Shoes.SetActive(false);
+                    for (int i = 0; i < Female_shoes.Count; i++)
+                    { 
+                        if (Female_shoes[i].DATAS.ItemCode == DataManager.GetInstance.SHOESCODE(_num))
+                        {
+                            Female_shoes[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+                break;
+
+            case 1:
+
+                if (DataManager.GetInstance.ISEQUIPHELMAT(_num))
+                {
+                    if (DataManager.GetInstance.PLAYER_JOB(_num).Equals(UnitCode.WARRIOR))
+                    {
+                        male_Face[DataManager.GetInstance.MALE_FACENUM(_num)].SetActive(false);
+                    }
+
+                    for (int i = 0; i < Helmats.Count; i++)
+                    {
+                        if (Helmats[i].DATAS.ItemCode == DataManager.GetInstance.HELMATCODE(_num))
+                        {
+                            Helmats[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+
+                if (DataManager.GetInstance.ISEQUIPTOP(_num))
+                {
+                    male_Top[DataManager.GetInstance.MALE_TOPNUM(_num)].gameObject.SetActive(false);
+                    male_Default_Body.SetActive(false);
+                    for (int i = 0; i < male_Armor_Top.Count; i++)
+                    { 
+                        if (male_Armor_Top[i].DATAS.ItemCode == DataManager.GetInstance.TOPCODE(_num))
+                        {
+                            male_Armor_Top[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+                if (DataManager.GetInstance.ISEQUIPPANTS(_num))
+                {
+                    male_Pants[DataManager.GetInstance.MALE_PANTSNUM(_num)].gameObject.SetActive(false);
+                    for (int i = 0; i < male_Armor_Bottom.Count; i++)
+                    {
+
+                        if (male_Armor_Bottom[i].DATAS.ItemCode == DataManager.GetInstance.PANTSCODE(_num))
+                        {
+                            male_Armor_Bottom[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+                if (DataManager.GetInstance.ISEQUIPHAND(_num))
+                {
+                    male_Default_Hand.SetActive(false);
+                    for (int i = 0; i < male_hand.Count; i++)
+                    {
+
+                        if (male_hand[i].DATAS.ItemCode == DataManager.GetInstance.HANDCODE(_num))
+                        {
+                            male_hand[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+
+                if (DataManager.GetInstance.ISEQUIPSHOES(_num))
+                {
+                    male_Default_Shoes.SetActive(false);
+                    for (int i = 0; i < male_Shoes.Count; i++)
+                    {
+
+                        if (male_Shoes[i].DATAS.ItemCode == DataManager.GetInstance.SHOESCODE(_num))
+                        {
+                            male_Shoes[i].gameObject.SetActive(true);
+                            break;
+                        }
+                    }
+                }
+                break;
+        }
+        
+    }
+
+
+    
 
     #region 선택창 
     public void ChangeCustomizingPrev(int _num)
@@ -524,7 +693,7 @@ public class Customizing : MonoBehaviour
 
     #region 캐릭터 장비아이템 변경
 
-    public void ChangeEquipmentItem(ArmorItemData _equipmnetItem = null)
+    public void ChangeEquipmentItem(ArmorItemData _equipmnetItem)
     {
         if (_equipmnetItem == null)
         {
@@ -583,7 +752,7 @@ public class Customizing : MonoBehaviour
                 ChangeShoes(_equipmnetItem);
                 break;
         }
-        
+        DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
     }
 
     public int FindItemIndex(List<EquipMentItemInfo> _item, int _itemCode)
