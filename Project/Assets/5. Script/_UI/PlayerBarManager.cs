@@ -56,9 +56,6 @@ public class PlayerBarManager : MonoBehaviour
             UseMp(10);
             GetExp(10);
         }
-
-        Debug.Log(followtime);
-
     }
 
     private void CheckHp()

@@ -40,9 +40,6 @@ public class HPBar : MonoBehaviour
         {
             GetDamage(10);
         }
-
-        Debug.Log(followtime);
-
     }
 
     private void CheckHp()

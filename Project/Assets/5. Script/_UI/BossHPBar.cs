@@ -38,9 +38,6 @@ public class BossHPBar : MonoBehaviour
         {
             GetDamage(10);
         }
-
-        Debug.Log(followtime);
-
     }
 
     private void CheckHp()
