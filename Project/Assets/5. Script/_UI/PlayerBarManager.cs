@@ -47,10 +47,14 @@ public class PlayerBarManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.A))
         {
             SetMaxHP(100);
+            SetMaxMP(100);
+            SetMaxEXP(100);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
             GetDamage(10);
+            UseMp(10);
+            GetExp(10);
         }
 
         Debug.Log(followtime);
@@ -110,7 +114,7 @@ public class PlayerBarManager : MonoBehaviour
     public void SetMaxEXP(int _MaxEXP)
     {
         MaxExp = _MaxEXP;
-        NowExp = MaxExp;
+        NowExp = 0;
         SetExpBar();
     }
 
@@ -124,6 +128,26 @@ public class PlayerBarManager : MonoBehaviour
         SetHpBarFollowTime();
         SetHpBar();
         DamageNum.instance.Damage(damage, 1);
+    }
+
+    public void UseMp(int num)
+    {
+        NowMp -= num;
+        if (NowMp < 0)
+        {
+            NowMp = 0;
+        }
+        SetMpBar();
+    }
+
+    public void GetExp(int num)
+    {
+        NowExp += num;
+        if (NowExp > MaxExp)
+        {
+            NowExp = MaxExp;
+        }
+        SetExpBar();
     }
 
     public void GetHeel(int heel)
@@ -140,7 +164,7 @@ public class PlayerBarManager : MonoBehaviour
     {
         CheckHp();
         hpBar.value = Hpvalue;
-        hptext.text = string.Join(NowHp.ToString(), " / ", MaxHp.ToString());
+        hptext.text = $"{NowHp} / {MaxHp}";
     }
     private void SetHpBarFollowTime()
     {
@@ -155,13 +179,13 @@ public class PlayerBarManager : MonoBehaviour
     {
         CheckMp();
         mpBar.value = Mpvalue;
-        mptext.text = string.Join(NowMp.ToString(), " / ", MaxMp.ToString());
+        mptext.text = $"{NowMp} / {MaxMp}";
     }
 
     private void SetExpBar()
     {
         CheckExp();
         expBar.value = Expvalue;
-        exptext.text = string.Join("EXP :  ", Expvalue.ToString("F2"), " %");
+        exptext.text = $"EXP : {((float)((int)(Expvalue * 10000))/100)}%";
     }
 }
