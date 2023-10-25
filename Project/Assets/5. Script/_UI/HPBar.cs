@@ -36,9 +36,7 @@ public class HPBar : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            MaxHp = 100;
-            NowHp = MaxHp;
-            SetHpBar();
+            SetMaxHP(100);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -59,6 +57,13 @@ public class HPBar : MonoBehaviour
         {
             value = ((float)NowHp / (float)MaxHp);
         }
+    }
+
+    public void SetMaxHP(int _MaxHP)
+    {
+        MaxHp = _MaxHP;
+        NowHp = MaxHp;
+        SetHpBar();
     }
 
     public void GetDamage(int damage)

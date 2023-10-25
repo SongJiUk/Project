@@ -15,9 +15,6 @@ public class BossHPBar : MonoBehaviour
     float followtimeMax = 2;
     float followtime = 0;
 
-    [SerializeField]
-    Transform target;
-    // Start is called before the first frame update
     void Awake()
     {
 
@@ -35,9 +32,7 @@ public class BossHPBar : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            MaxHp = 100;
-            NowHp = MaxHp;
-            SetHpBar();
+            SetMaxHP(100);
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
@@ -58,6 +53,13 @@ public class BossHPBar : MonoBehaviour
         {
             value = ((float)NowHp / (float)MaxHp);
         }
+    }
+
+    public void SetMaxHP(int _MaxHP) 
+    {
+        MaxHp = _MaxHP;
+        NowHp = MaxHp;
+        SetHpBar();
     }
 
     public void GetDamage(int damage)
