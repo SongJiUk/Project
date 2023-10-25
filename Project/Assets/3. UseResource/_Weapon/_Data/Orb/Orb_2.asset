@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Orb_2
   m_EditorClassIdentifier: 
   _rating: 1
-  _itemcode: 0
+  _itemcode: 211
   _name: Orb_2
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: 5b7e59ef429695a4d92f4dae17431e84, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   _SettingItem: {fileID: 0}
   Type: 15
   ClassPrivateItem: 1
-  Gender: 0
+  Gender: 2
   _EquipmentNum: 2
   _EquipmentLevel: 1
   _maxDurability: 100

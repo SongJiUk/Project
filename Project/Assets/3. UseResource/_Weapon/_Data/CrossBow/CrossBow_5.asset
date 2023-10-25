@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: CrossBow_5
   m_EditorClassIdentifier: 
   _rating: 4
-  _itemcode: 0
+  _itemcode: 314
   _name: CrossBow_5
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: 11421eb30d7acc34c86de70ab958bda9, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   _SettingItem: {fileID: 0}
   Type: 13
   ClassPrivateItem: 2
-  Gender: 0
+  Gender: 2
   _EquipmentNum: 1
   _EquipmentLevel: 1
   _maxDurability: 100

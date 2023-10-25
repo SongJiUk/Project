@@ -84,6 +84,11 @@ public class WeaponManager : Singleton<WeaponManager>
         }
     }
 
+    //public void ChangeWeapon(WeaponItemData _weaponData, WeaponItemData _shiledData = null)
+    //{
+
+    //}
+
     public void ChangeWeapon(WeaponItemData _weaponData, WeaponItemData _shiledData = null)
     {
         /*
@@ -106,19 +111,34 @@ public class WeaponManager : Singleton<WeaponManager>
         }
          */
         // 전에 끼던 무기 정보 저장
-        if (handWeapon != null) B_handWeapon = handWeapon;
-        if (handShiled != null) B_handShiled = handShiled;
+        if (handWeapon != null)
+        {
+            B_handWeapon = handWeapon;
+            B_Weapondata = Weapondata;
+            B_handWeapon.SetActive(false);
+        }
+        if (handShiled != null)
+        {
+            B_handShiled = handShiled;
+            B_ShiledData = ShiledData;
+            B_handShiled.SetActive(false);
+        }
         // 교체할 무기 저장
         Weapondata = _weaponData;
         ShiledData = _shiledData;
 
+
         handWeapon = null;
+        if (backWeapon != null) backWeapon.SetActive(false);
         backWeapon = null;
 
         //웨폰 리스트에서 맞는 정보를 가져와서 저장해줌
         for (int i = 0; i < WeaponList.Count; i++)
         {
-            if (Weapondata.ItemCode == WeaponList[i].DATA.ItemCode) handWeapon = WeaponList[i].gameObject;
+            if (Weapondata.ItemCode == WeaponList[i].DATA.ItemCode)
+                handWeapon = WeaponList[i].gameObject;
+
+
         }
 
         for( int i=0; i<BackWeaponList.Count; i++)
@@ -126,9 +146,10 @@ public class WeaponManager : Singleton<WeaponManager>
             if (Weapondata.ItemCode == BackWeaponList[i].DATA.ItemCode) backWeapon = BackWeaponList[i].gameObject;
         }
 
-        if(backWeapon != null) EquipWeapon_back = backWeapon;
-        if(handWeapon != null) EquipWeapon_hand = handWeapon;
-
+        if (handWeapon != null) EquipWeapon_hand = handWeapon;
+        if (backWeapon != null) EquipWeapon_back = backWeapon;
+        
+        
         DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
 
         if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
@@ -144,7 +165,7 @@ public class WeaponManager : Singleton<WeaponManager>
             ArcherEquipmentChange();
         }
 
-        DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
+       
 
         if (isEquip)
         {
@@ -156,10 +177,25 @@ public class WeaponManager : Singleton<WeaponManager>
         }
         else
         {
-            isEquip = !isEquip;
+            isEquip = !isEquip; 
             Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
             Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
         }
+
+        if (B_Weapondata != null)
+            if (B_Weapondata._EquipmentNum == Weapondata._EquipmentNum)
+            {
+                EquipWeapon_hand.SetActive(true);
+            }
+            else Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
+        else Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
+
+
+
+        if (B_ShiledData != null && ShiledData != null)
+            if (B_ShiledData._EquipmentNum == ShiledData._EquipmentNum)
+                EquipShiled_hand.SetActive(true);
+        else EquipShiled_hand.SetActive(true);
 
     }
 
@@ -168,14 +204,17 @@ public class WeaponManager : Singleton<WeaponManager>
         if (ShiledData != null)
         {
             isEquipShiled = true;
+
+            if (backShiled != null) backShiled.SetActive(false);
+                
             for (int i = 0; i < ShiledList.Count; i++)
             {
                 if (ShiledData.ItemCode == ShiledList[i].DATA.ItemCode) handShiled = ShiledList[i].gameObject;
                 if (ShiledData.ItemCode == BackShiledList[i].DATA.ItemCode) backShiled = BackShiledList[i].gameObject;
             }
 
-            EquipShiled_back = handShiled;
-            EquipShiled_hand = backShiled;
+            EquipShiled_hand = handShiled;
+            EquipShiled_back = backShiled;
 
         }
         else isEquipShiled = false;

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Staff_4
   m_EditorClassIdentifier: 
   _rating: 3
-  _itemcode: 0
+  _itemcode: 203
   _name: Staff_4
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: 4781354959b85bf4f8cc823af6497122, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   _SettingItem: {fileID: 0}
   Type: 14
   ClassPrivateItem: 1
-  Gender: 0
+  Gender: 2
   _EquipmentNum: 1
   _EquipmentLevel: 1
   _maxDurability: 100

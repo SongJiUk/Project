@@ -13,6 +13,7 @@ public class DataManager : Singleton<DataManager>
 
 */
     public static int SlotCount = 3;
+    public static int InventorySlotNum = 64;
     Dictionary<int, UnitCode> SlotJob = new Dictionary<int, UnitCode>();
     int Slot_Num;
     public int SLOT_NUM
@@ -198,6 +199,18 @@ public class DataManager : Singleton<DataManager>
 
     int[] WeaponCode = new int[SlotCount];
     bool[] isEquipWeapon = new bool[SlotCount];
+
+    int[] InventorySlot = new int[InventorySlotNum];
+
+    public void SETINVENTORYSLOT(int _num, int _value)
+    {
+        InventorySlot[_num] = _value;
+    }
+
+    public int GETINVENTORYSLOT(int _num)
+    {
+        return InventorySlot[_num];
+    }
 
     public int WEAPONCODE(int _slot)
     {
@@ -388,6 +401,11 @@ public class DataManager : Singleton<DataManager>
 
         PlayerPrefs.SetInt("SlotJob"+_index, (int)SlotJob[_index]);
 
+        for (int num = 0; num < InventorySlotNum; num++)
+        {
+            PlayerPrefs.SetInt($"InventorySlot{_index}" + num, InventorySlot[num]);
+        }
+
         PlayerPrefs.SetFloat("player_exp" + _index, player_exp[_index]);
         PlayerPrefs.SetInt("player_level" + _index, player_level[_index]);
         PlayerPrefs.SetString("player_id" + _index, player_id[_index]);
@@ -440,6 +458,11 @@ public class DataManager : Singleton<DataManager>
             if (isSlotOpen[i])
             {
                 SlotJob[i] = (UnitCode)PlayerPrefs.GetInt("SlotJob" + i);
+               
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    InventorySlot[num] = PlayerPrefs.GetInt($"InventorySlot{i}" + num);
+                }
 
                 player_level[i] = PlayerPrefs.GetInt("player_level" + i);
                 player_exp[i] = PlayerPrefs.GetFloat("player_exp" + i);

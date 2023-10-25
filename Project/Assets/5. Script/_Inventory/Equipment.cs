@@ -133,7 +133,10 @@ public class Equipment : MonoBehaviour
                 WeaponL = A;
             }
             UpdateSlot(0);
-            UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+            //WeaponManager.GetInstance.ISEQUIP = true;
+            if(A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
+            else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+
         }
 
         

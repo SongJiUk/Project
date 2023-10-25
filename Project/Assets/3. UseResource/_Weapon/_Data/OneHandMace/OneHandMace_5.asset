@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: OneHandMace_5
   m_EditorClassIdentifier: 
   _rating: 4
-  _itemcode: 0
+  _itemcode: 114
   _name: OneHandMace_5
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: f3bc0e8defce80548a092e7588a05c69, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   _SettingItem: {fileID: 0}
   Type: 7
   ClassPrivateItem: 0
-  Gender: 0
+  Gender: 2
   _EquipmentNum: 2
   _EquipmentLevel: 1
   _maxDurability: 100

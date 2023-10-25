@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Dagger_5
   m_EditorClassIdentifier: 
   _rating: 4
-  _itemcode: 51
+  _itemcode: 104
   _name: Dagger_5
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: 1cc85d955a9b02b41a016168e18e67ba, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   _SettingItem: {fileID: 0}
   Type: 6
   ClassPrivateItem: 0
-  Gender: 0
+  Gender: 2
   _EquipmentNum: 1
   _EquipmentLevel: 1
   _maxDurability: 100

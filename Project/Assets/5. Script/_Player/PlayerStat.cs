@@ -70,4 +70,9 @@ public class PlayerStat : Singleton<PlayerStat>
         Damage += 1f;
 
     }
+
+    private void Update()
+    {
+        Debug.Log(Defence);
+    }
 }

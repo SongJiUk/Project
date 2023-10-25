@@ -183,7 +183,6 @@ public class CameraManager : Singleton<CameraManager>
         Vector3 dir = (player.transform.position - Camera.main.transform.position).normalized;
         float distance = Vector3.Distance(Camera.main.transform.position, player.transform.position);
         hits = Physics.RaycastAll(Camera.main.transform.position, dir, distance);
-        Debug.Log(distance);
         for (int i = 0; i < hits.Length; i++)
         {
             if (hits[i].transform.gameObject.layer == LayerMask.NameToLayer("Object"))

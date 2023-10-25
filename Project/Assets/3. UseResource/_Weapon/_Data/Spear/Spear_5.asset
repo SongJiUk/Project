@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Spear_5
   m_EditorClassIdentifier: 
   _rating: 4
-  _itemcode: 0
+  _itemcode: 134
   _name: Spear_5
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: c7c16f08863c9d546994ba0bcfe1b4d6, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   _SettingItem: {fileID: 0}
   Type: 10
   ClassPrivateItem: 0
-  Gender: 0
+  Gender: 2
   _EquipmentNum: 4
   _EquipmentLevel: 1
   _maxDurability: 100

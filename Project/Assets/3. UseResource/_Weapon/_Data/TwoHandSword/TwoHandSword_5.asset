@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: TwoHandSword_5
   m_EditorClassIdentifier: 
   _rating: 4
-  _itemcode: 0
+  _itemcode: 124
   _name: TwoHandSword_5
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: 33d9f311a46b4994fb1bbbe02b75b49a, type: 3}
@@ -21,7 +21,7 @@ MonoBehaviour:
   _SettingItem: {fileID: 0}
   Type: 8
   ClassPrivateItem: 0
-  Gender: 0
+  Gender: 2
   _EquipmentNum: 3
   _EquipmentLevel: 1
   _maxDurability: 100
