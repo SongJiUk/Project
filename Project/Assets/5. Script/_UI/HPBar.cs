@@ -16,8 +16,6 @@ public class HPBar : MonoBehaviour
     float followtimeMax = 2;
     float followtime = 0;
 
-    [SerializeField]
-    Transform target;
     // Start is called before the first frame update
     void Awake()
     {

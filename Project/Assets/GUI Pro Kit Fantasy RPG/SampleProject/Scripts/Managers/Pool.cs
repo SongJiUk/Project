@@ -255,7 +255,7 @@ namespace Pool
             //the amount which was passed in exceeds the amount of inactive instances
             if (count > inactive.Count)
             {
-                Debug.LogWarning("Destroy Count value: " + count + " is greater than inactive Count: " +
+                Debug.LogWarning("Destroy Count Hpvalue: " + count + " is greater than inactive Count: " +
                                  inactive.Count + ". Destroying all available inactive objects of type: " +
                                  prefab.name + ". Use DestroyUnused(false) instead to achieve the same.");
                 DestroyUnused(false);

@@ -35,7 +35,7 @@ namespace UnityEngine.PostProcessing
             [Range(0.063f, 0.333f)]
             public float edgeDetectionThreshold;
 
-            [Tooltip("Local contrast adaptation value to disallow the algorithm from executing on the darker regions.")]
+            [Tooltip("Local contrast adaptation Hpvalue to disallow the algorithm from executing on the darker regions.")]
             [Range(0f, 0.0833f)]
             public float minimumRequiredLuminance;
 
@@ -90,7 +90,7 @@ namespace UnityEngine.PostProcessing
             [Range(0.33f, 0.5f)]
             public float subpixelSpreadAmount;
 
-            [Tooltip("This value dictates how sharp the edges in the image are kept; a higher value implies sharper edges.")]
+            [Tooltip("This Hpvalue dictates how sharp the edges in the image are kept; a higher Hpvalue implies sharper edges.")]
             [Range(2f, 8f)]
             public float edgeSharpnessAmount;
 
@@ -98,7 +98,7 @@ namespace UnityEngine.PostProcessing
             [Range(0.125f, 0.25f)]
             public float edgeDetectionThreshold;
 
-            [Tooltip("Local contrast adaptation value to disallow the algorithm from executing on the darker regions.")]
+            [Tooltip("Local contrast adaptation Hpvalue to disallow the algorithm from executing on the darker regions.")]
             [Range(0.04f, 0.06f)]
             public float minimumRequiredLuminance;
 

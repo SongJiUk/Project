@@ -29,7 +29,7 @@ namespace UnityEngine.PostProcessing
             [Min(0f), Tooltip("Exposure bias. Use this to offset the global exposure of the scene.")]
             public float keyValue;
 
-            [Tooltip("Set this to true to let Unity handle the key value automatically based on average luminance.")]
+            [Tooltip("Set this to true to let Unity handle the key Hpvalue automatically based on average luminance.")]
             public bool dynamicKeyValue;
 
             [Tooltip("Use \"Progressive\" if you want the auto exposure to be animated. Use \"Fixed\" otherwise.")]
