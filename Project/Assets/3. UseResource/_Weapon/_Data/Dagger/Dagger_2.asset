@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
   m_Name: Dagger_2
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 1
   _itemcode: 21
   _name: Dagger_2
   _tooltip: 
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 19dd4ffe1a7338844ae305ee7c5fe1fa, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   Type: 6

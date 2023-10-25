@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
   m_Name: TwoHandSword_5
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 4
   _itemcode: 0
   _name: TwoHandSword_5
   _tooltip: 
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 0709c64fa576c0d4286f5453a08c90e2, type: 3}
   _dropItemPrefab: {fileID: 0}
+  _SettingItem: {fileID: 0}
   Type: 8
   ClassPrivateItem: 0
+  Gender: 0
   _EquipmentNum: 3
   _EquipmentLevel: 1
   _maxDurability: 100

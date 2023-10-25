@@ -12,14 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
   m_Name: Orb_5
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 4
   _itemcode: 0
   _name: Orb_5
   _tooltip: 
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: f636c855042c78c4c8788afbc0dca020, type: 3}
   _dropItemPrefab: {fileID: 0}
+  _SettingItem: {fileID: 0}
   Type: 15
   ClassPrivateItem: 1
+  Gender: 0
   _EquipmentNum: 2
   _EquipmentLevel: 1
   _maxDurability: 100

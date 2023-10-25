@@ -16,10 +16,12 @@ MonoBehaviour:
   _itemcode: 0
   _name: Bow_1
   _tooltip: 
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 80e5b9c78ec249a4ba2dbd589334335e, type: 3}
   _dropItemPrefab: {fileID: 0}
+  _SettingItem: {fileID: 0}
   Type: 12
   ClassPrivateItem: 2
+  Gender: 0
   _EquipmentNum: 2
   _EquipmentLevel: 1
   _maxDurability: 100

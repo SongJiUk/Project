@@ -16,10 +16,12 @@ MonoBehaviour:
   _itemcode: 0
   _name: Staff_1
   _tooltip: 
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: 8b2cd9025e9575643b294ffe73df378d, type: 3}
   _dropItemPrefab: {fileID: 0}
+  _SettingItem: {fileID: 0}
   Type: 14
   ClassPrivateItem: 1
+  Gender: 0
   _EquipmentNum: 1
   _EquipmentLevel: 1
   _maxDurability: 100
