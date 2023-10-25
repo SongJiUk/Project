@@ -57,12 +57,12 @@ public class UISettingKey : MonoBehaviour
         {
             Equipment.gameObject.SetActive(!Equipment.gameObject.activeSelf);
         }
-        /*
+        
         if (Input.GetKeyDown(KeyCode.Y))
         {
             Skill.gameObject.SetActive(!Skill.gameObject.activeSelf);
         }
-
+        /*
         if (Input.GetKeyDown(KeyCode.O))
         {
 
