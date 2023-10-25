@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 2040
   _name: 
   _tooltip: 
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: efb02282f82714606817167f8bc958eb, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   Type: 3
