@@ -61,6 +61,18 @@ public class WeaponManager : Singleton<WeaponManager>
         }
     }
 
+    public int FindIndex(int _num)
+    {
+        for (int i = 0; i < WeaponList.Count; i++)
+        {
+            if(WeaponList[i].DATA.ItemCode == _num)
+            {
+                return WeaponList[i].DATA._EquipmentNum;
+            }
+        }
+        return 0;
+    }
+
     public void InitEquipMentWeapon(int _num)
     {
         if (DataManager.GetInstance.ISEQUIPWEAPON(_num))
@@ -81,6 +93,22 @@ public class WeaponManager : Singleton<WeaponManager>
                 {
                     ShiledList[i].gameObject.SetActive(true);
                 }
+            }
+        }
+        else
+        {
+            for (int i = 0; i < WeaponList.Count; i++)
+            {
+               
+                    WeaponList[i].gameObject.SetActive(false);
+                
+            }
+
+            for (int i = 0; i < ShiledList.Count; i++)
+            {
+              
+                    ShiledList[i].gameObject.SetActive(false);
+                
             }
         }
     }

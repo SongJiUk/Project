@@ -15,11 +15,17 @@ public class PlayerSlotScene : MonoBehaviour
     [SerializeField] GameObject gameStartPopup;
     [SerializeField] Text gameStart_txt;
 
-
+    [SerializeField] GameObject[] Player_Anim;
     public List<GameObject> playerInfos = new List<GameObject>();
     public List<Text> playerName_txt = new List<Text>();
     public List<Text> playerJob_txt = new List<Text>();
     public List<Text> playerLevel_txt = new List<Text>();
+
+    public RuntimeAnimatorController[] PlayerJob;
+    public GameObject obj;
+    public Animator anim;
+
+
     private void Start()
     {
         if (null == playercutomizing) playercutomizing = GetComponent<Customizing>();
@@ -40,6 +46,13 @@ public class PlayerSlotScene : MonoBehaviour
         }
     }
 
+    public void ChangeAnim(int _num)
+    {
+        
+        
+    }
+
+   
     public void SelectSlot(int _num)
     {
         playercutomizing.gameObject.SetActive(false);
@@ -51,7 +64,18 @@ public class PlayerSlotScene : MonoBehaviour
             playercutomizing.InitPlayer(_num);
             playercutomizing.InitEquipMentItem(_num);
             playerWeapon.InitEquipMentWeapon(_num);
+
+            anim = obj.GetComponent<Animator>();
+            int num = DataManager.GetInstance.PLAYER_JOB(_num);
+            anim.runtimeAnimatorController = PlayerJob[num];
+            int weaponNum = DataManager.GetInstance.WEAPONCODE(_num);
+
+           
+           int equipNum =  playerWeapon.FindIndex(weaponNum);
+
             playercutomizing.gameObject.SetActive(true);
+            anim.SetInteger("EquipNum", equipNum);
+            
 
             gameStartPopup.SetActive(true);
             gameStart_txt.text = $"{_num +1}번 슬롯의 영웅으로 플레이 하시겠습니까?";

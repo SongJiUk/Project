@@ -68,6 +68,7 @@ public class EquipmentUI : MonoBehaviour
     {
         Init();
         slotnum();
+        gameObject.SetActive(false);
     }
 
     private void Update()

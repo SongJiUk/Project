@@ -124,6 +124,8 @@ public class InventoryUI : MonoBehaviour
         InitSlots();
         InitButtonEvents();
         InitToggleEvents();
+
+        gameObject.SetActive(false);
     }
 
     private void Update()
