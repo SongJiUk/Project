@@ -48,6 +48,7 @@ public class WeaponManager : Singleton<WeaponManager>
     GameObject B_handWeapon;
     GameObject B_handShiled;
 
+    bool isUIUnEquip = false;
     #endregion
     bool isEquipShiled = false;
     bool isOrb = false;
@@ -89,7 +90,7 @@ public class WeaponManager : Singleton<WeaponManager>
 
     //}
 
-    public void ChangeWeapon(WeaponItemData _weaponData, WeaponItemData _shiledData = null)
+    public void ChangeWeapon(WeaponItemData _weaponData = null, WeaponItemData _shiledData = null)
     {
         /*
         
@@ -110,92 +111,116 @@ public class WeaponManager : Singleton<WeaponManager>
             모두 바뀌면 EquipNum를 1로 바꿔준다.
         }
          */
+
+
         // 전에 끼던 무기 정보 저장
-        if (handWeapon != null)
+
+        if(_weaponData != null)
         {
-            B_handWeapon = handWeapon;
-            B_Weapondata = Weapondata;
-            B_handWeapon.SetActive(false);
-        }
-        if (handShiled != null)
-        {
-            B_handShiled = handShiled;
-            B_ShiledData = ShiledData;
-            B_handShiled.SetActive(false);
-        }
-        // 교체할 무기 저장
-        Weapondata = _weaponData;
-        ShiledData = _shiledData;
+            if (handWeapon != null)
+            {
+                B_handWeapon = handWeapon;
+                B_Weapondata = Weapondata;
+                B_handWeapon.SetActive(false);
+            }
+            if (handShiled != null)
+            {
+                B_handShiled = handShiled;
+                B_ShiledData = ShiledData;
+                B_handShiled.SetActive(false);
+            }
+            // 교체할 무기 저장
+            Weapondata = _weaponData;
+            ShiledData = _shiledData;
 
 
-        handWeapon = null;
-        if (backWeapon != null) backWeapon.SetActive(false);
-        backWeapon = null;
+            handWeapon = null;
+            if (backWeapon != null) backWeapon.SetActive(false);
+            if (backShiled != null) backShiled.SetActive(false);
+            backWeapon = null;
 
-        //웨폰 리스트에서 맞는 정보를 가져와서 저장해줌
-        for (int i = 0; i < WeaponList.Count; i++)
-        {
-            if (Weapondata.ItemCode == WeaponList[i].DATA.ItemCode)
-                handWeapon = WeaponList[i].gameObject;
+            //웨폰 리스트에서 맞는 정보를 가져와서 저장해줌
 
+            for (int i = 0; i < WeaponList.Count; i++)
+            {
+                if (Weapondata.ItemCode == WeaponList[i].DATA.ItemCode)
+                    handWeapon = WeaponList[i].gameObject;
+            }
 
-        }
-
-        for( int i=0; i<BackWeaponList.Count; i++)
-        {
-            if (Weapondata.ItemCode == BackWeaponList[i].DATA.ItemCode) backWeapon = BackWeaponList[i].gameObject;
-        }
-
-        if (handWeapon != null) EquipWeapon_hand = handWeapon;
-        if (backWeapon != null) EquipWeapon_back = backWeapon;
-        
-        
-        DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
-
-        if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
-        {
-            WarriorEquipmentChange();
-        }
-        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
-        {
-            MageEquipmentChange();
-        }
-        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
-        {
-            ArcherEquipmentChange();
-        }
-
-       
-
-        if (isEquip)
-        {
-            isEquip = !isEquip;
-            isChangeWeapon = true;
-            Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
-            Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
+            for (int i = 0; i < BackWeaponList.Count; i++)
+            {
+                if (Weapondata.ItemCode == BackWeaponList[i].DATA.ItemCode) backWeapon = BackWeaponList[i].gameObject;
+            }
             
+
+
+            if (handWeapon != null) EquipWeapon_hand = handWeapon;
+            if (backWeapon != null) EquipWeapon_back = backWeapon;
+
+
+            DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
+
+
+            if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
+            {
+                WarriorEquipmentChange();
+            }
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
+            {
+                MageEquipmentChange();
+            }
+            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
+            {
+                ArcherEquipmentChange();
+            }
+
+
+
+            if (isEquip)
+            {
+                isEquip = !isEquip;
+                isChangeWeapon = true;
+                Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
+                Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
+
+            }
+            else
+            {
+                isEquip = !isEquip;
+                Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
+                Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
+            }
+
+
+            if (B_Weapondata != null)
+                if (B_Weapondata._EquipmentNum == Weapondata._EquipmentNum)
+                {
+                    //EquipWeapon_hand.SetActive(true);
+                    Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
+                }
+                else Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
+            else Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
+
+
+
+            if (B_ShiledData != null && ShiledData != null)
+                if (B_ShiledData._EquipmentNum == ShiledData._EquipmentNum)
+                    EquipShiled_hand.SetActive(true);
+                else EquipShiled_hand.SetActive(true);
         }
         else
         {
-            isEquip = !isEquip; 
-            Player.GetInstance.ANIM.SetBool("IsEquip", isEquip);
+            isUIUnEquip = true;
+            DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, false);
+            Player.GetInstance.ANIM.SetBool("IsEquip", false);
             Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
+            EquipWeapon_hand.SetActive(false);
+            EquipWeapon_back.SetActive(false);
+            handWeapon = null;
+            backWeapon = null;
+            isEquip = false;
         }
-
-        if (B_Weapondata != null)
-            if (B_Weapondata._EquipmentNum == Weapondata._EquipmentNum)
-            {
-                EquipWeapon_hand.SetActive(true);
-            }
-            else Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
-        else Player.GetInstance.ANIM.SetInteger("EquipNum", Weapondata._EquipmentNum);
-
-
-
-        if (B_ShiledData != null && ShiledData != null)
-            if (B_ShiledData._EquipmentNum == ShiledData._EquipmentNum)
-                EquipShiled_hand.SetActive(true);
-        else EquipShiled_hand.SetActive(true);
+        
 
     }
 
@@ -205,8 +230,6 @@ public class WeaponManager : Singleton<WeaponManager>
         {
             isEquipShiled = true;
 
-            if (backShiled != null) backShiled.SetActive(false);
-                
             for (int i = 0; i < ShiledList.Count; i++)
             {
                 if (ShiledData.ItemCode == ShiledList[i].DATA.ItemCode) handShiled = ShiledList[i].gameObject;
@@ -244,6 +267,8 @@ public class WeaponManager : Singleton<WeaponManager>
     public void Equip()
     {
         if(EquipWeapon_back != null) EquipWeapon_back.SetActive(!isEquip);
+        
+            
         if(EquipWeapon_hand != null) EquipWeapon_hand.SetActive(isEquip);
 
         if(isEquipShiled)
@@ -260,7 +285,12 @@ public class WeaponManager : Singleton<WeaponManager>
     {
         if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
         {
-            if (EquipWeapon_back != null) EquipWeapon_back.SetActive(!isEquip);
+            if (EquipWeapon_back != null)
+            {
+                if (isUIUnEquip) EquipWeapon_back.SetActive(false);
+                else EquipWeapon_back.SetActive(!isEquip);
+            }
+            
             if (EquipWeapon_hand != null) EquipWeapon_hand.SetActive(isEquip);
 
             if (B_handWeapon != null) B_handWeapon.SetActive(false);
@@ -268,7 +298,9 @@ public class WeaponManager : Singleton<WeaponManager>
 
             if (isEquipShiled)
             {
-                EquipShiled_back.SetActive(!isEquip);
+                if(isUIUnEquip) EquipShiled_back.SetActive(false);
+                else EquipShiled_back.SetActive(!isEquip);
+
                 EquipShiled_hand.SetActive(isEquip);
             }
             else
@@ -312,7 +344,7 @@ public class WeaponManager : Singleton<WeaponManager>
             isChangeWeapon = false;
         }
 
-
+        if(isUIUnEquip) isUIUnEquip = false;
     }
     #endregion
 

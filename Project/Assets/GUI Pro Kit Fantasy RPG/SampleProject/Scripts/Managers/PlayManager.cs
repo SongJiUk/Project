@@ -31,7 +31,7 @@ namespace FantasyRPG
 
 
 
-            StartCoroutine(LoadSceneCo(sceneName));
+            //StartCoroutine(LoadSceneCo(sceneName));
         }
 
         IEnumerator LoadSceneCo(string sceneName)

@@ -3,100 +3,63 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class LoadManager : MonoBehaviour
+public class LoadManager : Singleton<LoadManager>
 {
-    private void Start()
+    public static string LoadSceneName = "LoadScene";
+    private float time;
+    private Coroutine coroutine;
+    AsyncOperation asyncOperation;
+    public float LoadNum;
+    private void Awake()
     {
         DataManager.GetInstance.LoadData();
-        
+        DontDestroyOnLoad(gameObject);
     }
-
-
-    public void ClickNextScene()
+    public void LoadSceneAsync(string _name)
     {
-        var operation = SceneManager.LoadSceneAsync("1_PlayerSlotScene");
-        operation.allowSceneActivation = true;
-
+        SceneManager.LoadScene(LoadSceneName);
+        StartCoroutine(LoadSceneAsyncCoroutine(_name));
     }
 
-    //private IEnumerator GoToNextSceneCoroutine()
-    //{
-    //    yield return new WaitForSeconds(0.05f);
-    //    Screen.sleepTimeout = SleepTimeout.NeverSleep;
+    private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
+    {
 
-    //    Debug.LogWarningFormat("KKI GoToNextSceneCoroutine");
-    //    var operation = SceneManager.LoadSceneAsync("");
-    //    operation.allowSceneActivation = false;
-    //    LoadingGauge._Checking = false;
-
-    //    yield return new WaitForEndOfFrame();
-    //    LoadingGauge._Persent = 2;
-    //    Purchaser.GetInstance.Init();
-    //    LoadingGauge._Persent = 5;
-    //    var value = false;
-    //    var delay = 0.0f;
-    //    int limitCount = 0;
-
-    //    LoadingGauge._Persent = 10;
-    //    yield return new WaitWhile(() => LoadingGauge._Checking == false);
-    //    LoadingGauge._Checking = false;
-    //    LoadingImageManager._isGameStart = true;
-    //    LoadingImageManager.LoadingImageNumber = 100;
-    //    //AdsManager.GetInstance.InitAds();
-    //    LoadingGauge._Persent = 30;
-    //    yield return new WaitWhile(() => LoadingGauge._Checking == false);
-    //    LoadingGauge._Checking = false;
-    //    yield return new WaitWhile(() => LoadingGauge._Checking == false);
-    //    LoadingGauge._Checking = false;
-    //    //FirebaseManager.GetInstance.Init();
-    //    Application.targetFrameRate = 60;
-    //    QualitySettings.vSyncCount = 0;
-    //    PlayerData.GetInstance.LoadData();
-
-    
-
-    //    //if (!PlayerData.GetInstance.IsPlayBGM)
-    //    //{
-    //    //    MasterAudio.PlaylistMasterVolume = 0f;
-    //    //}
-    //    //else
-    //    //{
-    //    //    MasterAudio.PlaylistMasterVolume = 1f;
-    //    //}
-
-    //    //if (!PlayerData.GetInstance.IsPlaySFX)
-    //    //{
-    //    //    MasterAudio.SetBusVolumeByName("SFX", 0f);
-    //    //    MasterAudio.SetBusVolumeByName("Loop", 0f);
-    //    //}
-    //    //else
-    //    //{
-    //    //    MasterAudio.SetBusVolumeByName("SFX", 1f);
-    //    //    MasterAudio.SetBusVolumeByName("Loop", 1f);
-    //    //}
-
-    //    LoadingGauge._Persent = 60;
-    //    yield return new WaitWhile(() => LoadingGauge._Checking == false);
-    //    LoadingGauge._Checking = false;
+        // 비동기로 씬을 로드
+        
 
        
-    //    LoadingGauge._Persent = 70;
-    //    yield return new WaitWhile(() => LoadingGauge._Checking == false);
-    //    LoadingGauge._Checking = false;
-    //    LanguageManager.GetInstance.Init();
-    //    LoadingGauge._Persent = 80;
-    //    yield return new WaitWhile(() => LoadingGauge._Checking == false);
-    //    LoadingGauge._Checking = false;
 
-    //    //SingularSDK.InitializeSingularSDK();
+        float elapsedTime = 0f;
+        float targetTime = 2f; 
 
+        while (true)
+        {
+            elapsedTime += Time.deltaTime;
+            if(elapsedTime >= targetTime)
+            {
+                asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+                asyncOperation.allowSceneActivation = false;
 
-    //    //GameObject obj = GameObject.Find("PopupManager");   
-    //    //obj.GetComponent<PopupManager>().CallLoadingTutorialPop("MainScene");
-    //    LoadingGauge._Persent = 90;
-    //    yield return new WaitWhile(() => LoadingGauge._Checking == false);
-    //    LoadingGauge._Checking = false;
-    //    operation.allowSceneActivation = true;
-    //}
+                break;
+            }
+            else
+            {
+                LoadNum = elapsedTime / targetTime;
+
+            }
+            
+           
+            yield return null;
+        }
+        
+
+        while (asyncOperation.progress < 0.9f)
+        { 
+            yield return null;
+        }
+
+        asyncOperation.allowSceneActivation = true;
+
+    }
 
 }

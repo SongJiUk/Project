@@ -72,8 +72,10 @@ public class PlayerSlotScene : MonoBehaviour
         if(_isanswer)
         {
             selectPopup.SetActive(false);
-            var operation = SceneManager.LoadSceneAsync("2_CharacterSelect");
-            operation.allowSceneActivation = true;
+
+            LoadManager.GetInstance.LoadSceneAsync("2_CharacterSelect");
+            //var operation = SceneManager.LoadSceneAsync("2_CharacterSelect");
+            //operation.allowSceneActivation = true;
         }
         else
         {
@@ -86,10 +88,11 @@ public class PlayerSlotScene : MonoBehaviour
         if (_isanswer)
         {
             gameStartPopup.SetActive(false);
+            LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
             //var operation = SceneManager.LoadSceneAsync("4_Song");
-            var operation = SceneManager.LoadSceneAsync("4_TownMap");
+            //var operation = SceneManager.LoadSceneAsync("4_TownMap");
             //var operation = SceneManager.LoadSceneAsync("5_Dungeon");
-            operation.allowSceneActivation = true;
+            //operation.allowSceneActivation = true;
         }
         else
         {

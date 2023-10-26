@@ -693,13 +693,13 @@ public class Customizing : MonoBehaviour
 
     #region 캐릭터 장비아이템 변경
 
-    public void ChangeEquipmentItem(ArmorItemData _equipmnetItem)
+    public int ChangeEquipmentItem(ArmorItemData _equipmnetItem)
     {
-        if (_equipmnetItem == null)
-        {
-            // 오른쪽 클릭해서 장착 해제할 때
-            return;
-        }
+        //if (_equipmnetItem == null)
+        //{
+        //    // 오른쪽 클릭해서 장착 해제할 때
+        //    return ;
+        //}
 
         // 필요한 데이터 가져오기
         int slotGender = DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM);
@@ -709,12 +709,12 @@ public class Customizing : MonoBehaviour
         var equipClassPrivateItem = _equipmnetItem.ClassPrivateItem;
         int equipLevel = _equipmnetItem._EquipmentLevel;
 
-        // 레벨 체크
+        //레벨 체크
         if (playerLevel < equipLevel)
         {
             // 레벨이 부족 UI
             Debug.Log("Low Level");
-            return;
+            return 1;
         }
 
         // 성별 체크
@@ -722,7 +722,7 @@ public class Customizing : MonoBehaviour
         {
             // 성별이 맞지 않음 UI
             Debug.Log("Diffrent Gender");
-            return;
+            return 2;
         }
 
         // 직업 체크
@@ -730,7 +730,7 @@ public class Customizing : MonoBehaviour
         {
             // 직업이 맞지 않음 UI
             Debug.Log("Diffrent Job");
-            return;
+            return 3;
         }
 
         // 아이템 타입에 따라 장비 교체
@@ -753,6 +753,7 @@ public class Customizing : MonoBehaviour
                 break;
         }
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
+        return 0;
     }
 
     public int FindItemIndex(List<EquipMentItemInfo> _item, int _itemCode)

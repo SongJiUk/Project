@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class test : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void Clickbtn()
+    private void Update()
     {
-        Debug.Log(Player.GetInstance);
+        Debug.Log("1243jthklaerghelrugyqelrguqherg");
     }
 }

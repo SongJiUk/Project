@@ -909,20 +909,22 @@ public class PlayerController : MonoBehaviour
         {
             if (weaponManager.Weapondata != null)
             {
-                weaponManager.ISEQUIP = !weaponManager.ISEQUIP;
 
-                if (!weaponManager.ISEQUIP)
+                if(DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM))
                 {
-                    LastWeaponNum = weaponManager.Weapondata._EquipmentNum;
-                    Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
+                    weaponManager.ISEQUIP = !weaponManager.ISEQUIP;
+
+                    if (!weaponManager.ISEQUIP)
+                    {
+                        LastWeaponNum = weaponManager.Weapondata._EquipmentNum;
+                        Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
+                    }
+                    else
+                        Player.GetInstance.ANIM.SetInteger("EquipNum", LastWeaponNum);
+
+                    player.ANIM.SetTrigger("PressX");
+                    player.ANIM.SetBool("IsEquip", weaponManager.ISEQUIP);
                 }
-                else
-                    Player.GetInstance.ANIM.SetInteger("EquipNum", LastWeaponNum);
-
-                player.ANIM.SetTrigger("PressX");
-                player.ANIM.SetBool("IsEquip", weaponManager.ISEQUIP);
-
-                
             }
                 
         }

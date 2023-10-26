@@ -8,6 +8,7 @@ public class UIManager : Singleton<UIManager>
 
     public Customizing customizing;
     public WeaponManager weaponManger;
+    public bool isNoEquip = false;
     void Start()
     {
         if (customizing == null) customizing = Player.GetInstance.GetComponent<Customizing>();

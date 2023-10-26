@@ -40,85 +40,209 @@ public class Equipment : MonoBehaviour
 
     public Item EquipmentItem(EquipmentItem A)
     {
-        Item returnItem = null;
-
        
+        Item returnItem = null;
+       // 1 - 레벨부족
+       // 2 - 성별 안맞음
+       // 3 - 직업 안맞음
         
         if (A.EquipmentData.Type == Types.Top)
         {
-            if (Top != null)
+            int num = UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
+
+            switch(num)
             {
-                returnItem = Top;
-                Top = A;
+                case 0:
+                    if (Top != null)
+                    {
+                        returnItem = Top;
+                        Top = A;
+                    }
+                    else
+                    {
+                        returnItem = null;
+                        Top = A;
+                    }
+                    UpdateSlot(1);
+                    break;
+
+                case 1:
+                    //레벨 부족
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 2:
+                    //성별 x
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 3:
+                    // 직업 안맞음
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
             }
-            else
-            {
-                returnItem = null;
-                Top = A;
-            }
-            UpdateSlot(1);
-            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
+            
+            
 
         }
         else if (A.EquipmentData.Type == Types.Pants)
         {
-            if (Pants != null)
+
+            int num = UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
+
+            switch (num)
             {
-                returnItem = Pants;
-                Pants = A;
+                case 0:
+                    if (Pants != null)
+                    {
+                        returnItem = Pants;
+                        Pants = A;
+                    }
+                    else
+                    {
+                        returnItem = null;
+                        Pants = A;
+                    }
+                    UpdateSlot(1);
+                    break;
+
+                case 1:
+                    //레벨 부족
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 2:
+                    //성별 x
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 3:
+                    // 직업 안맞음
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
             }
-            else
-            {
-                returnItem = null;
-                Pants = A;
-            }
-            UpdateSlot(2);
-            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else if (A.EquipmentData.Type == Types.Head)
         {
-            if (Head != null)
+
+            int num = UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
+
+            switch (num)
             {
-                returnItem = Head;
-                Head = A;
+                case 0:
+                    if (Head != null)
+                    {
+                        returnItem = Head;
+                        Head = A;
+                    }
+                    else
+                    {
+                        returnItem = null;
+                        Head = A;
+                    }
+                    UpdateSlot(1);
+                    break;
+
+                case 1:
+                    //레벨 부족
+                    Debug.Log("레벨 부족");
+
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 2:
+                    //성별 x
+                    Debug.Log("성별 다름");
+
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 3:
+                    // 직업 안맞음
+                    Debug.Log("직업 안맞음");
+
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
             }
-            else
-            {
-                returnItem = null;
-                Head = A;
-            }
-            UpdateSlot(3);
-            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else if (A.EquipmentData.Type == Types.Hand)
         {
-            if (Hand != null)
+
+            int num = UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
+
+            switch (num)
             {
-                returnItem = Hand;
-                Hand = A;
+                case 0:
+                    if (Hand != null)
+                    {
+                        returnItem = Hand;
+                        Hand = A;
+                    }
+                    else
+                    {
+                        returnItem = null;
+                        Hand = A;
+                    }
+                    UpdateSlot(1);
+                    break;
+
+                case 1:
+                    //레벨 부족
+                    Debug.Log("레벨 부족");
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 2:
+                    //성별 x
+                    Debug.Log("성별 다름");
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 3:
+                    // 직업 안맞음
+                    Debug.Log("직업 안맞음");
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
             }
-            else
-            {
-                returnItem = null;
-                Hand = A;
-            }
-            UpdateSlot(4);
-            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else if (A.EquipmentData.Type == Types.Shoes)
         {
-            if (Shoes != null)
+            int num = UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
+
+            switch (num)
             {
-                returnItem = Shoes;
-                Shoes = A;
+                case 0:
+                    if (Shoes != null)
+                    {
+                        returnItem = Shoes;
+                        Shoes = A;
+                    }
+                    else
+                    {
+                        returnItem = null;
+                        Shoes = A;
+                    }
+                    UpdateSlot(1);
+                    break;
+
+                case 1:
+                    //레벨 부족
+                    Debug.Log("레벨 부족");
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 2:
+                    //성별 x
+                    Debug.Log("성별 다름");
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
+
+                case 3:
+                    // 직업 안맞음
+                    Debug.Log("직업 안맞음");
+                    UIManager.GetInstance.isNoEquip = true;
+                    break;
             }
-            else
-            {
-                returnItem = null;
-                Shoes = A;
-            }
-            UpdateSlot(5);
-            UIManager.GetInstance.customizing.ChangeEquipmentItem(A.EquipmentData as ArmorItemData);
         }
         else
         {

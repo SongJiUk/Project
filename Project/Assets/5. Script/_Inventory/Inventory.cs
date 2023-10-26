@@ -529,7 +529,8 @@ public class Inventory : MonoBehaviour
             Item A = _equipment.EquipmentItem(uItem2);
             if (A == null)
             {
-                Remove(index);
+                if (UIManager.GetInstance.isNoEquip) UIManager.GetInstance.isNoEquip = false;
+                else Remove(index);
             }
             else
             {
