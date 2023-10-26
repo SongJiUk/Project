@@ -39,7 +39,7 @@ public class Player : Singleton<Player>
 
     private void Awake()
     {
-
+        Debug.Log("ㅋㅐ릭터 입니다");
         //if (null == instance) instance = this;
         if (null == anim) anim = GetComponent<Animator>();
         if (null == nav) nav = GetComponent<NavMeshAgent>();
@@ -49,10 +49,17 @@ public class Player : Singleton<Player>
         if (null == customizing) customizing = GetComponent<Customizing>();
         playerStat = PlayerStat.GetInstance;
         playerStat.InitStat(DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM));
+
+        //var a = weaponManager.FindIndexs(DataManager.GetInstance.WEAPONCODE(DataManager.GetInstance.SLOT_NUM));
+        //if(a != null) UIManager.GetInstance.weaponManger.ChangeWeapon(a);
         PlayerSetting();
         SPEED = 10f;
     }
 
+    public void ChangeMap()
+    {
+
+    }
     private void Update()
     {
         //if(Input.GetKeyDown(KeyCode.Alpha9))

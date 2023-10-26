@@ -192,7 +192,7 @@ public class Enemy : MonoBehaviour
         die = true;
         Anime.SetTrigger("IsDie");
         gameObject.SetActive(false);
-        objectPoolManager.ObjectDie(gameObject);
+        //objectPoolManager.ObjectDie(gameObject);
         //Anime.enabled = true;
     }
 

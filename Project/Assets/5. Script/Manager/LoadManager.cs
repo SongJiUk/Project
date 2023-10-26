@@ -10,6 +10,7 @@ public class LoadManager : Singleton<LoadManager>
     private Coroutine coroutine;
     AsyncOperation asyncOperation;
     public float LoadNum;
+    public bool isSceneChange = false;
     private void Awake()
     {
         DataManager.GetInstance.LoadData();
@@ -17,6 +18,7 @@ public class LoadManager : Singleton<LoadManager>
     }
     public void LoadSceneAsync(string _name)
     {
+        isSceneChange = true;
         SceneManager.LoadScene(LoadSceneName);
         if (UIManager.GetInstance != null)
         {

@@ -236,6 +236,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7853685958263934917, guid: a44b6dcdf55354e6881f29270472c058, type: 3}
+      propertyPath: m_Text
+      value: "\uB358\uC804\uC5D0 \uC785\uC7A5\uD558\uC2E4\uB798\uC694?"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a44b6dcdf55354e6881f29270472c058, type: 3}
 --- !u!1 &6648812986169854036 stripped
@@ -361,7 +365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3837161159121553558, guid: 6cbe2a9c27f674016806bba0683d2ed3, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4173757123643327600, guid: 6cbe2a9c27f674016806bba0683d2ed3, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

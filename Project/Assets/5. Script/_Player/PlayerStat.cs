@@ -108,7 +108,7 @@ public class PlayerStat : Singleton<PlayerStat>
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            GetDamage(10);
+            //GetDamage(10);
         }
     }
 

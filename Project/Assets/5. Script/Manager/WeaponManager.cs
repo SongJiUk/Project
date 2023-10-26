@@ -73,6 +73,18 @@ public class WeaponManager : Singleton<WeaponManager>
         return 0;
     }
 
+    public WeaponItemData FindIndexs(int _num)
+    {
+        for (int i = 0; i < WeaponList.Count; i++)
+        {
+            if (WeaponList[i].DATA.ItemCode == _num)
+            {
+                return WeaponList[i].DATA;
+            }
+        }
+        return null;
+    }
+
     public void InitEquipMentWeapon(int _num)
     {
         if (DataManager.GetInstance.ISEQUIPWEAPON(_num))

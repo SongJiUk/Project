@@ -40,6 +40,6 @@ public class DragonBreath : MonoBehaviour
     public void DragonAttack()
     {
         transform.LookAt(player.transform);
-        particle.Play();
+       if(particle != null) particle.Play();
     }
 }
