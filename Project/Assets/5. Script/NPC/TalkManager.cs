@@ -14,23 +14,23 @@ public class TalkManager : MonoBehaviour
 
     void GeneratorData()
     {
-        talkData.Add(1000, new string[] { "안녕?", "이곳에 처음 왔구나?", "한번 둘러보록 해." });
-        talkData.Add(2000, new string[] { "여어?", "너도 보물을 노리는거냐"});
+        talkData.Add(1000, new string[] { "어서오게나", "마을을 좀 둘러봐."});
+        talkData.Add(2000, new string[] { "반갑네!"});
         //talkData.Add(100, new string[] { "평범한 나무 상자다" });
         //talkData.Add(200, new string[] { "누군가 사용한적 있는 나무상자다" });
 
         //Quest Talk
-        talkData.Add(10 + 1000, new string[] { "어서 와!", "이마을에 놀라운 전설이 있다는데", "저기 옆에 친구한태 물어봐." });
-        talkData.Add(10 + 2000, new string[] { "넌 누구야."});
-        talkData.Add(11 + 2000, new string[] { "어이", "너도 전설에 대해 알고 싶은거냐?", "하지만 꽁짜로는 안되지", "풀잎을 좀 가져오면 알려줄게." });
+        talkData.Add(10 + 1000, new string[] { "안녕하신가", "우리 마을에 잘 왔네!", "먼저 이장님을 만나보는게 어떤가?"});
+        talkData.Add(10 + 2000, new string[] { "무슨일 있나?"});
+        talkData.Add(11 + 2000, new string[] { "반갑네!", "난 이 마을의 이장이라네", "그런데 혹시 내 검 본적있나?", "찾으면 나에게 전해주면 고맙겠군."});
 
-        talkData.Add(20 + 1000, new string[] { "안녕!", "풀잎의 위치?", "저기 오른쪽으로 가면 있었던거 같아!"});
-        talkData.Add(20 + 2000, new string[] { "풀잎을 가져와." });
-        talkData.Add(20 + 4000, new string[] { "풀잎을 주웠다." });
-        talkData.Add(21 + 2000, new string[] {"오 풀잎이잖아?", "이 마을에는 전설의 보물이 있다고 들었어.", "저기 보이는 성에 있다고 들은거 같은데." });
+        talkData.Add(20 + 1000, new string[] { "마을은 둘러보고 있나?", "이장님의 검?", "난 잘 모르겠군."});
+        talkData.Add(20 + 2000, new string[] { "검이 어디로 갔지.." });
+        talkData.Add(20 + 4000, new string[] { "이장님의 검을 주웠다." });
+        talkData.Add(21 + 2000, new string[] {"무슨일이지?", "아 내검을 찾아주었군!", "감사의 의미로 이걸 받아주게." });
 
-        talkData.Add(30 + 1000, new string[] { "안녕!", "성의 비밀?", "좀 기대된다!" });
-        talkData.Add(30 + 2000, new string[] { "조심해.. 무엇이 있는지는 나도 몰라." });
+        talkData.Add(30 + 1000, new string[] { "검을 찾았다고?", "이장님이 한시름 놓으셨겠군."});
+        talkData.Add(30 + 2000, new string[] { "고맙네!" });
     }
 
     public string GetTalk(int id, int talkindex)

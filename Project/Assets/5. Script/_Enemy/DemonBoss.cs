@@ -7,7 +7,7 @@ public class DemonBoss : MonoBehaviour
     Player player;
     Vector3 Dir;
 
-    float attckTimer =13f;
+    float attckTimer = 7f;
 
     Animator anime;
 
@@ -23,6 +23,12 @@ public class DemonBoss : MonoBehaviour
     GameObject ShockWavePrefab;
     [SerializeField]
     string BossName;
+    [SerializeField]
+    float maxHP;
+    float nowHP;
+
+    bool isSkillHit = false;
+
 
     BossHPUIManager _bossHPUIManager;
 
@@ -34,10 +40,9 @@ public class DemonBoss : MonoBehaviour
         if(_bossHPUIManager == null)
         _bossHPUIManager = BossHPUIManager.instance;
         _bossHPUIManager.AwakeBoss(BossName, 100);
-
+        nowHP = maxHP;
         player = Player.GetInstance;
         anime = GetComponent<Animator>();
-        attckTimer = 3f;
         Attack1Position();
     }
 
@@ -117,5 +122,37 @@ public class DemonBoss : MonoBehaviour
     public void DemonShockWave()
     {
         Instantiate(ShockWavePrefab, Attack3Point.transform.position, Quaternion.identity);
+    }
+
+    void BossHit(int value)
+    {
+        nowHP -= value;
+        if (nowHP <= 0)
+        {
+            BossDie();
+        }
+    }
+
+    void BossDie()
+    {
+
+    }
+
+    public void SkillHit()
+    {
+        if (!isSkillHit)
+        {
+            isSkillHit = true;
+
+            BossHit(10);
+            Debug.Log("¾ÆÇÁ´Ù : " + this.name + nowHP);
+            Invoke("HitDelay", 0.5f);
+        }
+
+    }
+
+    public void HitDelay()
+    {
+        isSkillHit = false;
     }
 }
