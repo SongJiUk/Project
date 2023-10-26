@@ -30,7 +30,7 @@ public class DamageNum : MonoBehaviour
 
     }
 
-    public void Damage(int damage, int color, Transform _transformHit)
+    public void Damage(float damage, int color, Transform _transformHit)
     {
         _transformto = _transformHit;
         GameObject DamageUI = Instantiate(_damageText, _canvas);

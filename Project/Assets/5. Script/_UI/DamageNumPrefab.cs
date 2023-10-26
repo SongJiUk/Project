@@ -67,7 +67,7 @@ public class DamageNumPrefab : MonoBehaviour
         _positioning = positioning;
     }
 
-    public void SetDamage(int damage)
+    public void SetDamage(float damage)
     {
         _amountText.text = damage.ToString();
     }

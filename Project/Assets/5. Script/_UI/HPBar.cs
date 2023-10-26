@@ -10,7 +10,7 @@ public class HPBar : MonoBehaviour
 
     [SerializeField] Slider hpBar;
     [SerializeField] Slider hpBarfollow;
-    int MaxHp = 0;
+    float MaxHp = 0;
     float NowHp = 0;
     float value = 0;
     float followtimeMax = 2;
@@ -50,14 +50,14 @@ public class HPBar : MonoBehaviour
         }
     }
 
-    public void SetMaxHP(int _MaxHP)
+    public void SetMaxHP(float _MaxHP)
     {
         MaxHp = _MaxHP;
         NowHp = MaxHp;
         SetHpBar();
     }
 
-    public void GetDamage(float nowHP,int damage, Transform _transformHit)
+    public void GetDamage(float nowHP,float damage, Transform _transformHit)
     {
         NowHp = nowHP;
         
@@ -66,7 +66,7 @@ public class HPBar : MonoBehaviour
         DamageNum.instance.Damage(damage, 1, _transformHit);
     }
 
-    public void GetHeel(int nowHP, int heel)
+    public void GetHeel(float nowHP, float heel)
     {
         NowHp = nowHP;
         

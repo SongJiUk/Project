@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour
     bool isSkillHit = false;
 
     BoxCollider collider;
-    void Start()
+    void Awake()
     {
         timer = attackTime;
         nowEnemyHP = maxEnemyHP;
@@ -56,6 +56,7 @@ public class Enemy : MonoBehaviour
         // nav.acceleration = Mathf.Infinity;
         originalSpeed = nav.speed;
         objectPoolManager = ObjectPoolManager.GetInstance;
+        _hpBarUI.SetMaxHP(maxEnemyHP);
     }
 
     bool die = false;
