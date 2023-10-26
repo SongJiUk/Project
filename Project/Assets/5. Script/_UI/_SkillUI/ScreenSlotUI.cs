@@ -17,7 +17,7 @@ public class ScreenSlotUI : MonoBehaviour
 
     private void Awake()
     {
-        SetCoolTime(5);
+        
     }
 
     void Update()
