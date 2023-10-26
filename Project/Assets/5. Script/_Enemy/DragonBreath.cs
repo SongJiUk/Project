@@ -24,13 +24,17 @@ public class DragonBreath : MonoBehaviour
 
     private void Update()
     {
-        if (particle.isPlaying)
+        if (particle != null)
         {
-            if (Vector3.Distance(player.transform.position, transform.position) <= 4.2f)
+            if (particle.isPlaying)
             {
-                //Debug.LogWarning("¾Ñ¶ß°Å¿Í");
+                if (Vector3.Distance(player.transform.position, transform.position) <= 4.2f)
+                {
+                    //Debug.LogWarning("????????");
+                }
             }
         }
+        
     }
 
     public void DragonAttack()

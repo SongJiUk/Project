@@ -10,6 +10,7 @@ public class LoadScene : MonoBehaviour
     [SerializeField] Sprite[] BG_Img;
 
     [SerializeField] Text GameTip_txt;
+    //던전에서 게임종료시 마을로 이동됩니다.
     [SerializeField] Text LoadingNum_txt;
 
     [SerializeField] Image LoadingGauge_img;

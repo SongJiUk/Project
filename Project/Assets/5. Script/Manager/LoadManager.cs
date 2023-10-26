@@ -24,8 +24,6 @@ public class LoadManager : Singleton<LoadManager>
     private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
     {
 
-        // 비동기로 씬을 로드
-        
 
        
 
