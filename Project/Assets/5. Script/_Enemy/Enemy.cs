@@ -8,6 +8,9 @@ public class Enemy : MonoBehaviour
     float maxEnemyHP = 50; // ???????? ????HP
     float nowEnemyHP; // ???????? ????HP
 
+    [SerializeField]
+    HPBar _hpBarUI;
+
     ObjectPoolManager objectPoolManager;
 
     [SerializeField]
@@ -132,10 +135,12 @@ public class Enemy : MonoBehaviour
         if (nowEnemyHP <= 0)
         {
             EnemyDie();
-        } else
+        }
+        else
         {
             Anime.SetTrigger("IsHit");
         }
+        _hpBarUI.GetDamage(nowEnemyHP, value, transform);
     }
 
     public int GetEnemyID()
@@ -186,7 +191,7 @@ public class Enemy : MonoBehaviour
         die = true;
         Anime.SetTrigger("IsDie");
         gameObject.SetActive(false);
-        //objectPoolManager.ObjectDie(gameObject);
+        objectPoolManager.ObjectDie(gameObject);
         //Anime.enabled = true;
     }
 
