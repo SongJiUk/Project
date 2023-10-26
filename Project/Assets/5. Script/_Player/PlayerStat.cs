@@ -54,10 +54,7 @@ public class PlayerStat : Singleton<PlayerStat>
 
     private void Awake()
     {
-        if (_playerBarManager == null)
-            _playerBarManager = PlayerBarManager.instance;
-        Debug.Log(_playerBarManager);
-        SetStart(100, 100, 100);
+        
     }
 
     public void SetStart(int _MaxHP, int _MaxMP, int _MaxEXP)
@@ -65,13 +62,11 @@ public class PlayerStat : Singleton<PlayerStat>
         _playerBarManager = PlayerBarManager.instance;
         MaxHp = _MaxHP;
         NowHp = MaxHp;
-        _playerBarManager.SetHpBar(1, NowHp, MaxHp);
         MaxMp = _MaxMP;
         NowMp = MaxMp;
-        _playerBarManager.SetMpBar(1, NowMp, MaxMp);
         MaxExp = _MaxEXP;
         NowExp = 0;
-        _playerBarManager.SetExpBar(0);
+        _playerBarManager.SetMax(MaxHp, MaxMp);
     }
 
     public void ChangeEnum(int _num)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 
 public class PlayerBarManager : MonoBehaviour
@@ -47,6 +48,18 @@ public class PlayerBarManager : MonoBehaviour
 
         }
     }
+
+    public void SetMax(int maxHp,float maxMp)
+    {
+        hpBar.value = 1;
+        hpBarfollow.value = 1;
+        mpBar.value = 1;
+        expBar.value = 1;
+        hptext.text = $"{maxHp} / {maxHp}";
+        mptext.text = $"{maxMp} / {maxMp}";
+        exptext.text = $"EXP : {((float)((int)(0 * 10000)) / 100)}%";
+    }
+
 
     public void SetHpBar(float value, float nowMp, int maxMp)
     {
