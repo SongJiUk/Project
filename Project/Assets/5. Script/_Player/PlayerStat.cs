@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
+using static UnityEngine.Rendering.DebugUI;
 
 [RequireComponent(typeof(Player))]
 public class PlayerStat : Singleton<PlayerStat>
@@ -15,8 +17,19 @@ public class PlayerStat : Singleton<PlayerStat>
     public float ComboDelay { get; set; }
     public float Defence { get; set; }
 
+
+    float NowHp = 0;
+    float NowMp = 0;
+    float MaxExp = 0;
+    float NowExp = 0;
+    float Hpvalue = 0;
+    float Mpvalue = 0;
+    float Expvalue = 0;
+
     public EGender gender { get; set; }
-   
+
+    PlayerBarManager _playerBarManager;
+
     public void InitStat(UnitCode _UnitCodes)
     {
         UnitCodes = _UnitCodes;
@@ -36,6 +49,29 @@ public class PlayerStat : Singleton<PlayerStat>
                 break;
         }
         ChangeEnum(DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM));
+        
+    }
+
+    private void Awake()
+    {
+        if (_playerBarManager == null)
+            _playerBarManager = PlayerBarManager.instance;
+        Debug.Log(_playerBarManager);
+        SetStart(100, 100, 100);
+    }
+
+    public void SetStart(int _MaxHP, int _MaxMP, int _MaxEXP)
+    {
+        _playerBarManager = PlayerBarManager.instance;
+        MaxHp = _MaxHP;
+        NowHp = MaxHp;
+        _playerBarManager.SetHpBar(1, NowHp, MaxHp);
+        MaxMp = _MaxMP;
+        NowMp = MaxMp;
+        _playerBarManager.SetMpBar(1, NowMp, MaxMp);
+        MaxExp = _MaxEXP;
+        NowExp = 0;
+        _playerBarManager.SetExpBar(0);
     }
 
     public void ChangeEnum(int _num)
@@ -74,5 +110,132 @@ public class PlayerStat : Singleton<PlayerStat>
     private void Update()
     {
         Debug.Log(Defence);
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            GetDamage(10);
+        }
     }
+
+
+
+
+
+
+
+
+
+
+    private void CheckHp()
+    {
+        if (NowHp <= 0 || MaxHp <= 0)
+        {
+            Hpvalue = 0;
+        }
+        else
+        {
+            Hpvalue = ((float)NowHp / (float)MaxHp);
+        }
+    }
+
+    private void CheckMp()
+    {
+        if (NowMp <= 0 || MaxMp <= 0)
+        {
+            Mpvalue = 0;
+        }
+        else
+        {
+            Mpvalue = ((float)NowMp / (float)MaxMp);
+        }
+    }
+
+    private void CheckExp()
+    {
+        if (NowExp <= 0 || MaxExp <= 0)
+        {
+            Expvalue = 0;
+        }
+        else
+        {
+            Expvalue = ((float)NowExp / (float)MaxExp);
+        }
+    }
+
+    
+
+
+    public void SetNowHP(float value)
+    {
+        _playerBarManager.SetHpBar(value, NowHp, MaxHp);
+    }
+
+    public void SetNowMP(float value)
+    {
+        _playerBarManager.SetMpBar(value, NowMp, MaxMp);
+    }
+
+    public void SetNowEXP(float value)
+    {
+        _playerBarManager.SetExpBar(value);
+    }
+
+
+
+    public void GetDamage(int damage)
+    {
+        NowHp -= damage;
+        CheckHp();
+
+        SetNowHP(Hpvalue);
+        DamageNum.instance.Damage(damage, 1, this.transform);
+    }
+
+    public void UseMp(int num)
+    {
+        NowMp -= num;
+        if (NowMp < 0)
+        {
+            NowMp = 0;
+        }
+        CheckMp();
+        SetNowMP(Mpvalue);
+    }
+
+    public void GetExp(int num)
+    {
+        NowExp += num;
+        if (NowExp > MaxExp)
+        {
+            NowExp = MaxExp;
+        }
+        CheckExp();
+        SetNowEXP(Expvalue);
+    }
+
+    public void GetHeel(int heel)
+    {
+        NowHp += heel;
+        if (NowHp > MaxHp)
+        {
+            NowHp = MaxHp;
+        }
+        CheckHp();
+        SetNowHP(Hpvalue);
+    }
+
+    public void RecoveryMp(int mp)
+    {
+        NowMp += mp;
+        if (NowMp > MaxMp)
+        {
+            NowMp = MaxMp;
+        }
+        CheckMp();
+        SetNowMP(Hpvalue);
+    }
+
+
+
+
 }

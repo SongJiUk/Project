@@ -16,22 +16,20 @@ public class PlayerBarManager : MonoBehaviour
     [SerializeField] Slider expBar;
     [SerializeField] Text exptext;
 
-    int MaxHp = 0;
-    float NowHp = 0;
-    int MaxMp = 0;
-    float NowMp = 0;
-    int MaxExp = 0;
-    float NowExp = 0;
-    float Hpvalue = 0;
-    float Mpvalue = 0;
-    float Expvalue = 0;
     float HpfollowtimeMax = 2;
     float followtime = 0;
+
+    float savevalue = 0;
+
+    public static PlayerBarManager instance;
 
     // Start is called before the first frame update
     void Awake()
     {
-
+        if(instance==null)
+        {
+            instance = this;
+        }
     }
 
     // Update is called once per frame
@@ -46,113 +44,16 @@ public class PlayerBarManager : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.A))
         {
-            SetMaxHP(100);
-            SetMaxMP(100);
-            SetMaxEXP(100);
+
         }
     }
 
-    private void CheckHp()
+    public void SetHpBar(float value, float nowMp, int maxMp)
     {
-        if (NowHp <= 0 || MaxHp <= 0)
-        {
-            Hpvalue = 0;
-        }
-        else
-        {
-            Hpvalue = ((float)NowHp / (float)MaxHp);
-        }
-    }
-
-    private void CheckMp()
-    {
-        if (NowMp <= 0 || MaxMp <= 0)
-        {
-            Mpvalue = 0;
-        }
-        else
-        {
-            Mpvalue = ((float)NowMp / (float)MaxMp);
-        }
-    }
-
-    private void CheckExp()
-    {
-        if (NowExp <= 0 || MaxExp <= 0)
-        {
-            Expvalue = 0;
-        }
-        else
-        {
-            Expvalue = ((float)NowExp / (float)MaxExp);
-        }
-    }
-
-    public void SetMaxHP(int _MaxHP)
-    {
-        MaxHp = _MaxHP;
-        NowHp = MaxHp;
-        SetHpBar();
-    }
-
-    public void SetMaxMP(int _MaxMP)
-    {
-        MaxMp = _MaxMP;
-        NowMp = MaxMp;
-        SetMpBar();
-    }
-
-    public void SetMaxEXP(int _MaxEXP)
-    {
-        MaxExp = _MaxEXP;
-        NowExp = 0;
-        SetExpBar();
-    }
-
-    public void GetDamage(float nowHP, int damage, Transform _transformHit)
-    {
-        NowHp = nowHP;
-
+        hpBar.value = value;
+        savevalue = value;
         SetHpBarFollowTime();
-        SetHpBar();
-        DamageNum.instance.Damage(damage, 1, _transformHit);
-    }
-
-    public void UseMp(int num)
-    {
-        NowMp -= num;
-        if (NowMp < 0)
-        {
-            NowMp = 0;
-        }
-        SetMpBar();
-    }
-
-    public void GetExp(int num)
-    {
-        NowExp += num;
-        if (NowExp > MaxExp)
-        {
-            NowExp = MaxExp;
-        }
-        SetExpBar();
-    }
-
-    public void GetHeel(int heel)
-    {
-        NowHp += heel;
-        if (NowHp > MaxHp)
-        {
-            NowHp = MaxHp;
-        }
-        SetHpBar();
-    }
-
-    private void SetHpBar()
-    {
-        CheckHp();
-        hpBar.value = Hpvalue;
-        hptext.text = $"{NowHp} / {MaxHp}";
+        hptext.text = $"{nowMp} / {maxMp}";
     }
     private void SetHpBarFollowTime()
     {
@@ -160,20 +61,18 @@ public class PlayerBarManager : MonoBehaviour
     }
     private void SetHpBarFollow()
     {
-        hpBarfollow.value = Hpvalue;
+        hpBarfollow.value = savevalue;
     }
 
-    private void SetMpBar()
+    public void SetMpBar(float value, float nowMp, float maxMp)
     {
-        CheckMp();
-        mpBar.value = Mpvalue;
-        mptext.text = $"{NowMp} / {MaxMp}";
+        mpBar.value = value;
+        mptext.text = $"{nowMp} / {maxMp}";
     }
 
-    private void SetExpBar()
+    public void SetExpBar(float value)
     {
-        CheckExp();
-        expBar.value = Expvalue;
-        exptext.text = $"EXP : {((float)((int)(Expvalue * 10000))/100)}%";
+        expBar.value = value;
+        exptext.text = $"EXP : {((float)((int)(value * 10000))/100)}%";
     }
 }
