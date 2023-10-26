@@ -44,6 +44,7 @@ public class SkillUpUIManager : MonoBehaviour
         // Graphic Raycaster
         _ped = new PointerEventData(EventSystem.current);
         _rrrList = new List<RaycastResult>(10);
+
     }
 
     public T RaycastAndGetFirstComponent<T>() where T : Component
@@ -72,7 +73,7 @@ public class SkillUpUIManager : MonoBehaviour
             // Enter
             if (curSlot != null)
             {
-                OnCurrentEnter();
+                OnCurrentEnter();   
             }
         }
         else
