@@ -50,7 +50,7 @@ public class PopupManager : Singleton<PopupManager>
 
     public void EscapeBtn()
     {
-        TownMap_MoveDungeon_Popup.SetActive(false);
+        GameExit_Popup.SetActive(false);
     }
 
     private void Update()

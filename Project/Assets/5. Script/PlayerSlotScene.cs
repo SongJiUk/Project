@@ -15,11 +15,16 @@ public class PlayerSlotScene : MonoBehaviour
     [SerializeField] GameObject gameStartPopup;
     [SerializeField] Text gameStart_txt;
 
-
+    [SerializeField] GameObject[] Player_Anim;
     public List<GameObject> playerInfos = new List<GameObject>();
     public List<Text> playerName_txt = new List<Text>();
     public List<Text> playerJob_txt = new List<Text>();
     public List<Text> playerLevel_txt = new List<Text>();
+
+    public RuntimeAnimatorController[] PlayerJob;
+    public Animator anim;
+
+
     private void Start()
     {
         if (null == playercutomizing) playercutomizing = GetComponent<Customizing>();
@@ -40,6 +45,12 @@ public class PlayerSlotScene : MonoBehaviour
         }
     }
 
+    public void ChangeAnim(int _num)
+    {
+        
+        
+    }
+
     public void SelectSlot(int _num)
     {
         playercutomizing.gameObject.SetActive(false);
@@ -51,6 +62,10 @@ public class PlayerSlotScene : MonoBehaviour
             playercutomizing.InitPlayer(_num);
             playercutomizing.InitEquipMentItem(_num);
             playerWeapon.InitEquipMentWeapon(_num);
+
+            anim.runtimeAnimatorController = PlayerJob[DataManager.GetInstance.PLAYER_JOB(_num)];
+            anim.SetInteger("EquipNum", DataManager.GetInstance.WEAPONCODE(_num));
+
             playercutomizing.gameObject.SetActive(true);
 
             gameStartPopup.SetActive(true);

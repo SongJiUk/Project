@@ -11,6 +11,8 @@ public class UIManager : Singleton<UIManager>
     public Customizing customizing;
     public WeaponManager weaponManger;
 
+
+    [SerializeField] GameObject[] CloseUI;
     //[SerializeField] GameObject
     public bool isNoEquip = false;
     private void Awake()
@@ -20,10 +22,36 @@ public class UIManager : Singleton<UIManager>
 
     void Start()
     {
-        if(SceneManager.GetActiveScene().name.Equals("4_TownMap") ||
-            SceneManager.GetActiveScene().name.Equals("5_Dungeon"))
+        if(SceneManager.GetActiveScene().name.Equals("LoadScene"))
         {
-            for(int i=0; i<UsePlayingObj.Length; i++)
+            for (int i = 0; i < UsePlayingObj.Length; i++)
+            {
+                UsePlayingObj[i].enabled = false;
+            }
+            UsePlayeringGameObj.SetActive(false);
+        }
+
+
+
+        if (customizing == null) customizing = Player.GetInstance.GetComponent<Customizing>();
+        if (null == weaponManger) weaponManger = Player.GetInstance.GetComponent<WeaponManager>();
+    }
+
+    public void MoveScene()
+    {
+        for (int i = 0; i < UsePlayingObj.Length; i++)
+        {
+            UsePlayingObj[i].enabled = false;
+        }
+        UsePlayeringGameObj.SetActive(false);
+    }
+
+    public void CompleteMoveScene()
+    {
+        if (SceneManager.GetActiveScene().name.Equals("4_TownMap") ||
+           SceneManager.GetActiveScene().name.Equals("5_Dungeon"))
+        {
+            for (int i = 0; i < UsePlayingObj.Length; i++)
             {
                 UsePlayingObj[i].enabled = true;
             }
@@ -37,8 +65,5 @@ public class UIManager : Singleton<UIManager>
             }
             UsePlayeringGameObj.SetActive(false);
         }
-
-        if (customizing == null) customizing = Player.GetInstance.GetComponent<Customizing>();
-        if (null == weaponManger) weaponManger = Player.GetInstance.GetComponent<WeaponManager>();
     }
 }

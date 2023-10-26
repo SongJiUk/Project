@@ -83,6 +83,26 @@ public class WeaponManager : Singleton<WeaponManager>
                 }
             }
         }
+        else
+        {
+            for (int i = 0; i < WeaponList.Count; i++)
+            {
+                if (WeaponList[i].DATA.ItemCode ==
+                    DataManager.GetInstance.WEAPONCODE(_num))
+                {
+                    WeaponList[i].gameObject.SetActive(false);
+                }
+            }
+
+            for (int i = 0; i < ShiledList.Count; i++)
+            {
+                if (ShiledList[i].DATA.ItemCode ==
+                    DataManager.GetInstance.WEAPONCODE(_num))
+                {
+                    ShiledList[i].gameObject.SetActive(false);
+                }
+            }
+        }
     }
 
     //public void ChangeWeapon(WeaponItemData _weaponData, WeaponItemData _shiledData = null)

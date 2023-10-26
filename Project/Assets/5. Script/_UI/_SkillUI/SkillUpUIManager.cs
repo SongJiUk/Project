@@ -8,7 +8,7 @@ using static SkillUpSlotUI;
 public class SkillUpUIManager : MonoBehaviour
 {
 
-    private SkillUpSlotUI _pickSkillUpSlotUI; //선택할 슬롯
+    private SkillUpSlotUI _pickSkillUpSlotUI; //?????? ????
 
     [SerializeField] private bool _showHighlight = true;
 
@@ -22,6 +22,7 @@ public class SkillUpUIManager : MonoBehaviour
     void Awake()
     {
         Init();
+        gameObject.SetActive(false);
     }
 
     void Update()
@@ -59,13 +60,13 @@ public class SkillUpUIManager : MonoBehaviour
         return _rrrList[0].gameObject.GetComponent<T>();
     }
 
-    /// <summary> 슬롯에 포인터가 올라가는 경우, 슬롯에서 포인터가 빠져나가는 경우 </summary>
+    /// <summary> ?????? ???????? ???????? ????, ???????? ???????? ?????????? ???? </summary>
     private void OnPointerEnterAndExit()
     {
-        // 이전 프레임의 슬롯
+        // ???? ???????? ????
         var prevSlot = _pointerOverSlot;
 
-        // 현재 프레임의 슬롯
+        // ???? ???????? ????
         var curSlot = _pointerOverSlot = RaycastAndGetFirstComponent<SkillUpSlotUI>();
         Debug.Log(curSlot);
         if (prevSlot == null)
@@ -112,7 +113,7 @@ public class SkillUpUIManager : MonoBehaviour
         {
             _pickSkillUpSlotUI = RaycastAndGetFirstComponent<SkillUpSlotUI>();
 
-            // 아이템을 갖고 있는 슬롯만 해당
+            // ???????? ???? ???? ?????? ????
             if (_pickSkillUpSlotUI != null)
             {
                 _pickSkillUpSlotUI.Highlight(true);

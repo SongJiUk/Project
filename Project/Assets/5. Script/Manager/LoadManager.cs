@@ -18,6 +18,11 @@ public class LoadManager : Singleton<LoadManager>
     public void LoadSceneAsync(string _name)
     {
         SceneManager.LoadScene(LoadSceneName);
+        if (UIManager.GetInstance != null)
+        {
+            UIManager.GetInstance.MoveScene();
+        }
+
         StartCoroutine(LoadSceneAsyncCoroutine(_name));
     }
 
@@ -28,8 +33,9 @@ public class LoadManager : Singleton<LoadManager>
        
 
         float elapsedTime = 0f;
-        float targetTime = 2f; 
+        float targetTime = 2f;
 
+        
         while (true)
         {
             elapsedTime += Time.deltaTime;
@@ -56,6 +62,10 @@ public class LoadManager : Singleton<LoadManager>
             yield return null;
         }
 
+        if(UIManager.GetInstance != null)
+        {
+            UIManager.GetInstance.CompleteMoveScene();
+        }
         asyncOperation.allowSceneActivation = true;
 
     }
