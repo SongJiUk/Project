@@ -17,11 +17,11 @@ public class PlayerBarManager : MonoBehaviour
     [SerializeField] Text exptext;
 
     int MaxHp = 0;
-    int NowHp = 0;
+    float NowHp = 0;
     int MaxMp = 0;
-    int NowMp = 0;
+    float NowMp = 0;
     int MaxExp = 0;
-    int NowExp = 0;
+    float NowExp = 0;
     float Hpvalue = 0;
     float Mpvalue = 0;
     float Expvalue = 0;
@@ -49,12 +49,6 @@ public class PlayerBarManager : MonoBehaviour
             SetMaxHP(100);
             SetMaxMP(100);
             SetMaxEXP(100);
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetDamage(10);
-            UseMp(10);
-            GetExp(10);
         }
     }
 
@@ -115,16 +109,13 @@ public class PlayerBarManager : MonoBehaviour
         SetExpBar();
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(float nowHP, int damage, Transform _transformHit)
     {
-        NowHp -= damage;
-        if (NowHp < 0)
-        {
-            NowHp = 0;
-        }
+        NowHp = nowHP;
+
         SetHpBarFollowTime();
         SetHpBar();
-        DamageNum.instance.Damage(damage, 1);
+        DamageNum.instance.Damage(damage, 1, _transformHit);
     }
 
     public void UseMp(int num)

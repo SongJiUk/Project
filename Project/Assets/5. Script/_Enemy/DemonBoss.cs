@@ -21,11 +21,20 @@ public class DemonBoss : MonoBehaviour
     GameObject LazerChargePrefab;
     [SerializeField]
     GameObject ShockWavePrefab;
+    [SerializeField]
+    string BossName;
+
+    BossHPUIManager _bossHPUIManager;
+
 
     ParticleSystem Charge;
     ParticleSystem Lazer;
-    void Start()
-    {
+    void Awake()    
+   {
+        if(_bossHPUIManager == null)
+        _bossHPUIManager = BossHPUIManager.instance;
+        _bossHPUIManager.AwakeBoss(BossName, 100);
+
         player = Player.GetInstance;
         anime = GetComponent<Animator>();
         attckTimer = 3f;

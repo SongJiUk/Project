@@ -27,21 +27,12 @@ public class DamageNum : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            Damage(2000,1);
-        }
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Damage(20000, 2);
-        }
+
     }
 
-
-
-    public void Damage(int damage, int color)
+    public void Damage(int damage, int color, Transform _transformHit)
     {
-        
+        _transformto = _transformHit;
         GameObject DamageUI = Instantiate(_damageText, _canvas);
         Vector3 positionUI = (_transformto.position + (Random.insideUnitSphere * 1f));
         DamageUI.transform.position = Camera.main.WorldToScreenPoint(positionUI);

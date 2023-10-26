@@ -10,7 +10,7 @@ public class BossHPBar : MonoBehaviour
     [SerializeField] Slider hpBar;
     [SerializeField] Slider hpBarfollow;
     int MaxHp = 0;
-    int NowHp = 0;
+    float NowHp = 0;
     float value = 0;
     float followtimeMax = 2;
     float followtime = 0;
@@ -34,10 +34,6 @@ public class BossHPBar : MonoBehaviour
         {
             SetMaxHP(100);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetDamage(10);
-        }
     }
 
     private void CheckHp()
@@ -59,16 +55,13 @@ public class BossHPBar : MonoBehaviour
         SetHpBar();
     }
 
-    public void GetDamage(int damage)
+    public void GetDamage(float nowHP, int damage, Transform _transformHit)
     {
-        NowHp -= damage;
-        if (NowHp < 0)
-        {
-            NowHp = 0;
-        }
+        NowHp = nowHP;
+
         SetHpBarFollowTime();
         SetHpBar();
-        DamageNum.instance.Damage(damage, 1);
+        DamageNum.instance.Damage(damage, 1, _transformHit);
     }
 
     public void GetHeel(int heel)
