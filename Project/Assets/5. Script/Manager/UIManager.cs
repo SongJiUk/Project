@@ -17,7 +17,7 @@ public class UIManager : Singleton<UIManager>
     public bool isNoEquip = false;
     private void Awake()
     {
-        DontDestroyOnLoad(this);
+        //DontDestroyOnLoad(this);
     }
 
     void Start()

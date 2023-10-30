@@ -21,11 +21,11 @@ EditorBuildSettings:
     path: Assets/1. Scenes/3_Customizing.unity
     guid: fd9d99c5e7cbe48efad79b03e9ca3da1
   - enabled: 1
-    path: Assets/1. Scenes/5_Dungeon.unity
-    guid: d515063cc7e552649959320dfe40578b
-  - enabled: 1
     path: Assets/1. Scenes/4_TownMap.unity
     guid: 252bfa41218daf148aa0eff6a55b8d21
+  - enabled: 1
+    path: Assets/1. Scenes/5_Dungeon.unity
+    guid: d515063cc7e552649959320dfe40578b
   - enabled: 1
     path: Assets/1. Scenes/4_Song.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab

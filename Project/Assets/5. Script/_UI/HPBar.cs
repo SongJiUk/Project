@@ -32,10 +32,10 @@ public class HPBar : MonoBehaviour
             SetHpBarFollow();
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            SetMaxHP(100);
-        }
+        //if (Input.GetKeyDown(KeyCode.A))
+        //{
+        //    SetMaxHP(100);
+        //}
     }
 
     private void CheckHp()
