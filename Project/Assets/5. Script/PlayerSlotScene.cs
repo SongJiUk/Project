@@ -32,12 +32,12 @@ public class PlayerSlotScene : MonoBehaviour
         if (null == playerWeapon) playerWeapon = GetComponent<WeaponManager>();
         for (int i =0; i<DataManager.SlotCount; i++)
         {
-            if(DataManager.GetInstance.ISSLOTOPEN(i))
+            if(DataManager.GetInstance.GET_ISSLOTOPEN(i))
             {
                 playerInfos[i].SetActive(true);
-                playerName_txt[i].text = $"{DataManager.GetInstance.PLAYER_ID(i)}";
-                playerJob_txt[i].text = $"{DataManager.GetInstance.UnitCodes(i).ToString()}";
-                playerLevel_txt[i].text = $"{DataManager.GetInstance.PLAYER_LEVEL(i)}";
+                playerName_txt[i].text = $"{DataManager.GetInstance.GET_PLAYER_ID(i)}";
+                playerJob_txt[i].text = $"{DataManager.GetInstance.GET_UnitCodes(i).ToString()}";
+                playerLevel_txt[i].text = $"{DataManager.GetInstance.GET_PLAYER_LEVEL(i)}";
             }
             else
             {
@@ -58,7 +58,7 @@ public class PlayerSlotScene : MonoBehaviour
         playercutomizing.gameObject.SetActive(false);
 
         //Debug.Log("DataManager : "+DataManager.GetInstance.SLOT_NUM);
-        if (DataManager.GetInstance.ISSLOTOPEN(_num))
+        if (DataManager.GetInstance.GET_ISSLOTOPEN(_num))
         {
             DataManager.GetInstance.SLOT_NUM = _num;
             playercutomizing.InitPlayer(_num);
@@ -66,9 +66,9 @@ public class PlayerSlotScene : MonoBehaviour
             playerWeapon.InitEquipMentWeapon(_num);
 
             anim = obj.GetComponent<Animator>();
-            int num = DataManager.GetInstance.PLAYER_JOB(_num);
+            int num = DataManager.GetInstance.GET_PLAYER_JOB(_num);
             anim.runtimeAnimatorController = PlayerJob[num];
-            int weaponNum = DataManager.GetInstance.WEAPONCODE(_num);
+            int weaponNum = DataManager.GetInstance.GET_WEAPONCODE(_num);
 
            
            int equipNum =  playerWeapon.FindIndex(weaponNum);

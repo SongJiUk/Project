@@ -18,13 +18,12 @@ public class LoadScene : MonoBehaviour
     {
         int num = Random.Range(0, BG_Img.Length);
         BG.sprite = BG_Img[num];
+        GameTip_txt.text = "랜덤입니다.";
     }
 
     // Update is called once per frame
     void Update()
     {
-
-        Debug.Log(LoadManager.GetInstance.LoadNum);
         LoadingNum_txt.text = $"{((int)(LoadManager.GetInstance.LoadNum * 100f)).ToString()}%";
         LoadingGauge_img.fillAmount = LoadManager.GetInstance.LoadNum / 1f;
     }

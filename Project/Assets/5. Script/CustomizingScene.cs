@@ -37,7 +37,7 @@ public class CustomizingScene : MonoBehaviour
 
         for(int i=0; i<DataManager.GetInstance.SLOT_NUM; i++)
         {
-            if (name == DataManager.GetInstance.PLAYER_ID(i))
+            if (name == DataManager.GetInstance.GET_PLAYER_ID(i))
             {
                 unavailablename_reason = "사용중인 이름 입니다.";
                 return false;
@@ -81,7 +81,7 @@ public class CustomizingScene : MonoBehaviour
     {
         if (_isYes)
         {
-            DataManager.GetInstance.PLAYER_ID(DataManager.GetInstance.SLOT_NUM, playerName);
+            DataManager.GetInstance.SET_PLAYER_ID(DataManager.GetInstance.SLOT_NUM, playerName);
             customizing.CreateCharacter();
             //var operation = SceneManager.LoadSceneAsync("4_TownMap");
             //operation.allowSceneActivation = true;

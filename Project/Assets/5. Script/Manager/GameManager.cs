@@ -18,6 +18,10 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     int talkIndex;
 
+
+
+
+
     private void Start()
     {
         questManager = QuestManager.GetInstance;

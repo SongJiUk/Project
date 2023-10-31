@@ -28,29 +28,29 @@ public class UIManager : Singleton<UIManager>
 
     public void MoveScene()
     {
-        for (int i = 0; i < UsePlayingObj.Length; i++)
-        {
-            UsePlayingObj[i].enabled = false;
-        }
-        UsePlayeringGameObj.SetActive(false);
+        //for (int i = 0; i < UsePlayingObj.Length; i++)
+        //{
+        //    UsePlayingObj[i].enabled = false;
+        //}
+        //UsePlayeringGameObj.SetActive(false);
     }
 
     public void CompleteMoveScene()
     {
-        for (int i = 0; i < UsePlayingObj.Length; i++)
-        {
-            UsePlayingObj[i].enabled = true;
-        }
-        UsePlayeringGameObj.SetActive(true);
+        //for (int i = 0; i < UsePlayingObj.Length; i++)
+        //{
+        //    UsePlayingObj[i].enabled = true;
+        //}
+        //UsePlayeringGameObj.SetActive(true);
     }
 
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name != "LoadScene")
-        {
-            if (customizing == null) customizing = Player.GetInstance.GetComponent<Customizing>();
-            if (null == weaponManger) weaponManger = Player.GetInstance.GetComponent<WeaponManager>();
-        }
+    //    if (SceneManager.GetActiveScene().name != "LoadScene")
+    //    {
+    //        if (customizing == null) customizing = Player.GetInstance.GetComponent<Customizing>();
+    //        if (null == weaponManger) weaponManger = Player.GetInstance.GetComponent<WeaponManager>();
+    //    }
         
     }
 }

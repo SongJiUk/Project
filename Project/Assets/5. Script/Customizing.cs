@@ -144,7 +144,7 @@ public class Customizing : MonoBehaviour
     #endregion
     public void InitPlayer(int _num)
     {
-        switch(DataManager.GetInstance.GENDERNUM(_num))
+        switch(DataManager.GetInstance.GET_GENDERNUM(_num))
         {
             case 0:
 
@@ -152,34 +152,34 @@ public class Customizing : MonoBehaviour
                 {
                     obj.SetActive(false);
                 }
-                Gender[DataManager.GetInstance.GENDERNUM(_num)].SetActive(true);
+                Gender[DataManager.GetInstance.GET_GENDERNUM(_num)].SetActive(true);
 
                 foreach (var obj in Hair)
                 {
                     obj.SetActive(false);
                 }
-                Hair[DataManager.GetInstance.HAIRNUM(_num)].SetActive(true);
+                Hair[DataManager.GetInstance.GET_HAIRNUM(_num)].SetActive(true);
                 foreach (var obj in Female_Face)
                 {
                     obj.SetActive(false);
                 }
-                Female_Face[DataManager.GetInstance.FEMALE_FACENUM(_num)].SetActive(true);
+                Female_Face[DataManager.GetInstance.GET_FEMALE_FACENUM(_num)].SetActive(true);
                 foreach (var obj in Female_Eyebrow)
                 {
                     obj.SetActive(false);
                 }
-                Female_Eyebrow[DataManager.GetInstance.FEMALE_EYEBROWNUM(_num)].SetActive(true);
+                Female_Eyebrow[DataManager.GetInstance.GET_FEMALE_EYEBROWNUM(_num)].SetActive(true);
                 foreach (var obj in Female_Top)
                 {
                     obj.SetActive(false);
                 }
-                Female_Top[DataManager.GetInstance.FEMALE_TOPNUM(_num)].SetActive(true);
+                Female_Top[DataManager.GetInstance.GET_FEMALE_TOPNUM(_num)].SetActive(true);
 
                 foreach (var obj in Female_Pants)
                 {
                     obj.SetActive(false);
                 }
-                Female_Pants[DataManager.GetInstance.FEMALE_PANTSNUM(_num)].SetActive(true);
+                Female_Pants[DataManager.GetInstance.GET_FEMALE_PANTSNUM(_num)].SetActive(true);
 
                 Female_Default_Body.SetActive(true);
                 Female_Default_Hand.SetActive(true);
@@ -195,34 +195,34 @@ public class Customizing : MonoBehaviour
                 {
                     obj.SetActive(false);
                 }
-                Gender[DataManager.GetInstance.GENDERNUM(_num)].SetActive(true);
+                Gender[DataManager.GetInstance.GET_GENDERNUM(_num)].SetActive(true);
 
                 foreach (var obj in Hair)
                 {
                     obj.SetActive(false);
                 }
-                Hair[DataManager.GetInstance.HAIRNUM(_num)].SetActive(true);
+                Hair[DataManager.GetInstance.GET_HAIRNUM(_num)].SetActive(true);
                 foreach (var obj in male_Face)
                 {
                     obj.SetActive(false);
                 }
-                male_Face[DataManager.GetInstance.MALE_FACENUM(_num)].SetActive(true);
+                male_Face[DataManager.GetInstance.GET_MALE_FACENUM(_num)].SetActive(true);
                 foreach (var obj in male_Eyebrow)
                 {
                     obj.SetActive(false);
                 }
-                male_Eyebrow[DataManager.GetInstance.MALE_EYEBROWNUM(_num)].SetActive(true);
+                male_Eyebrow[DataManager.GetInstance.GET_MALE_EYEBROWNUM(_num)].SetActive(true);
                 foreach (var obj in male_Top)
                 {
                     obj.SetActive(false);
                 }
-                male_Top[DataManager.GetInstance.MALE_TOPNUM(_num)].SetActive(true);
+                male_Top[DataManager.GetInstance.GET_MALE_TOPNUM(_num)].SetActive(true);
 
                 foreach (var obj in male_Pants)
                 {
                     obj.SetActive(false);
                 }
-                male_Pants[DataManager.GetInstance.MALE_PANTSNUM(_num)].SetActive(true);
+                male_Pants[DataManager.GetInstance.GET_MALE_PANTSNUM(_num)].SetActive(true);
 
 
                 male_Default_Body.SetActive(true);
@@ -236,20 +236,20 @@ public class Customizing : MonoBehaviour
     public void InitEquipMentItem(int _num)
     {
         
-        switch (DataManager.GetInstance.GENDERNUM(_num))
+        switch (DataManager.GetInstance.GET_GENDERNUM(_num))
         {
             case 0:
 
-                if (DataManager.GetInstance.ISEQUIPHELMAT(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPHELMAT(_num))
                 {
-                    if(DataManager.GetInstance.PLAYER_JOB(_num).Equals(UnitCode.WARRIOR))
+                    if(DataManager.GetInstance.GET_PLAYER_JOB(_num).Equals(UnitCode.WARRIOR))
                     {
-                        Female_Face[DataManager.GetInstance.FEMALE_FACENUM(_num)].SetActive(false);
+                        Female_Face[DataManager.GetInstance.GET_FEMALE_FACENUM(_num)].SetActive(false);
                     }
 
                     for (int i = 0; i < Helmats.Count; i++)
                     {
-                        if (Helmats[i].DATAS.ItemCode == DataManager.GetInstance.HELMATCODE(_num))
+                        if (Helmats[i].DATAS.ItemCode == DataManager.GetInstance.GET_HELMATCODE(_num))
                         {
                             Helmats[i].gameObject.SetActive(true);
                             break;
@@ -258,13 +258,13 @@ public class Customizing : MonoBehaviour
                 }
 
 
-                if (DataManager.GetInstance.ISEQUIPTOP(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPTOP(_num))
                 {
-                    Female_Top[DataManager.GetInstance.FEMALE_TOPNUM(_num)].gameObject.SetActive(false);
+                    Female_Top[DataManager.GetInstance.GET_FEMALE_TOPNUM(_num)].gameObject.SetActive(false);
                     Female_Default_Body.SetActive(false);
                     for (int i = 0; i < Female_Armor_Top.Count; i++)
                     {
-                        if (Female_Armor_Top[i].DATAS.ItemCode == DataManager.GetInstance.TOPCODE(_num))
+                        if (Female_Armor_Top[i].DATAS.ItemCode == DataManager.GetInstance.GET_TOPCODE(_num))
                         {
                             Female_Armor_Top[i].gameObject.SetActive(true);
                             break;
@@ -272,12 +272,12 @@ public class Customizing : MonoBehaviour
                     }
                 }
 
-                if (DataManager.GetInstance.ISEQUIPPANTS(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPPANTS(_num))
                 {
-                    Female_Pants[DataManager.GetInstance.FEMALE_PANTSNUM(_num)].gameObject.SetActive(false);
+                    Female_Pants[DataManager.GetInstance.GET_FEMALE_PANTSNUM(_num)].gameObject.SetActive(false);
                     for (int i = 0; i < Female_Armor_Bottom.Count; i++)
                     {
-                        if (Female_Armor_Bottom[i].DATAS.ItemCode == DataManager.GetInstance.PANTSCODE(_num))
+                        if (Female_Armor_Bottom[i].DATAS.ItemCode == DataManager.GetInstance.GET_PANTSCODE(_num))
                         {
                             Female_Armor_Bottom[i].gameObject.SetActive(true);
                             break;
@@ -285,12 +285,12 @@ public class Customizing : MonoBehaviour
                     }
                 }
 
-                if (DataManager.GetInstance.ISEQUIPHAND(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPHAND(_num))
                 {
                     Female_Default_Hand.SetActive(false);
                     for (int i = 0; i < Female_hand.Count; i++)
                     {
-                        if (Female_hand[i].DATAS.ItemCode == DataManager.GetInstance.HANDCODE(_num))
+                        if (Female_hand[i].DATAS.ItemCode == DataManager.GetInstance.GET_HANDCODE(_num))
                         {
                             Female_hand[i].gameObject.SetActive(true);
                             break;
@@ -298,12 +298,12 @@ public class Customizing : MonoBehaviour
                     }
                 }
 
-                if (DataManager.GetInstance.ISEQUIPSHOES(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPSHOES(_num))
                 {
                     Female_Default_Shoes.SetActive(false);
                     for (int i = 0; i < Female_shoes.Count; i++)
                     { 
-                        if (Female_shoes[i].DATAS.ItemCode == DataManager.GetInstance.SHOESCODE(_num))
+                        if (Female_shoes[i].DATAS.ItemCode == DataManager.GetInstance.GET_SHOESCODE(_num))
                         {
                             Female_shoes[i].gameObject.SetActive(true);
                             break;
@@ -314,16 +314,16 @@ public class Customizing : MonoBehaviour
 
             case 1:
 
-                if (DataManager.GetInstance.ISEQUIPHELMAT(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPHELMAT(_num))
                 {
-                    if (DataManager.GetInstance.PLAYER_JOB(_num).Equals(UnitCode.WARRIOR))
+                    if (DataManager.GetInstance.GET_PLAYER_JOB(_num).Equals(UnitCode.WARRIOR))
                     {
-                        male_Face[DataManager.GetInstance.MALE_FACENUM(_num)].SetActive(false);
+                        male_Face[DataManager.GetInstance.GET_MALE_FACENUM(_num)].SetActive(false);
                     }
 
                     for (int i = 0; i < Helmats.Count; i++)
                     {
-                        if (Helmats[i].DATAS.ItemCode == DataManager.GetInstance.HELMATCODE(_num))
+                        if (Helmats[i].DATAS.ItemCode == DataManager.GetInstance.GET_HELMATCODE(_num))
                         {
                             Helmats[i].gameObject.SetActive(true);
                             break;
@@ -332,13 +332,13 @@ public class Customizing : MonoBehaviour
                 }
 
 
-                if (DataManager.GetInstance.ISEQUIPTOP(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPTOP(_num))
                 {
-                    male_Top[DataManager.GetInstance.MALE_TOPNUM(_num)].gameObject.SetActive(false);
+                    male_Top[DataManager.GetInstance.GET_MALE_TOPNUM(_num)].gameObject.SetActive(false);
                     male_Default_Body.SetActive(false);
                     for (int i = 0; i < male_Armor_Top.Count; i++)
                     { 
-                        if (male_Armor_Top[i].DATAS.ItemCode == DataManager.GetInstance.TOPCODE(_num))
+                        if (male_Armor_Top[i].DATAS.ItemCode == DataManager.GetInstance.GET_TOPCODE(_num))
                         {
                             male_Armor_Top[i].gameObject.SetActive(true);
                             break;
@@ -346,13 +346,13 @@ public class Customizing : MonoBehaviour
                     }
                 }
 
-                if (DataManager.GetInstance.ISEQUIPPANTS(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPPANTS(_num))
                 {
-                    male_Pants[DataManager.GetInstance.MALE_PANTSNUM(_num)].gameObject.SetActive(false);
+                    male_Pants[DataManager.GetInstance.GET_MALE_PANTSNUM(_num)].gameObject.SetActive(false);
                     for (int i = 0; i < male_Armor_Bottom.Count; i++)
                     {
 
-                        if (male_Armor_Bottom[i].DATAS.ItemCode == DataManager.GetInstance.PANTSCODE(_num))
+                        if (male_Armor_Bottom[i].DATAS.ItemCode == DataManager.GetInstance.GET_PANTSCODE(_num))
                         {
                             male_Armor_Bottom[i].gameObject.SetActive(true);
                             break;
@@ -360,13 +360,13 @@ public class Customizing : MonoBehaviour
                     }
                 }
 
-                if (DataManager.GetInstance.ISEQUIPHAND(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPHAND(_num))
                 {
                     male_Default_Hand.SetActive(false);
                     for (int i = 0; i < male_hand.Count; i++)
                     {
 
-                        if (male_hand[i].DATAS.ItemCode == DataManager.GetInstance.HANDCODE(_num))
+                        if (male_hand[i].DATAS.ItemCode == DataManager.GetInstance.GET_HANDCODE(_num))
                         {
                             male_hand[i].gameObject.SetActive(true);
                             break;
@@ -374,13 +374,13 @@ public class Customizing : MonoBehaviour
                     }
                 }
 
-                if (DataManager.GetInstance.ISEQUIPSHOES(_num))
+                if (DataManager.GetInstance.GET_ISEQUIPSHOES(_num))
                 {
                     male_Default_Shoes.SetActive(false);
                     for (int i = 0; i < male_Shoes.Count; i++)
                     {
 
-                        if (male_Shoes[i].DATAS.ItemCode == DataManager.GetInstance.SHOESCODE(_num))
+                        if (male_Shoes[i].DATAS.ItemCode == DataManager.GetInstance.GET_SHOESCODE(_num))
                         {
                             male_Shoes[i].gameObject.SetActive(true);
                             break;
@@ -663,22 +663,22 @@ public class Customizing : MonoBehaviour
         {
             //female
             case 0:
-                DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM, GenderNum);
-                DataManager.GetInstance.HAIRNUM(DataManager.GetInstance.SLOT_NUM, HairNum);
-                DataManager.GetInstance.FEMALE_FACENUM(DataManager.GetInstance.SLOT_NUM, Female_FaceNum);
-                DataManager.GetInstance.FEMALE_EYEBROWNUM(DataManager.GetInstance.SLOT_NUM, Female_EyebrowNum);
-                DataManager.GetInstance.FEMALE_TOPNUM(DataManager.GetInstance.SLOT_NUM, Female_TopNum);
-                DataManager.GetInstance.FEMALE_PANTSNUM(DataManager.GetInstance.SLOT_NUM, Female_PantsNum);
-                break;
-
-            //male
-            case 1:
-                DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM, GenderNum);
-                DataManager.GetInstance.HAIRNUM(DataManager.GetInstance.SLOT_NUM, HairNum);
-                DataManager.GetInstance.MALE_FACENUM(DataManager.GetInstance.SLOT_NUM, male_FaceNum);
-                DataManager.GetInstance.MALE_EYEBROWNUM(DataManager.GetInstance.SLOT_NUM, male_EyebrowNum);
-                DataManager.GetInstance.MALE_TOPNUM(DataManager.GetInstance.SLOT_NUM, male_TopNum);
-                DataManager.GetInstance.MALE_PANTSNUM(DataManager.GetInstance.SLOT_NUM, male_PantsNum);
+                DataManager.GetInstance.SET_GENDERNUM(DataManager.GetInstance.SLOT_NUM, GenderNum);
+                DataManager.GetInstance.SET_HAIRNUM(DataManager.GetInstance.SLOT_NUM, HairNum);
+                DataManager.GetInstance.SET_FEMALE_FACENUM(DataManager.GetInstance.SLOT_NUM, Female_FaceNum);
+                DataManager.GetInstance.SET_FEMALE_EYEBROWNUM(DataManager.GetInstance.SLOT_NUM, Female_EyebrowNum);
+                DataManager.GetInstance.SET_FEMALE_TOPNUM(DataManager.GetInstance.SLOT_NUM, Female_TopNum);
+                DataManager.GetInstance.SET_FEMALE_PANTSNUM(DataManager.GetInstance.SLOT_NUM, Female_PantsNum);
+                break;                 
+                                       
+            //male                     
+            case 1:                    
+                DataManager.GetInstance.SET_GENDERNUM(DataManager.GetInstance.SLOT_NUM, GenderNum);
+                DataManager.GetInstance.SET_HAIRNUM(DataManager.GetInstance.SLOT_NUM, HairNum);
+                DataManager.GetInstance.SET_MALE_FACENUM(DataManager.GetInstance.SLOT_NUM, male_FaceNum);
+                DataManager.GetInstance.SET_MALE_EYEBROWNUM(DataManager.GetInstance.SLOT_NUM, male_EyebrowNum);
+                DataManager.GetInstance.SET_MALE_TOPNUM(DataManager.GetInstance.SLOT_NUM, male_TopNum);
+                DataManager.GetInstance.SET_MALE_PANTSNUM(DataManager.GetInstance.SLOT_NUM, male_PantsNum);
                 break;
 
         }
@@ -702,8 +702,8 @@ public class Customizing : MonoBehaviour
         //}
 
         // 필요한 데이터 가져오기
-        int slotGender = DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM);
-        int playerJob = DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM);
+        int slotGender = DataManager.GetInstance.GET_GENDERNUM(DataManager.GetInstance.SLOT_NUM);
+        int playerJob = DataManager.GetInstance.GET_PLAYER_JOB(DataManager.GetInstance.SLOT_NUM);
         int playerLevel = PlayerStat.GetInstance.Level;
         var equipGender = _equipmnetItem.Gender;
         var equipClassPrivateItem = _equipmnetItem.ClassPrivateItem;

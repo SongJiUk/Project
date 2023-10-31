@@ -87,12 +87,12 @@ public class WeaponManager : Singleton<WeaponManager>
 
     public void InitEquipMentWeapon(int _num)
     {
-        if (DataManager.GetInstance.ISEQUIPWEAPON(_num))
+        if (DataManager.GetInstance.GET_ISEQUIPWEAPON(_num))
         {
             for (int i = 0; i < WeaponList.Count; i++)
             {
                 if (WeaponList[i].DATA.ItemCode ==
-                    DataManager.GetInstance.WEAPONCODE(_num))
+                    DataManager.GetInstance.GET_WEAPONCODE(_num))
                 {
                     WeaponList[i].gameObject.SetActive(true);
                 }
@@ -101,7 +101,7 @@ public class WeaponManager : Singleton<WeaponManager>
             for (int i = 0; i < ShiledList.Count; i++)
             {
                 if (ShiledList[i].DATA.ItemCode ==
-                    DataManager.GetInstance.WEAPONCODE(_num))
+                    DataManager.GetInstance.GET_WEAPONCODE(_num))
                 {
                     ShiledList[i].gameObject.SetActive(true);
                 }
@@ -198,7 +198,7 @@ public class WeaponManager : Singleton<WeaponManager>
             if (backWeapon != null) EquipWeapon_back = backWeapon;
 
 
-            DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
+            DataManager.GetInstance.SET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
 
 
             if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
@@ -251,7 +251,7 @@ public class WeaponManager : Singleton<WeaponManager>
         else
         {
             isUIUnEquip = true;
-            DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, false);
+            DataManager.GetInstance.SET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, false);
             Player.GetInstance.ANIM.SetBool("IsEquip", false);
             Player.GetInstance.ANIM.SetInteger("EquipNum", 0);
             EquipWeapon_hand.SetActive(false);

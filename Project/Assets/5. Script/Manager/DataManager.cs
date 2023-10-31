@@ -12,6 +12,9 @@ public class DataManager : Singleton<DataManager>
 2. 아이템 - 무기번호, 골드, 물약 등
 
 */
+
+
+    #region 슬롯 정보
     public static int SlotCount = 3;
     public static int InventorySlotNum = 64;
     Dictionary<int, UnitCode> SlotJob = new Dictionary<int, UnitCode>();
@@ -30,11 +33,11 @@ public class DataManager : Singleton<DataManager>
 
     bool[] isSlotOpen = new bool[SlotCount];
 
-    public bool ISSLOTOPEN(int _slot)
+    public bool GET_ISSLOTOPEN(int _slot)
     {
         return isSlotOpen[_slot];
     }
-    public void ISSLOTOPEN(int _slot, bool value)
+    public void SET_ISSLOTOPEN(int _slot, bool value)
     {
         isSlotOpen[_slot] = value;
     }
@@ -58,6 +61,8 @@ public class DataManager : Singleton<DataManager>
             return null;
     }
 
+    #endregion
+
     #region 플레이어 커스터마이징
     int[] GenderNum = new int[SlotCount];
     int[] HairNum = new int[SlotCount];
@@ -71,112 +76,112 @@ public class DataManager : Singleton<DataManager>
     int[] male_TopNum = new int[SlotCount];
     int[] male_PantsNum = new int[SlotCount];
 
-    public int GENDERNUM(int _slot)
+    public int GET_GENDERNUM(int _slot)
     {
         return GenderNum[_slot];
     }
-    public void GENDERNUM(int _slot, int value)
+    public void SET_GENDERNUM(int _slot, int value)
     {
         GenderNum[_slot] = value;
     }
 
-    public int HAIRNUM(int _slot)
+    public int GET_HAIRNUM(int _slot)
     {
         return HairNum[_slot];
     }
 
-    public void HAIRNUM(int _slot, int value)
+    public void SET_HAIRNUM(int _slot, int value)
     {
        HairNum[_slot] = value;
     }
     
-    public int FEMALE_FACENUM(int _slot)
+    public int GET_FEMALE_FACENUM(int _slot)
     {
         return Female_FaceNum[_slot];
     }
 
-    public void FEMALE_FACENUM(int _slot, int value)
+    public void SET_FEMALE_FACENUM(int _slot, int value)
     {
         Female_FaceNum[_slot] = value;
     }
 
 
-    public int MALE_FACENUM(int _slot)
+    public int GET_MALE_FACENUM(int _slot)
     {
         return male_FaceNum[_slot];
     }
 
-    public void MALE_FACENUM(int _slot, int value)
+    public void SET_MALE_FACENUM(int _slot, int value)
     {
         male_FaceNum[_slot] = value;
     }
 
-    public int FEMALE_EYEBROWNUM(int _slot)
+    public int GET_FEMALE_EYEBROWNUM(int _slot)
     {
         return Female_EyebrowNum[_slot];
     }
 
-    public void FEMALE_EYEBROWNUM(int _slot, int value)
+    public void SET_FEMALE_EYEBROWNUM(int _slot, int value)
     {
         Female_EyebrowNum[_slot] = value;
     }
 
-    public int MALE_EYEBROWNUM(int _slot)
+    public int GET_MALE_EYEBROWNUM(int _slot)
     {
         return male_EyebrowNum[_slot];
     }
 
-    public void MALE_EYEBROWNUM(int _slot, int value)
+    public void SET_MALE_EYEBROWNUM(int _slot, int value)
     {
         male_EyebrowNum[_slot] = value;
     }
 
-    public int MUSTACHENUM(int _slot)
+    public int GET_MUSTACHENUM(int _slot)
     {
         return MustacheNum[_slot];
     }
 
-    public void MUSTACHENUM(int _slot, int value)
+    public void SET_MUSTACHENUM(int _slot, int value)
     {
         MustacheNum[_slot] = value;
     }
 
-    public int FEMALE_TOPNUM(int _slot)
+    public int GET_FEMALE_TOPNUM(int _slot)
     {
         return Female_TopNum[_slot];
     }
 
-    public void FEMALE_TOPNUM(int _slot, int value)
+    public void SET_FEMALE_TOPNUM(int _slot, int value)
     {
         Female_TopNum[_slot] = value;
     }
 
-    public int FEMALE_PANTSNUM(int _slot)
+    public int GET_FEMALE_PANTSNUM(int _slot)
     {
         return Female_PantsNum[_slot];
     }
 
-    public void FEMALE_PANTSNUM(int _slot, int value)
+    public void SET_FEMALE_PANTSNUM(int _slot, int value)
     {
         Female_PantsNum[_slot] = value;
     }
 
-    public int MALE_TOPNUM(int _slot)
+    public int GET_MALE_TOPNUM(int _slot)
     {
         return male_TopNum[_slot];
     }
 
-    public void MALE_TOPNUM(int _slot, int value)
+    public void SET_MALE_TOPNUM(int _slot, int value)
     {
         male_TopNum[_slot] = value;
     }
 
-    public int MALE_PANTSNUM(int _slot)
+    public int GET_MALE_PANTSNUM(int _slot)
     {
         return male_PantsNum[_slot];
     }
 
-    public void MALE_PANTSNUM(int _slot, int value)
+    public void SET_MALE_PANTSNUM(int _slot, int value)
     {
         male_PantsNum[_slot] = value;
     }
@@ -202,126 +207,126 @@ public class DataManager : Singleton<DataManager>
 
     int[] InventorySlot = new int[InventorySlotNum];
 
-    public void SETINVENTORYSLOT(int _num, int _value)
+    public void SET_INVENTORYSLOT(int _num, int _value)
     {
         InventorySlot[_num] = _value;
     }
 
-    public int GETINVENTORYSLOT(int _num)
+    public int GET_GETINVENTORYSLOT(int _num)
     {
         return InventorySlot[_num];
     }
 
-    public int WEAPONCODE(int _slot)
+    public int GET_WEAPONCODE(int _slot)
     {
         return WeaponCode[_slot];
     }
 
-    public void WEAPONCODE(int _slot, int value)
+    public void SET_WEAPONCODE(int _slot, int value)
     {
         WeaponCode[_slot] = value;
     }
-    public bool ISEQUIPWEAPON(int _slot)
+    public bool GET_ISEQUIPWEAPON(int _slot)
     {
         return isEquipWeapon[_slot];
     }
-    public void ISEQUIPWEAPON(int _slot, bool value)
+    public void SET_ISEQUIPWEAPON(int _slot, bool value)
     {
         isEquipWeapon[_slot] = value;
     }
 
 
-    public int HELMATCODE(int _slot)
+    public int GET_HELMATCODE(int _slot)
     {
         return HelmatCode[_slot];
     }
 
-    public void HELMATCODE(int _slot, int value)
+    public void SET_HELMATCODE(int _slot, int value)
     {
         HelmatCode[_slot] = value;
     }
 
-    public int TOPCODE(int _slot)
+    public int GET_TOPCODE(int _slot)
     {
         return TopCode[_slot];
     }
 
-    public void TOPCODE(int _slot, int value)
+    public void SET_TOPCODE(int _slot, int value)
     {
         TopCode[_slot] = value;
     }
 
-    public int PANTSCODE(int _slot)
+    public int GET_PANTSCODE(int _slot)
     {
         return PantsCode[_slot];
     }
 
-    public void PANTSCODE(int _slot, int value)
+    public void SET_PANTSCODE(int _slot, int value)
     {
         PantsCode[_slot] = value;
     }
 
-    public int HANDCODE(int _slot)
+    public int GET_HANDCODE(int _slot)
     {
         return HandCode[_slot];
     }
 
-    public void HANDCODE(int _slot, int value)
+    public void SET_HANDCODE(int _slot, int value)
     {
         HandCode[_slot] = value;
     }
 
-    public int SHOESCODE(int _slot)
+    public int GET_SHOESCODE(int _slot)
     {
         return ShoesCode[_slot];
     }
 
-    public void SHOESCODE(int _slot, int value)
+    public void SET_SHOESCODE(int _slot, int value)
     {
         ShoesCode[_slot] = value;
     }
 
 
-    public bool ISEQUIPHELMAT(int _slot)
+    public bool GET_ISEQUIPHELMAT(int _slot)
     {
         return isEquipHelmat[_slot];
     }
-    public void ISEQUIPHELMAT(int _slot, bool value)
+    public void SET_ISEQUIPHELMAT(int _slot, bool value)
     {
         isEquipHelmat[_slot] = value;
     }
 
-    public bool ISEQUIPTOP(int _slot)
+    public bool GET_ISEQUIPTOP(int _slot)
     {
         return isEquipTop[_slot];
     }
-    public void ISEQUIPTOP(int _slot, bool value)
+    public void SET_ISEQUIPTOP(int _slot, bool value)
     {
         isEquipTop[_slot] = value;
     }
-    public bool ISEQUIPPANTS(int _slot)
+    public bool GET_ISEQUIPPANTS(int _slot)
     {
         return isEquipPants[_slot];
     }
-    public void ISEQUIPPANTS(int _slot, bool value)
+    public void SET_ISEQUIPPANTS(int _slot, bool value)
     {
         isEquipPants[_slot] = value;
     }
-    public bool ISEQUIPHAND(int _slot)
+    public bool GET_ISEQUIPHAND(int _slot)
     {
         return isEquipHand[_slot];
     }
 
-    public void ISEQUIPHAND(int _slot, bool value)
+    public void SET_ISEQUIPHAND(int _slot, bool value)
     {
         isEquipHand[_slot] = value;
     }
 
-    public bool ISEQUIPSHOES(int _slot)
+    public bool GET_ISEQUIPSHOES(int _slot)
     {
         return isEquipShoes[_slot];
     }
-    public void ISEQUIPSHOES(int _slot, bool value)
+    public void SET_ISEQUIPSHOES(int _slot, bool value)
     {
         isEquipShoes[_slot] = value;
     }
@@ -337,12 +342,12 @@ public class DataManager : Singleton<DataManager>
     int[] player_job = new int[SlotCount];
 
 
-    public UnitCode UnitCodes(int _slot)
+    public UnitCode GET_UnitCodes(int _slot)
     {
         return SlotJob[_slot];
     }
 
-    public void UnitCodes(int _slot, UnitCode _vaule)
+    public void SET_UnitCodes(int _slot, UnitCode _vaule)
     {
         if (!SlotJob.ContainsKey(_slot))
         {
@@ -351,47 +356,64 @@ public class DataManager : Singleton<DataManager>
 
     }
 
-    public string PLAYER_ID(int _slot)
+    public string GET_PLAYER_ID(int _slot)
     {
         return player_id[_slot];
     }
 
-    public void PLAYER_ID(int _slot, string value)
+    public void SET_PLAYER_ID(int _slot, string value)
     {
         player_id[_slot] = value;
     }
 
-    public int PLAYER_LEVEL(int _slot)
+    public int GET_PLAYER_LEVEL(int _slot)
     {
         return player_level[_slot];
     }
 
-    public void PLAYER_LEVEL(int _slot, int value)
+    public void SET_PLAYER_LEVEL(int _slot, int value)
     {
         player_level[_slot] = value;
     }
 
-    public float PLAYER_EXP(int _slot)
+    public float GET_PLAYER_EXP(int _slot)
     {
         return player_exp[_slot];
     }
 
-    public void PLAYER_EXP(int _slot, float value)
+    public void SET_PLAYER_EXP(int _slot, float value)
     {
         player_exp[_slot] = value;
     }
 
-    public int PLAYER_JOB(int _slot)
+    public int GET_PLAYER_JOB(int _slot)
     {
         return player_job[_slot];
     }
 
-    public void PLAYER_JOB(int _slot, int value)
+    public void SET_PLAYER_JOB(int _slot, int value)
     {
         player_job[_slot] = value;
     }
     #endregion
 
+    #region 로딩창 관련 데이터
+    string[] loading_text = new string[SlotCount];
+
+    public string GET_LOADING_TEXT(int _slot)
+    {
+        return loading_text[_slot];
+    }
+
+    public void SET_LOADING_TEXT(int _slot, string value)
+    {
+        loading_text[_slot] = value;
+    }
+    #endregion
+
+
+    #region 퀘스트 관련
+    #endregion
 
     public void SaveData(int _index)
     {

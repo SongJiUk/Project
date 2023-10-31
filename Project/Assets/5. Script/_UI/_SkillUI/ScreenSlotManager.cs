@@ -17,7 +17,7 @@ public class ScreenSlotManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        num = DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM);
+        num = DataManager.GetInstance.GET_PLAYER_JOB(DataManager.GetInstance.SLOT_NUM);
         SetIconImage();
     }
 

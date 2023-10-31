@@ -83,8 +83,8 @@ public class CharacterSelect : MonoBehaviour
     {
         UnitCode _code = (UnitCode)_num;
         
-        DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM, _code);
-        DataManager.GetInstance.PLAYER_JOB(DataManager.GetInstance.SLOT_NUM, _num);
+        DataManager.GetInstance.SET_UnitCodes(DataManager.GetInstance.SLOT_NUM, _code);
+        DataManager.GetInstance.SET_PLAYER_JOB(DataManager.GetInstance.SLOT_NUM, _num);
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
 
         var operation = SceneManager.LoadSceneAsync("3_Customizing");

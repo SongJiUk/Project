@@ -48,7 +48,7 @@ public class Player : Singleton<Player>
         if (null == playerController) playerController = GetComponent<PlayerController>();
         if (null == customizing) customizing = GetComponent<Customizing>();
         playerStat = PlayerStat.GetInstance;
-        playerStat.InitStat(DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM));
+        playerStat.InitStat(DataManager.GetInstance.GET_UnitCodes(DataManager.GetInstance.SLOT_NUM));
 
         //var a = weaponManager.FindIndexs(DataManager.GetInstance.WEAPONCODE(DataManager.GetInstance.SLOT_NUM));
         //if(a != null) UIManager.GetInstance.weaponManger.ChangeWeapon(a);
@@ -86,7 +86,7 @@ public class Player : Singleton<Player>
         customizing.InitPlayer(DataManager.GetInstance.SLOT_NUM);
 
         //애니메이션 변경
-        var unitcode = DataManager.GetInstance.UnitCodes(DataManager.GetInstance.SLOT_NUM);
+        var unitcode = DataManager.GetInstance.GET_UnitCodes(DataManager.GetInstance.SLOT_NUM);
         ANIM.runtimeAnimatorController = PlayerJob[(int)unitcode];
     }
 

@@ -64,7 +64,7 @@ public class Equipment : MonoBehaviour
                         Top = A;
                     }
                     UpdateSlot(1);
-                    DataManager.GetInstance.TOPCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                    DataManager.GetInstance.SET_TOPCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     break;
 
                 case 1:
@@ -105,7 +105,7 @@ public class Equipment : MonoBehaviour
                         Pants = A;
                     }
                     UpdateSlot(1);
-                    DataManager.GetInstance.PANTSCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                    DataManager.GetInstance.SET_PANTSCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     break;
 
                 case 1:
@@ -143,7 +143,7 @@ public class Equipment : MonoBehaviour
                         Head = A;
                     }
                     UpdateSlot(1);
-                    DataManager.GetInstance.HELMATCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                    DataManager.GetInstance.SET_HELMATCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     break;
 
                 case 1:
@@ -187,7 +187,7 @@ public class Equipment : MonoBehaviour
                         Hand = A;
                     }
                     UpdateSlot(1);
-                    DataManager.GetInstance.HANDCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                    DataManager.GetInstance.SET_HANDCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     break;
 
                 case 1:
@@ -227,7 +227,7 @@ public class Equipment : MonoBehaviour
                         Shoes = A;
                     }
                     UpdateSlot(1);
-                    DataManager.GetInstance.SHOESCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                    DataManager.GetInstance.SET_SHOESCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     break;
 
                 case 1:
@@ -262,7 +262,7 @@ public class Equipment : MonoBehaviour
                 WeaponL = A;
             }
             UpdateSlot(0);
-            DataManager.GetInstance.WEAPONCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+            DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
             //WeaponManager.GetInstance.ISEQUIP = true;
             if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
             else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);

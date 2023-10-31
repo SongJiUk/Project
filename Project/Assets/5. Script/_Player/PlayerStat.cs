@@ -48,7 +48,7 @@ public class PlayerStat : Singleton<PlayerStat>
                 ComboDelay = 1f;
                 break;
         }
-        ChangeEnum(DataManager.GetInstance.GENDERNUM(DataManager.GetInstance.SLOT_NUM));
+        ChangeEnum(DataManager.GetInstance.GET_GENDERNUM(DataManager.GetInstance.SLOT_NUM));
         
     }
 

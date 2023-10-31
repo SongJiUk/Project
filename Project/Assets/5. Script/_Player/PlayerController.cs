@@ -910,7 +910,7 @@ public class PlayerController : MonoBehaviour
             if (weaponManager.Weapondata != null)
             {
 
-                if(DataManager.GetInstance.ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM))
+                if(DataManager.GetInstance.GET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM))
                 {
                     weaponManager.ISEQUIP = !weaponManager.ISEQUIP;
 
