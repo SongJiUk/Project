@@ -7,14 +7,16 @@ using UnityEngine.UI;
 public class PlayerSlotScene : MonoBehaviour
 {
 
-    [SerializeField] GameObject selectPopup;
-    [SerializeField] Text slot_txt;
+    
     [SerializeField] Customizing playercutomizing;
     [SerializeField] WeaponManager playerWeapon;
 
-    [SerializeField] GameObject gameStartPopup;
-    [SerializeField] Text gameStart_txt;
 
+    [SerializeField] GameObject[] UseSlot;
+    [SerializeField] GameObject[] NoUseSlot;
+
+
+    #region 플레이어 직업 및 장비별로 애니메이션 변경
     [SerializeField] GameObject[] Player_Anim;
     public List<GameObject> playerInfos = new List<GameObject>();
     public List<Text> playerName_txt = new List<Text>();
@@ -24,6 +26,27 @@ public class PlayerSlotScene : MonoBehaviour
     public RuntimeAnimatorController[] PlayerJob;
     public GameObject obj;
     public Animator anim;
+    #endregion
+
+    #region 하단에 게임시작 및 캐릭터 삭제 버튼
+    [SerializeField] GameObject GameStart_Btn;
+    [SerializeField] GameObject CreateCharacter_Btn;
+    [SerializeField] GameObject DeleteSlot_Btn;
+
+    [SerializeField] GameObject gameStartPopup;
+    [SerializeField] Text gameStart_txt;
+
+    [SerializeField] GameObject CreateCharacter_Popup;
+    [SerializeField] Text CreateCharacter_txt;
+
+    [SerializeField] GameObject DeleteSlot_Popup;
+    [SerializeField] Text DeleteSlot_txt;
+    [SerializeField] GameObject CompleteDelete_Popup;
+    int SlotNum;
+    #endregion
+
+
+
 
 
     private void Start()
@@ -38,18 +61,14 @@ public class PlayerSlotScene : MonoBehaviour
                 playerName_txt[i].text = $"{DataManager.GetInstance.GET_PLAYER_ID(i)}";
                 playerJob_txt[i].text = $"{DataManager.GetInstance.GET_UnitCodes(i).ToString()}";
                 playerLevel_txt[i].text = $"{DataManager.GetInstance.GET_PLAYER_LEVEL(i)}";
+                UseSlot[i].SetActive(true);
             }
             else
             {
                 playerInfos[i].SetActive(false);
+                NoUseSlot[i].SetActive(true);
             }
         }
-    }
-
-    public void ChangeAnim(int _num)
-    {
-        
-        
     }
 
    
@@ -57,7 +76,11 @@ public class PlayerSlotScene : MonoBehaviour
     {
         playercutomizing.gameObject.SetActive(false);
 
-        //Debug.Log("DataManager : "+DataManager.GetInstance.SLOT_NUM);
+        GameStart_Btn.SetActive(false);
+        DeleteSlot_Btn.SetActive(false);
+        CreateCharacter_Btn.SetActive(false);
+
+        SlotNum = _num;
         if (DataManager.GetInstance.GET_ISSLOTOPEN(_num))
         {
             DataManager.GetInstance.SLOT_NUM = _num;
@@ -75,19 +98,21 @@ public class PlayerSlotScene : MonoBehaviour
 
             playercutomizing.gameObject.SetActive(true);
             anim.SetInteger("EquipNum", equipNum);
-            
 
-            gameStartPopup.SetActive(true);
-            gameStart_txt.text = $"{_num +1}번 슬롯의 영웅으로 플레이 하시겠습니까?";
+
+
+            GameStart_Btn.SetActive(true);
+            DeleteSlot_Btn.SetActive(true);
+           
         }
         else
         {
             DataManager.GetInstance.SLOT_NUM = _num;
             playercutomizing.gameObject.SetActive(false);
-            //여기서 생성하시겠습니까? 띄워주기
-            Debug.Log("생성하자!!");
-            selectPopup.SetActive(true);
-            slot_txt.text = $"{_num + 1}번 슬롯을 선택하시겠습니까?";
+
+            CreateCharacter_Btn.SetActive(true);
+
+            
         }
     }
 
@@ -95,16 +120,11 @@ public class PlayerSlotScene : MonoBehaviour
     {
         if(_isanswer)
         {
-            selectPopup.SetActive(false);
+            CreateCharacter_Popup.SetActive(false);
 
             LoadManager.GetInstance.LoadSceneAsync("2_CharacterSelect");
-            //var operation = SceneManager.LoadSceneAsync("2_CharacterSelect");
-            //operation.allowSceneActivation = true;
         }
-        else
-        {
-            selectPopup.SetActive(false);
-        }
+        else CreateCharacter_Popup.SetActive(false);
     }
 
     public void ClickPlayBtn(bool _isanswer)
@@ -113,14 +133,46 @@ public class PlayerSlotScene : MonoBehaviour
         {
             gameStartPopup.SetActive(false);
             LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
-            //var operation = SceneManager.LoadSceneAsync("4_Song");
-            //var operation = SceneManager.LoadSceneAsync("4_TownMap");
-            //var operation = SceneManager.LoadSceneAsync("5_Dungeon");
-            //operation.allowSceneActivation = true;
         }
-        else
+        else gameStartPopup.SetActive(false);
+    }
+
+    public void ClickDeleteBtn(bool _isanswer)
+    {
+        if(_isanswer)
         {
-            gameStartPopup.SetActive(false);
+            DataManager.GetInstance.DeleteData(SlotNum);
+            playercutomizing.gameObject.SetActive(false);
+            UseSlot[SlotNum].SetActive(false);
+            NoUseSlot[SlotNum].SetActive(true);
+            CompleteDelete_Popup.SetActive(true);
+            DeleteSlot_Popup.SetActive(false);
+
         }
+        else DeleteSlot_Popup.SetActive(false);
+    }
+
+
+    public void GameStart()
+    {
+        gameStartPopup.SetActive(true);
+        gameStart_txt.text = $"{SlotNum + 1}번 슬롯의 영웅으로 플레이 하시겠습니까?";
+    }
+
+    public void Create()
+    {
+        CreateCharacter_Popup.SetActive(true);
+        CreateCharacter_txt.text = $"{SlotNum + 1}번 슬롯에 캐릭터를 생성하시겠습니까?";
+    }
+
+    public void DeleteSlot()
+    {
+        DeleteSlot_Popup.SetActive(true);
+        DeleteSlot_txt.text = $"정말 {SlotNum + 1 }번 슬롯에 있는 캐릭터를 삭제하시겠습니? 모든 정보가 삭제됩니다.";
+    }
+
+    public void CompleteDeletePopup()
+    {
+        CompleteDelete_Popup.SetActive(false);
     }
 }

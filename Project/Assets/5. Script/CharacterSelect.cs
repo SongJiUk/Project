@@ -22,6 +22,9 @@ public class CharacterSelect : MonoBehaviour
     [SerializeField] GameObject Back_btn;
 
 
+    [SerializeField] string[] Character_name;
+
+
 
     Coroutine myCoroutine;
     bool isJoom = false;
@@ -41,7 +44,6 @@ public class CharacterSelect : MonoBehaviour
             yield return null;
             //transform.position = Vector3.Lerp(transform.position, StartAnimPos.position, smoothSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, StartAnimPos.rotation, smoothSpeed * Time.deltaTime);
-            Debug.Log("123123");
             time += Time.deltaTime;
             if (time > 2f)
             {

@@ -9,6 +9,8 @@ public class LoadScene : MonoBehaviour
     [SerializeField] Image BG;
     [SerializeField] Sprite[] BG_Img;
 
+    [SerializeField] string[] GameTip_text;
+
     [SerializeField] Text GameTip_txt;
     //던전에서 게임종료시 마을로 이동됩니다.
     [SerializeField] Text LoadingNum_txt;
@@ -18,7 +20,7 @@ public class LoadScene : MonoBehaviour
     {
         int num = Random.Range(0, BG_Img.Length);
         BG.sprite = BG_Img[num];
-        GameTip_txt.text = "랜덤입니다.";
+        GameTip_txt.text = GameTip_text[num];
     }
 
     // Update is called once per frame

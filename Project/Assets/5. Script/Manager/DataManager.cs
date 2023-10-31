@@ -398,66 +398,55 @@ public class DataManager : Singleton<DataManager>
     #endregion
 
     #region 로딩창 관련 데이터
-    string[] loading_text = new string[SlotCount];
 
-    public string GET_LOADING_TEXT(int _slot)
-    {
-        return loading_text[_slot];
-    }
-
-    public void SET_LOADING_TEXT(int _slot, string value)
-    {
-        loading_text[_slot] = value;
-    }
     #endregion
 
 
     #region 퀘스트 관련
     #endregion
 
-    public void SaveData(int _index)
+    public void SaveData(int _slot)
     {
-        
-        isSlotOpen[_index] = true;
-        SetBool("isSlotOpen" + _index, isSlotOpen[_index]);
+        isSlotOpen[_slot] = true;
+        SetBool("isSlotOpen" + _slot, isSlotOpen[_slot]);
 
-        PlayerPrefs.SetInt("SlotJob"+_index, (int)SlotJob[_index]);
+        PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
 
         for (int num = 0; num < InventorySlotNum; num++)
         {
-            PlayerPrefs.SetInt($"InventorySlot{_index}" + num, InventorySlot[num]);
+            PlayerPrefs.SetInt($"InventorySlot{_slot}" + num, InventorySlot[num]);
         }
 
-        PlayerPrefs.SetFloat("player_exp" + _index, player_exp[_index]);
-        PlayerPrefs.SetInt("player_level" + _index, player_level[_index]);
-        PlayerPrefs.SetString("player_id" + _index, player_id[_index]);
-        PlayerPrefs.SetInt("player_job" + _index, player_job[_index]);
+        PlayerPrefs.SetFloat("player_exp" + _slot, player_exp[_slot]);
+        PlayerPrefs.SetInt("player_level" + _slot, player_level[_slot]);
+        PlayerPrefs.SetString("player_id" + _slot, player_id[_slot]);
+        PlayerPrefs.SetInt("player_job" + _slot, player_job[_slot]);
 
-        PlayerPrefs.SetInt("GenderNum" + _index, GenderNum[_index]);
-        PlayerPrefs.SetInt("Female_FaceNum" + _index, Female_FaceNum[_index]);
-        PlayerPrefs.SetInt("male_FaceNum" + _index, male_FaceNum[_index]);
-        PlayerPrefs.SetInt("Female_EyebrowNum" + _index, Female_EyebrowNum[_index]);
-        PlayerPrefs.SetInt("male_EyebrowNum" + _index, male_EyebrowNum[_index]);
-        PlayerPrefs.SetInt("MustacheNum" + _index, MustacheNum[_index]);
-        PlayerPrefs.SetInt("Female_TopNum" + _index, Female_TopNum[_index]);
-        PlayerPrefs.SetInt("male_TopNum" + _index, male_TopNum[_index]);
-        PlayerPrefs.SetInt("Female_PantsNum" + _index, Female_PantsNum[_index]);
-        PlayerPrefs.SetInt("male_PantsNum" + _index, male_PantsNum[_index]);
+        PlayerPrefs.SetInt("GenderNum" + _slot, GenderNum[_slot]);
+        PlayerPrefs.SetInt("Female_FaceNum" + _slot, Female_FaceNum[_slot]);
+        PlayerPrefs.SetInt("male_FaceNum" + _slot, male_FaceNum[_slot]);
+        PlayerPrefs.SetInt("Female_EyebrowNum" + _slot, Female_EyebrowNum[_slot]);
+        PlayerPrefs.SetInt("male_EyebrowNum" + _slot, male_EyebrowNum[_slot]);
+        PlayerPrefs.SetInt("MustacheNum" + _slot, MustacheNum[_slot]);
+        PlayerPrefs.SetInt("Female_TopNum" + _slot, Female_TopNum[_slot]);
+        PlayerPrefs.SetInt("male_TopNum" + _slot, male_TopNum[_slot]);
+        PlayerPrefs.SetInt("Female_PantsNum" + _slot, Female_PantsNum[_slot]);
+        PlayerPrefs.SetInt("male_PantsNum" + _slot, male_PantsNum[_slot]);
 
-        PlayerPrefs.SetInt("WeaponCode" + _index, WeaponCode[_index]);
-        PlayerPrefs.SetInt("HelmatCode" + _index, HelmatCode[_index]);
-        PlayerPrefs.SetInt("TopCode" + _index, TopCode[_index]);
-        PlayerPrefs.SetInt("PantsCode" + _index, PantsCode[_index]);
-        PlayerPrefs.SetInt("HandCode" + _index, HandCode[_index]);
-        PlayerPrefs.SetInt("ShoesCode" + _index, HandCode[_index]);
+        PlayerPrefs.SetInt("WeaponCode" + _slot, WeaponCode[_slot]);
+        PlayerPrefs.SetInt("HelmatCode" + _slot, HelmatCode[_slot]);
+        PlayerPrefs.SetInt("TopCode" + _slot, TopCode[_slot]);
+        PlayerPrefs.SetInt("PantsCode" + _slot, PantsCode[_slot]);
+        PlayerPrefs.SetInt("HandCode" + _slot, HandCode[_slot]);
+        PlayerPrefs.SetInt("ShoesCode" + _slot, HandCode[_slot]);
 
-        SetBool("isEquipWeapon" + _index, isEquipWeapon[_index]);
-        SetBool("isEquipHelmat" + _index, isEquipHelmat[_index]);
-        SetBool("isEquipTop" + _index, isEquipTop[_index]);
-        SetBool("isEquipPants" + _index, isEquipPants[_index]);
-        SetBool("isEquipHand" + _index, isEquipHand[_index]);
-        SetBool("isEquipShoes" + _index, isEquipShoes[_index]);
-       
+        SetBool("isEquipWeapon" + _slot, isEquipWeapon[_slot]);
+        SetBool("isEquipHelmat" + _slot, isEquipHelmat[_slot]);
+        SetBool("isEquipTop" + _slot, isEquipTop[_slot]);
+        SetBool("isEquipPants" + _slot, isEquipPants[_slot]);
+        SetBool("isEquipHand" + _slot, isEquipHand[_slot]);
+        SetBool("isEquipShoes" + _slot, isEquipShoes[_slot]);
+
         //int equipindex = 0;
 
         //PlayerPrefs.SetInt("Equip_" + equipindex +"_"+ _index, male_PantsNum);
@@ -531,5 +520,55 @@ public class DataManager : Singleton<DataManager>
 
         }
         
+    }
+
+    public void DeleteData(int _slot)
+    {
+        isSlotOpen[_slot] = false;
+        SetBool("isSlotOpen" + _slot, isSlotOpen[_slot]);
+
+        PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
+
+        for (int num = 0; num < InventorySlotNum; num++)
+        {
+            PlayerPrefs.SetInt($"InventorySlot{_slot}" + num, -1);
+        }
+
+        PlayerPrefs.SetFloat("player_exp" + _slot, -1);
+        PlayerPrefs.SetInt("player_level" + _slot, -1);
+        PlayerPrefs.SetString("player_id" + _slot, "Default");
+        PlayerPrefs.SetInt("player_job" + _slot, -1);
+
+        PlayerPrefs.SetInt("GenderNum" + _slot, -1);
+        PlayerPrefs.SetInt("Female_FaceNum" + _slot, -1);
+        PlayerPrefs.SetInt("male_FaceNum" + _slot, -1);
+        PlayerPrefs.SetInt("Female_EyebrowNum" + _slot, -1);
+        PlayerPrefs.SetInt("male_EyebrowNum" + _slot, -1);
+        PlayerPrefs.SetInt("MustacheNum" + _slot, -1);
+        PlayerPrefs.SetInt("Female_TopNum" + _slot, -1);
+        PlayerPrefs.SetInt("male_TopNum" + _slot, -1);
+        PlayerPrefs.SetInt("Female_PantsNum" + _slot, -1);
+        PlayerPrefs.SetInt("male_PantsNum" + _slot, -1);
+
+        PlayerPrefs.SetInt("WeaponCode" + _slot, -1);
+        PlayerPrefs.SetInt("HelmatCode" + _slot, -1);
+        PlayerPrefs.SetInt("TopCode" + _slot, -1);
+        PlayerPrefs.SetInt("PantsCode" + _slot, -1);
+        PlayerPrefs.SetInt("HandCode" + _slot, -1);
+        PlayerPrefs.SetInt("ShoesCode" + _slot, -1);
+
+        SetBool("isEquipWeapon" + _slot, false);
+        SetBool("isEquipHelmat" + _slot, false);
+        SetBool("isEquipTop" + _slot, false);
+        SetBool("isEquipPants" + _slot, false);
+        SetBool("isEquipHand" + _slot, false);
+        SetBool("isEquipShoes" + _slot, false);
+
+        //int equipindex = 0;
+
+        //PlayerPrefs.SetInt("Equip_" + equipindex +"_"+ _index, male_PantsNum);
+
+
+        PlayerPrefs.Save();
     }
 }
