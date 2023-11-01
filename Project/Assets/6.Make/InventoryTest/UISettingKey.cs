@@ -17,6 +17,7 @@ public class UISettingKey : MonoBehaviour
     [SerializeField] private Button EquipmentButton;
     [SerializeField] private Button SkillButton;
 
+    Queue<GameObject> objQueue;
     // Start is called before the first frame update
     void Start()
     {
@@ -33,16 +34,19 @@ public class UISettingKey : MonoBehaviour
     public void Inventoryend()
     {
         Inventory.gameObject.SetActive(false);
+        CameraManager.GetInstance.ISUIOFF = true;
     }
 
     public void Equipmentend()
     {
         Equipment.gameObject.SetActive(false);
+        CameraManager.GetInstance.ISUIOFF = true;
     }
 
     public void Skillend()
     {
         Skill.gameObject.SetActive(false);
+        CameraManager.GetInstance.ISUIOFF = true;
     }
 
     // Update is called once per frame
@@ -51,16 +55,31 @@ public class UISettingKey : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             Inventory.gameObject.SetActive(!Inventory.gameObject.activeSelf);
+
+            if (Inventory.gameObject.activeSelf)
+            {
+                CameraManager.GetInstance.ISUIOFF = false;
+            }
+            else
+            {
+                CameraManager.GetInstance.ISUIOFF = true;
+            }
         }
 
-        if (Input.GetKeyDown(KeyCode.U))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             Equipment.gameObject.SetActive(!Equipment.gameObject.activeSelf);
+
+            if (Equipment.gameObject.activeSelf) CameraManager.GetInstance.ISUIOFF = false;
+            else CameraManager.GetInstance.ISUIOFF = true;
         }
         
-        if (Input.GetKeyDown(KeyCode.Y))
+        if (Input.GetKeyDown(KeyCode.K))
         {
             Skill.gameObject.SetActive(!Skill.gameObject.activeSelf);
+
+            if (Skill.gameObject.activeSelf) CameraManager.GetInstance.ISUIOFF = false;
+            else CameraManager.GetInstance.ISUIOFF = true;
         }
         /*
         if (Input.GetKeyDown(KeyCode.O))

@@ -120,6 +120,8 @@ public class CameraManager : Singleton<CameraManager>
     private float y = 0.0f;
 
     private bool OnOff = true;
+    bool isUiOff = false;
+    public bool ISUIOFF { get { return isUiOff; } set { isUiOff = value; } }
 
     Quaternion saveRotation;
     Vector3 savePosition;
@@ -135,6 +137,7 @@ public class CameraManager : Singleton<CameraManager>
     }
     void Start()
     {
+        isUiOff = true;
         var angles = transform.eulerAngles;
         x = angles.y;
         y = angles.x;
@@ -157,29 +160,31 @@ public class CameraManager : Singleton<CameraManager>
     {
         return OnOff;
     }
+
     RaycastHit[] hits;
     void LateUpdate()
     {
 
+        //투명화한 물체들 되돌려주는 코드
         if (hits != null)
         {
             for (int i = 0; i < hits.Length; i++)
             {
-                MeshRenderer a = hits[i].transform.GetComponent<MeshRenderer>();
-                if(a != null)
+                MeshRenderer mesh = hits[i].transform.GetComponent<MeshRenderer>();
+                if(mesh != null)
                 {
-                    Material b = a.materials[0];
-                    Color color = b.color;
+                    Material mat = mesh.materials[0];
+                    Color color = mat.color;
 
                     color.a = 1f;
-                    b.color = color;
+                    mat.color = color;
                 }
              
             }
         }
 
 
-        // 카메라와 캐릭터 사이에 있는 물체 투명화 ( 만약 지나치면 원래대로 되돌려줘야한다.)
+        // 카메라와 캐릭터 사이에 있는 물체 투명화
         Vector3 dir = (player.transform.position - Camera.main.transform.position).normalized;
         float distance = Vector3.Distance(Camera.main.transform.position, player.transform.position);
         hits = Physics.RaycastAll(Camera.main.transform.position, dir, distance);
@@ -188,12 +193,12 @@ public class CameraManager : Singleton<CameraManager>
             if (hits[i].transform.gameObject.layer == LayerMask.NameToLayer("Object"))
             {
                 
-                var a = hits[i].transform.GetComponent<MeshRenderer>().materials[0];
+                var mat = hits[i].transform.GetComponent<MeshRenderer>().materials[0];
 
-                Color color = a.color;
+                Color color = mat.color;
 
                 color.a = 0.1f;
-                a.color = color;
+                mat.color = color;
 
 
             }
@@ -236,7 +241,7 @@ public class CameraManager : Singleton<CameraManager>
             else dpiScale = Screen.dpi / 200f;
             if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
 
-            if(OnOff)
+            if(isUiOff)
             {
                 x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
                 y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);
@@ -247,7 +252,7 @@ public class CameraManager : Singleton<CameraManager>
             var position = rotation * new Vector3(0, 0, -currDistance) + targetPos;
 
             
-            if (OnOff)
+            if (isUiOff)
             {
                 Cursor.visible = false;
                 //마우스 잠구는거

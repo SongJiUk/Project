@@ -33,7 +33,7 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "SkillQ",
+                    "name": "Skill1",
                     "type": "PassThrough",
                     "id": "bc56c0c6-5759-41f4-90ea-e338818ef753",
                     "expectedControlType": "Button",
@@ -42,7 +42,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SkillE",
+                    "name": "Skill2",
                     "type": "PassThrough",
                     "id": "70d5538e-9904-4e94-8f93-dc6a3f555560",
                     "expectedControlType": "Button",
@@ -51,7 +51,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SkillR",
+                    "name": "Skill3",
                     "type": "PassThrough",
                     "id": "6c985cd6-493d-47b1-ac04-6e7609258a35",
                     "expectedControlType": "Button",
@@ -60,7 +60,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "SkillF",
+                    "name": "Skill4",
                     "type": "PassThrough",
                     "id": "1e2aff6b-5efc-447a-8ebc-136ece9d3795",
                     "expectedControlType": "Button",
@@ -232,44 +232,44 @@
                 {
                     "name": "",
                     "id": "dcf89d1e-611b-4648-81fa-dbbd89a59a26",
-                    "path": "<Keyboard>/q",
+                    "path": "<Keyboard>/1",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "SkillQ",
+                    "action": "Skill1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "39698a37-7631-4a77-a738-b71f56ca5407",
-                    "path": "<Keyboard>/e",
+                    "path": "<Keyboard>/2",
                     "interactions": "Hold(duration=0.2)",
                     "processors": "",
                     "groups": "",
-                    "action": "SkillE",
+                    "action": "Skill2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "509d9ae1-fb53-4109-9008-01dc86d3222f",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/3",
                     "interactions": "Hold(duration=0.2)",
                     "processors": "",
                     "groups": "",
-                    "action": "SkillR",
+                    "action": "Skill3",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "4b302973-7ccb-40fc-910b-4b86a49c111c",
-                    "path": "<Keyboard>/f",
+                    "path": "<Keyboard>/4",
                     "interactions": "Hold",
                     "processors": "",
                     "groups": "",
-                    "action": "SkillF",
+                    "action": "Skill4",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

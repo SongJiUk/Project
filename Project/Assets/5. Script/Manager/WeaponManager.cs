@@ -391,90 +391,90 @@ public class WeaponManager : Singleton<WeaponManager>
 
 
 
-    private void Update()
-    {
+    //private void Update()
+    //{
 
 
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-        {
-            if(Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
-            }
-            else if(Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
-            }
-            else if(Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("CrossBow_1"));
-            }
-           //
-           //
+    //    if (Input.GetKeyDown(KeyCode.Alpha1))
+    //    {
+    //        if(Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Dagger_1"));
+    //        }
+    //        else if(Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Staff_1"));
+    //        }
+    //        else if(Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("CrossBow_1"));
+    //        }
+    //       //
+    //       //
            
-            Player.GetInstance.ANIM.SetInteger("EquipNum", 1);
-        }
+    //        Player.GetInstance.ANIM.SetInteger("EquipNum", 1);
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"),
-                    ItemManager.GetInstance.GetWeaponData("Shiled_1"));
-            }
-            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
-            }
-            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Bow_1"));
-            }
-            //
-            //
+    //    if (Input.GetKeyDown(KeyCode.Alpha2))
+    //    {
+    //        if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("OneHandMace_1"),
+    //                ItemManager.GetInstance.GetWeaponData("Shiled_1"));
+    //        }
+    //        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Orb_1"));
+    //        }
+    //        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Bow_1"));
+    //        }
+    //        //
+    //        //
             
-            Player.GetInstance.ANIM.SetInteger("EquipNum", 2);
+    //        Player.GetInstance.ANIM.SetInteger("EquipNum", 2);
 
-        }
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("TwoHandSword_1"));
-                Player.GetInstance.ANIM.SetInteger("EquipNum", 3);
+    //    if (Input.GetKeyDown(KeyCode.Alpha3))
+    //    {
+    //        if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("TwoHandSword_1"));
+    //            Player.GetInstance.ANIM.SetInteger("EquipNum", 3);
 
-            }
-            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
-            {
+    //        }
+    //        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
+    //        {
 
-            }
-            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
-            {
+    //        }
+    //        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
+    //        {
 
-            }
+    //        }
             
 
-        }
+    //    }
 
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-        {
-            if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
-            {
-                ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Spear_1"));
-                Player.GetInstance.ANIM.SetInteger("EquipNum", 4);
-            }
-            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
-            {
+    //    if (Input.GetKeyDown(KeyCode.Alpha4))
+    //    {
+    //        if (Player.GetInstance.playerStat.UnitCodes == UnitCode.WARRIOR)
+    //        {
+    //            ChangeWeapon(ItemManager.GetInstance.GetWeaponData("Spear_1"));
+    //            Player.GetInstance.ANIM.SetInteger("EquipNum", 4);
+    //        }
+    //        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
+    //        {
 
-            }
-            else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
-            {
+    //        }
+    //        else if (Player.GetInstance.playerStat.UnitCodes == UnitCode.ARCHER)
+    //        {
            
 
-            }
+    //        }
             
 
-        }
-    }
+    //    }
+    //}
 }

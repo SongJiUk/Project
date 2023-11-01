@@ -7,18 +7,24 @@ public class CharacterSelect : MonoBehaviour
 {
     float smoothSpeed = 3f;
     Quaternion targetRotation;
-    
+
+    [Header("시작할때 시간 이후에 뜨는 창")]
     [SerializeField] GameObject StartJobBtn;
     [SerializeField] GameObject[] Characters;
 
+
+    [Header("스킬 프리뷰를 보는 모든 위치")]
     [SerializeField] Transform StartAnimPos;
     [SerializeField] Transform[] Job_Pos;
     [SerializeField] Transform[] Job_SkillView_Pos;
     [SerializeField] Transform Origin_pos;
 
 
+    [Header("각 직업의 무기마다 사용하는 스킬 보기")]
+    [SerializeField] GameObject Job_Skill_Popup;
+    [SerializeField] GameObject[] Job_Explanation_Top_txt;
+    [SerializeField] GameObject[] Job_Explanation_popup;
     [SerializeField] GameObject[] Job_KindBtn;
-    [SerializeField] GameObject Job_btn;
     [SerializeField] GameObject Back_btn;
 
 
@@ -42,12 +48,12 @@ public class CharacterSelect : MonoBehaviour
         while(true)
         {
             yield return null;
-            //transform.position = Vector3.Lerp(transform.position, StartAnimPos.position, smoothSpeed * Time.deltaTime);
             transform.rotation = Quaternion.Slerp(transform.rotation, StartAnimPos.rotation, smoothSpeed * Time.deltaTime);
             time += Time.deltaTime;
             if (time > 2f)
             {
                 StartJobBtn.SetActive(true);
+                time = 0f;
                 break;
             }
         }
@@ -56,30 +62,33 @@ public class CharacterSelect : MonoBehaviour
 
     public void ShowCharacter(int _num)
     {
+        time = 0f;
         isJoom = true;
         //targetRotation = Quaternion.Euler(30.0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
         if (myCoroutine != null) StopCoroutine(myCoroutine);
         myCoroutine = StartCoroutine(LateUpdates(_num));
-        Job_btn.SetActive(false);
+        StartJobBtn.SetActive(false);
         Back_btn.SetActive(true);
         num = _num;
-        Job_KindBtn[_num].SetActive(true);
+        
     }
 
     public void BackToOriginPos()
     {
+        time = 0f;
         isJoom = false;
         //targetRotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y,transform.rotation.eulerAngles.z);
         if (myCoroutine != null) StopCoroutine(myCoroutine);
         myCoroutine = StartCoroutine(LateUpdates(num));
-        Job_btn.SetActive(true);
+        Job_Skill_Popup.SetActive(false);
         Back_btn.SetActive(false);
-        Job_KindBtn[num].SetActive(false);
+        
     }
 
     public void ShowSkill()
     {
         isShowSkill = true;
+        Job_Skill_Popup.SetActive(false);
     }
     public void SelectCharacter(int _num)
     {
@@ -110,12 +119,29 @@ public class CharacterSelect : MonoBehaviour
                 {
                     transform.position = Vector3.Lerp(transform.position, Job_Pos[_num].position, smoothSpeed * Time.deltaTime);
                     transform.rotation = Quaternion.Slerp(transform.rotation, Job_Pos[_num].rotation, smoothSpeed * Time.deltaTime);
+                    time += Time.deltaTime;
+                    if (time > 2f)
+                    {
+                        Job_Explanation_Top_txt[_num].SetActive(true);
+                        Job_Explanation_popup[_num].SetActive(true);
+                        Job_Skill_Popup.SetActive(true);
+                        Job_KindBtn[_num].SetActive(true);
+                    }
                     yield return new WaitForEndOfFrame();
                 }
                 else
                 {
                     transform.position = Vector3.Lerp(transform.position, Origin_pos.position, smoothSpeed * Time.deltaTime);
                     transform.rotation = Quaternion.Slerp(transform.rotation, StartAnimPos.rotation, smoothSpeed * Time.deltaTime);
+                   
+                    time += Time.deltaTime;
+                    if (time > 2f)
+                    {
+                        Job_Explanation_Top_txt[_num].SetActive(false);
+                        Job_Explanation_popup[_num].SetActive(false);
+                        StartJobBtn.SetActive(true);
+                        Job_KindBtn[num].SetActive(false);
+                    }
                     yield return new WaitForEndOfFrame();
                 }
             }
