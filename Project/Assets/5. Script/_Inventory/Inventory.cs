@@ -132,6 +132,25 @@ public class Inventory : MonoBehaviour
     private void Start()
     {
         UpdateAccessibleStatesAll();
+
+        for(int i=0; i<DataManager.InventorySlotNum; i++)
+        {
+            if(DataManager.GetInstance.GET_INVENTORYSLOT(i) != 0)
+            {
+                //여기입니다!! 보기
+                
+                var a =DataManager.GetInstance.GET_INVENTORYSLOT(i);
+
+                var b = ItemManager.GetInstance.GetWeaponItemData(a);
+                var item = (ItemData)b;
+
+                //여기서 데이터를 받아야 인벤토리가 활성화됨 낼 다시보자
+                //Item
+                //_items[i] = Convert.ChangeType(item, Item);
+
+                UpdateSlot(i);
+            }
+        }
     }
 
     #endregion
@@ -224,6 +243,8 @@ public class Inventory : MonoBehaviour
             _inventoryUI.RemoveItem(index);
             _inventoryUI.HideItemAmountText(index); // 수량 텍스트 숨기기
         }
+
+        DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
     }
 
     /// <summary> 해당하는 인덱스의 슬롯들의 상태 및 UI 갱신 </summary>
@@ -242,6 +263,7 @@ public class Inventory : MonoBehaviour
         {
             UpdateSlot(i);
         }
+        
     }
 
     #endregion
@@ -344,6 +366,7 @@ public class Inventory : MonoBehaviour
                         amount = ci.AddAmountAndGetExcess(amount);
 
                         UpdateSlot(index);
+                        DataManager.GetInstance.SET_INVENTORYSLOT(index, itemData.ItemCode, amount);
                     }
                 }
                 // 1-2. 빈 슬롯 탐색
@@ -370,6 +393,7 @@ public class Inventory : MonoBehaviour
                         amount = (amount > ciData.MaxAmount) ? (amount - ciData.MaxAmount) : 0;
 
                         UpdateSlot(index);
+                        DataManager.GetInstance.SET_INVENTORYSLOT(index, itemData.ItemCode, amount);
                     }
                 }
             }
@@ -388,6 +412,7 @@ public class Inventory : MonoBehaviour
                     amount = 0;
 
                     UpdateSlot(index);
+                    DataManager.GetInstance.SET_INVENTORYSLOT(index, itemData.ItemCode);
                 }
             }
 
@@ -408,9 +433,11 @@ public class Inventory : MonoBehaviour
                 _items[index] = itemData.CreateItem();
 
                 UpdateSlot(index);
+                DataManager.GetInstance.SET_INVENTORYSLOT(index, itemData.ItemCode);
             }
         }
 
+        
         return amount;
     }
 
@@ -445,11 +472,16 @@ public class Inventory : MonoBehaviour
             {
                 ciA.SetAmount(0);
                 ciB.SetAmount(sum);
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexA, 0, 0);
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexB, itemB.Data.ItemCode, sum);
+
             }
             else
             {
                 ciA.SetAmount(sum - maxAmount);
                 ciB.SetAmount(maxAmount);
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexA, itemB.Data.ItemCode, sum - maxAmount);
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexB, itemA.Data.ItemCode, maxAmount);
             }
         }
         // 2. 일반적인 경우 : 슬롯 교체
@@ -457,6 +489,10 @@ public class Inventory : MonoBehaviour
         {
             _items[indexA] = itemB;
             _items[indexB] = itemA;
+            DataManager.GetInstance.SET_INVENTORYSLOT(indexA, itemB.Data.ItemCode, DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(indexB));
+            DataManager.GetInstance.SET_INVENTORYSLOT(indexB, itemA.Data.ItemCode, DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(indexA));
+
+
         }
 
         // 두 슬롯 정보 갱신
@@ -466,6 +502,7 @@ public class Inventory : MonoBehaviour
     /// <summary> 두 인덱스의 아이템 위치를 서로 교체 </summary> 인벤토리와 인벤토리
     public void SwapE(int indexA, int indexB)
     {
+        //여기입니다!!
         if (_equipment.slot(indexA) == null) return;
         if (!IsValidIndex(indexB)) return;
         if (_items[indexB] is not EquipmentItem itemB) return;
@@ -479,6 +516,8 @@ public class Inventory : MonoBehaviour
         // 두 슬롯 정보 갱신
         _equipment.UpdateSlot(indexA);
         UpdateSlot(indexB);
+        DataManager.GetInstance.SET_INVENTORYSLOT(indexA, itemB.EquipmentData.ItemCode);
+        DataManager.GetInstance.SET_INVENTORYSLOT(indexB, itemA.EquipmentData.ItemCode);
         return;
     }
 
@@ -502,6 +541,8 @@ public class Inventory : MonoBehaviour
             _items[indexB] = _ciA.SeperateAndClone(amount);
 
             UpdateSlot(indexA, indexB);
+            DataManager.GetInstance.SET_INVENTORYSLOT(indexA, _itemA.Data.ItemCode, amount);
+            DataManager.GetInstance.SET_INVENTORYSLOT(indexB, _itemA.Data.ItemCode, amount);
         }
     }
 
@@ -517,7 +558,8 @@ public class Inventory : MonoBehaviour
         {
             // 아이템 사용
             bool succeeded = uItem.Use();
-
+            DataManager.GetInstance.SET_INVENTORYSLOT(index, _items[index].Data.ItemCode
+                ,DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(index)-1);
             if (succeeded)
             {
                 UpdateSlot(index);
@@ -530,11 +572,16 @@ public class Inventory : MonoBehaviour
             if (A == null)
             {
                 if (UIManager.GetInstance.isNoEquip) UIManager.GetInstance.isNoEquip = false;
-                else Remove(index);
+                else
+                {
+                    Remove(index);
+                    DataManager.GetInstance.SET_INVENTORYSLOT(index, 0);
+                }
             }
             else
             {
                 _items[index] = A;
+                DataManager.GetInstance.SET_INVENTORYSLOT(index, A.Data.ItemCode);
             }
             UpdateSlot(index);
         }
@@ -577,17 +624,23 @@ public class Inventory : MonoBehaviour
 
             _items[i] = _items[j];
             _items[j] = null;
+
+            DataManager.GetInstance.SET_INVENTORYSLOT(i, _items[i].Data.ItemCode
+                , DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(j));
+
+            DataManager.GetInstance.SET_INVENTORYSLOT(j, 0 ,0);
             i++;
         }
 
         foreach (var index in _indexSetForUpdate)
         {
             UpdateSlot(index);
+            
         }
         _inventoryUI.UpdateAllSlotFilters();
     }
 
-    /// <summary> 빈 슬롯 없이 채우면서 아이템 종류별로 정렬하기 </summary>
+    /// <summary> 빈 슬롯 없이 채우면서 아gg이템 종류별로 정렬하기 </summary>
     public void SortAll()
     {
         // 1. Trim
@@ -604,11 +657,36 @@ public class Inventory : MonoBehaviour
 
             _items[i] = _items[j];
             _items[j] = null;
+            DataManager.GetInstance.SET_INVENTORYSLOT(i, _items[i].Data.ItemCode
+                , DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(j));
+
+            DataManager.GetInstance.SET_INVENTORYSLOT(j, 0, 0);
             i++;
         }
 
         // 2. Sort
         Array.Sort(_items, 0, i, _itemComparer);
+
+        int[] SlotCount = new int[i];
+        for (int a = 0; a < i; a++)
+        {
+            if(_items[a].Data.ItemType == ItemType.PortionItem)
+            {
+                if(_items[a] is CountableItem postion)
+                {
+                    SlotCount[a] = postion.Amount;
+                }
+                
+            }
+            else
+            {
+                SlotCount[a] = 1;
+            }
+        }
+        for(int num = 0; num<i; num++)
+        {
+            DataManager.GetInstance.SET_INVENTORYSLOT(num, _items[num].Data.ItemCode, SlotCount[num]);
+        }
 
         // 3. Update
         UpdateAllSlot();

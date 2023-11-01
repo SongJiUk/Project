@@ -195,28 +195,16 @@ public class DataManager : Singleton<DataManager>
     int[] PantsCode = new int[SlotCount];
     int[] HandCode = new int[SlotCount];
     int[] ShoesCode = new int[SlotCount];
+    int[] WeaponCode = new int[SlotCount];
 
     bool[] isEquipHelmat = new bool[SlotCount];
     bool[] isEquipTop = new bool[SlotCount];
     bool[] isEquipPants = new bool[SlotCount];
     bool[] isEquipHand = new bool[SlotCount];
     bool[] isEquipShoes = new bool[SlotCount];
-
-    int[] WeaponCode = new int[SlotCount];
     bool[] isEquipWeapon = new bool[SlotCount];
-
-    int[] InventorySlot = new int[InventorySlotNum];
-
-    public void SET_INVENTORYSLOT(int _num, int _value)
-    {
-        InventorySlot[_num] = _value;
-    }
-
-    public int GET_GETINVENTORYSLOT(int _num)
-    {
-        return InventorySlot[_num];
-    }
-
+    
+   
     public int GET_WEAPONCODE(int _slot)
     {
         return WeaponCode[_slot];
@@ -330,6 +318,29 @@ public class DataManager : Singleton<DataManager>
     {
         isEquipShoes[_slot] = value;
     }
+
+    
+    int[] InventorySlot = new int[InventorySlotNum];
+    int[] InventoryCount = new int[InventorySlotNum];
+
+    public void SET_INVENTORYSLOT(int _num, int _value, int count = 1)
+    {
+        InventorySlot[_num] = _value;
+        InventoryCount[_num] = count;
+    }
+
+    public int GET_INVENTORYSLOT(int _num)
+    {
+        return InventorySlot[_num];
+    }
+
+    public int GET_INVENTORYSLOTCOUNT(int _num)
+    {
+        return InventoryCount[_num];
+    }
+
+    
+
     #endregion
 
 
@@ -417,6 +428,11 @@ public class DataManager : Singleton<DataManager>
             PlayerPrefs.SetInt($"InventorySlot{_slot}" + num, InventorySlot[num]);
         }
 
+        for(int num = 0; num <InventorySlotNum; num++)
+        {
+            PlayerPrefs.SetInt($"InventoryCount{_slot}" +num, InventoryCount[num]);
+        }
+
         PlayerPrefs.SetFloat("player_exp" + _slot, player_exp[_slot]);
         PlayerPrefs.SetInt("player_level" + _slot, player_level[_slot]);
         PlayerPrefs.SetString("player_id" + _slot, player_id[_slot]);
@@ -447,6 +463,8 @@ public class DataManager : Singleton<DataManager>
         SetBool("isEquipHand" + _slot, isEquipHand[_slot]);
         SetBool("isEquipShoes" + _slot, isEquipShoes[_slot]);
 
+
+
         //int equipindex = 0;
 
         //PlayerPrefs.SetInt("Equip_" + equipindex +"_"+ _index, male_PantsNum);
@@ -473,6 +491,11 @@ public class DataManager : Singleton<DataManager>
                 for (int num = 0; num < InventorySlotNum; num++)
                 {
                     InventorySlot[num] = PlayerPrefs.GetInt($"InventorySlot{i}" + num);
+                }
+
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    InventoryCount[num] = PlayerPrefs.GetInt($"InventoryCount{i}" + num);
                 }
 
                 player_level[i] = PlayerPrefs.GetInt("player_level" + i);

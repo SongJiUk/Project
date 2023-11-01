@@ -57,6 +57,8 @@ public class Equipment : MonoBehaviour
                     {
                         returnItem = Top;
                         Top = A;
+
+
                     }
                     else
                     {
@@ -399,18 +401,51 @@ public class Equipment : MonoBehaviour
     /// <summary> ???? ?????? ?????? ???? </summary>
     public void Remove(int index)
     {
+        //int num = 0;
+        //for(int i = 0; i<DataManager.InventorySlotNum; i++)
+        //{
+        //    if(DataManager.GetInstance.GET_INVENTORYSLOT(i) == 0)
+        //    {
+        //        num = i;
+        //        break;
+        //    }    
+        //}
+
         if (index == 0)
+        {
             WeaponL = null;
+            DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, 0);
+        }
+
         else if (index == 1)
+        {
             Top = null;
+            DataManager.GetInstance.SET_TOPCODE(DataManager.GetInstance.SLOT_NUM, 0);
+        }
+
         else if (index == 2)
+        {
             Pants = null;
+            DataManager.GetInstance.SET_PANTSCODE(DataManager.GetInstance.SLOT_NUM, 0);
+        }
+
         else if (index == 3)
+        {
             Head = null;
+            DataManager.GetInstance.SET_HELMATCODE(DataManager.GetInstance.SLOT_NUM, 0);
+        }
+
         else if (index == 4)
+        {
             Hand = null;
+            DataManager.GetInstance.SET_HANDCODE(DataManager.GetInstance.SLOT_NUM, 0);
+        }
+
         else if (index == 5)
+        {
             Shoes = null;
+            DataManager.GetInstance.SET_SHOESCODE(DataManager.GetInstance.SLOT_NUM, 0);
+        }
         _equipmentUI.RemoveItem(index);
     }
 

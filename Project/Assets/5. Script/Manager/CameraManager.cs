@@ -158,7 +158,7 @@ public class CameraManager : Singleton<CameraManager>
 
     public bool getOnOff()
     {
-        return OnOff;
+        return isUiOff;
     }
 
     RaycastHit[] hits;
@@ -241,7 +241,7 @@ public class CameraManager : Singleton<CameraManager>
             else dpiScale = Screen.dpi / 200f;
             if (pos.x < 380 * dpiScale && Screen.height - pos.y < 250 * dpiScale) return;
 
-            if(isUiOff)
+            if(isUiOff && UIManager.GetInstance.isOnPopupCount == 0)
             {
                 x += (float)(Input.GetAxis("Mouse X") * xRotate * 0.01);
                 y -= (float)(Input.GetAxis("Mouse Y") * yRotate * 0.01);
@@ -252,7 +252,7 @@ public class CameraManager : Singleton<CameraManager>
             var position = rotation * new Vector3(0, 0, -currDistance) + targetPos;
 
             
-            if (isUiOff)
+            if (isUiOff && UIManager.GetInstance.isOnPopupCount == 0)
             {
                 Cursor.visible = false;
                 //마우스 잠구는거

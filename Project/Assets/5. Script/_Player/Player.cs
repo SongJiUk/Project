@@ -39,8 +39,6 @@ public class Player : Singleton<Player>
 
     private void Awake()
     {
-        Debug.Log("ㅋㅐ릭터 입니다");
-        //if (null == instance) instance = this;
         if (null == anim) anim = GetComponent<Animator>();
         if (null == nav) nav = GetComponent<NavMeshAgent>();
         if (null == rigid) rigid = GetComponent<Rigidbody>();
@@ -50,8 +48,19 @@ public class Player : Singleton<Player>
         playerStat = PlayerStat.GetInstance;
         playerStat.InitStat(DataManager.GetInstance.GET_UnitCodes(DataManager.GetInstance.SLOT_NUM));
 
-        //var a = weaponManager.FindIndexs(DataManager.GetInstance.WEAPONCODE(DataManager.GetInstance.SLOT_NUM));
-        //if(a != null) UIManager.GetInstance.weaponManger.ChangeWeapon(a);
+        var weapon = weaponManager.FindIndexs(DataManager.GetInstance.GET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM));
+        if (weapon != null)
+        {
+            if (UIManager.GetInstance.weaponManger == null)
+            {
+                UIManager.GetInstance.ErrorForNull_Reset();
+                UIManager.GetInstance.weaponManger.ChangeWeapon(weapon);
+            }
+            else UIManager.GetInstance.weaponManger.ChangeWeapon(weapon);
+        }
+            
+
+
         PlayerSetting();
         SPEED = 10f;
     }

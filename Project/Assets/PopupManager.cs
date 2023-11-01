@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PopupManager : Singleton<PopupManager>
 {
@@ -19,8 +20,15 @@ public class PopupManager : Singleton<PopupManager>
         {
             LoadManager.GetInstance.LoadSceneAsync("5_Dungeon");
             TownMap_MoveDungeon_Popup.SetActive(false);
+            CameraManager.GetInstance.ISUIOFF = true;
+            UIManager.GetInstance.isOnPopupCount = 0;
         }
-        else TownMap_MoveDungeon_Popup.SetActive(false);
+        else
+        {
+            TownMap_MoveDungeon_Popup.SetActive(false);
+            CameraManager.GetInstance.ISUIOFF = true;
+            UIManager.GetInstance.isOnPopupCount--;
+        }
     }
 
     public void Option()
@@ -33,6 +41,8 @@ public class PopupManager : Singleton<PopupManager>
     {
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
         GameExit_Popup.SetActive(false);
+        CameraManager.GetInstance.ISUIOFF = false;
+        UIManager.GetInstance.isOnPopupCount = 0;
         LoadManager.GetInstance.LoadSceneAsync("1_PlayerSlotScene");
     }
 
@@ -40,6 +50,7 @@ public class PopupManager : Singleton<PopupManager>
     {
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
         GameExit_Popup.SetActive(false);
+        CameraManager.GetInstance.ISUIOFF = true;
 
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
@@ -51,13 +62,31 @@ public class PopupManager : Singleton<PopupManager>
     public void EscapeBtn()
     {
         GameExit_Popup.SetActive(false);
+        CameraManager.GetInstance.ISUIOFF = true;
+        UIManager.GetInstance.isOnPopupCount--;
     }
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+        if(SceneManager.GetActiveScene().name != "1_PlayerSlotScene")
         {
-            GameExit_Popup.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.Escape))
+            {
+                GameExit_Popup.SetActive(!GameExit_Popup.activeSelf);
+
+                if (GameExit_Popup.activeSelf)
+                {
+                    CameraManager.GetInstance.ISUIOFF = false;
+                    UIManager.GetInstance.isOnPopupCount++;
+                }
+                else
+                {
+                    CameraManager.GetInstance.ISUIOFF = true;
+                    UIManager.GetInstance.isOnPopupCount--;
+                }
+
+            }
         }
+        
     }
 }

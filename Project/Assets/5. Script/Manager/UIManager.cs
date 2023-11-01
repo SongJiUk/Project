@@ -13,14 +13,24 @@ public class UIManager : Singleton<UIManager>
 
 
     [SerializeField] GameObject[] CloseUI;
+
+    public int isOnPopupCount;
     //[SerializeField] GameObject
     public bool isNoEquip = false;
     private void Awake()
     {
         //DontDestroyOnLoad(this);
+        if (customizing == null) customizing = Player.GetInstance.GetComponent<Customizing>();
+        if (null == weaponManger) weaponManger = Player.GetInstance.GetComponent<WeaponManager>();
+        isOnPopupCount = 0;
     }
 
     void Start()
+    {
+       
+    }
+
+    public void ErrorForNull_Reset()
     {
         if (customizing == null) customizing = Player.GetInstance.GetComponent<Customizing>();
         if (null == weaponManger) weaponManger = Player.GetInstance.GetComponent<WeaponManager>();

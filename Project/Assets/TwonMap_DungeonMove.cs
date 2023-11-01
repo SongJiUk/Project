@@ -16,6 +16,8 @@ public class TwonMap_DungeonMove : MonoBehaviour
         if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
             PopupManager.GetInstance.TownMap_MoveDungeon_Popup.SetActive(true);
+            CameraManager.GetInstance.ISUIOFF = false;
+            UIManager.GetInstance.isOnPopupCount++;
         }
     }
 }

@@ -9,6 +9,12 @@ public class ItemManager : Singleton<ItemManager>
 
     Dictionary<string, WeaponItemData> WeaponData = new Dictionary<string, WeaponItemData>();
 
+    [SerializeField] List<ArmorItemData> ArmorLists = new List<ArmorItemData>();
+    Dictionary<string, ArmorItemData> ArmorData = new Dictionary<string, ArmorItemData>();
+
+    [SerializeField] List<PortionItemData> PortionLists = new List<PortionItemData>();
+    Dictionary<string, PortionItemData> PortionData = new Dictionary<string, PortionItemData>();
+
 
     private void Awake()
     {
@@ -19,6 +25,23 @@ public class ItemManager : Singleton<ItemManager>
                 WeaponData.Add(WeaponLists[i].Name, WeaponLists[i]);
             }
         }
+
+        for (int i = 0; i < ArmorLists.Count; i++)
+        {
+            if (ArmorLists[i] != null)
+            {
+                ArmorData.Add(ArmorLists[i].Name, ArmorLists[i]);
+            }
+        }
+
+        for (int i = 0; i < PortionLists.Count; i++)
+        {
+            if (PortionLists[i] != null)
+            {
+                PortionData.Add(PortionLists[i].Name, PortionLists[i]);
+            }
+        }
+
         DontDestroyOnLoad(gameObject);
     }
 
@@ -38,6 +61,60 @@ public class ItemManager : Singleton<ItemManager>
     }
 
 
+    public ArmorItemData GetArmorData(string _name)
+    {
+        if (ArmorData.ContainsKey(_name))
+        {
+            return ArmorData[_name];
+        }
+
+        return null;
+    }
+
+    public PortionItemData GetPortionData(string _name)
+    {
+        if (PortionData.ContainsKey(_name))
+        {
+            return PortionData[_name];
+        }
+        return null;
+    }
+
+    public WeaponItemData GetWeaponItemData(int _value)
+    {
+        for(int i =0; i<WeaponLists.Count; i++)
+        {
+            if (WeaponLists[i].ItemCode == _value)
+            {
+                return WeaponLists[i];
+            }
+        }
+        return null;
+    }
+
+    public ArmorItemData GetArmorItemData(int _value)
+    {
+        for (int i = 0; i < ArmorLists.Count; i++)
+        {
+            if (ArmorLists[i].ItemCode == _value)
+            {
+                return ArmorLists[i];
+            }
+        }
+        return null;
+    }
+
+    public PortionItemData GetPortionItemData(int _value)
+    {
+        for (int i = 0; i < PortionLists.Count; i++)
+        {
+            if (PortionLists[i].ItemCode == _value)
+            {
+                return PortionLists[i];
+            }
+        }
+        return null;
+    }
     //UI로 장착해주면
     public void equip()
     {
