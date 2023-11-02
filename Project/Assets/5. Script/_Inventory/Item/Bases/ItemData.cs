@@ -38,6 +38,7 @@ public abstract class ItemData : ScriptableObject
 {
     public int ItemCode => _itemcode;
     public string Name => _name;
+    public string ItemCodeName => _itemCodeName;
     public string Tooltip => _tooltip;
     public Sprite IconSprite => _iconSprite;
     public Ratings Rating => _rating;
@@ -45,7 +46,8 @@ public abstract class ItemData : ScriptableObject
 
     [SerializeField] private Ratings _rating;
     [SerializeField] private int _itemcode;
-    [SerializeField] private string _name;    // 아이템 이름
+    [SerializeField] private string _name;    // UI에 뜨는 아이템 이름
+    [SerializeField] private string _itemCodeName;    // 아이템 이름
     [Multiline]
     [SerializeField] private string _tooltip; // 아이템 설명
     [SerializeField] private Sprite _iconSprite; // 아이템 아이콘

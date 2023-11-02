@@ -137,18 +137,11 @@ public class Inventory : MonoBehaviour
         {
             if(DataManager.GetInstance.GET_INVENTORYSLOT(i) != 0)
             {
-                //여기입니다!! 보기
-                
-                var a =DataManager.GetInstance.GET_INVENTORYSLOT(i);
+                var SlotNum =DataManager.GetInstance.GET_INVENTORYSLOT(i);
+                var SlotCount = DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(i);
 
-                var b = ItemManager.GetInstance.GetWeaponItemData(a);
-                var item = (ItemData)b;
 
-                //여기서 데이터를 받아야 인벤토리가 활성화됨 낼 다시보자
-                //Item
-                //_items[i] = Convert.ChangeType(item, Item);
-
-                UpdateSlot(i);
+                Add(ItemManager.GetInstance.GetWeaponItemData(SlotNum), SlotCount);
             }
         }
     }

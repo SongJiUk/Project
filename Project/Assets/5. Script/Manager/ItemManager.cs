@@ -22,7 +22,8 @@ public class ItemManager : Singleton<ItemManager>
         {
             if (WeaponLists[i] != null)
             {
-                WeaponData.Add(WeaponLists[i].Name, WeaponLists[i]);
+                WeaponData.Add(WeaponLists[i].ItemCodeName, WeaponLists[i]);
+                Debug.Log(WeaponLists[i].ItemCodeName);
             }
         }
 
@@ -30,7 +31,8 @@ public class ItemManager : Singleton<ItemManager>
         {
             if (ArmorLists[i] != null)
             {
-                ArmorData.Add(ArmorLists[i].Name, ArmorLists[i]);
+                ArmorData.Add(ArmorLists[i].ItemCodeName, ArmorLists[i]);
+                Debug.Log(ArmorLists[i].ItemCodeName);
             }
         }
 
@@ -38,7 +40,7 @@ public class ItemManager : Singleton<ItemManager>
         {
             if (PortionLists[i] != null)
             {
-                PortionData.Add(PortionLists[i].Name, PortionLists[i]);
+                PortionData.Add(PortionLists[i].ItemCodeName, PortionLists[i]);
             }
         }
 
@@ -115,6 +117,8 @@ public class ItemManager : Singleton<ItemManager>
         }
         return null;
     }
+
+
     //UI로 장착해주면
     public void equip()
     {

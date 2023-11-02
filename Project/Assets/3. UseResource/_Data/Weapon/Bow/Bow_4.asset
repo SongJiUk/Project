@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
+  m_Name: Bow_4
+  m_EditorClassIdentifier: 
+  _rating: 3
+  _itemcode: 303
+  _name: "\uC138\uACC4\uC5D0\uC11C \uB450\uBC88\uC9F8\uB85C \uC88B\uC740 \uD65C"
+  _itemCodeName: Bow_4
+  _tooltip: 
+  _iconSprite: {fileID: 21300000, guid: a8d528769ee5b2d4c8a499b1e5c4bcb8, type: 3}
+  _dropItemPrefab: {fileID: 0}
+  _SettingItem: {fileID: 0}
+  _itemtype: 1
+  Type: 12
+  ClassPrivateItem: 2
+  Gender: 2
+  _EquipmentNum: 2
+  _EquipmentLevel: 1
+  _maxDurability: 100
+  _damage: 1

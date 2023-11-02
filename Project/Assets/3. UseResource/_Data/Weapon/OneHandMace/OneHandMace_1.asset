@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 615cd0c3f54f79042b2133a55568c2af, type: 3}
+  m_Name: OneHandMace_1
+  m_EditorClassIdentifier: 
+  _rating: 0
+  _itemcode: 110
+  _name: "\uADF8\uB0E5 \uD55C\uC190\uB454\uAE30"
+  _itemCodeName: OneHandMace_1
+  _tooltip: 
+  _iconSprite: {fileID: 21300000, guid: 1958e80d02968b847b4ba0eac544281c, type: 3}
+  _dropItemPrefab: {fileID: 0}
+  _SettingItem: {fileID: 0}
+  _itemtype: 1
+  Type: 7
+  ClassPrivateItem: 0
+  Gender: 2
+  _EquipmentNum: 2
+  _EquipmentLevel: 1
+  _maxDurability: 100
+  _damage: 1

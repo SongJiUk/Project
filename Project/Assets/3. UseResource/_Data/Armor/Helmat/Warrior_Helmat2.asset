@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
+  m_Name: Warrior_Helmat2
+  m_EditorClassIdentifier: 
+  _rating: 0
+  _itemcode: 3001
+  _name: "\uC88B\uC740 \uC804\uC0AC \uBAA8\uC790"
+  _itemCodeName: Warrior_Helmat2
+  _tooltip: "\uC804\uC0AC \uBAA8\uC7902\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: ded77ef94631d425787fb06ea53496fa, type: 3}
+  _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
+  _SettingItem: {fileID: 0}
+  _itemtype: 2
+  Type: 0
+  ClassPrivateItem: 0
+  Gender: 2
+  _EquipmentNum: 0
+  _EquipmentLevel: 1
+  _maxDurability: 100
+  _defence: 1
