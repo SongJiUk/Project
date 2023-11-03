@@ -709,12 +709,12 @@ public class Customizing : MonoBehaviour
         var equipClassPrivateItem = _equipmnetItem.ClassPrivateItem;
         int equipLevel = _equipmnetItem._EquipmentLevel;
 
-        //레벨 체크
-        if (playerLevel < equipLevel)
+        // 직업 체크
+        if (!playerJob.Equals(equipClassPrivateItem))
         {
-            // 레벨이 부족 UI
-            Debug.Log("Low Level");
-            return 1;
+            // 직업이 맞지 않음 UI
+            Debug.Log("Diffrent Job");
+            return 3;
         }
 
         // 성별 체크
@@ -725,13 +725,16 @@ public class Customizing : MonoBehaviour
             return 2;
         }
 
-        // 직업 체크
-        if (!playerJob.Equals(equipClassPrivateItem))
+        //레벨 체크
+        if (playerLevel < equipLevel)
         {
-            // 직업이 맞지 않음 UI
-            Debug.Log("Diffrent Job");
-            return 3;
+            // 레벨이 부족 UI
+            Debug.Log("Low Level");
+            return 1;
         }
+
+       
+        
 
         // 아이템 타입에 따라 장비 교체
         switch (_equipmnetItem.Type)

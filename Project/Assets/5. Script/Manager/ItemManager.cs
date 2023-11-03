@@ -16,6 +16,8 @@ public class ItemManager : Singleton<ItemManager>
     Dictionary<string, PortionItemData> PortionData = new Dictionary<string, PortionItemData>();
 
 
+    public List<Item> items;
+
     private void Awake()
     {
         for (int i = 0; i < WeaponLists.Count; i++)
@@ -117,6 +119,11 @@ public class ItemManager : Singleton<ItemManager>
         }
         return null;
     }
+
+    //public EquipmentItem GetEquipmentData(int _value)
+    //{
+
+    //}
 
 
     //UI로 장착해주면

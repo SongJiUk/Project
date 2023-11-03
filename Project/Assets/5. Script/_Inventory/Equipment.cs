@@ -72,16 +72,19 @@ public class Equipment : MonoBehaviour
                 case 1:
                     //레벨 부족
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
                     break;
 
                 case 2:
                     //성별 x
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentGender_Popup.SetActive(true);
                     break;
 
                 case 3:
                     // 직업 안맞음
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
                     break;
             }
             
@@ -113,16 +116,19 @@ public class Equipment : MonoBehaviour
                 case 1:
                     //레벨 부족
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
                     break;
 
                 case 2:
                     //성별 x
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentGender_Popup.SetActive(true);
                     break;
 
                 case 3:
                     // 직업 안맞음
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
                     break;
             }
         }
@@ -136,6 +142,7 @@ public class Equipment : MonoBehaviour
                 case 0:
                     if (Head != null)
                     {
+                        
                         returnItem = Head;
                         Head = A;
                     }
@@ -150,23 +157,20 @@ public class Equipment : MonoBehaviour
 
                 case 1:
                     //레벨 부족
-                    Debug.Log("레벨 부족");
-
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
                     break;
 
                 case 2:
                     //성별 x
-                    Debug.Log("성별 다름");
-
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentGender_Popup.SetActive(true);
                     break;
 
                 case 3:
                     // 직업 안맞음
-                    Debug.Log("직업 안맞음");
-
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
                     break;
             }
         }
@@ -194,20 +198,20 @@ public class Equipment : MonoBehaviour
 
                 case 1:
                     //레벨 부족
-                    Debug.Log("레벨 부족");
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
                     break;
 
                 case 2:
                     //성별 x
-                    Debug.Log("성별 다름");
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentGender_Popup.SetActive(true);
                     break;
 
                 case 3:
                     // 직업 안맞음
-                    Debug.Log("직업 안맞음");
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
                     break;
             }
         }
@@ -234,46 +238,159 @@ public class Equipment : MonoBehaviour
 
                 case 1:
                     //레벨 부족
-                    Debug.Log("레벨 부족");
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
                     break;
 
                 case 2:
                     //성별 x
-                    Debug.Log("성별 다름");
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentGender_Popup.SetActive(true);
                     break;
 
                 case 3:
                     // 직업 안맞음
-                    Debug.Log("직업 안맞음");
                     UIManager.GetInstance.isNoEquip = true;
+                    PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
                     break;
             }
         }
         else
         {
-            if (WeaponL != null)
+            int num = DataManager.GetInstance.GET_PLAYER_JOB(DataManager.GetInstance.SLOT_NUM);
+            switch (num)
             {
-                returnItem = WeaponL;
-                WeaponL = A;
+                //warrior
+                case 0:
+                    if(A.EquipmentData._EquipmentLevel <= PlayerStat.GetInstance.Level)
+                    {
+                        if (A.EquipmentData.ClassPrivateItem == ClassPrivateItems.WARRIOR)
+                        {
+                            if (WeaponL != null)
+                            {
+                                returnItem = WeaponL;
+                                WeaponL = A;
+                            }
+                            else
+                            {
+                                returnItem = null;
+                                WeaponL = A;
+                            }
+                            UpdateSlot(0);
+                            DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                            //WeaponManager.GetInstance.ISEQUIP = true;
+                            if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
+                            else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+                        }
+                        else
+                        {
+                            //직업이 맞지 않습니다!
+                            UIManager.GetInstance.isNoEquip = true;
+                            PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
+                        }
+                        
+                    }
+                    else
+                    {
+                        UIManager.GetInstance.isNoEquip = true;
+                        PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
+                    }
+
+                    break;
+                //mage
+                case 1:
+                    if (A.EquipmentData._EquipmentLevel <= PlayerStat.GetInstance.Level)
+                    {
+                        if (A.EquipmentData.ClassPrivateItem == ClassPrivateItems.MAGE)
+                        {
+                            if (WeaponL != null)
+                            {
+                                returnItem = WeaponL;
+                                WeaponL = A;
+                            }
+                            else
+                            {
+                                returnItem = null;
+                                WeaponL = A;
+                            }
+                            UpdateSlot(0);
+                            DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                            //WeaponManager.GetInstance.ISEQUIP = true;
+                            if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
+                            else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+                        }
+                        else
+                        {
+                            //직업이 맞지 않습니다!
+                            UIManager.GetInstance.isNoEquip = true;
+                            PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
+                        }
+
+                    }
+                    else
+                    {
+                        UIManager.GetInstance.isNoEquip = true;
+                        PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
+                    }
+                    break;
+
+                //archer
+                case 2:
+                    if (A.EquipmentData._EquipmentLevel <= PlayerStat.GetInstance.Level)
+                    {
+                        if (A.EquipmentData.ClassPrivateItem == ClassPrivateItems.ARCHER)
+                        {
+                            if (WeaponL != null)
+                            {
+                                returnItem = WeaponL;
+                                WeaponL = A;
+                            }
+                            else
+                            {
+                                returnItem = null;
+                                WeaponL = A;
+                            }
+                            UpdateSlot(0);
+                            DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
+                            //WeaponManager.GetInstance.ISEQUIP = true;
+                            if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
+                            else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+                        }
+                        else
+                        {
+                            //직업이 맞지 않습니다!
+                            UIManager.GetInstance.isNoEquip = true;
+                            PopupManager.GetInstance.Equip_DiffrentJob_Popup.SetActive(true);
+                        }
+
+                    }
+                    else
+                    {
+                        UIManager.GetInstance.isNoEquip = true;
+                        PopupManager.GetInstance.Equip_LowLevel_Popup.SetActive(true);
+                    }
+                    break;
             }
-            else
-            {
-                returnItem = null;
-                WeaponL = A;
-            }
-            UpdateSlot(0);
-            DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
-            //WeaponManager.GetInstance.ISEQUIP = true;
-            if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
-            else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+            
 
         }
 
         
 
         return returnItem;
+    }
+
+    public void EquipmentItem(WeaponItemData A)
+    {
+        WeaponL = A.CreateItem();
+
+        UpdateSlot(0);
+        DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, A.ItemCode);
+        //WeaponManager.GetInstance.ISEQUIP = true;
+        if (A.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A, A);
+        else UIManager.GetInstance.weaponManger.ChangeWeapon(A);
+
+
     }
 
     public Item slot(int index)
@@ -342,7 +459,46 @@ public class Equipment : MonoBehaviour
         _equipmentUI.SetEquipmentReference(this);
     }
 
+    private void Start()
+    {
+        EquipmentCheck();
+    }
+    void EquipmentCheck()
+    {
+        if (DataManager.GetInstance.GET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM))
+        {
 
+            EquipmentItem(ItemManager.GetInstance.GetWeaponItemData(
+            DataManager.GetInstance.GET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM)));
+
+            DataManager.GetInstance.GET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM);
+        }
+
+        if (DataManager.GetInstance.GET_ISEQUIPHELMAT(DataManager.GetInstance.SLOT_NUM))
+        {
+            DataManager.GetInstance.GET_HELMATCODE(DataManager.GetInstance.SLOT_NUM);
+        }
+        
+        if (DataManager.GetInstance.GET_ISEQUIPTOP(DataManager.GetInstance.SLOT_NUM))
+        {
+            DataManager.GetInstance.GET_TOPCODE(DataManager.GetInstance.SLOT_NUM);
+        }
+
+        if (DataManager.GetInstance.GET_ISEQUIPHAND(DataManager.GetInstance.SLOT_NUM))
+        {
+            DataManager.GetInstance.GET_HANDCODE(DataManager.GetInstance.SLOT_NUM);
+        }
+
+        if (DataManager.GetInstance.GET_ISEQUIPPANTS(DataManager.GetInstance.SLOT_NUM))
+        {
+            DataManager.GetInstance.GET_PANTSCODE(DataManager.GetInstance.SLOT_NUM);
+        }
+
+        if (DataManager.GetInstance.GET_ISEQUIPSHOES(DataManager.GetInstance.SLOT_NUM))
+        {
+            DataManager.GetInstance.GET_SHOESCODE(DataManager.GetInstance.SLOT_NUM);
+        }
+    }
     // Update is called once per frame
     void Update()
     {
@@ -414,36 +570,43 @@ public class Equipment : MonoBehaviour
         if (index == 0)
         {
             WeaponL = null;
+            DataManager.GetInstance.SET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, 0);
+            
         }
 
         else if (index == 1)
         {
             Top = null;
+            DataManager.GetInstance.SET_ISEQUIPTOP(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_TOPCODE(DataManager.GetInstance.SLOT_NUM, 0);
         }
 
         else if (index == 2)
         {
             Pants = null;
+            DataManager.GetInstance.SET_ISEQUIPPANTS(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_PANTSCODE(DataManager.GetInstance.SLOT_NUM, 0);
         }
 
         else if (index == 3)
         {
             Head = null;
+            DataManager.GetInstance.SET_ISEQUIPHELMAT(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_HELMATCODE(DataManager.GetInstance.SLOT_NUM, 0);
         }
 
         else if (index == 4)
         {
             Hand = null;
+            DataManager.GetInstance.SET_ISEQUIPHAND(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_HANDCODE(DataManager.GetInstance.SLOT_NUM, 0);
         }
 
         else if (index == 5)
         {
             Shoes = null;
+            DataManager.GetInstance.SET_ISEQUIPSHOES(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_SHOESCODE(DataManager.GetInstance.SLOT_NUM, 0);
         }
         _equipmentUI.RemoveItem(index);
@@ -465,6 +628,7 @@ public class Equipment : MonoBehaviour
             Remove(index);
             UpdateSlot(index);
             UpdateSlotEquipment(index);
+            DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
         }
     }
 

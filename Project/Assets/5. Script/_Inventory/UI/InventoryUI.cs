@@ -273,7 +273,6 @@ public class InventoryUI : MonoBehaviour
 
         // 현재 프레임의 슬롯
         var curSlot = _pointerOverSlot = RaycastAndGetFirstComponent<ItemSlotUI>();
-        Debug.Log(curSlot);
         if (prevSlot == null)
         {
             // Enter

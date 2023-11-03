@@ -8,6 +8,10 @@ public class PopupManager : Singleton<PopupManager>
 
     public GameObject GameExit_Popup;
     public GameObject TownMap_MoveDungeon_Popup;
+    public GameObject Equip_LowLevel_Popup;
+    public GameObject Equip_DiffrentGender_Popup;
+    public GameObject Equip_DiffrentJob_Popup;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
@@ -31,12 +35,6 @@ public class PopupManager : Singleton<PopupManager>
         }
     }
 
-    public void Option()
-    {
-
-    }
-
-
     public void CharacterSelectScene()
     {
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
@@ -44,6 +42,24 @@ public class PopupManager : Singleton<PopupManager>
         CameraManager.GetInstance.ISUIOFF = false;
         UIManager.GetInstance.isOnPopupCount = 0;
         LoadManager.GetInstance.LoadSceneAsync("1_PlayerSlotScene");
+    }
+
+    public void CloseBtn(int _num)
+    {
+        switch(_num)
+        {
+            case 0:
+                Equip_LowLevel_Popup.SetActive(false);
+                break;
+
+            case 1:
+                Equip_DiffrentGender_Popup.SetActive(false);
+                break;
+
+            case 2:
+                Equip_DiffrentJob_Popup.SetActive(false);
+                break;
+        }
     }
 
     public void GameExit()

@@ -130,7 +130,8 @@ public class WeaponManager : Singleton<WeaponManager>
 
     //}
 
-    public void ChangeWeapon(WeaponItemData _weaponData = null, WeaponItemData _shiledData = null)
+    public void ChangeWeapon(WeaponItemData _weaponData = null
+        , WeaponItemData _shiledData = null, bool isStart = false)
     {
         /*
         
@@ -197,6 +198,10 @@ public class WeaponManager : Singleton<WeaponManager>
             if (handWeapon != null) EquipWeapon_hand = handWeapon;
             if (backWeapon != null) EquipWeapon_back = backWeapon;
 
+            if(isStart)
+            {
+                isEquip = true;
+            }
 
             DataManager.GetInstance.SET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, true);
 

@@ -140,8 +140,23 @@ public class Inventory : MonoBehaviour
                 var SlotNum =DataManager.GetInstance.GET_INVENTORYSLOT(i);
                 var SlotCount = DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(i);
 
+                if(ItemManager.GetInstance.GetWeaponItemData(SlotNum) != null)
+                {
+                    Add(ItemManager.GetInstance.GetWeaponItemData(SlotNum), SlotCount);
+                }
 
-                Add(ItemManager.GetInstance.GetWeaponItemData(SlotNum), SlotCount);
+                if(ItemManager.GetInstance.GetArmorItemData(SlotNum) != null)
+                {
+                    Add(ItemManager.GetInstance.GetArmorItemData(SlotNum), SlotCount);
+
+                }
+
+                if (ItemManager.GetInstance.GetPortionItemData(SlotNum) != null)
+                {
+                    Add(ItemManager.GetInstance.GetPortionItemData(SlotNum), SlotCount);
+
+                }
+
             }
         }
     }
@@ -221,7 +236,7 @@ public class Inventory : MonoBehaviour
                 _inventoryUI.HideItemAmountText(index);
             }
 
-            // 슬롯 필터 상태 업데이트
+            // 슬롯    필터 상태 업데이트
             _inventoryUI.UpdateSlotFilterState(index, item.Data);
         }
         // 2. 빈 슬롯인 경우 : 아이콘 제거
@@ -480,10 +495,22 @@ public class Inventory : MonoBehaviour
         // 2. 일반적인 경우 : 슬롯 교체
         else
         {
-            _items[indexA] = itemB;
-            _items[indexB] = itemA;
-            DataManager.GetInstance.SET_INVENTORYSLOT(indexA, itemB.Data.ItemCode, DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(indexB));
-            DataManager.GetInstance.SET_INVENTORYSLOT(indexB, itemA.Data.ItemCode, DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(indexA));
+
+            if(itemB != null)
+            {
+                _items[indexA] = itemB;
+                _items[indexB] = itemA;
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexA, itemB.Data.ItemCode, DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(indexB));
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexB, itemA.Data.ItemCode, DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(indexA));
+            }
+            else
+            {
+                _items[indexA] = itemB;
+                _items[indexB] = itemA;
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexA, 0, 0);
+                DataManager.GetInstance.SET_INVENTORYSLOT(indexB, itemA.Data.ItemCode, DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(indexA));
+            }
+           
 
 
         }

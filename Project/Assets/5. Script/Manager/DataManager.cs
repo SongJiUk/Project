@@ -17,6 +17,7 @@ public class DataManager : Singleton<DataManager>
     #region 슬롯 정보
     public static int SlotCount = 3;
     public static int InventorySlotNum = 64;
+    public static int EquipmentSlotNum = 6;
     Dictionary<int, UnitCode> SlotJob = new Dictionary<int, UnitCode>();
     int Slot_Num;
     public int SLOT_NUM
@@ -320,23 +321,69 @@ public class DataManager : Singleton<DataManager>
     }
 
     
-    int[] InventorySlot = new int[InventorySlotNum];
-    int[] InventoryCount = new int[InventorySlotNum];
+    int[] InventorySlot_1 = new int[InventorySlotNum];
+    int[] InventorySlot_2 = new int[InventorySlotNum];
+    int[] InventorySlot_3 = new int[InventorySlotNum];
+    int[] InventoryCount_1 = new int[InventorySlotNum];
+    int[] InventoryCount_2 = new int[InventorySlotNum];
+    int[] InventoryCount_3 = new int[InventorySlotNum];
 
     public void SET_INVENTORYSLOT(int _num, int _value, int count = 1)
     {
-        InventorySlot[_num] = _value;
-        InventoryCount[_num] = count;
+        switch(Slot_Num)
+        {
+            case 0:
+                InventorySlot_1[_num] = _value;
+                InventoryCount_1[_num] = count;
+                break;
+
+            case 1:
+                InventorySlot_2[_num] = _value;
+                InventoryCount_2[_num] = count;
+                break;
+
+            case 2:
+                InventorySlot_3[_num] = _value;
+                InventoryCount_3[_num] = count;
+                break;
+
+        }
+       
     }
 
     public int GET_INVENTORYSLOT(int _num)
     {
-        return InventorySlot[_num];
+        switch(Slot_Num)
+        {
+            case 0:
+                return InventorySlot_1[_num];
+
+            case 1:
+                return InventorySlot_2[_num];
+
+            case 2:
+                return InventorySlot_3[_num];
+        }
+
+        return 0;
+        
     }
 
     public int GET_INVENTORYSLOTCOUNT(int _num)
     {
-        return InventoryCount[_num];
+        switch (Slot_Num)
+        {
+            case 0:
+                return InventoryCount_1[_num];
+
+            case 1:
+                return InventoryCount_2[_num];
+
+            case 2:
+                return InventoryCount_3[_num];
+        }
+
+        return 0;
     }
 
     
@@ -423,15 +470,46 @@ public class DataManager : Singleton<DataManager>
 
         PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
 
-        for (int num = 0; num < InventorySlotNum; num++)
+        switch(Slot_Num)
         {
-            PlayerPrefs.SetInt($"InventorySlot{_slot}" + num, InventorySlot[num]);
-        }
+            case 0:
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    PlayerPrefs.SetInt($"InventorySlot{_slot}" + num, InventorySlot_1[num]);
+                }
 
-        for(int num = 0; num <InventorySlotNum; num++)
-        {
-            PlayerPrefs.SetInt($"InventoryCount{_slot}" +num, InventoryCount[num]);
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    PlayerPrefs.SetInt($"InventoryCount{_slot}" + num, InventoryCount_1[num]);
+                }
+                break;
+
+            case 1:
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    PlayerPrefs.SetInt($"InventorySlot{_slot}" + num, InventorySlot_2[num]);
+                }
+
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    PlayerPrefs.SetInt($"InventoryCount{_slot}" + num, InventoryCount_2[num]);
+                }
+                break;
+
+            case 2:
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    PlayerPrefs.SetInt($"InventorySlot{_slot}" + num, InventorySlot_3[num]);
+                }
+
+                for (int num = 0; num < InventorySlotNum; num++)
+                {
+                    PlayerPrefs.SetInt($"InventoryCount{_slot}" + num, InventoryCount_3[num]);
+                }
+                break;
+
         }
+        
 
         PlayerPrefs.SetFloat("player_exp" + _slot, player_exp[_slot]);
         PlayerPrefs.SetInt("player_level" + _slot, player_level[_slot]);
@@ -487,16 +565,47 @@ public class DataManager : Singleton<DataManager>
             if (isSlotOpen[i])
             {
                 SlotJob[i] = (UnitCode)PlayerPrefs.GetInt("SlotJob" + i);
-               
-                for (int num = 0; num < InventorySlotNum; num++)
-                {
-                    InventorySlot[num] = PlayerPrefs.GetInt($"InventorySlot{i}" + num);
-                }
 
-                for (int num = 0; num < InventorySlotNum; num++)
+                switch(i)
                 {
-                    InventoryCount[num] = PlayerPrefs.GetInt($"InventoryCount{i}" + num);
+                    case 0:
+                        for (int num = 0; num < InventorySlotNum; num++)
+                        {
+                            InventorySlot_1[num] = PlayerPrefs.GetInt($"InventorySlot{i}" + num);
+                        }
+
+                        for (int num = 0; num < InventorySlotNum; num++)
+                        {
+                            InventoryCount_1[num] = PlayerPrefs.GetInt($"InventoryCount{i}" + num);
+                        }
+                        break;
+
+                    case 1:
+                        for (int num = 0; num < InventorySlotNum; num++)
+                        {
+                            InventorySlot_2[num] = PlayerPrefs.GetInt($"InventorySlot{i}" + num);
+                        }
+
+                        for (int num = 0; num < InventorySlotNum; num++)
+                        {
+                            InventoryCount_2[num] = PlayerPrefs.GetInt($"InventoryCount{i}" + num);
+                        }
+                        break;
+
+                    case 2:
+                        for (int num = 0; num < InventorySlotNum; num++)
+                        {
+                            InventorySlot_3[num] = PlayerPrefs.GetInt($"InventorySlot{i}" + num);
+                        }
+
+                        for (int num = 0; num < InventorySlotNum; num++)
+                        {
+                            InventoryCount_3[num] = PlayerPrefs.GetInt($"InventoryCount{i}" + num);
+                        }
+                        break;
+
                 }
+                
 
                 player_level[i] = PlayerPrefs.GetInt("player_level" + i);
                 player_exp[i] = PlayerPrefs.GetFloat("player_exp" + i);

@@ -54,9 +54,14 @@ public class Player : Singleton<Player>
             if (UIManager.GetInstance.weaponManger == null)
             {
                 UIManager.GetInstance.ErrorForNull_Reset();
-                UIManager.GetInstance.weaponManger.ChangeWeapon(weapon);
+                if (weapon.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(weapon, weapon, true);
+                else UIManager.GetInstance.weaponManger.ChangeWeapon(weapon, null, true);
             }
-            else UIManager.GetInstance.weaponManger.ChangeWeapon(weapon);
+            else
+            {
+                if (weapon.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(weapon, weapon, true);
+                else UIManager.GetInstance.weaponManger.ChangeWeapon(weapon, null, true);
+            }
         }
             
 
