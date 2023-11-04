@@ -59,8 +59,6 @@ public class SkillUpSlotUI : MonoBehaviour
         {
             _highlightImage.color = new Color(0.8f, 1f, 0.4f, 0f);
         }
-
-        Debug.Log("aaaaaaaaaa");
     }
 
     /// <summary> 아이콘 이미지 설정 </summary>

@@ -20,7 +20,7 @@ public class UISettingKey : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        InitButtonEvents();   
+        InitButtonEvents();
     }
 
     private void InitButtonEvents()
@@ -103,6 +103,9 @@ public class UISettingKey : MonoBehaviour
                 UIManager.GetInstance.isOnPopupCount--;
             }
         }
+        
+
+
         /*
         if (Input.GetKeyDown(KeyCode.O))
         {

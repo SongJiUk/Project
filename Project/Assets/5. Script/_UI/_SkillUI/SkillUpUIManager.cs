@@ -14,6 +14,8 @@ public class SkillUpUIManager : MonoBehaviour
 
     private SkillUpSlotUI _pointerOverSlot;
 
+    [SerializeField] private GameObject _levelUpUI;
+    [SerializeField] private GameObject _levelButtonUI;
     [SerializeField] List<SkillUpSlotUI> _skillUpSlotUIList = new List<SkillUpSlotUI>();
     private GraphicRaycaster _gr;
     private PointerEventData _ped;
@@ -68,7 +70,9 @@ public class SkillUpUIManager : MonoBehaviour
 
         // ???? ???????? ????
         var curSlot = _pointerOverSlot = RaycastAndGetFirstComponent<SkillUpSlotUI>();
-        Debug.Log(curSlot);
+
+        //Debug.Log(curSlot);
+
         if (prevSlot == null)
         {
             // Enter
