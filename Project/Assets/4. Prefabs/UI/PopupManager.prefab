@@ -204,8 +204,8 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2889544294451810141}
         m_TargetAssemblyTypeName: PopupManager, Assembly-CSharp
-        m_MethodName: TownMap_MoveToDungeonBtn
-        m_Mode: 6
+        m_MethodName: CloseBtn
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -320,7 +320,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2776217744420494862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000015258789}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -656,12 +656,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2889544294451810141}
         m_TargetAssemblyTypeName: PopupManager, Assembly-CSharp
-        m_MethodName: TownMap_MoveToDungeonBtn
-        m_Mode: 6
+        m_MethodName: CloseBtn
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -790,12 +790,12 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2889544294451810141}
         m_TargetAssemblyTypeName: PopupManager, Assembly-CSharp
-        m_MethodName: TownMap_MoveToDungeonBtn
-        m_Mode: 6
+        m_MethodName: CloseBtn
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 1
@@ -826,7 +826,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6700851085267525990}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000015258789}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -904,7 +904,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7217745412780358279}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.000015258789}
+  m_LocalPosition: {x: 0, y: 0, z: 10}
   m_LocalScale: {x: 2.4, y: 2.4, z: 2.4}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1020,7 +1020,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_TargetDisplay: 0
 --- !u!114 &7956381613852848073
 MonoBehaviour:
@@ -1312,7 +1312,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7853685957878164696, guid: a44b6dcdf55354e6881f29270472c058, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000015258789
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7853685957878164696, guid: a44b6dcdf55354e6881f29270472c058, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1443,7 +1443,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3837161159121553557, guid: 6cbe2a9c27f674016806bba0683d2ed3, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.000015258789
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3837161159121553557, guid: 6cbe2a9c27f674016806bba0683d2ed3, type: 3}
       propertyPath: m_LocalRotation.w

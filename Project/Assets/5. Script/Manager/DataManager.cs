@@ -12,7 +12,10 @@ public class DataManager : Singleton<DataManager>
 2. 아이템 - 무기번호, 골드, 물약 등
 
 */
-
+    #region 캐릭터 정보
+    public static int MaxLevel = 20;
+    public static float LevelUpEXP = 50f;
+    #endregion
 
     #region 슬롯 정보
     public static int SlotCount = 3;
@@ -396,9 +399,18 @@ public class DataManager : Singleton<DataManager>
     string[] player_id = new string[SlotCount];
     int[] player_level = new int[SlotCount];
     float[] player_exp = new float[SlotCount];
-
     int[] player_job = new int[SlotCount];
 
+    float[] player_damage = new float[SlotCount];
+    float[] player_speed = new float[SlotCount];
+    float[] player_defence = new float[SlotCount];
+    float[] player_avoidance = new float[SlotCount];
+    float[] player_criticalchance = new float[SlotCount];
+
+    int[] player_MaxHp = new int[SlotCount];
+    int[] player_MaxMp = new int[SlotCount];
+    float[] player_NowHp = new float[SlotCount];
+    float[] player_NowMp = new float[SlotCount];
 
     public UnitCode GET_UnitCodes(int _slot)
     {
@@ -453,6 +465,97 @@ public class DataManager : Singleton<DataManager>
     {
         player_job[_slot] = value;
     }
+
+
+    public float GET_PLAYER_DAMAGE(int _slot)
+    {
+        return player_damage[_slot];
+    }
+
+    public void SET_PALYER_DAMAGE(int _slot, float _value)
+    {
+        player_damage[_slot] = _value;
+    }
+
+    public float GET_PLAYER_SPEED(int _slot)
+    {
+        return player_speed[_slot];
+    }
+
+    public void SET_PALYER_SPEED(int _slot, float _value)
+    {
+        player_speed[_slot] = _value;
+    }
+
+    public float GET_PLAYER_DEFENCE(int _slot)
+    {
+        return player_defence[_slot];
+    }
+
+    public void SET_PALYER_DEFENCE(int _slot, float _value)
+    {
+        player_defence[_slot] = _value;
+    }
+
+    public int GET_PLAYER_MAXHP(int _slot)
+    {
+        return player_MaxHp[_slot];
+    }
+
+    public void SET_PALYER_MAXHP(int _slot, int _value)
+    {
+        player_MaxHp[_slot] = _value;
+    }
+
+    public int GET_PLAYER_MAXMP(int _slot)
+    {
+        return player_MaxMp[_slot];
+    }
+
+    public void SET_PALYER_MAXMP(int _slot, int _value)
+    {
+        player_MaxMp[_slot] = _value;
+    }
+
+    public float GET_PLAYER_NOWHP(int _slot)
+    {
+        return player_NowHp[_slot];
+    }
+
+    public void SET_PALYER_NOWHP(int _slot, float _value)
+    {
+        player_NowHp[_slot] = _value;
+    }
+
+    public float GET_PLAYER_NOWMP(int _slot)
+    {
+        return player_NowMp[_slot];
+    }
+
+    public void SET_PALYER_NOWMP(int _slot, float _value)
+    {
+        player_NowMp[_slot] = _value;
+    }
+
+    public float GET_PLAYER_AVOIDANCE(int _slot)
+    {
+        return player_avoidance[_slot];
+    }
+
+    public void SET_PALYER_AVOIDANCE(int _slot, float _value)
+    {
+        player_avoidance[_slot] = _value;
+    }
+    public float GET_PLAYER_CRITICALCHANCE(int _slot)
+    {
+        return player_criticalchance[_slot];
+    }
+
+    public void SET_PALYER_CRITICALCHANCE(int _slot, float _value)
+    {
+        player_criticalchance[_slot] = _value;
+    }
+
     #endregion
 
     #region 로딩창 관련 데이터
@@ -515,6 +618,18 @@ public class DataManager : Singleton<DataManager>
         PlayerPrefs.SetInt("player_level" + _slot, player_level[_slot]);
         PlayerPrefs.SetString("player_id" + _slot, player_id[_slot]);
         PlayerPrefs.SetInt("player_job" + _slot, player_job[_slot]);
+
+
+        PlayerPrefs.SetFloat("player_damage" + _slot, player_damage[_slot]);
+        PlayerPrefs.SetFloat("player_speed" + _slot, player_speed[_slot]);
+        PlayerPrefs.SetFloat("player_defence" + _slot, player_defence[_slot]);
+        PlayerPrefs.SetFloat("player_avoidance" + _slot, player_avoidance[_slot]);
+        PlayerPrefs.SetFloat("player_criticalchance" + _slot, player_criticalchance[_slot]);
+        PlayerPrefs.SetInt("player_MaxHp" + _slot, player_MaxHp[_slot]);
+        PlayerPrefs.SetInt("player_MaxMp" + _slot, player_MaxMp[_slot]);
+        PlayerPrefs.SetFloat("player_NowHp" + _slot, player_NowHp[_slot]);
+        PlayerPrefs.SetFloat("player_NowMp" + _slot, player_NowMp[_slot]);
+
 
         PlayerPrefs.SetInt("GenderNum" + _slot, GenderNum[_slot]);
         PlayerPrefs.SetInt("Female_FaceNum" + _slot, Female_FaceNum[_slot]);
@@ -611,6 +726,17 @@ public class DataManager : Singleton<DataManager>
                 player_exp[i] = PlayerPrefs.GetFloat("player_exp" + i);
                 player_id[i] = PlayerPrefs.GetString("player_id" + i);
                 player_job[i] = PlayerPrefs.GetInt("player_job" + i);
+
+                player_damage[i] = PlayerPrefs.GetFloat("player_damage" + i);
+                player_speed[i] = PlayerPrefs.GetFloat("player_speed" + i);
+                player_defence[i] = PlayerPrefs.GetFloat("player_defence" + i);
+                player_avoidance[i] = PlayerPrefs.GetFloat("player_avoidance" + i);
+                player_criticalchance[i] = PlayerPrefs.GetFloat("player_criticalchance" + i);
+                player_MaxHp[i] = PlayerPrefs.GetInt("player_MaxHp" + i);
+                player_MaxMp[i] = PlayerPrefs.GetInt("player_MaxMp" + i);
+                player_NowHp[i] = PlayerPrefs.GetFloat("player_NowHp" + i);
+                player_NowMp[i] = PlayerPrefs.GetFloat("player_NowMp" + i);
+
 
                 GenderNum[i] = PlayerPrefs.GetInt("GenderNum" + i);
                 Female_FaceNum[i] = PlayerPrefs.GetInt("Female_FaceNum" + i);
