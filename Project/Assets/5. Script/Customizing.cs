@@ -708,10 +708,12 @@ public class Customizing : MonoBehaviour
         int slotGender = DataManager.GetInstance.GET_GENDERNUM(DataManager.GetInstance.SLOT_NUM);
         int playerJob = DataManager.GetInstance.GET_PLAYER_JOB(DataManager.GetInstance.SLOT_NUM);
         int playerLevel = PlayerStat.GetInstance.Level;
-        var equipGender = _equipmnetItem.Gender;
-        var equipClassPrivateItem = _equipmnetItem.ClassPrivateItem;
+        int equipGender = (int)_equipmnetItem.Gender;
+        int equipClassPrivateItem = (int)_equipmnetItem.ClassPrivateItem;
         int equipLevel = _equipmnetItem._EquipmentLevel;
 
+        //공용 아이템
+        if (equipGender == 2) equipGender = slotGender;
         // 직업 체크
         if (!playerJob.Equals(equipClassPrivateItem))
         {

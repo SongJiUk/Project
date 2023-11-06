@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public GameObject TargetMarker_Front;
     public GameObject TargetMarker_PreCast;
     public LayerMask collidingLayer = ~0;
+    bool isDead = false;
 
     #region 플레이어 콤보공격, 스킬 관련
     private int comboCount = 0;
@@ -108,6 +109,17 @@ public class PlayerController : MonoBehaviour
             MoveDirection = inputDirection;
 
         }
+    }
+
+    public void Dead()
+    {
+        isDead = true;
+        player.ANIM.SetTrigger("isDead");
+        player.RIGID.useGravity = false;
+        player.NAV.enabled = false;
+        player.Capsulecollider.enabled = false;
+        
+
     }
 
     #region Skill
@@ -938,6 +950,19 @@ public class PlayerController : MonoBehaviour
            
     }
 
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.O))
+        {
+            Dead();
+        }
+
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            Dead();
+        }
+    }
+
     private void FixedUpdate()
     {
         #region Jump Code
@@ -984,7 +1009,7 @@ public class PlayerController : MonoBehaviour
         
         #endregion
 
-        if (!isUseSkill && !isAttacking)
+        if (!isUseSkill && !isAttacking && !isDead)
         {
             transform.Translate(MoveDirection.normalized * Time.deltaTime * player.SPEED, Space.World);
 

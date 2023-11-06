@@ -26,7 +26,7 @@ public enum Types
 
 public enum ClassPrivateItems
 {
-    WARRIOR,
+    WARRIOR = 0,
     MAGE,
     ARCHER
 }

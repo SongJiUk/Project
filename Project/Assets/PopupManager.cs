@@ -78,8 +78,11 @@ public class PopupManager : Singleton<PopupManager>
     public void EscapeBtn()
     {
         GameExit_Popup.SetActive(false);
-        CameraManager.GetInstance.ISUIOFF = true;
         UIManager.GetInstance.isOnPopupCount--;
+        if (UIManager.GetInstance.isOnPopupCount == 0)
+        {
+            CameraManager.GetInstance.ISUIOFF = true;
+        }
     }
 
     private void Update()
@@ -97,8 +100,13 @@ public class PopupManager : Singleton<PopupManager>
                 }
                 else
                 {
-                    CameraManager.GetInstance.ISUIOFF = true;
                     UIManager.GetInstance.isOnPopupCount--;
+                    if (UIManager.GetInstance.isOnPopupCount == 0)
+                    {
+                        CameraManager.GetInstance.ISUIOFF = true;
+                    }
+                    
+                    
                 }
 
             }

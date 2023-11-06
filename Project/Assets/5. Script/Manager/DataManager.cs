@@ -207,8 +207,18 @@ public class DataManager : Singleton<DataManager>
     bool[] isEquipHand = new bool[SlotCount];
     bool[] isEquipShoes = new bool[SlotCount];
     bool[] isEquipWeapon = new bool[SlotCount];
-    
+
+
+    int[] WeaponEquipSlot = new int[SlotCount];
+    int[] TopEquipSlot = new int[SlotCount];
+    int[] PantsEquipSlot = new int[SlotCount];
+    int[] HeadEquipSlot = new int[SlotCount];
+    int[] HandEquipSlot = new int[SlotCount];
+    int[] ShoesEquipSlot = new int[SlotCount];
+
    
+
+
     public int GET_WEAPONCODE(int _slot)
     {
         return WeaponCode[_slot];
@@ -323,7 +333,69 @@ public class DataManager : Singleton<DataManager>
         isEquipShoes[_slot] = value;
     }
 
-    
+
+    public int GET_WEAPONEQUIPSLOT(int _slot)
+    {
+        return WeaponEquipSlot[_slot];
+    }
+
+    public void SET_WEAPONEQUIPSLOT(int _slot, int value)
+    {
+        WeaponEquipSlot[_slot] = value;
+    }
+
+    public int GET_TOPEQUIPSLOT(int _slot)
+    {
+        return TopEquipSlot[_slot];
+    }
+
+    public void SET_TOPEQUIPSLOT(int _slot, int value)
+    {
+        TopEquipSlot[_slot] = value;
+    }
+
+    public int GET_PANTSEQUIPSLOT(int _slot)
+    {
+        return PantsEquipSlot[_slot];
+    }
+
+    public void SET_PANTSEQUIPSLOT(int _slot, int value)
+    {
+        PantsEquipSlot[_slot] = value;
+    }
+
+    public int GET_HEADEQUIPSLOT(int _slot)
+    {
+        return HeadEquipSlot[_slot];
+    }
+
+    public void SET_HEADEQUIPSLOT(int _slot, int value)
+    {
+        HeadEquipSlot[_slot] = value;
+    }
+
+    public int GET_HANDEQUIPSLOT(int _slot)
+    {
+        return HandEquipSlot[_slot];
+    }
+
+    public void SET_HANDEQUIPSLOT(int _slot, int value)
+    {
+        HandEquipSlot[_slot] = value;
+    }
+
+    public int GET_SHOESEQUIPSLOT(int _slot)
+    {
+        return ShoesEquipSlot[_slot];
+    }
+
+    public void SET_SHOESEQUIPSLOT(int _slot, int value)
+    {
+        ShoesEquipSlot[_slot] = value;
+    }
+
+
+
     int[] InventorySlot_1 = new int[InventorySlotNum];
     int[] InventorySlot_2 = new int[InventorySlotNum];
     int[] InventorySlot_3 = new int[InventorySlotNum];
@@ -754,7 +826,7 @@ public class DataManager : Singleton<DataManager>
                 TopCode[i] = PlayerPrefs.GetInt("TopCode" + i);
                 PantsCode[i] = PlayerPrefs.GetInt("PantsCode" + i);
                 HandCode[i] = PlayerPrefs.GetInt("HandCode" + i);
-                HandCode[i] = PlayerPrefs.GetInt("HandCode" + i);
+                HandCode[i] = PlayerPrefs.GetInt("ShoesCode" + i);
 
                 string isEquipWeaponKey = "isEquipWeapon" + i;
                 if (PlayerPrefs.HasKey(isEquipWeaponKey)) isEquipWeapon[i] = GetBool(isEquipWeaponKey).HasValue;

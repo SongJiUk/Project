@@ -31,6 +31,7 @@ public class Player : Singleton<Player>
 
     WeaponManager weaponManager;
     PlayerController playerController;
+    public CapsuleCollider Capsulecollider;
     public PlayerController PController { get { return playerController; } }
 
     Customizing customizing;
@@ -45,6 +46,7 @@ public class Player : Singleton<Player>
         if (null == weaponManager) weaponManager = WeaponManager.GetInstance;
         if (null == playerController) playerController = GetComponent<PlayerController>();
         if (null == customizing) customizing = GetComponent<Customizing>();
+        if (null == Capsulecollider) Capsulecollider = GetComponent<CapsuleCollider>();
         playerStat = PlayerStat.GetInstance;
         playerStat.InitStat(DataManager.GetInstance.GET_UnitCodes(DataManager.GetInstance.SLOT_NUM));
 
@@ -98,6 +100,7 @@ public class Player : Singleton<Player>
     private void PlayerSetting()
     {
         customizing.InitPlayer(DataManager.GetInstance.SLOT_NUM);
+        customizing.InitEquipMentItem(DataManager.GetInstance.SLOT_NUM);
 
         //애니메이션 변경
         var unitcode = DataManager.GetInstance.GET_UnitCodes(DataManager.GetInstance.SLOT_NUM);

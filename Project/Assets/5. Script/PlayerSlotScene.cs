@@ -87,6 +87,7 @@ public class PlayerSlotScene : MonoBehaviour
             playercutomizing.InitPlayer(_num);
             playercutomizing.InitEquipMentItem(_num);
             playerWeapon.InitEquipMentWeapon(_num);
+            
 
             anim = obj.GetComponent<Animator>();
             int num = DataManager.GetInstance.GET_PLAYER_JOB(_num);

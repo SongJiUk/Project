@@ -68,7 +68,11 @@ public class EquipmentUI : MonoBehaviour
     {
         Init();
         slotnum();
-        gameObject.SetActive(false);
+        
+    }
+    private void Start()
+    {
+        
     }
 
     private void Update()
@@ -405,7 +409,7 @@ public class EquipmentUI : MonoBehaviour
     public void RemoveItem(int index)
     {
         EditorLog($"Remove Item : Slot [{index}]");
-        WeaponManager.GetInstance.ChangeWeapon();
+        if(index == 0) WeaponManager.GetInstance.ChangeWeapon();
         _slotUIList[index].RemoveItem();
     }
 
@@ -415,8 +419,8 @@ public class EquipmentUI : MonoBehaviour
         bool isFiltered = true;
 
         // null?? ?????? ???? ???? ???? ???? ??????
-        if (itemData != null)
-            switch (_currentFilterOption)
+        if (itemData != null) //gameObject.SetActive(false);
+        switch (_currentFilterOption)
             {
                 case FilterOption.Equipment:
                     isFiltered = (itemData is EquipmentItemData);
