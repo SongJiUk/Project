@@ -409,7 +409,8 @@ public class EquipmentUI : MonoBehaviour
     public void RemoveItem(int index)
     {
         EditorLog($"Remove Item : Slot [{index}]");
-        if(index == 0) WeaponManager.GetInstance.ChangeWeapon();
+        if (index == 0) WeaponManager.GetInstance.ChangeWeapon();
+        //else Customizing.GetInstance.ChangeDefault(index);
         _slotUIList[index].RemoveItem();
     }
 

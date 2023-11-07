@@ -25,7 +25,6 @@ public class ItemManager : Singleton<ItemManager>
             if (WeaponLists[i] != null)
             {
                 WeaponData.Add(WeaponLists[i].ItemCodeName, WeaponLists[i]);
-                Debug.Log(WeaponLists[i].ItemCodeName);
             }
         }
 
@@ -34,7 +33,6 @@ public class ItemManager : Singleton<ItemManager>
             if (ArmorLists[i] != null)
             {
                 ArmorData.Add(ArmorLists[i].ItemCodeName, ArmorLists[i]);
-                Debug.Log(ArmorLists[i].ItemCodeName);
             }
         }
 

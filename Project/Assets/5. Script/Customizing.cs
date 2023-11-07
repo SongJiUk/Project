@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Customizing : MonoBehaviour
+public class Customizing : Singleton<Customizing>
 {
     [Header("캐릭터 커스터마이징")]
     public List<GameObject> Gender = new List<GameObject>();
@@ -49,11 +49,11 @@ public class Customizing : MonoBehaviour
     int EquipShoesNum;
 
 
-    ArmorItemData HelmatData;
-    ArmorItemData TopData;
-    ArmorItemData PantsData;
-    ArmorItemData HandData;
-    ArmorItemData ShoesData;
+    public ArmorItemData HelmatData;
+    public ArmorItemData TopData;
+    public ArmorItemData PantsData;
+    public ArmorItemData HandData;
+    public ArmorItemData ShoesData;
 
     
     [Header("UI 버튼")]
@@ -764,6 +764,100 @@ public class Customizing : MonoBehaviour
         return 0;
     }
 
+    public void ChangeDefault(int _num)
+    {
+        int slotNum = DataManager.GetInstance.SLOT_NUM;
+        switch (_num)
+        {
+            //top
+            case 1:
+                //여자
+                if(DataManager.GetInstance.GET_GENDERNUM(slotNum) == 0)
+                {
+                    int index = FindItemIndex(Female_Armor_Top, DataManager.GetInstance.GET_TOPCODE(slotNum));
+                    Female_Armor_Top[index].gameObject.SetActive(false);
+                    Female_Top[DataManager.GetInstance.GET_FEMALE_TOPNUM(slotNum)].SetActive(true);
+                    Female_Default_Body.SetActive(true);
+                }
+                //남자
+                else
+                {
+                    int index = FindItemIndex(male_Armor_Top, DataManager.GetInstance.GET_TOPCODE(slotNum));
+                    male_Armor_Top[index].gameObject.SetActive(false);
+                    male_Top[DataManager.GetInstance.GET_MALE_TOPNUM(slotNum)].SetActive(true);
+                    male_Default_Body.SetActive(true);
+                }
+
+                break;
+
+            //pants
+            case 2:
+                //여자
+                if (DataManager.GetInstance.GET_GENDERNUM(slotNum) == 0)
+                {
+                    int index = FindItemIndex(Female_Armor_Bottom, DataManager.GetInstance.GET_PANTSCODE(slotNum));
+                    Female_Armor_Bottom[index].gameObject.SetActive(false);
+                    Female_Pants[DataManager.GetInstance.GET_FEMALE_PANTSNUM(slotNum)].SetActive(true);
+                }
+                //남자
+                else
+                {
+                    int index = FindItemIndex(male_Armor_Bottom, DataManager.GetInstance.GET_PANTSCODE(slotNum));
+                    male_Armor_Bottom[index].gameObject.SetActive(false);
+                    male_Pants[DataManager.GetInstance.GET_MALE_PANTSNUM(slotNum)].SetActive(true);
+                }
+                break;
+
+            //head
+            case 3:
+
+                //공용 
+                Helmats[FindItemIndex(Helmats, DataManager.GetInstance.GET_HELMATCODE(slotNum))]
+                    .gameObject.SetActive(false);
+                Hair[DataManager.GetInstance.GET_HAIRNUM(slotNum)].SetActive(true);
+
+                break;
+
+            //hand
+            case 4:
+                //여자
+                if (DataManager.GetInstance.GET_GENDERNUM(slotNum) == 0)
+                {
+                    int index = FindItemIndex(Female_hand, DataManager.GetInstance.GET_HANDCODE(slotNum));
+                    Female_hand[index].gameObject.SetActive(false);
+                    Female_Default_Hand.SetActive(true);
+                }
+                //남자
+                else
+                {
+                    int index = FindItemIndex(male_Armor_Top, DataManager.GetInstance.GET_HANDCODE(slotNum));
+                    male_hand[index].gameObject.SetActive(false);
+                    male_Default_Hand.SetActive(true);
+                }
+                break;
+
+            //shoes
+            case 5:
+                //여자
+                if (DataManager.GetInstance.GET_GENDERNUM(slotNum) == 0)
+                {
+                    int index = FindItemIndex(Female_Armor_Top, DataManager.GetInstance.GET_SHOESCODE(slotNum));
+                    Female_shoes[index].gameObject.SetActive(false);
+                    Female_Default_Shoes.SetActive(true);
+                }
+                //남자
+                else
+                {
+                    int index = FindItemIndex(male_Armor_Top, DataManager.GetInstance.GET_SHOESCODE(slotNum));
+                    male_Shoes[index].gameObject.SetActive(false);
+                    male_Default_Shoes.SetActive(true);
+                }
+                break;
+
+
+        }
+    }
+
     public int FindItemIndex(List<EquipMentItemInfo> _item, int _itemCode)
     {
         for(int i=0; i<_item.Count; i++)
@@ -790,6 +884,8 @@ public class Customizing : MonoBehaviour
         }
 
         // 장비 교체
+        Hair[DataManager.GetInstance.GET_HAIRNUM(DataManager.GetInstance.SLOT_NUM)].SetActive(false);
+
         EquipHelmatNum = FindItemIndex(Helmats, _equipmentItem.ItemCode);
         Helmats[EquipHelmatNum].gameObject.SetActive(true);
         HelmatData = _equipmentItem;
@@ -816,6 +912,7 @@ public class Customizing : MonoBehaviour
                 // 장비 교체
                 EquipTopNum = FindItemIndex(Female_Armor_Top, _equipmentItem.ItemCode);
                 Female_Armor_Top[EquipTopNum].gameObject.SetActive(true);
+                Female_Default_Body.SetActive(false);
                 TopData = _equipmentItem;
                 isEquipTop = true;
                 break;
@@ -834,6 +931,7 @@ public class Customizing : MonoBehaviour
                 // 장비 교체
                 EquipTopNum = FindItemIndex(male_Armor_Top, _equipmentItem.ItemCode);
                 male_Armor_Top[EquipTopNum].gameObject.SetActive(true);
+                male_Default_Body.SetActive(false);
                 TopData = _equipmentItem;
                 isEquipTop = true;
                 break;
@@ -869,7 +967,7 @@ public class Customizing : MonoBehaviour
                 if (isEquipPants)
                 {
                     PlayerStat.GetInstance.ChangeStat(PantsData, _equipmentItem);
-                    Helmats[EquipPantsNum].gameObject.SetActive(false);
+                    male_Armor_Bottom[EquipPantsNum].gameObject.SetActive(false);
                 }
                 else //아니면 그냥 장착
                 {
@@ -905,6 +1003,7 @@ public class Customizing : MonoBehaviour
                 // 장비 교체
                 EquipHandNum = FindItemIndex(Female_hand, _equipmentItem.ItemCode);
                 Female_hand[EquipHandNum].gameObject.SetActive(true);
+                Female_Default_Hand.SetActive(false);
                 HandData = _equipmentItem;
                 isEquipHand = true;
                 break;
@@ -923,6 +1022,7 @@ public class Customizing : MonoBehaviour
                 // 장비 교체
                 EquipHandNum = FindItemIndex(male_hand, _equipmentItem.ItemCode);
                 male_hand[EquipHandNum].gameObject.SetActive(true);
+                male_Default_Hand.SetActive(false);
                 HandData = _equipmentItem;
                 isEquipHand = true;
                 break;
@@ -949,6 +1049,7 @@ public class Customizing : MonoBehaviour
                 // 장비 교체
                 EquipShoesNum = FindItemIndex(Female_shoes, _equipmentItem.ItemCode);
                 Female_shoes[EquipShoesNum].gameObject.SetActive(true);
+                Female_Default_Shoes.SetActive(false);
                 ShoesData = _equipmentItem;
                 isEquipShoes = true;
 
@@ -968,6 +1069,7 @@ public class Customizing : MonoBehaviour
                 // 장비 교체
                 EquipShoesNum = FindItemIndex(male_Shoes, _equipmentItem.ItemCode);
                 male_Shoes[EquipShoesNum].gameObject.SetActive(true);
+                male_Default_Shoes.SetActive(false);
                 ShoesData = _equipmentItem;
                 isEquipShoes = true;
 
