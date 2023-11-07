@@ -72,7 +72,7 @@ public class EquipmentUI : MonoBehaviour
     }
     private void Start()
     {
-        
+        gameObject.SetActive(false);
     }
 
     private void Update()
