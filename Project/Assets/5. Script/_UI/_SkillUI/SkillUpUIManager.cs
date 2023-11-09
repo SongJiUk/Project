@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -7,24 +8,41 @@ using static SkillUpSlotUI;
 
 public class SkillUpUIManager : MonoBehaviour
 {
-
+    private SkillUpSlotUI _beforePickSkillUpSlotUI; //?????? ????
     private SkillUpSlotUI _pickSkillUpSlotUI; //?????? ????
 
     [SerializeField] private bool _showHighlight = true;
 
     private SkillUpSlotUI _pointerOverSlot;
+    private GameObject _pointerOverObject;
 
+    //LevelUpButtonUI
     [SerializeField] private GameObject _levelUpUI;
-    [SerializeField] private GameObject _levelButtonUI;
+    [SerializeField] private Image _levelButtonImageUI;
+    [SerializeField] private Text _skillPoint;
+    [SerializeField] private Text _skillName;
+    [SerializeField] private Text _skillImpormation;
+
+
     [SerializeField] List<SkillUpSlotUI> _skillUpSlotUIList = new List<SkillUpSlotUI>();
     private GraphicRaycaster _gr;
     private PointerEventData _ped;
     private List<RaycastResult> _rrrList;
 
+
+    private GameObject _raycastGameObject;
+    [SerializeField] private GameObject _button;
+    [SerializeField] List<GameObject> _buttonArea = new List<GameObject>();
+
+    int PlayerLevel = 0;
+    int SkillPoint = 0;
+    
+
     void Awake()
     {
         Init();
         gameObject.SetActive(false);
+        SetInformationWindow(false);
     }
 
     void Update()
@@ -57,11 +75,14 @@ public class SkillUpUIManager : MonoBehaviour
         _gr.Raycast(_ped, _rrrList);
 
         if (_rrrList.Count == 0)
+        {
+            _raycastGameObject = null;
             return null;
-
+        }
+        _raycastGameObject = _rrrList[0].gameObject;
         return _rrrList[0].gameObject.GetComponent<T>();
     }
-
+    
     /// <summary> ?????? ???????? ???????? ????, ???????? ???????? ?????????? ???? </summary>
     private void OnPointerEnterAndExit()
     {
@@ -71,7 +92,10 @@ public class SkillUpUIManager : MonoBehaviour
         // ???? ???????? ????
         var curSlot = _pointerOverSlot = RaycastAndGetFirstComponent<SkillUpSlotUI>();
 
+
         //Debug.Log(curSlot);
+        //Debug.Log(_raycastGameObject);
+        //Debug.Log(_button);
 
         if (prevSlot == null)
         {
@@ -105,9 +129,12 @@ public class SkillUpUIManager : MonoBehaviour
         }
         void OnPrevExit()
         {
-            prevSlot.Highlight(false);
+            if (_pickSkillUpSlotUI != prevSlot)
+            {
+                prevSlot.Highlight(false);
+            }
         }
-    }
+    }   
 
     private void OnPointerDown()
     {
@@ -115,31 +142,111 @@ public class SkillUpUIManager : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            _pickSkillUpSlotUI = RaycastAndGetFirstComponent<SkillUpSlotUI>();
-
-            // ???????? ???? ???? ?????? ????
-            if (_pickSkillUpSlotUI != null)
+            if (RaycastGameObject())
             {
-                _pickSkillUpSlotUI.Highlight(true);
+                _beforePickSkillUpSlotUI = _pickSkillUpSlotUI;
+                _pickSkillUpSlotUI = RaycastAndGetFirstComponent<SkillUpSlotUI>();
+
+                if (_beforePickSkillUpSlotUI != null)
+                {
+                    _beforePickSkillUpSlotUI.Highlight(false);
+                }
+                // ???????? ???? ???? ?????? ????
+                if (_pickSkillUpSlotUI != null)
+                {
+                    _pickSkillUpSlotUI.Highlight(true);
+                    SetInformationWindow(true);
+                }
+                else
+                {
+                    _pickSkillUpSlotUI = null;
+                    SetInformationWindow(false);
+                    if (_pickSkillUpSlotUI != null)
+                    {
+                        _pickSkillUpSlotUI.Highlight(false);
+                    }
+                }
             }
             else
             {
-                _pickSkillUpSlotUI = null;
+                if (_raycastGameObject == _button)
+                {
+                    SkillUp(_pickSkillUpSlotUI);
+                    Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                }
             }
         }
 
         // Right Click : Use Item
         else if (Input.GetMouseButtonDown(1))
         {
-            ItemSlotUI slot = RaycastAndGetFirstComponent<ItemSlotUI>();
+            SkillUpSlotUI slot = RaycastAndGetFirstComponent<SkillUpSlotUI>();
 
-            if (slot != null && slot.HasItem && slot.IsAccessible)
+            if (slot != null)
             {
                // TryUseItem(slot.Index);
             }
         }
     }
 
+    private void SetInformationWindow(bool ButtonOnOff)
+    {
+        if(ButtonOnOff)
+        {
+            _levelButtonImageUI.sprite = _pickSkillUpSlotUI.ReturnImage();
+            _levelUpUI.SetActive(true);
+        }
+        else
+        {
+            _levelButtonImageUI.sprite = null;
+            _levelUpUI.SetActive(false);
+        }
+    }
+
+    private bool RaycastGameObject()
+    {
+        for (int i = 0; i < _buttonArea.Count; i++)
+        {
+            if (_buttonArea[i] == _raycastGameObject)
+                return false;
+        }
+        return true;
+    }
+    private void SkillUp(SkillUpSlotUI SlotUI)
+    {
+        SlotUI.SetLevelUp();
+
+    }
+
+    private void UpdateText()
+    {
+        _skillPoint.text= $"Level : ";
+        _skillName.text = $"{_pickSkillUpSlotUI.ReturnName()}";
+        _skillImpormation.text = $"Level : ";
+    }
+
+
+
+
+
+
+
+
+
+
+
+    private void ResetSkillPoint ()
+    {
+        for(int i=0;i< _skillUpSlotUIList.Count;i++)
+        {
+            _skillUpSlotUIList[i].SetLevel(0);
+        }
+    }
+
+    public void SetSkillPoint(int playerLevel)
+    {
+        
+    }
 
     private void OnPointerUp()
     {

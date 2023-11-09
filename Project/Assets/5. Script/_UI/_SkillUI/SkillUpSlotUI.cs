@@ -16,6 +16,9 @@ public class SkillUpSlotUI : MonoBehaviour
     [Tooltip("스킬 아이콘 이미지")]
     [SerializeField] private Image _iconImage;
 
+    [Tooltip("스킬 아이콘 이미지")]
+    [SerializeField] private Sprite _imageSprite;
+
     [Tooltip("스킬 레벨 텍스트")]
     [SerializeField] private Text _levelText;
 
@@ -28,9 +31,11 @@ public class SkillUpSlotUI : MonoBehaviour
     [Tooltip("슬롯이 포커스될 때 나타나는 하이라이트 이미지")]
     [SerializeField] private int nowVlue;
 
+    [Tooltip("스킬 이름")]
+    [SerializeField] private string _skillName;
+
     private InventoryUI _inventoryUI;
     private int _level = 0;
-    private int _nowVlue = 0;
     #endregion
 
     /***********************************************************************
@@ -40,6 +45,8 @@ public class SkillUpSlotUI : MonoBehaviour
     private void Awake()
     {
         Highlight(false);
+        SetIconImage(_imageSprite);
+        SetLevelNum();
     }
 
     #endregion
@@ -66,12 +73,39 @@ public class SkillUpSlotUI : MonoBehaviour
     {
         _iconImage.sprite = image;
     }
-
-    /// <summary> 아이콘 이미지 설정 </summary>
-    public void SetLevelNum(int level)
+    public void SetLevelUp()
     {
-        _levelText.text = $"Level : {level}";
+        if (_level < 5)
+        {
+            _level++;
+            SetLevelNum();
+        }
+        else
+        {
+            _level = 5;
+            SetLevelNum();
+        }
+    }
+    public void SetLevel(int level)
+    {
+        _level = level;
+        SetLevelNum();
     }
 
+    /// <summary> 아이콘 이미지 설정 </summary>
+    public void SetLevelNum()
+    {
+        _levelText.text = $"Level : {_level}";
+    }
     #endregion
+
+    public Sprite ReturnImage()
+    {
+        return _imageSprite;
+    }
+
+    public string ReturnName()
+    {
+        return _skillName;
+    }
 }

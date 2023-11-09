@@ -93,6 +93,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _iconImage: {fileID: 4832730053394644566}
+  _imageSprite: {fileID: 0}
   _levelText: {fileID: 6354603064815579225}
   _highlightImage: {fileID: 8203876794889543204}
   _upValue: 0
