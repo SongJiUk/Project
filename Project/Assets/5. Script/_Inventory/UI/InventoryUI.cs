@@ -660,7 +660,7 @@ public class InventoryUI : MonoBehaviour
     private void EditorLog(object message)
     {
         if (!_showDebug) return;
-        UnityEngine.Debug.Log($"[InventoryUI] {message}");
+        //UnityEngine.Debug.Log($"[InventoryUI] {message}");
     }
 
     #endregion
