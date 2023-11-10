@@ -157,6 +157,7 @@ public class SkillUpUIManager : MonoBehaviour
                 {
                     _pickSkillUpSlotUI.Highlight(true);
                     SetInformationWindow(true);
+                    UpdateText();
                 }
                 else
                 {
@@ -173,7 +174,7 @@ public class SkillUpUIManager : MonoBehaviour
                 if (_raycastGameObject == _button && CanUseSkillPoint > 0)
                 {
                     SkillUp(_pickSkillUpSlotUI);
-                    CheckSkillPoint();
+                    UpdateText();
                 }
             }
         }
@@ -220,9 +221,12 @@ public class SkillUpUIManager : MonoBehaviour
 
     private void UpdateText()
     {
-        _skillPoint.text= $"Level : ";
+        CheckSkillPoint();
         _skillName.text = $"{_pickSkillUpSlotUI.ReturnName()}";
-        _skillImpormation.text = $"Level : ";
+        if (_pickSkillUpSlotUI.ReturnSkillLevel() != 5)
+            _skillImpormation.text = $"Level : {_pickSkillUpSlotUI.ReturnSkillLevel()}" + System.Environment.NewLine + $"{_pickSkillUpSlotUI.ReturnText1()}" + System.Environment.NewLine + $"{_pickSkillUpSlotUI.ReturnText2()}"+ System.Environment.NewLine + $"Next Level" + System.Environment.NewLine + $"{_pickSkillUpSlotUI.ReturnText3()}";
+        else
+            _skillImpormation.text = $"Level : {_pickSkillUpSlotUI.ReturnSkillLevel()}" + System.Environment.NewLine + $"{_pickSkillUpSlotUI.ReturnText1()}" + System.Environment.NewLine + $"{_pickSkillUpSlotUI.ReturnText2()}";
     }
 
     private void CheckSkillPoint()

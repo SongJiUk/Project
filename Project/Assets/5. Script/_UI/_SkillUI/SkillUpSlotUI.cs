@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 using UnityEditor.ShaderGraph;
 using System.Xml.Linq;
 
+
 public class SkillUpSlotUI : MonoBehaviour
 {
     /***********************************************************************
@@ -33,6 +34,19 @@ public class SkillUpSlotUI : MonoBehaviour
 
     [Tooltip("스킬 이름")]
     [SerializeField] private string _skillName;
+
+    [Tooltip("스킬 설명")]
+    [SerializeField] private string _skillInformation;
+
+    [Tooltip("지금 크기")]
+    [SerializeField] private string _skillNow;
+
+    [Tooltip("다음 크기")]
+    [SerializeField] private string _skillNext;
+
+    [Tooltip("래벨당 벨류 크기")]
+    [SerializeField] private int _skillValue; 
+    
 
     private InventoryUI _inventoryUI;
     private int _level = 0;
@@ -108,8 +122,39 @@ public class SkillUpSlotUI : MonoBehaviour
     {
         return _skillName;
     }
+    public string ReturnText1()
+    {
+        return _skillInformation;
+    }
+    public string ReturnText2()
+    {
+        string ReplaceResult = _skillNow.Replace("Value", SkillNowValue());
+        return ReplaceResult;
+    }
+    public string ReturnText3()
+    {
+        string ReplaceResult = _skillNow.Replace("Value", SkillNextValue());
+        return ReplaceResult;
+    }
     public int ReturnSkillLevel()
     {
         return _level;
+    }
+    public int ReturnSkillValue()
+    {
+        int value = _level * _skillValue;
+        return value;
+    }
+    private string SkillNowValue()
+    {
+        int num = ReturnSkillValue();
+        string value = num.ToString();
+        return value;
+    }
+    private string SkillNextValue()
+    {
+        int num = ReturnSkillValue() + _skillValue;
+        string value = num.ToString();
+        return value;
     }
 }

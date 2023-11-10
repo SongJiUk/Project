@@ -98,6 +98,8 @@ MonoBehaviour:
   _highlightImage: {fileID: 8203876794889543204}
   _upValue: 0
   nowVlue: 0
+  _skillName: 
+  _skillValue: 0
 --- !u!1 &4913488194900101832
 GameObject:
   m_ObjectHideFlags: 0
