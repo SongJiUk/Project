@@ -108,4 +108,8 @@ public class SkillUpSlotUI : MonoBehaviour
     {
         return _skillName;
     }
+    public int ReturnSkillLevel()
+    {
+        return _level;
+    }
 }

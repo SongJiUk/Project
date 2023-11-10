@@ -14755,7 +14755,7 @@ MonoBehaviour:
   _showHighlight: 1
   _levelUpUI: {fileID: 1968718512}
   _levelButtonImageUI: {fileID: 1544089151}
-  _skillPoint: {fileID: 0}
+  _skillPoint: {fileID: 458394816}
   _skillName: {fileID: 1138717076}
   _skillImpormation: {fileID: 54714112}
   _skillUpSlotUIList:
@@ -14775,6 +14775,8 @@ MonoBehaviour:
   _buttonArea:
   - {fileID: 927885151}
   - {fileID: 317031432}
+  PlayerLevel: 10
+  CanUseSkillPoint: 0
 --- !u!114 &1804967820
 MonoBehaviour:
   m_ObjectHideFlags: 0

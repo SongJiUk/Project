@@ -34,8 +34,8 @@ public class SkillUpUIManager : MonoBehaviour
     [SerializeField] private GameObject _button;
     [SerializeField] List<GameObject> _buttonArea = new List<GameObject>();
 
-    int PlayerLevel = 0;
-    int SkillPoint = 0;
+    [SerializeField] int PlayerLevel = 0;
+    [SerializeField] int CanUseSkillPoint = 0;
     
 
     void Awake()
@@ -43,6 +43,7 @@ public class SkillUpUIManager : MonoBehaviour
         Init();
         gameObject.SetActive(false);
         SetInformationWindow(false);
+        CheckSkillPoint();
     }
 
     void Update()
@@ -169,10 +170,10 @@ public class SkillUpUIManager : MonoBehaviour
             }
             else
             {
-                if (_raycastGameObject == _button)
+                if (_raycastGameObject == _button && CanUseSkillPoint > 0)
                 {
                     SkillUp(_pickSkillUpSlotUI);
-                    Debug.Log("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+                    CheckSkillPoint();
                 }
             }
         }
@@ -215,7 +216,6 @@ public class SkillUpUIManager : MonoBehaviour
     private void SkillUp(SkillUpSlotUI SlotUI)
     {
         SlotUI.SetLevelUp();
-
     }
 
     private void UpdateText()
@@ -225,10 +225,17 @@ public class SkillUpUIManager : MonoBehaviour
         _skillImpormation.text = $"Level : ";
     }
 
+    private void CheckSkillPoint()
+    {
+        int UsedPoint = 0;
+        for (int i = 0; i < _skillUpSlotUIList.Count; i++)
+        {
+            UsedPoint += _skillUpSlotUIList[i].ReturnSkillLevel();
+        }
+        CanUseSkillPoint = PlayerLevel - UsedPoint;
 
-
-
-
+        _skillPoint.text = $"SkillPoint : {CanUseSkillPoint}";
+    }
 
 
 
