@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class NPC : MonoBehaviour
     // 사각형의 중심 위치
     private Vector3 centerPosition;
 
+    public GameObject SellNPCPopup;
+
     void Start()
     {
         if (player == null)
@@ -68,14 +71,6 @@ public class NPC : MonoBehaviour
         {
             Debug.Log("npc_name_txt is null.");
         }
-        //distance = Vector3.Distance(startPosition, transform.position);
-
-        //// 사각형의 크기를 계산합니다.
-        //width = Mathf.Abs(startPosition.x - transform.position.x);
-        //height = Mathf.Abs(startPosition.y - transform.position.y);
-
-        //// 사각형의 중심 위치를 계산합니다.
-        //centerPosition = (startPosition + transform.position) / 2;
     }
     void Update()
     {
@@ -101,7 +96,11 @@ public class NPC : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.C) && scanObj != null)
                 {
                     InteretionText.SetActive(false);
-                    manager.Action(scanObj);
+                    //manager.Action(scanObj);
+
+                    if (SellNPCPopup != null) SellNPCPopup.SetActive(true);
+
+
                 }
             }
             else
@@ -149,21 +148,32 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        
+
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            int Rand = Random.Range(0, 1);
-            
+            int Rand = Random.Range(0, 2); 
             npc_Name.SetActive(true);
             npc_Talk.SetActive(true);
 
-            if (string.IsNullOrEmpty(npc_name_txt.text)) npc_name_txt.text = $"NPC[{NPCNAME}]";
+            string npcText = $"<color=orange>NPC</color><color=white>{NPCNAME}</color>";
+            npc_name_txt.text = npcText;
+            //npc_name_txt.colorGradient = new VertexGradient(new Color(1f, 0.5f, 0f), Color.white, Color.white, Color.white);
+            // if (string.IsNullOrEmpty(npc_name_txt.text)) npc_name_txt.text = $"NPC[{NPCNAME}]";
             if (string.IsNullOrEmpty(npc_talk_txt.text)) npc_talk_txt.text = $"{NPCTALK[Rand]}";
 
-            npc_Name.GetComponent<Transform>().position = transform.position + Vector3.up * 1.5f;
-            npc_Talk.GetComponent<Transform>().position = transform.position + Vector3.up * 3f;
+            npc_Name.GetComponent<Transform>().position = transform.position + Vector3.up * 2f;
+            npc_Talk.GetComponent<Transform>().position = transform.position + Vector3.up * 2.5f;
+            
         }
-        
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            transform.LookAt(player.transform);
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -172,6 +182,8 @@ public class NPC : MonoBehaviour
         {
             npc_Name.SetActive(false);
             npc_Talk.SetActive(false);
+            npc_talk_txt.text = "";
+
         }
        
     }

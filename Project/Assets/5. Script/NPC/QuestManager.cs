@@ -16,14 +16,18 @@ public class QuestManager : Singleton<QuestManager>
     private void Awake()
     {
         questList = new Dictionary<int, QuestData>();
+
+
+        questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
         GenerateData();
     }
 
+    
     void GenerateData()
     {
-        questList.Add(10, new QuestData("마을의 전설 이야기?", new int[] {1000, 2000}));
-        questList.Add(20, new QuestData("풀잎 구하기", new int[] { 4000, 2000 }));
-        questList.Add(30, new QuestData("성의 비밀", new int[] { 5000, 2000 }));
+        questList.Add(10, new QuestData("?????? ???? ???????", new int[] {1000, 2000}));
+        questList.Add(20, new QuestData("???? ??????", new int[] { 4000, 2000 }));
+        questList.Add(30, new QuestData("???? ????", new int[] { 5000, 2000 }));
     }
 
     public int GetQuestTalkIndex(int id)
@@ -53,6 +57,7 @@ public class QuestManager : Singleton<QuestManager>
     void NextQuest()
     {
         questId += 10;
+        DataManager.GetInstance.SET_QUEST_ID(DataManager.GetInstance.SLOT_NUM, questId);
         questActionIndex = 0;
     }
 

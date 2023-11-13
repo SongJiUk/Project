@@ -16,11 +16,12 @@ MonoBehaviour:
   _itemcode: 100
   _name: "\uADF8\uB0E5 \uD55C\uC190\uAC80"
   _itemCodeName: Dagger_1
-  _tooltip: 
+  _tooltip: "\uADF8\uB0E5 \uD55C\uC190\uAC80\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: 3bce52f71c9cfbd43a28b183a2f29009, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   _itemtype: 1
+  _itemprice: 10
   Type: 6
   ClassPrivateItem: 0
   Gender: 2

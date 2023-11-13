@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.UI;
 
 /*
     [Item의 상속구조]
@@ -88,6 +89,8 @@ public class Inventory : MonoBehaviour
     [SerializeField]
     private Item[] _items;
 
+
+    [SerializeField] Text Glod_text;
     /// <summary> 업데이트 할 인덱스 목록 </summary>
     private readonly HashSet<int> _indexSetForUpdate = new HashSet<int>();
 
@@ -127,6 +130,8 @@ public class Inventory : MonoBehaviour
         _items = new Item[_maxCapacity];
         Capacity = _initalCapacity;
         _inventoryUI.SetInventoryReference(this);
+        Glod_text.text = DataManager.GetInstance.GET_PLAYER_GOLD(DataManager.GetInstance.SLOT_NUM).ToString();
+
     }
 
     private void Start()
@@ -341,6 +346,19 @@ public class Inventory : MonoBehaviour
         _inventoryUI.SetInventoryReference(this);
     }
 
+
+    //여기에요 여기!
+    public void GetGold(int _gold)
+    {
+        int gold = DataManager.GetInstance.GET_PLAYER_GOLD(DataManager.GetInstance.SLOT_NUM);
+
+        gold += _gold;
+        DataManager.GetInstance.SET_PLAYER_GOLD(DataManager.GetInstance.SLOT_NUM, gold);
+        DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
+
+        Glod_text.text = gold.ToString();
+
+    }
     /// <summary> 인벤토리에 아이템 추가
     /// <para/> 넣는 데 실패한 잉여 아이템 개수 리턴
     /// <para/> 리턴이 0이면 넣는데 모두 성공했다는 의미
@@ -348,6 +366,12 @@ public class Inventory : MonoBehaviour
     public int Add(ItemData itemData, int amount = 1)
     {
         int index;
+
+        if(itemData.ItemType == ItemType.Gold)
+        {
+            GetGold(itemData.ItemPrice);
+            return 0;
+        }
 
         // 1. 수량이 있는 아이템
         if (itemData is CountableItemData ciData)

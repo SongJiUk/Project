@@ -78,6 +78,8 @@ public class InventoryUI : MonoBehaviour
     [Space(16)]
     [SerializeField] private bool _mouseReversed = false; // 마우스 클릭 반전 여부
 
+    
+
     #endregion
     /***********************************************************************
     *                               Private Fields
@@ -124,7 +126,6 @@ public class InventoryUI : MonoBehaviour
         InitSlots();
         InitButtonEvents();
         InitToggleEvents();
-
         gameObject.SetActive(false);
     }
 

@@ -41,9 +41,9 @@ public class SkillUpUIManager : MonoBehaviour
     void Awake()
     {
         Init();
-        gameObject.SetActive(false);
         SetInformationWindow(false);
         CheckSkillPoint();
+        gameObject.SetActive(false);
     }
 
     void Update()

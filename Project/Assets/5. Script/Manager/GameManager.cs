@@ -24,6 +24,7 @@ public class GameManager : Singleton<GameManager>
 
     private void Start()
     {
+        //DontDestroyOnLoad(this);
         questManager = QuestManager.GetInstance;
         Debug.Log(questManager.CheckQuest());
     }
@@ -32,11 +33,11 @@ public class GameManager : Singleton<GameManager>
     {
         scanObject = scanObj;
         ObjectData objData = scanObject.GetComponent<ObjectData>();
-        Talk(objData.id, objData.isNpc);
-        talkPanel.SetActive(isAction);
+        Talk(objData.id, objData.isNpc, objData.isSellNPC);
+        //talkPanel.SetActive(isAction);
     }
 
-    void Talk(int id, bool isNpc)
+    void Talk(int id, bool isNpc, bool isSellNPC)
     {
         int questTalkIndex = questManager.GetQuestTalkIndex(id);
         string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);

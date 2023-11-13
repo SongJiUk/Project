@@ -21,6 +21,7 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   _itemtype: 1
+  _itemprice: 10000
   Type: 15
   ClassPrivateItem: 1
   Gender: 2

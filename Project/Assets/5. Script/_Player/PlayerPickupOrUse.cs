@@ -114,6 +114,12 @@ public class PlayerPickupOrUse : MonoBehaviour
 
     private void Update()
     {
+
+        if(Input.GetKeyDown(KeyCode.M))
+        {
+            _inventory.GetGold(100);
+        }
+
         CheckAround();
 
         if (Around)

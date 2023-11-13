@@ -22,6 +22,7 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2
+  _itemprice: 10000
   Type: 3
   ClassPrivateItem: 1
   Gender: 1

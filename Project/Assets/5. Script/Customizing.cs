@@ -685,7 +685,7 @@ public class Customizing : Singleton<Customizing>
         DataManager.GetInstance.SET_PLAYER_LEVEL(DataManager.GetInstance.SLOT_NUM, 1);
 
         //초반 캐릭터 스탯 확인
-        
+        DataManager.GetInstance.SET_QUEST_ID(DataManager.GetInstance.SLOT_NUM, 10);
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
 
 

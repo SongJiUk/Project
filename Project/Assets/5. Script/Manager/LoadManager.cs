@@ -14,7 +14,7 @@ public class LoadManager : Singleton<LoadManager>
     private void Awake()
     {
         DataManager.GetInstance.LoadData();
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
     public void LoadSceneAsync(string _name)
     {

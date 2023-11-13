@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
+  m_Name: GOLD_1
+  m_EditorClassIdentifier: 
+  _rating: 0
+  _itemcode: 1
+  _name: money
+  _itemCodeName: Gold1
+  _tooltip: money
+  _iconSprite: {fileID: 0}
+  _dropItemPrefab: {fileID: 7307379426969637395, guid: 700cd7f60442b4e75afb1c206817b1b5, type: 3}
+  _SettingItem: {fileID: 0}
+  _itemtype: 3
+  _itemprice: 10
+  Type: 0
+  ClassPrivateItem: 0
+  Gender: 2
+  _EquipmentNum: 1
+  _EquipmentLevel: 1
+  _maxDurability: 1
+  _defence: 1

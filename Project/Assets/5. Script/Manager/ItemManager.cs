@@ -16,6 +16,8 @@ public class ItemManager : Singleton<ItemManager>
     Dictionary<string, PortionItemData> PortionData = new Dictionary<string, PortionItemData>();
 
 
+    [SerializeField] List<ItemData> Goldlists = new List<ItemData>();
+    Dictionary<string, ItemData> GoldData = new Dictionary<string, ItemData>();
     public List<Item> items;
 
     private void Awake()
@@ -44,7 +46,15 @@ public class ItemManager : Singleton<ItemManager>
             }
         }
 
-        DontDestroyOnLoad(gameObject);
+        for(int i =0; i< Goldlists.Count; i++)
+        {
+            if(Goldlists[i] != null)
+            {
+                GoldData.Add(Goldlists[i].ItemCodeName, Goldlists[i]);
+            }
+        }
+
+        //DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -78,6 +88,15 @@ public class ItemManager : Singleton<ItemManager>
         if (PortionData.ContainsKey(_name))
         {
             return PortionData[_name];
+        }
+        return null;
+    }
+
+    public ItemData GetGoldData(string _name)
+    {
+        if(GoldData.ContainsKey(_name))
+        {
+            return GoldData[_name];
         }
         return null;
     }
@@ -117,6 +136,19 @@ public class ItemManager : Singleton<ItemManager>
         }
         return null;
     }
+
+    public ItemData GetGoldItemData(int _value)
+    {
+        for (int i = 0; i < Goldlists.Count; i++)
+        {
+            if (Goldlists[i].ItemCode == _value)
+            {
+                return PortionLists[i];
+            }
+        }
+        return null;
+    }
+
 
     //public EquipmentItem GetEquipmentData(int _value)
     //{

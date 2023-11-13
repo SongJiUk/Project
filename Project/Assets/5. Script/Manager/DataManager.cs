@@ -31,7 +31,7 @@ public class DataManager : Singleton<DataManager>
 
     private void Start()
     {
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
 
@@ -216,8 +216,18 @@ public class DataManager : Singleton<DataManager>
     int[] HandEquipSlot = new int[SlotCount];
     int[] ShoesEquipSlot = new int[SlotCount];
 
-   
 
+    int[] player_Gold = new int[SlotCount];
+   
+    public int GET_PLAYER_GOLD(int _slot)
+    {
+        return player_Gold[_slot];
+    }
+
+    public void SET_PLAYER_GOLD(int _slot, int _value)
+    {
+        player_Gold[_slot] = _value;
+    }
 
     public int GET_WEAPONCODE(int _slot)
     {
@@ -636,6 +646,17 @@ public class DataManager : Singleton<DataManager>
 
 
     #region 퀘스트 관련
+    int[] quest_id = new int[SlotCount];
+
+    public int GET_QUEST_ID(int _slot)
+    {
+        return quest_id[_slot];
+    }
+
+    public void SET_QUEST_ID(int _slot, int _value)
+    {
+        quest_id[_slot] = _value;
+    }
     #endregion
 
     public void SaveData(int _slot)
@@ -701,6 +722,7 @@ public class DataManager : Singleton<DataManager>
         PlayerPrefs.SetInt("player_MaxMp" + _slot, player_MaxMp[_slot]);
         PlayerPrefs.SetFloat("player_NowHp" + _slot, player_NowHp[_slot]);
         PlayerPrefs.SetFloat("player_NowMp" + _slot, player_NowMp[_slot]);
+        PlayerPrefs.SetInt("player_Gold" + _slot, player_Gold[_slot]);
 
 
         PlayerPrefs.SetInt("GenderNum" + _slot, GenderNum[_slot]);
@@ -729,6 +751,7 @@ public class DataManager : Singleton<DataManager>
         SetBool("isEquipShoes" + _slot, isEquipShoes[_slot]);
 
 
+        PlayerPrefs.SetInt("quest_id" + _slot, quest_id[_slot]);
 
         //int equipindex = 0;
 
@@ -808,6 +831,7 @@ public class DataManager : Singleton<DataManager>
                 player_MaxMp[i] = PlayerPrefs.GetInt("player_MaxMp" + i);
                 player_NowHp[i] = PlayerPrefs.GetFloat("player_NowHp" + i);
                 player_NowMp[i] = PlayerPrefs.GetFloat("player_NowMp" + i);
+                player_Gold[i] = PlayerPrefs.GetInt("player_Gold" + i);
 
 
                 GenderNum[i] = PlayerPrefs.GetInt("GenderNum" + i);
@@ -846,6 +870,8 @@ public class DataManager : Singleton<DataManager>
                 string isEquipShoesKey = "isEquipShoes" + i;
                 if (PlayerPrefs.HasKey(isEquipShoesKey)) isEquipShoes[i] = GetBool(isEquipShoesKey).HasValue;
 
+
+                quest_id[i] = PlayerPrefs.GetInt("quest_id" + i);
             }
 
         }
@@ -868,6 +894,18 @@ public class DataManager : Singleton<DataManager>
         PlayerPrefs.SetInt("player_level" + _slot, -1);
         PlayerPrefs.SetString("player_id" + _slot, "Default");
         PlayerPrefs.SetInt("player_job" + _slot, -1);
+
+        PlayerPrefs.SetFloat("player_damage" + _slot, -1);
+        PlayerPrefs.SetFloat("player_speed" + _slot, -1);
+        PlayerPrefs.SetFloat("player_defence" + _slot, -1);
+        PlayerPrefs.SetFloat("player_avoidance" + _slot, -1);
+        PlayerPrefs.SetFloat("player_criticalchance" + _slot, -1);
+        PlayerPrefs.SetInt("player_MaxHp" + _slot, -1);
+        PlayerPrefs.SetInt("player_MaxMp" + _slot, -1);
+        PlayerPrefs.SetFloat("player_NowHp" + _slot, -1);
+        PlayerPrefs.SetFloat("player_NowMp" + _slot, -1);
+        PlayerPrefs.SetInt("player_Gold" + _slot, -1);
+
 
         PlayerPrefs.SetInt("GenderNum" + _slot, -1);
         PlayerPrefs.SetInt("Female_FaceNum" + _slot, -1);
@@ -894,6 +932,7 @@ public class DataManager : Singleton<DataManager>
         SetBool("isEquipHand" + _slot, false);
         SetBool("isEquipShoes" + _slot, false);
 
+        PlayerPrefs.SetInt("quest_id" + _slot, -1);
         //int equipindex = 0;
 
         //PlayerPrefs.SetInt("Equip_" + equipindex +"_"+ _index, male_PantsNum);

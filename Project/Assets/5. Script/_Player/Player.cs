@@ -95,6 +95,8 @@ public class Player : Singleton<Player>
         //    anim.runtimeAnimatorController = PlayerJob[2];
         //    playerStat.InitStat(UnitCode.ARCHER);
         //}
+
+     
     }
 
     private void PlayerSetting()
@@ -110,5 +112,19 @@ public class Player : Singleton<Player>
     private void OnTriggerEnter(Collider other)
     {
 
+    }
+
+    public bool CheckGold(int _price)
+    {
+        int nowGold = DataManager.GetInstance.GET_PLAYER_GOLD(DataManager.GetInstance.SLOT_NUM);
+
+        if (nowGold >= _price)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

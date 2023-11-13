@@ -31,7 +31,8 @@ public enum ItemType
 {
     PortionItem,
     WeaponItem,
-    ArmorItem
+    ArmorItem,
+    Gold
 }
 
 public abstract class ItemData : ScriptableObject
@@ -43,6 +44,7 @@ public abstract class ItemData : ScriptableObject
     public Sprite IconSprite => _iconSprite;
     public Ratings Rating => _rating;
     public ItemType ItemType => _itemtype;
+    public int ItemPrice => _itemprice;
 
     [SerializeField] private Ratings _rating;
     [SerializeField] private int _itemcode;
@@ -55,6 +57,8 @@ public abstract class ItemData : ScriptableObject
     [SerializeField] private GameObject _SettingItem; // 착용 아이템
 
     [SerializeField] private ItemType _itemtype;
+
+    [SerializeField] int _itemprice;
 
     /// <summary> 타입에 맞는 새로운 아이템 생성 </summary>
     public abstract Item CreateItem();

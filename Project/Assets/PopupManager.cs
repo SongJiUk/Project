@@ -12,6 +12,10 @@ public class PopupManager : Singleton<PopupManager>
     public GameObject Equip_DiffrentGender_Popup;
     public GameObject Equip_DiffrentJob_Popup;
 
+    public GameObject EquipmentShop_Popup;
+    public GameObject PortionShop_Popup;
+
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
