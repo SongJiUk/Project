@@ -21,5 +21,6 @@ MonoBehaviour:
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}
   _itemtype: 0
+  _itemprice: 20
   _maxAmount: 99
   _value: 100

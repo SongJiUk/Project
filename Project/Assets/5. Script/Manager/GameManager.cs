@@ -39,6 +39,7 @@ public class GameManager : Singleton<GameManager>
 
     void Talk(int id, bool isNpc, bool isSellNPC)
     {
+
         int questTalkIndex = questManager.GetQuestTalkIndex(id);
         string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
 

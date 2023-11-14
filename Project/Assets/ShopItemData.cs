@@ -22,4 +22,10 @@ public class ShopItemData : MonoBehaviour
         EquipmentShop_Popup.GetInstance.Sell_itemdata = itemdata;
         EquipmentShop_Popup.GetInstance.BuyEquipmentItem();
     }
+
+    public void BuyPortionBtn()
+    {
+        PortionShop_Popup.GetInstance.Sell_itemdata = itemdata;
+        PortionShop_Popup.GetInstance.BuyPortionItem();
+    }
 }
