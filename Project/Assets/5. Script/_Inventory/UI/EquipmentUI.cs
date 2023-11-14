@@ -91,6 +91,133 @@ public class EquipmentUI : MonoBehaviour
     /***********************************************************************
        *                               Init Methods
        ***********************************************************************/
+
+    [Header("캐릭터 스탯창")]
+    [SerializeField] Text Name_txt;
+    [SerializeField] Text Level_txt;
+    [SerializeField] Text Job_txt;
+    [SerializeField] Text Gender_txt;
+    [SerializeField] Text HP_txt;
+    [SerializeField] Text MP_txt;
+    [SerializeField] Text Damage_txt;
+    [SerializeField] Text Speed_txt;
+    [SerializeField] Text Defence_txt;
+    [SerializeField] Text Avoidance_txt;
+    [SerializeField] Text CriticalChance_txt;
+    [SerializeField] Text Item_Damage_txt;
+    [SerializeField] Text Item_Speed_txt;
+    [SerializeField] Text Item_Defence_txt;
+    [SerializeField] Text Item_Avoidance_txt;
+    [SerializeField] Text Item_CriticalChance_txt;
+    public int Head_Defence;
+    public int Top_Defence;
+    public int Pants_Defence;
+    public int Hand_Defence;
+    public int Shose_Defence;
+    public int Weapon_Damage;
+
+    int totalDefence;
+    private void OnEnable()
+    {
+        Name_txt.text = DataManager.GetInstance.GET_PLAYER_ID(DataManager.GetInstance.SLOT_NUM);
+        Level_txt.text = PlayerStat.GetInstance.Level.ToString();
+
+        switch (PlayerStat.GetInstance.UnitCodes)
+        {
+            case UnitCode.WARRIOR:
+                Job_txt.text = "전사";
+                break;
+
+            case UnitCode.MAGE:
+                Job_txt.text = "마법사";
+                break;
+
+            case UnitCode.ARCHER:
+                Job_txt.text = "궁수";
+                break;
+        }
+
+        switch (PlayerStat.GetInstance.gender)
+        {
+            case EGender.Female:
+                Gender_txt.text = "여자";
+                break;
+
+            case EGender.male:
+                Gender_txt.text = "남자";
+                break;
+
+        }
+        
+        HP_txt.text = PlayerStat.GetInstance.MaxHp.ToString();
+        MP_txt.text = PlayerStat.GetInstance.MaxMp.ToString();
+        Damage_txt.text = PlayerStat.GetInstance.Damage.ToString();
+        Speed_txt.text = PlayerStat.GetInstance.Speed.ToString();
+        Defence_txt.text = PlayerStat.GetInstance.Defence.ToString();
+        Avoidance_txt.text = PlayerStat.GetInstance.Avoidance.ToString();
+        CriticalChance_txt.text = PlayerStat.GetInstance.CriticalChance.ToString();
+
+        //CheckEquipItem();
+        UpdateWeaponState();
+        UpdateEquipmentState();
+    }
+
+    public void CheckEquipItem()
+    {
+        if(DataManager.GetInstance.GET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM))
+        {
+            Item_Damage_txt.text = $"+({Weapon_Damage})";
+        }
+        if (DataManager.GetInstance.GET_ISEQUIPHELMAT(DataManager.GetInstance.SLOT_NUM))
+        {
+            totalDefence += Head_Defence;
+            Item_Defence_txt.text = $"({totalDefence})";
+        }
+        if (DataManager.GetInstance.GET_ISEQUIPTOP(DataManager.GetInstance.SLOT_NUM))
+        {
+            totalDefence += Top_Defence;
+            Item_Defence_txt.text = $"({totalDefence})";
+        }
+        if (DataManager.GetInstance.GET_ISEQUIPPANTS(DataManager.GetInstance.SLOT_NUM))
+        {
+            totalDefence += Pants_Defence;
+            Item_Defence_txt.text = $"({totalDefence})";
+        }
+        if (DataManager.GetInstance.GET_ISEQUIPHAND(DataManager.GetInstance.SLOT_NUM))
+        {
+            totalDefence += Hand_Defence;
+            Item_Defence_txt.text = $"({totalDefence})";
+        }
+
+        if (DataManager.GetInstance.GET_ISEQUIPSHOES(DataManager.GetInstance.SLOT_NUM))
+        {
+            totalDefence += Shose_Defence;
+            Item_Defence_txt.text = $"({totalDefence})"; 
+        }
+    }
+
+   
+    public void UpdateWeaponState()
+    {
+        if (Weapon_Damage == 0) Item_Damage_txt.text = "";
+        else
+        {
+            Item_Damage_txt.text = $"+({Weapon_Damage})";
+            PlayerStat.GetInstance.WeaponDamage = Weapon_Damage;
+        }
+    }
+    public void UpdateEquipmentState()
+    {
+        totalDefence = Head_Defence + Top_Defence + Pants_Defence + Hand_Defence + Shose_Defence;
+
+        if (totalDefence == 0) Item_Defence_txt.text = "";
+        else
+        {
+            Item_Defence_txt.text = $"+({totalDefence})";
+            PlayerStat.GetInstance.EquipmentDefence = totalDefence;
+        }
+    }
+
     #region .
     private void Init()
     {
@@ -375,7 +502,7 @@ public class EquipmentUI : MonoBehaviour
     {
         if (!slot.IsAccessible || !slot.HasItem)
             return;
-        Debug.Log(slot.Index);
+        //Debug.Log(slot.Index);
         // ???? ???? ????
         _itemTooltip.SetItemInfo(_equipment.GetItemData(slot.Index));
 

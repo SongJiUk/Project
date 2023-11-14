@@ -214,7 +214,7 @@ public class Enemy : MonoBehaviour
 
     public void DropItem()
     {
-
+        //여기 해야됨 !!!!
     }
 
     private void OnEnable() // 오브젝트 풀링에의해 다시 활성화될시 정보 초기화

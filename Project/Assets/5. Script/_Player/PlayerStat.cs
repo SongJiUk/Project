@@ -243,13 +243,13 @@ public class PlayerStat : Singleton<PlayerStat>
 
     public void ChangeStat(ArmorItemData _beforeItem, ArmorItemData _afterItem)
     {
-        Defence -= _beforeItem.Defence;
-        Defence += _afterItem.Defence;
+        //Defence -= _beforeItem.Defence;
+       //Defence += _afterItem.Defence;
     }
 
     public void ChangeStat(ArmorItemData _item)
     {
-        Defence += _item.Defence;
+        //Defence += _item.Defence;
     }
 
     public void LevelUp()
@@ -316,6 +316,7 @@ public class PlayerStat : Singleton<PlayerStat>
     private void SaveData()
     {
         int slotnum = DataManager.GetInstance.SLOT_NUM;
+        DataManager.GetInstance.SET_PLAYER_LEVEL(slotnum, Level);
         DataManager.GetInstance.SET_PALYER_MAXHP(slotnum, MaxHp);
         DataManager.GetInstance.SET_PALYER_MAXMP(slotnum, MaxMp);
         DataManager.GetInstance.SET_PALYER_DAMAGE(slotnum, Damage);
@@ -397,7 +398,7 @@ public class PlayerStat : Singleton<PlayerStat>
         {
             NowHp = NowHp;
         }
-        else NowHp = NowHp - damage + Defence + EquipmentDefence;
+        else NowHp = NowHp - (damage + Defence + EquipmentDefence);
         CheckHp();
 
         SetNowHP(Hpvalue);

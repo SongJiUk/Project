@@ -42,9 +42,9 @@ public class Equipment : MonoBehaviour
     {
        
         Item returnItem = null;
-       // 1 - 레벨부족
-       // 2 - 성별 안맞음
-       // 3 - 직업 안맞음
+        // 1 - 레벨부족
+        // 2 - 성별 안맞음
+        // 3 - 직업 안맞음
         
         if (A.EquipmentData.Type == Types.Top)
         {
@@ -68,6 +68,8 @@ public class Equipment : MonoBehaviour
                     UpdateSlot(1);
                     DataManager.GetInstance.SET_TOPCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     DataManager.GetInstance.SET_ISEQUIPTOP(DataManager.GetInstance.SLOT_NUM, true);
+                    _equipmentUI.Top_Defence = (A.EquipmentData as ArmorItemData).Defence;
+                    
                     break;
 
                 case 1:
@@ -113,6 +115,8 @@ public class Equipment : MonoBehaviour
                     UpdateSlot(2);
                     DataManager.GetInstance.SET_PANTSCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     DataManager.GetInstance.SET_ISEQUIPPANTS(DataManager.GetInstance.SLOT_NUM, true);
+                    _equipmentUI.Pants_Defence = (A.EquipmentData as ArmorItemData).Defence;
+
                     break;
 
                 case 1:
@@ -156,6 +160,8 @@ public class Equipment : MonoBehaviour
                     UpdateSlot(3);
                     DataManager.GetInstance.SET_HELMATCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     DataManager.GetInstance.SET_ISEQUIPHELMAT(DataManager.GetInstance.SLOT_NUM, true);
+                    _equipmentUI.Head_Defence = (A.EquipmentData as ArmorItemData).Defence;
+
                     break;
 
                 case 1:
@@ -198,6 +204,8 @@ public class Equipment : MonoBehaviour
                     UpdateSlot(4);
                     DataManager.GetInstance.SET_HANDCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     DataManager.GetInstance.SET_ISEQUIPHAND(DataManager.GetInstance.SLOT_NUM, true);
+                    _equipmentUI.Hand_Defence = (A.EquipmentData as ArmorItemData).Defence;
+
                     break;
 
                 case 1:
@@ -239,6 +247,8 @@ public class Equipment : MonoBehaviour
                     UpdateSlot(5);
                     DataManager.GetInstance.SET_SHOESCODE(DataManager.GetInstance.SLOT_NUM, A.EquipmentData.ItemCode);
                     DataManager.GetInstance.SET_ISEQUIPSHOES(DataManager.GetInstance.SLOT_NUM, true);
+                    _equipmentUI.Shose_Defence = (A.EquipmentData as ArmorItemData).Defence;
+
                     break;
 
                 case 1:
@@ -286,6 +296,9 @@ public class Equipment : MonoBehaviour
                             //WeaponManager.GetInstance.ISEQUIP = true;
                             if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
                             else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+
+                            _equipmentUI.Weapon_Damage = (A.EquipmentData as WeaponItemData).Damage;
+
                         }
                         else
                         {
@@ -323,6 +336,7 @@ public class Equipment : MonoBehaviour
                             //WeaponManager.GetInstance.ISEQUIP = true;
                             if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
                             else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+                            _equipmentUI.Weapon_Damage = (A.EquipmentData as WeaponItemData).Damage;
                         }
                         else
                         {
@@ -360,6 +374,7 @@ public class Equipment : MonoBehaviour
                             //WeaponManager.GetInstance.ISEQUIP = true;
                             if (A.EquipmentData.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData, A.EquipmentData as WeaponItemData);
                             else UIManager.GetInstance.weaponManger.ChangeWeapon(A.EquipmentData as WeaponItemData);
+                            _equipmentUI.Weapon_Damage = (A.EquipmentData as WeaponItemData).Damage;
                         }
                         else
                         {
@@ -380,7 +395,9 @@ public class Equipment : MonoBehaviour
 
         }
 
-        
+        _equipmentUI.UpdateWeaponState();
+        _equipmentUI.UpdateEquipmentState();
+
 
         return returnItem;
     }
@@ -394,6 +411,8 @@ public class Equipment : MonoBehaviour
         //WeaponManager.GetInstance.ISEQUIP = true;
         if (A.Type == Types.OneHandMace) UIManager.GetInstance.weaponManger.ChangeWeapon(A, A);
         else UIManager.GetInstance.weaponManger.ChangeWeapon(A);
+
+        _equipmentUI.Weapon_Damage = A.Damage;
     }
 
     public void EquipmentItem(ArmorItemData A)
@@ -411,6 +430,7 @@ public class Equipment : MonoBehaviour
             PlayerStat.GetInstance.ChangeStat(A);
 
             UIManager.GetInstance.customizing.ChangeEquipmentItem(A);
+            _equipmentUI.Top_Defence = A.Defence;
         }
         else if(A.Type == Types.Pants)
         {
@@ -423,6 +443,9 @@ public class Equipment : MonoBehaviour
             PlayerStat.GetInstance.ChangeStat(A);
 
             UIManager.GetInstance.customizing.ChangeEquipmentItem(A);
+
+            _equipmentUI.Pants_Defence = A.Defence;
+
         }
         else if(A.Type == Types.Head)
         {
@@ -435,6 +458,8 @@ public class Equipment : MonoBehaviour
             PlayerStat.GetInstance.ChangeStat(A);
 
             UIManager.GetInstance.customizing.ChangeEquipmentItem(A);
+            _equipmentUI.Head_Defence = A.Defence;
+
         }
         else if(A.Type == Types.Hand)
         {
@@ -447,6 +472,8 @@ public class Equipment : MonoBehaviour
             PlayerStat.GetInstance.ChangeStat(A);
 
             UIManager.GetInstance.customizing.ChangeEquipmentItem(A);
+            _equipmentUI.Hand_Defence = A.Defence;
+
         }
         else if(A.Type == Types.Shoes)
         {
@@ -459,6 +486,8 @@ public class Equipment : MonoBehaviour
             PlayerStat.GetInstance.ChangeStat(A);
 
             UIManager.GetInstance.customizing.ChangeEquipmentItem(A);
+            _equipmentUI.Shose_Defence = A.Defence;
+
         }
     }
 
@@ -646,7 +675,8 @@ public class Equipment : MonoBehaviour
             WeaponL = null;
             DataManager.GetInstance.SET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_WEAPONCODE(DataManager.GetInstance.SLOT_NUM, 0);
-            
+            _equipmentUI.Weapon_Damage = 0;
+            _equipmentUI.UpdateWeaponState();
         }
 
         else if (index == 1)
@@ -655,6 +685,7 @@ public class Equipment : MonoBehaviour
             Customizing.GetInstance.ChangeDefault(index);
             DataManager.GetInstance.SET_ISEQUIPTOP(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_TOPCODE(DataManager.GetInstance.SLOT_NUM, 0);
+            _equipmentUI.Top_Defence = 0;
         }
 
         else if (index == 2)
@@ -663,6 +694,7 @@ public class Equipment : MonoBehaviour
             Customizing.GetInstance.ChangeDefault(index);
             DataManager.GetInstance.SET_ISEQUIPPANTS(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_PANTSCODE(DataManager.GetInstance.SLOT_NUM, 0);
+            _equipmentUI.Pants_Defence = 0;
         }
 
         else if (index == 3)
@@ -671,6 +703,7 @@ public class Equipment : MonoBehaviour
             Customizing.GetInstance.ChangeDefault(index);
             DataManager.GetInstance.SET_ISEQUIPHELMAT(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_HELMATCODE(DataManager.GetInstance.SLOT_NUM, 0);
+            _equipmentUI.Head_Defence = 0;
         }
 
         else if (index == 4)
@@ -679,6 +712,7 @@ public class Equipment : MonoBehaviour
             Customizing.GetInstance.ChangeDefault(index);
             DataManager.GetInstance.SET_ISEQUIPHAND(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_HANDCODE(DataManager.GetInstance.SLOT_NUM, 0);
+            _equipmentUI.Hand_Defence = 0;
         }
 
         else if (index == 5)
@@ -687,7 +721,9 @@ public class Equipment : MonoBehaviour
             Customizing.GetInstance.ChangeDefault(index);
             DataManager.GetInstance.SET_ISEQUIPSHOES(DataManager.GetInstance.SLOT_NUM, false);
             DataManager.GetInstance.SET_SHOESCODE(DataManager.GetInstance.SLOT_NUM, 0);
+            _equipmentUI.Shose_Defence = 0;
         }
+        _equipmentUI.UpdateEquipmentState();
         _equipmentUI.RemoveItem(index);
     }
 
