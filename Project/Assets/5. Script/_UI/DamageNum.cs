@@ -7,8 +7,11 @@ using UnityEngine.UIElements;
 
 public class DamageNum : MonoBehaviour
 {
-    [Tooltip("데미지 텍스트 프리팹")]
+    [Tooltip("?????? ?????? ??????")]
     [SerializeField] private GameObject _damageText;
+    [SerializeField] private GameObject _damageText_critical;
+    [SerializeField] private GameObject _Avoidance;
+    [SerializeField] private GameObject _LevelUP;
 
     [SerializeField] private Transform _transformto;
 
@@ -25,23 +28,42 @@ public class DamageNum : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void LevelUP()
     {
 
+        _LevelUP.SetActive(true);
     }
 
-    public void Damage(float damage, int color, Transform _transformHit)
+
+    public void Damage(float damage, int color, Transform _transformHit, bool _isCritical, bool _isAvoidance = false)
     {
+        GameObject DamageUI;
+        if(_isAvoidance)
+        {
+            DamageUI = Instantiate(_Avoidance, _canvas);
+            damage = 0;
+        }
+        else
+        {
+            if (_isCritical)
+            {
+                DamageUI = Instantiate(_damageText_critical, _canvas);
+            }
+            else
+            {
+                DamageUI = Instantiate(_damageText, _canvas);
+            }
+        }
+        
         _transformto = _transformHit;
-        GameObject DamageUI = Instantiate(_damageText, _canvas);
+        
         Vector3 positionUI = (_transformto.position + (Random.insideUnitSphere * 1f));
         DamageUI.transform.position = Camera.main.WorldToScreenPoint(positionUI);
         DamageUI.SetActive(true);
         DamageNumPrefab DamageUIValue = DamageUI.GetComponent<DamageNumPrefab>();
         DamageUIValue.SetPosition(positionUI);
         DamageUIValue.SetDamage(damage);
-        DamageUIValue.SetColor(color);
-        
+        //DamageUIValue.SetColor(color);
 
     }
 

@@ -26,6 +26,6 @@ MonoBehaviour:
   ClassPrivateItem: 2
   Gender: 2
   _EquipmentNum: 2
-  _EquipmentLevel: 1
+  _EquipmentLevel: 20
   _maxDurability: 100
-  _damage: 1
+  _damage: 20

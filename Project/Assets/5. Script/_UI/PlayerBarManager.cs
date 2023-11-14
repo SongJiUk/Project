@@ -49,7 +49,18 @@ public class PlayerBarManager : MonoBehaviour
         }
     }
 
-    public void SetMax(int maxHp,float maxMp)
+    public void SetStartUI()
+    {
+        hpBar.value = 1;
+        hpBarfollow.value = 1;
+        mpBar.value = 1;
+        expBar.value = 1;
+        hptext.text = $"{PlayerStat.GetInstance.NowHp} / {PlayerStat.GetInstance.MaxHp}";
+        mptext.text = $"{PlayerStat.GetInstance.NowMp} / {PlayerStat.GetInstance.MaxMp}";
+        exptext.text = $"EXP : {(PlayerStat.GetInstance.NowExp / PlayerStat.GetInstance.MaxExp)}%";
+    }
+
+    public void SetMax(int maxHp, float maxMp)
     {
         hpBar.value = 1;
         hpBarfollow.value = 1;

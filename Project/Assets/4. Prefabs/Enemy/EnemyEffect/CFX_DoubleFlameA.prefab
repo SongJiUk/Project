@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 19800000}
   - component: {fileID: 19900000}
   - component: {fileID: 11400000}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: InnerFlame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4825,7 +4825,7 @@ GameObject:
   - component: {fileID: 400002}
   - component: {fileID: 19800002}
   - component: {fileID: 19900002}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Small flames
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9608,7 +9608,7 @@ GameObject:
   - component: {fileID: 19800004}
   - component: {fileID: 19900004}
   - component: {fileID: 11400002}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CFX_DoubleFlameA
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -12,8 +12,8 @@ public class PopupManager : Singleton<PopupManager>
     public GameObject Equip_DiffrentGender_Popup;
     public GameObject Equip_DiffrentJob_Popup;
 
-    public GameObject EquipmentShop_Popup;
-    public GameObject PortionShop_Popup;
+    public GameObject DeadGoTown_Popup;
+    public GameObject CallBackTown_Popup;
 
 
     private void Awake()
@@ -21,6 +21,30 @@ public class PopupManager : Singleton<PopupManager>
         DontDestroyOnLoad(gameObject);
     }
 
+    public void DeadGoTownBtn()
+    {
+        DeadGoTown_Popup.SetActive(false);
+        CameraManager.GetInstance.ISUIOFF = false;
+        UIManager.GetInstance.isOnPopupCount--;
+        LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
+    }
+
+    public void CallBackTownBtn(bool _isYes)
+    {
+        if(_isYes)
+        {
+            CallBackTown_Popup.SetActive(false);
+            CameraManager.GetInstance.ISUIOFF = false;
+            UIManager.GetInstance.isOnPopupCount--;
+            LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
+        }
+        else
+        {
+            CallBackTown_Popup.SetActive(false);
+            CameraManager.GetInstance.ISUIOFF = false;
+            UIManager.GetInstance.isOnPopupCount--;
+        }
+    }
 
     public void TownMap_MoveToDungeonBtn(bool _isYes)
     {

@@ -1742,34 +1742,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 652571533, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_VerticalScrollbar
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266433363, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266433363, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_AnchorMin.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266433363, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_AnchoredPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1266433363, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1444592525, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1609195700, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: -454.32898
-      objectReference: {fileID: 0}
     - target: {fileID: 2738118055555822154, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
       propertyPath: m_Pivot.x
       value: 0

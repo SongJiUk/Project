@@ -33,10 +33,11 @@ public class Enemy : MonoBehaviour
     float attackRange = 3f;
     int playerLayer; // 플레이어 레이어 마스크 설정
 
+    public int damage;
     [SerializeField]
     int enemyID;
     [SerializeField]
-    float EXP;
+    int EXP;
 
     float originalSpeed;
 
@@ -97,11 +98,6 @@ public class Enemy : MonoBehaviour
                         Anime.SetBool("IsChasing", false);
                     }
                 }
-                // Debug
-                if (Input.GetKeyDown(KeyCode.B))
-                {
-                    EnemyHit(10);
-                }
             }
         }
 
@@ -130,8 +126,26 @@ public class Enemy : MonoBehaviour
     //    Debug.Log(other.gameObject) ;
     //}
 
-    void EnemyHit(int value)
+    void EnemyHit(bool _isSkill)
     {
+
+        float value;
+        bool isCritical = PlayerStat.GetInstance.PlayerAttackCriticalCheck();
+        if(_isSkill)
+        {
+            value = (PlayerStat.GetInstance.Damage + PlayerStat.GetInstance.WeaponDamage)* PlayerSkill.GetInstance.Skillmul;
+        }
+        else
+        {
+            value = PlayerStat.GetInstance.Damage + PlayerStat.GetInstance.WeaponDamage;
+        }
+
+
+        if (isCritical)
+        {
+            value *= 2;
+        }
+        
         nowEnemyHP -= value;
         if (nowEnemyHP <= 0)
         {
@@ -141,7 +155,7 @@ public class Enemy : MonoBehaviour
         {
             Anime.SetTrigger("IsHit");
         }
-        _hpBarUI.GetDamage(nowEnemyHP, value, transform);
+        _hpBarUI.GetDamage(nowEnemyHP, value, transform, isCritical);
     }
 
     public int GetEnemyID()
@@ -161,7 +175,7 @@ public class Enemy : MonoBehaviour
         {
             isSkillHit = true;
 
-            EnemyHit(10);
+            EnemyHit(true);
             Debug.Log("아프다 : " + this.name + nowEnemyHP);
             Invoke("HitDelay", 0.5f);
         }
@@ -177,8 +191,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
         {
-            Debug.Log("asdfa");
-            EnemyHit(10);
+            EnemyHit(false);
         }
     }
 
@@ -192,8 +205,16 @@ public class Enemy : MonoBehaviour
         die = true;
         Anime.SetTrigger("IsDie");
         gameObject.SetActive(false);
+
+        PlayerStat.GetInstance.GetExp(EXP);
+        DropItem();
         //objectPoolManager.ObjectDie(gameObject);
         //Anime.enabled = true;
+    }
+
+    public void DropItem()
+    {
+
     }
 
     private void OnEnable() // 오브젝트 풀링에의해 다시 활성화될시 정보 초기화

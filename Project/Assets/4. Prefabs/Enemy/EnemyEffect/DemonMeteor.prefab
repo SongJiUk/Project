@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8758014883539411039}
   - component: {fileID: 8464989352057559910}
   - component: {fileID: 8075297997595569679}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Skill 4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5044,6 +5044,8 @@ MonoBehaviour:
   RandomVolume: 0
   minVolume: 0.4
   maxVolume: 1
+  isStart: 0
+  effect: []
 --- !u!135 &8075297997595569679
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5067,7 +5069,7 @@ GameObject:
   m_Component:
   - component: {fileID: 415537224426705917}
   - component: {fileID: 4467366209576872276}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DemonMeteor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5116,7 +5118,7 @@ GameObject:
   - component: {fileID: 3791520487165047693}
   - component: {fileID: 5475271452606528582}
   - component: {fileID: 5734952492242318639}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Sparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10016,7 +10018,7 @@ GameObject:
   - component: {fileID: 191296796267702481}
   - component: {fileID: 4326453680913275116}
   - component: {fileID: 5879974352096698349}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SubFire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14840,7 +14842,7 @@ GameObject:
   - component: {fileID: 7755731950098257117}
   - component: {fileID: 5071808950145160090}
   - component: {fileID: 1863132727760898526}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Trails
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19731,7 +19733,7 @@ GameObject:
   - component: {fileID: 1215672690409464014}
   - component: {fileID: 2469323551094020137}
   - component: {fileID: 3325916967746934761}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24614,7 +24616,7 @@ GameObject:
   - component: {fileID: 6311139466746904755}
   - component: {fileID: 7323759640009204841}
   - component: {fileID: 8137272998642787149}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: RuneCircle02_rotating
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29446,7 +29448,7 @@ GameObject:
   - component: {fileID: 5774801924699994145}
   - component: {fileID: 8131978299593743467}
   - component: {fileID: 6710432623865788338}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWave2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34337,7 +34339,7 @@ GameObject:
   - component: {fileID: 8348922869449793592}
   - component: {fileID: 3655158214879322027}
   - component: {fileID: 426431000428784593}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Distortion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39219,7 +39221,7 @@ GameObject:
   - component: {fileID: 2960981689609513607}
   - component: {fileID: 7379625001285577676}
   - component: {fileID: 7959192203592039390}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SubGlow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44043,7 +44045,7 @@ GameObject:
   - component: {fileID: 4600620454876349586}
   - component: {fileID: 4392978332140290048}
   - component: {fileID: 5136240999708746809}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: StartImpact
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48925,7 +48927,7 @@ GameObject:
   - component: {fileID: 2136238942804287246}
   - component: {fileID: 5118023333053241975}
   - component: {fileID: 279878500421160699}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SparksBlack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -53825,7 +53827,7 @@ GameObject:
   - component: {fileID: 1383444632576075972}
   - component: {fileID: 9160147186676505462}
   - component: {fileID: 8956127837218956282}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58707,7 +58709,7 @@ GameObject:
   - component: {fileID: 9040501444168906059}
   - component: {fileID: 2463791874746170783}
   - component: {fileID: 8825597968998917669}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Crater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -63607,7 +63609,7 @@ GameObject:
   - component: {fileID: 8184912872936993882}
   - component: {fileID: 44486184622658588}
   - component: {fileID: 5935502518460129155}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: StartMarker
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68489,7 +68491,7 @@ GameObject:
   - component: {fileID: 198792068990325899}
   - component: {fileID: 3819055569747789112}
   - component: {fileID: 5607797814766887237}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWave(Optional)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -73380,7 +73382,7 @@ GameObject:
   - component: {fileID: 8537487876825415705}
   - component: {fileID: 7430928426734418324}
   - component: {fileID: 7325916012237422113}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -78271,7 +78273,7 @@ GameObject:
   - component: {fileID: 1842181402310802383}
   - component: {fileID: 8277638901616318142}
   - component: {fileID: 2397881469483533591}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWave3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -83153,7 +83155,7 @@ GameObject:
   - component: {fileID: 8434858517208054137}
   - component: {fileID: 6476059476804651761}
   - component: {fileID: 7343724046777138107}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SubSmoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}

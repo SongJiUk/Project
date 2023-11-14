@@ -26,6 +26,6 @@ MonoBehaviour:
   ClassPrivateItem: 1
   Gender: 0
   _EquipmentNum: 0
-  _EquipmentLevel: 1
+  _EquipmentLevel: 10
   _maxDurability: 100
-  _defence: 1
+  _defence: 3

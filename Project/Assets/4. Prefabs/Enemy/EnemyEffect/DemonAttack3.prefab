@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8004084231813378647}
   - component: {fileID: 698831212720740903}
   - component: {fileID: -3066299789853042544}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DemonAttack3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4837,9 +4837,81 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 3873946940668610959}
     m_Modifications:
+    - target: {fileID: 1042116916487722, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1066832946088894, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1099285370798294, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1145629778938606, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1148003193669182, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1260248233523534, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1306467000599994, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1319024026396974, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1339549303642640, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1357203694775272, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 1481932562201786, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
       propertyPath: m_Name
       value: Skill 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1481932562201786, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1515362898003240, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1518303499145562, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1672450593333610, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1794615624472682, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1801562455325506, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1830742423209170, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 1842579615396968, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
+      propertyPath: m_Layer
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 4693226928840970, guid: 7b11714ce9d7e1f47826b05270b779e1, type: 3}
       propertyPath: m_LocalScale.x

@@ -28,4 +28,4 @@ MonoBehaviour:
   _EquipmentNum: 4
   _EquipmentLevel: 1
   _maxDurability: 100
-  _damage: 1
+  _damage: 2

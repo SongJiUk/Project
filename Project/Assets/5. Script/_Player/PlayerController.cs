@@ -116,9 +116,10 @@ public class PlayerController : MonoBehaviour
         isDead = true;
         player.ANIM.SetTrigger("isDead");
         player.RIGID.useGravity = false;
-        player.NAV.enabled = false;
         player.Capsulecollider.enabled = false;
-        
+        PopupManager.GetInstance.DeadGoTown_Popup.SetActive(true);
+        CameraManager.GetInstance.ISUIOFF = true;
+        UIManager.GetInstance.isOnPopupCount++;
 
     }
 
@@ -127,7 +128,8 @@ public class PlayerController : MonoBehaviour
     {
         if(weaponManager.ISEQUIP)
         {
-            if(player.playerStat.UnitCodes == UnitCode.WARRIOR)
+            PlayerSkill.GetInstance.CheckSkillNumber(1);
+            if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
                 {
@@ -234,7 +236,7 @@ public class PlayerController : MonoBehaviour
     {
         if (weaponManager.ISEQUIP)
         {
-            
+            PlayerSkill.GetInstance.CheckSkillNumber(2);
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
@@ -344,6 +346,7 @@ public class PlayerController : MonoBehaviour
     {
         if (weaponManager.ISEQUIP)
         {
+            PlayerSkill.GetInstance.CheckSkillNumber(3);
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
                 if (context.performed && !SkillStarted)
@@ -886,7 +889,7 @@ public class PlayerController : MonoBehaviour
     #region Jump
     public void OnJump(InputAction.CallbackContext context)
     {
-        if (isGround)
+        if (isGround && !isDead)
         {
             if (context.performed && !isJump && !isJumpKeyClick && !isDash && !isRun)
             {
@@ -912,6 +915,27 @@ public class PlayerController : MonoBehaviour
     }
 
     #endregion
+
+    public void OnBackHome(InputAction.CallbackContext context)
+    {
+        if(context.performed)
+        {
+            
+            PopupManager.GetInstance.CallBackTown_Popup.SetActive(!PopupManager.GetInstance.CallBackTown_Popup.activeSelf);
+
+            if(PopupManager.GetInstance.CallBackTown_Popup.activeSelf)
+            {
+                CameraManager.GetInstance.ISUIOFF = false;
+                UIManager.GetInstance.isOnPopupCount++;
+            }
+            else
+            {
+                CameraManager.GetInstance.ISUIOFF = true;
+                UIManager.GetInstance.isOnPopupCount--;
+            }
+            
+        }
+    }
 
     #region 장비 장착 및 해제
     int LastWeaponNum;
@@ -957,7 +981,7 @@ public class PlayerController : MonoBehaviour
             Dead();
         }
 
-        if(Input.GetKeyDown(KeyCode.L))
+        if(Input.GetKeyDown(KeyCode.P))
         {
             Dead();
         }

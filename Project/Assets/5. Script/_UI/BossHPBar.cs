@@ -55,13 +55,13 @@ public class BossHPBar : MonoBehaviour
         SetHpBar();
     }
 
-    public void GetDamage(float nowHP, int damage, Transform _transformHit)
+    public void GetDamage(float nowHP, int damage, Transform _transformHit, bool _iscritical)
     {
         NowHp = nowHP;
 
         SetHpBarFollowTime();
         SetHpBar();
-        DamageNum.instance.Damage(damage, 1, _transformHit);
+        DamageNum.instance.Damage(damage, 1, _transformHit, _iscritical);
     }
 
     public void GetHeel(int heel)

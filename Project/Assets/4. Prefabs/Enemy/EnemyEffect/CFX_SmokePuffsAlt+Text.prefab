@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3739172730174210272}
   - component: {fileID: 3739172730159007136}
   - component: {fileID: 3739172730159053824}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: White Lines
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}
@@ -4779,7 +4779,7 @@ GameObject:
   - component: {fileID: 3739172730174210276}
   - component: {fileID: 3739172730159007140}
   - component: {fileID: 3739172730159053828}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Text Poof
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9655,7 +9655,7 @@ GameObject:
   - component: {fileID: 3739172730174210278}
   - component: {fileID: 3739172730159007142}
   - component: {fileID: 3739172730159053830}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CFX_SmokePuffsAlt+Text
   m_TagString: FxTemporaire
   m_Icon: {fileID: 0}

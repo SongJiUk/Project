@@ -27,6 +27,8 @@ public class DemonBoss : MonoBehaviour
     float maxHP;
     float nowHP;
 
+    public int Damage;
+
     bool isSkillHit = false;
 
 
@@ -58,15 +60,18 @@ public class DemonBoss : MonoBehaviour
                 anime.SetTrigger("Attack1");
                 DemonCharge();
                 attckTimer = 12f;
+               
             }else if (ran > 30 && ran <= 60)
             {
                 anime.SetTrigger("Attack2");
                 attckTimer = 15f;
+                Damage *= 2;
             }
             else
             {
                 anime.SetTrigger("Attack3");
                 attckTimer = 12f;
+                Damage *= 2;
             }
         }
     }
@@ -145,7 +150,7 @@ public class DemonBoss : MonoBehaviour
             isSkillHit = true;
 
             BossHit(10);
-            Debug.Log("¾ÆÇÁ´Ù : " + this.name + nowHP);
+            Debug.Log("?????? : " + this.name + nowHP);
             Invoke("HitDelay", 0.5f);
         }
 

@@ -57,13 +57,13 @@ public class HPBar : MonoBehaviour
         SetHpBar();
     }
 
-    public void GetDamage(float nowHP,float damage, Transform _transformHit)
+    public void GetDamage(float nowHP,float damage, Transform _transformHit, bool _iscritical)
     {
         NowHp = nowHP;
         
         SetHpBarFollowTime();
         SetHpBar();
-        DamageNum.instance.Damage(damage, 1, _transformHit);
+        DamageNum.instance.Damage(damage, 1, _transformHit, _iscritical);
     }
 
     public void GetHeel(float nowHP, float heel)

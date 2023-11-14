@@ -8,7 +8,7 @@ using UnityEngine.UIElements;
 
 public class DamageNumPrefab : MonoBehaviour
 {
-    [Tooltip("데미지 텍스트")]
+    [Tooltip("?????? ??????")]
     [SerializeField] private Text _amountText;
 
     [SerializeField] float timeStart = 3;
@@ -19,6 +19,7 @@ public class DamageNumPrefab : MonoBehaviour
 
     [SerializeField] float textsizeMax = 0.1f; 
     [SerializeField] float textsizeMin = 0.01f;
+    [SerializeField] bool isLevelUp;
 
     float time = 10;
 
@@ -33,9 +34,15 @@ public class DamageNumPrefab : MonoBehaviour
     {
         time = timeStart;
     }
+
+    private void OnEnable()
+    {
+        time = timeStart;
+    }
     private void Update()
     {
-        transform.position = Camera.main.WorldToScreenPoint(_positioning);
+        if(!isLevelUp) transform.position = Camera.main.WorldToScreenPoint(_positioning);
+
         if (time >= 0)
             time -= Time.deltaTime;
 
@@ -53,7 +60,8 @@ public class DamageNumPrefab : MonoBehaviour
         }
         else
         {
-            DestroyNow();
+            if (isLevelUp) gameObject.SetActive(false);
+            else DestroyNow();
         }
 
         textsize = textsizeMin * (1 - t) + textsizeMax * t;
@@ -69,7 +77,7 @@ public class DamageNumPrefab : MonoBehaviour
 
     public void SetDamage(float damage)
     {
-        _amountText.text = damage.ToString();
+        if(damage != 0)_amountText.text = damage.ToString();
     }
 
     public void SetColor(int num)

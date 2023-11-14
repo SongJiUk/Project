@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2067500290555433848}
   - component: {fileID: 2197435585643622648}
   - component: {fileID: 2196256783457623866}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: EndlDesbis
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4902,7 +4902,7 @@ GameObject:
   - component: {fileID: 2067361743326228746}
   - component: {fileID: 2197276089294757498}
   - component: {fileID: 2196001360362446858}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: GolemAttack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9803,7 +9803,7 @@ GameObject:
   - component: {fileID: 2066721855477733830}
   - component: {fileID: 2197036064128864322}
   - component: {fileID: 2196230159158744958}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SplashSt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -14685,7 +14685,7 @@ GameObject:
   - component: {fileID: 2066672590564906976}
   - component: {fileID: 2197342996935558882}
   - component: {fileID: 2196846578846627882}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: ShockWave
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -19567,7 +19567,7 @@ GameObject:
   - component: {fileID: 2066875220299681630}
   - component: {fileID: 2197747876669834058}
   - component: {fileID: 2196364070987422098}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: DerbisSplash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24449,7 +24449,7 @@ GameObject:
   - component: {fileID: 2067474953441469500}
   - component: {fileID: 2197525022736036552}
   - component: {fileID: 2196348148409366192}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Flash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29331,7 +29331,7 @@ GameObject:
   - component: {fileID: 2066943234998318682}
   - component: {fileID: 2196999389008332388}
   - component: {fileID: 2196448232877679782}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SplashDur
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -34213,7 +34213,7 @@ GameObject:
   - component: {fileID: 2066891437583546986}
   - component: {fileID: 2197309827116655198}
   - component: {fileID: 2196823284530969196}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: SlashSparks
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39104,7 +39104,7 @@ GameObject:
   - component: {fileID: 2066821233135557974}
   - component: {fileID: 2197147641544185928}
   - component: {fileID: 2195884496725664382}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: Crack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44004,7 +44004,7 @@ GameObject:
   - component: {fileID: 2067186017936997946}
   - component: {fileID: 2197654339687113798}
   - component: {fileID: 2196124925280856208}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PathStones
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48904,7 +48904,7 @@ GameObject:
   - component: {fileID: 2066971213864546650}
   - component: {fileID: 2161788751220761040}
   - component: {fileID: 2196864519146305132}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: PathCell
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -75,12 +75,22 @@ public class PlayerStat : Singleton<PlayerStat>
     float Mpvalue = 0;
     float Expvalue = 0;
 
+    public int WeaponDamage;
+    public int EquipmentDefence;
+
     public EGender gender { get; set; }
 
     PlayerBarManager _playerBarManager;
 
 
     PlayerController playerController;
+
+    static public float WARRIOR_SkillUpDamagePercent = 1.1f;
+    static public float MAGE_SkillUpDamagePercent = 1.3f;
+    static public float ARCHER_SkillUpDamagePercent= 1.3f;
+
+
+    [SerializeField] GameObject LevelupEffect;
 
     private void Awake()
     {
@@ -174,12 +184,34 @@ public class PlayerStat : Singleton<PlayerStat>
                 break;
         }
         ChangeEnum(DataManager.GetInstance.GET_GENDERNUM(DataManager.GetInstance.SLOT_NUM));
-        
+        _playerBarManager = PlayerBarManager.instance;
+        _playerBarManager.SetStartUI();
+
+        SaveData();
+
+
+    }
+
+
+    public bool PlayerAttackCriticalCheck()
+    {
+        int rand = Random.Range(0, 101);
+
+        if (rand <= CriticalChance) return true;
+        else return false;
+    }
+
+    public bool CheckAvoidance()
+    {
+        int rand = Random.Range(0, 101);
+
+        if (rand <= Avoidance) return true;
+        else return false;
     }
 
     public void Character_For_Stat(int _level)
     {
-
+        
     }
 
 
@@ -239,7 +271,6 @@ public class PlayerStat : Singleton<PlayerStat>
                 Avoidance += 1f;
                 CriticalChance += 2f;
 
-                NowExp = 0;
 
                 break;
 
@@ -255,7 +286,6 @@ public class PlayerStat : Singleton<PlayerStat>
                 Avoidance += 1f;
                 CriticalChance += 2f;
 
-                NowExp = 0;
                 break;
 
             case UnitCode.ARCHER:
@@ -271,20 +301,33 @@ public class PlayerStat : Singleton<PlayerStat>
                 Avoidance += 3f;
                 CriticalChance += 1f;
 
-                NowExp = 0;
                 break;
 
         }
 
-
-        DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
+        //이펙트
+        LevelupEffect.SetActive(true);
+        LevelupEffect.GetComponent<ParticleSystem>().Play();
+        DamageNum.instance.LevelUP();
+        SaveData();
     }
 
 
+    private void SaveData()
+    {
+        int slotnum = DataManager.GetInstance.SLOT_NUM;
+        DataManager.GetInstance.SET_PALYER_MAXHP(slotnum, MaxHp);
+        DataManager.GetInstance.SET_PALYER_MAXMP(slotnum, MaxMp);
+        DataManager.GetInstance.SET_PALYER_DAMAGE(slotnum, Damage);
+        DataManager.GetInstance.SET_PALYER_SPEED(slotnum, Speed);
+        DataManager.GetInstance.SET_PALYER_DEFENCE(slotnum, Defence);
+        DataManager.GetInstance.SET_PALYER_AVOIDANCE(slotnum, Avoidance);
+        DataManager.GetInstance.SET_PALYER_CRITICALCHANCE(slotnum, CriticalChance);
+        DataManager.GetInstance.SET_PALYER_NOWHP(slotnum, NowHp);
+        DataManager.GetInstance.SET_PALYER_NOWMP(slotnum, NowMp);
 
-
-
-
+        DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
+    }
 
 
     private void CheckHp()
@@ -345,14 +388,20 @@ public class PlayerStat : Singleton<PlayerStat>
     }
 
 
+   
 
     public void GetDamage(int damage)
     {
-        NowHp -= damage;
+        bool isAvoidance = CheckAvoidance();
+        if (isAvoidance)
+        {
+            NowHp = NowHp;
+        }
+        else NowHp = NowHp - damage + Defence + EquipmentDefence;
         CheckHp();
 
         SetNowHP(Hpvalue);
-        DamageNum.instance.Damage(damage, 1, this.transform);
+        DamageNum.instance.Damage(damage, 1, this.transform, false, isAvoidance);
     }
 
     public void UseMp(int num)
@@ -364,6 +413,8 @@ public class PlayerStat : Singleton<PlayerStat>
         }
         CheckMp();
         SetNowMP(Mpvalue);
+
+        SaveData();
     }
 
     public void GetExp(int num)
@@ -371,10 +422,12 @@ public class PlayerStat : Singleton<PlayerStat>
         NowExp += num;
         if (NowExp >= MaxExp)
         {
+            NowExp = NowExp - MaxExp;
             LevelUp();
         }
         CheckExp();
         SetNowEXP(Expvalue);
+        SaveData();
     }
 
     public void GetHeel(int heel)
@@ -386,6 +439,7 @@ public class PlayerStat : Singleton<PlayerStat>
         }
         CheckHp();
         SetNowHP(Hpvalue);
+        SaveData();
     }
 
     public void RecoveryMp(int mp)
@@ -397,9 +451,25 @@ public class PlayerStat : Singleton<PlayerStat>
         }
         CheckMp();
         SetNowMP(Hpvalue);
+        SaveData();
     }
 
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
+        {
+            GetDamage(other.GetComponent<Enemy>().damage);
+        }
+    }
 
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.L))
+        {
+            LevelUp();
+        }
+    }
 
 }
