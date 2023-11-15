@@ -150,20 +150,220 @@ public class ItemManager : Singleton<ItemManager>
     }
 
 
-    //public EquipmentItem GetEquipmentData(int _value)
-    //{
-
-    //}
 
 
-    //UI로 장착해주면
-    public void equip()
+    #region 몬스터 잡으면 아이템 랜덤으로 뿌려지게 하는 로직
+    /*
+     * 
+     * 애초에 확률 확률이 높지 않음 골드는 백퍼확률로 떨군다고 해보자
+     * 무기는 5퍼, 장구류는 10퍼확률로 떨군다고 하자
+     * 그 5퍼 확률에서도 좋은 아이템이 나올 확률이 달라야한다
+     * 어떻게 생성해야할까?
+     * 
+     * 5퍼, 10퍼, 15퍼 20퍼 50퍼
+     * 
+     */
+
+    ItemType itemType;
+    ClassPrivateItems classPrivate;
+    Types types;
+    Ratings ratings;
+    EGender gender;
+    public ItemData DropItem()
     {
         
-        //WeaponManager.GetInstance.ChangeWeapon();
+        RandomItemRogic();
+        CheckGender();
+        CheckJob();
+        PickItemRating();
+   
+
+        return FindItem();
     }
-    public void DefaultWeapon()
+
+    public ItemData FindItem()
+    {
+        if(itemType == ItemType.WeaponItem)
+        {
+            for (int i = 0; i < WeaponLists.Count; i++)
+            {
+
+                if (WeaponLists[i].Type == types)
+                {
+                    if (WeaponLists[i].Rating == ratings)
+                    {
+                        return WeaponLists[i];
+                    }
+                    else continue;
+                }
+                else continue;
+            }
+        }
+        else
+        {
+            for(int i =0; i<ArmorLists.Count; i++)
+            {
+                if (ArmorLists[i].ClassPrivateItem == classPrivate)
+                {
+                    if (ArmorLists[i].Type == types)
+                    {
+                        if (ArmorLists[i].Rating == ratings)
+                        {
+                            return ArmorLists[i];
+                        }
+                        else continue;
+                    }
+                    else continue;
+                }
+                else continue;
+            }
+        }
+
+        return null;
+    }
+
+    public int RandomItemRogic()
+    {
+        
+        //weapon, helmat, top, pants, hand, shoes
+        float randomValue = Random.Range(0f, 100f);
+
+        if (randomValue <= 15f)
+        {
+            itemType = ItemType.WeaponItem;
+        }
+        else if (randomValue <= 32f)
+        {
+            itemType = ItemType.ArmorItem;
+            types = Types.Head;
+        }
+        else if (randomValue <= 49f)
+        {
+            itemType = ItemType.ArmorItem;
+            types = Types.Top;
+        }
+        else if (randomValue <= 66f)
+        {
+            itemType = ItemType.ArmorItem;
+            types = Types.Pants;
+        }
+        else if(randomValue<=83f)
+        {
+            itemType = ItemType.ArmorItem;
+            types = Types.Hand;
+        }
+        else
+        {
+            itemType = ItemType.ArmorItem;
+            types = Types.Shoes;
+        }
+
+        return 0;
+    }
+
+   
+    public void CheckGender()
+    {
+        if (DataManager.GetInstance.GET_GENDERNUM(DataManager.GetInstance.SLOT_NUM) == 0)
+        {
+            gender = EGender.Female;
+        }
+        else gender = EGender.male;
+    }
+    public void CheckJob()
+    {
+        switch (DataManager.GetInstance.GET_PLAYER_JOB(DataManager.GetInstance.SLOT_NUM))
+        {
+            case 0:
+                classPrivate = ClassPrivateItems.WARRIOR;
+
+                if (itemType == ItemType.WeaponItem)
+                {
+                    float randomValue = Random.Range(0f, 100f);
+                    if (randomValue <= 25f)
+                    {
+                        types = Types.Dagger;
+                    }
+                    else if (randomValue <= 50f)
+                    {
+                        types = Types.OneHandMace;
+                    }
+                    else if (randomValue <= 75f)
+                    {
+                        types = Types.TwoHandSword;
+                    }
+                    else
+                    {
+                        types = Types.Spear;
+                    }
+                }
+                break;
+
+            case 1:
+                classPrivate = ClassPrivateItems.MAGE;
+                if (itemType == ItemType.WeaponItem)
+                {
+                    float randomValue = Random.Range(0f, 100f);
+                    if (randomValue <= 50f)
+                    {
+                        types = Types.Staff;
+                    }
+                    else
+                    {
+                        types = Types.Orb;
+                    }
+                }
+                break;
+
+            case 2:
+                classPrivate = ClassPrivateItems.ARCHER;
+                if (itemType == ItemType.WeaponItem)
+                {
+                    float randomValue = Random.Range(0f, 100f);
+                    if (randomValue <= 50f)
+                    {
+                        types = Types.Bow;
+                    }
+                    else
+                    {
+                        types = Types.CrossBow;
+                    }
+                }
+                break;
+        }
+    }
+
+    public void PickItemRating()
+    {
+        float randomValue = Random.Range(0f, 100f);
+
+        if (randomValue <= 5f)
+        {
+            ratings = Ratings.Mythic;
+        }
+        else if (randomValue <= 15f)
+        {
+            ratings = Ratings.Legendary;
+        }
+        else if(randomValue <=30f)
+        {
+            ratings = Ratings.Unique;
+        }
+        else if(randomValue <= 50f)
+        {
+            ratings = Ratings.Rare;
+        }
+        else
+        {
+            ratings = Ratings.Common;
+        }
+    }
+
+
+    public int RandomGoldRogic()
     {
 
+        return 0;
     }
+    #endregion
 }

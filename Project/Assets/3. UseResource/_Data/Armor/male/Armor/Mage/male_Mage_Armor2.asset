@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
   m_Name: male_Mage_Armor2
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 1
   _itemcode: 2111
   _name: "\uC88B\uC740 \uB0A8\uC131\uC6A9 \uB9C8\uBC95\uC0AC \uAC11\uC637"
   _itemCodeName: male_Mage_Armor2

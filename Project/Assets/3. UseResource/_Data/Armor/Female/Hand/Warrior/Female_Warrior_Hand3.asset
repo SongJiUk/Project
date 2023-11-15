@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
   m_Name: Female_Warrior_Hand3
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 2
   _itemcode: 1032
   _name: "\uC9F1 \uC88B\uC740 \uC5EC\uC131\uC6A9 \uC804\uC0AC \uC7A5\uAC11"
   _itemCodeName: Female_Warrior_Hand3

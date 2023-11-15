@@ -116,6 +116,8 @@ public class PlayerStat : Singleton<PlayerStat>
                     CriticalChance = W_DefaultCriticalChance;
                     NowHp = MaxHp;
                     NowMp = MaxMp;
+                    NowExp = 0;
+                    MaxExp = Level * DataManager.LevelUpEXP;
                 }
                 else
                 {
@@ -128,6 +130,8 @@ public class PlayerStat : Singleton<PlayerStat>
                     CriticalChance = DataManager.GetInstance.GET_PLAYER_CRITICALCHANCE(SlotNum);
                     NowHp = DataManager.GetInstance.GET_PLAYER_NOWHP(slotNum);
                     NowMp = DataManager.GetInstance.GET_PLAYER_NOWMP(slotNum);
+                    NowExp = DataManager.GetInstance.GET_PLAYER_EXP(slotNum);
+                    MaxExp = Level * DataManager.LevelUpEXP;
                 }
                 break;
 
@@ -142,6 +146,10 @@ public class PlayerStat : Singleton<PlayerStat>
                     Defence = M_DefaultDefence;
                     Avoidance = M_DefaultAvoidance;
                     CriticalChance = M_DefaultCriticalChance;
+                    NowHp = MaxHp;
+                    NowMp = MaxMp;
+                    NowExp = 0;
+                    MaxExp = Level * DataManager.LevelUpEXP;
                 }
                 else
                 {
@@ -154,6 +162,8 @@ public class PlayerStat : Singleton<PlayerStat>
                     CriticalChance = DataManager.GetInstance.GET_PLAYER_CRITICALCHANCE(SlotNum);
                     NowHp = DataManager.GetInstance.GET_PLAYER_NOWHP(slotNum);
                     NowMp = DataManager.GetInstance.GET_PLAYER_NOWMP(slotNum);
+                    NowExp = DataManager.GetInstance.GET_PLAYER_EXP(slotNum);
+                    MaxExp = Level * DataManager.LevelUpEXP;
                 }
                 break;
 
@@ -168,6 +178,10 @@ public class PlayerStat : Singleton<PlayerStat>
                     Defence = A_DefaultDefence;
                     Avoidance = A_DefaultAvoidance;
                     CriticalChance = A_DefaultCriticalChance;
+                    NowHp = MaxHp;
+                    NowMp = MaxMp;
+                    NowExp = 0;
+                    MaxExp = Level * DataManager.LevelUpEXP;
                 }
                 else
                 {
@@ -180,12 +194,21 @@ public class PlayerStat : Singleton<PlayerStat>
                     CriticalChance = DataManager.GetInstance.GET_PLAYER_CRITICALCHANCE(SlotNum);
                     NowHp = DataManager.GetInstance.GET_PLAYER_NOWHP(slotNum);
                     NowMp = DataManager.GetInstance.GET_PLAYER_NOWMP(slotNum);
+                    NowExp = DataManager.GetInstance.GET_PLAYER_EXP(slotNum);
+                    MaxExp = Level * DataManager.LevelUpEXP;
                 }
                 break;
         }
         ChangeEnum(DataManager.GetInstance.GET_GENDERNUM(DataManager.GetInstance.SLOT_NUM));
         _playerBarManager = PlayerBarManager.instance;
         _playerBarManager.SetStartUI();
+
+        CheckHp();
+        CheckMp();
+        CheckExp();
+        SetNowHP(Hpvalue);
+        SetNowMP(Mpvalue);
+        SetNowEXP(Expvalue);
 
         SaveData();
 
@@ -308,6 +331,12 @@ public class PlayerStat : Singleton<PlayerStat>
         //이펙트
         LevelupEffect.SetActive(true);
         LevelupEffect.GetComponent<ParticleSystem>().Play();
+        CheckHp();
+        CheckMp();
+        CheckExp();
+        SetNowHP(Hpvalue);
+        SetNowMP(Mpvalue);
+        SetNowEXP(Expvalue);
         DamageNum.instance.LevelUP();
         SaveData();
     }
@@ -326,6 +355,7 @@ public class PlayerStat : Singleton<PlayerStat>
         DataManager.GetInstance.SET_PALYER_CRITICALCHANCE(slotnum, CriticalChance);
         DataManager.GetInstance.SET_PALYER_NOWHP(slotnum, NowHp);
         DataManager.GetInstance.SET_PALYER_NOWMP(slotnum, NowMp);
+        DataManager.GetInstance.SET_PLAYER_EXP(slotnum, NowExp);
 
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
     }
@@ -391,21 +421,27 @@ public class PlayerStat : Singleton<PlayerStat>
 
    
 
-    public void GetDamage(int damage)
+    public void GetDamage(int damage = 0)
     {
         bool isAvoidance = CheckAvoidance();
+
+        damage = damage - (int)Defence - EquipmentDefence;
+        if (damage <= 0) isAvoidance = true;
+        else isAvoidance = false;
+
+
         if (isAvoidance)
         {
             NowHp = NowHp;
         }
-        else NowHp = NowHp - (damage + Defence + EquipmentDefence);
+        else NowHp = NowHp - damage;
         CheckHp();
 
         SetNowHP(Hpvalue);
         DamageNum.instance.Damage(damage, 1, this.transform, false, isAvoidance);
     }
 
-    public void UseMp(int num)
+    public void UseMp(int num = 0)
     {
         NowMp -= num;
         if (NowMp < 0)
@@ -418,7 +454,7 @@ public class PlayerStat : Singleton<PlayerStat>
         SaveData();
     }
 
-    public void GetExp(int num)
+    public void GetExp(int num =0)
     {
         NowExp += num;
         if (NowExp >= MaxExp)
@@ -470,6 +506,17 @@ public class PlayerStat : Singleton<PlayerStat>
         if(Input.GetKeyDown(KeyCode.L))
         {
             LevelUp();
+        }
+
+        if (Input.GetKeyDown(KeyCode.O))
+        {
+            GetDamage(10);
+
+        }
+        if (Input.GetKeyDown(KeyCode.N))
+        {
+
+            GetExp(10);
         }
     }
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
   m_Name: Archer_Helmat2
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 1
   _itemcode: 3201
   _name: "\uC88B\uC740 \uAD81\uC218 \uBAA8\uC790"
   _itemCodeName: Archer_Helmat2

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 29a5dd28ea5471a4f94e9bdc4d476c69, type: 3}
   m_Name: Mage_Helmat4
   m_EditorClassIdentifier: 
-  _rating: 0
+  _rating: 3
   _itemcode: 3103
   _name: "\uC138\uACC4\uC5D0\uC11C \uB450\uBC88\uC9F8\uB85C \uC88B\uC740 \uB9C8\uBC95\uC0AC
     \uBAA8\uC790"
