@@ -38,10 +38,15 @@ public class ParticleController : MonoBehaviour
         {
             other.GetComponent<Enemy>().SkillHit();
         }
-        
-        
 
-        if(isDestory)
+        if (other.layer == LayerMask.NameToLayer("Boss"))
+        {
+            other.GetComponent<DemonBoss>().SkillHit();
+        }
+
+
+
+        if (isDestory)
         {
             Destroy(this);
         }

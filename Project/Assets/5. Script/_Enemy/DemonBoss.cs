@@ -10,6 +10,9 @@ public class DemonBoss : MonoBehaviour
     float attckTimer = 7f;
 
     Animator anime;
+    [SerializeField]
+    int EXP;
+
 
     [SerializeField]
     Transform Point;
@@ -24,56 +27,67 @@ public class DemonBoss : MonoBehaviour
     [SerializeField]
     string BossName;
     [SerializeField]
-    float maxHP;
+   int maxHP;
     float nowHP;
-
+    float nowEnemyHP;
     public int Damage;
 
     bool isSkillHit = false;
 
 
     BossHPUIManager _bossHPUIManager;
-
+    [SerializeField]
+    BossHPBar _bossHpBar;
 
     ParticleSystem Charge;
     ParticleSystem Lazer;
+
+    BoxCollider collider;
+    bool die = false;
     void Awake()    
    {
         if(_bossHPUIManager == null)
         _bossHPUIManager = BossHPUIManager.instance;
-        _bossHPUIManager.AwakeBoss(BossName, 100);
+        _bossHPUIManager.AwakeBoss(BossName, maxHP);
         nowHP = maxHP;
         player = Player.GetInstance;
         anime = GetComponent<Animator>();
+        nowEnemyHP = maxHP;
         Attack1Position();
     }
 
     void Update()
     {
-        attckTimer -= Time.deltaTime;
-        if (attckTimer <= 0f)
+        if(!die)
         {
-            float ran = Random.Range(0, 91);
             transform.LookAt(player.transform);
-            if (ran <= 30)
+            attckTimer -= Time.deltaTime;
+            if (attckTimer <= 0f)
             {
-                anime.SetTrigger("Attack1");
-                DemonCharge();
-                attckTimer = 12f;
-               
-            }else if (ran > 30 && ran <= 60)
-            {
-                anime.SetTrigger("Attack2");
-                attckTimer = 15f;
-                Damage *= 2;
-            }
-            else
-            {
-                anime.SetTrigger("Attack3");
-                attckTimer = 12f;
-                Damage *= 2;
+                float ran = Random.Range(0, 91);
+                transform.LookAt(player.transform);
+                if (ran <= 30)
+                {
+                    anime.SetTrigger("Attack1");
+                    DemonCharge();
+                    attckTimer = 12f;
+
+                }
+                else if (ran > 30 && ran <= 60)
+                {
+                    anime.SetTrigger("Attack2");
+                    attckTimer = 15f;
+                    Damage *= 2;
+                }
+                else
+                {
+                    anime.SetTrigger("Attack3");
+                    attckTimer = 12f;
+                    Damage *= 2;
+                }
             }
         }
+        
     }
 
     void Attack1Position()
@@ -129,28 +143,50 @@ public class DemonBoss : MonoBehaviour
         Instantiate(ShockWavePrefab, Attack3Point.transform.position, Quaternion.identity);
     }
 
-    void BossHit(int value)
-    {
-        nowHP -= value;
-        if (nowHP <= 0)
-        {
-            BossDie();
-        }
-    }
+
+   
 
     void BossDie()
     {
+        DropItem();
+        //콜라이더 제거
+        if (null == collider) collider = GetComponent<BoxCollider>();
+        if (collider != null) collider.enabled = false;
+        //타겟 제거
+        player = null;
+        die = true;
+        anime.SetTrigger("IsDie");
+        
+        Invoke("WaitDie", 2f);
+        PlayerStat.GetInstance.GetExp(EXP);
 
+        //objectPoolManager.ObjectDie(gameObject);
+        //Anime.enabled = true;
     }
 
+    public void WaitDie()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void DropItem()
+    {
+        //여기 해야됨 !!!!
+
+        //var dropitem = Instantiate(DropItemPrefab);
+        //dropitem.ITEMDATA = ItemManager.GetInstance.DropItem();
+        //dropitem.CreatePrefab();
+        //dropitem.transform.position = this.transform.position;
+
+
+    }
     public void SkillHit()
     {
         if (!isSkillHit)
         {
             isSkillHit = true;
 
-            BossHit(10);
-            Debug.Log("?????? : " + this.name + nowHP);
+            BossHit(true);
             Invoke("HitDelay", 0.5f);
         }
 
@@ -160,4 +196,42 @@ public class DemonBoss : MonoBehaviour
     {
         isSkillHit = false;
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.layer == LayerMask.NameToLayer("PlayerAttack"))
+        {
+            BossHit(false);
+        }
+    }
+
+    void BossHit(bool _isSkill)
+    {
+
+        float value;
+        bool isCritical = PlayerStat.GetInstance.PlayerAttackCriticalCheck();
+        if (_isSkill)
+        {
+            value = (PlayerStat.GetInstance.Damage + PlayerStat.GetInstance.WeaponDamage) * PlayerSkill.GetInstance.Skillmul;
+        }
+        else
+        {
+            value = PlayerStat.GetInstance.Damage + PlayerStat.GetInstance.WeaponDamage;
+        }
+
+
+        if (isCritical)
+        {
+            value *= 2;
+        }
+
+        nowEnemyHP -= value;
+        if (nowEnemyHP <= 0)
+        {
+            BossDie();
+        }
+
+        _bossHpBar.GetDamage(nowEnemyHP, value, transform, isCritical);
+    }
+
 }

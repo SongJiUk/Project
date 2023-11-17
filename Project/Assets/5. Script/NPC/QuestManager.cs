@@ -17,17 +17,20 @@ public class QuestManager : Singleton<QuestManager>
     {
         questList = new Dictionary<int, QuestData>();
 
+        //for(int i = 0; i<DataManager.SlotCount; i++)
+        //{
 
-        questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
+        //}
+        //questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
         GenerateData();
     }
 
     
     void GenerateData()
     {
-        questList.Add(10, new QuestData("?????? ???? ???????", new int[] {1000, 2000}));
-        questList.Add(20, new QuestData("???? ??????", new int[] { 4000, 2000 }));
-        questList.Add(30, new QuestData("???? ????", new int[] { 5000, 2000 }));
+        questList.Add(10, new QuestData("언덕 친구 찾아가기", new int[] {1000, 2000}));
+        questList.Add(20, new QuestData("몬스터 5마리 잡기", new int[] { 4000, 2000 }));
+        questList.Add(30, new QuestData("보스몬스터 잡기", new int[] { 5000, 2000 }));
     }
 
     public int GetQuestTalkIndex(int id)

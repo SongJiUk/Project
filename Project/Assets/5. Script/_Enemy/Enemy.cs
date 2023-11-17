@@ -44,6 +44,10 @@ public class Enemy : MonoBehaviour
     bool isSkillHit = false;
 
     BoxCollider collider;
+
+
+    [SerializeField] ItemDataPickup DropItemPrefab;
+    [SerializeField] ItemDataPickup[] DropGoldPrefab;
     void Awake()
     {
         timer = attackTime;
@@ -121,11 +125,6 @@ public class Enemy : MonoBehaviour
     }
 
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    Debug.Log(other.gameObject) ;
-    //}
-
     void EnemyHit(bool _isSkill)
     {
 
@@ -176,7 +175,6 @@ public class Enemy : MonoBehaviour
             isSkillHit = true;
 
             EnemyHit(true);
-            Debug.Log("아프다 : " + this.name + nowEnemyHP);
             Invoke("HitDelay", 0.5f);
         }
 
@@ -197,6 +195,7 @@ public class Enemy : MonoBehaviour
 
     void EnemyDie()
     {
+        DropItem();
         //콜라이더 제거
         if (null == collider) collider = GetComponent<BoxCollider>();
         if (collider != null) collider.enabled = false;
@@ -207,7 +206,7 @@ public class Enemy : MonoBehaviour
         gameObject.SetActive(false);
 
         PlayerStat.GetInstance.GetExp(EXP);
-        DropItem();
+        
         //objectPoolManager.ObjectDie(gameObject);
         //Anime.enabled = true;
     }
@@ -215,6 +214,13 @@ public class Enemy : MonoBehaviour
     public void DropItem()
     {
         //여기 해야됨 !!!!
+        
+        var dropitem = Instantiate(DropItemPrefab);
+        dropitem.ITEMDATA = ItemManager.GetInstance.DropItem();
+        dropitem.CreatePrefab();
+        dropitem.transform.position = this.transform.position;
+
+
     }
 
     private void OnEnable() // 오브젝트 풀링에의해 다시 활성화될시 정보 초기화

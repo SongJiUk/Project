@@ -35,7 +35,7 @@ public class DamageNum : MonoBehaviour
     }
 
 
-    public void Damage(float damage, int color, Transform _transformHit, bool _isCritical, bool _isAvoidance = false)
+    public void Damage(float damage, int color, Transform _transformHit, bool _isCritical, bool _isAvoidance = false, bool _isPlayerHit = false)
     {
         GameObject DamageUI;
         if(_isAvoidance)
@@ -63,7 +63,8 @@ public class DamageNum : MonoBehaviour
         DamageNumPrefab DamageUIValue = DamageUI.GetComponent<DamageNumPrefab>();
         DamageUIValue.SetPosition(positionUI);
         DamageUIValue.SetDamage(damage);
-        //DamageUIValue.SetColor(color);
+
+        if(_isPlayerHit) DamageUIValue.SetColor(color);
 
     }
 

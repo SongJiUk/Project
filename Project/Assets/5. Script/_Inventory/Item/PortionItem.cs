@@ -12,9 +12,18 @@ public class PortionItem : CountableItem, IUsableItem
     public bool Use()
     {
         // 임시 : 개수 하나 감소
-        Amount--;
+        //Amount--;
 
         return true;
+    }
+
+    public int ReturnAmount()
+    {
+        return Amount;
+    }
+    public void IsKeyDownUse()
+    {
+        Amount--;
     }
 
     protected override CountableItem Clone(int amount)

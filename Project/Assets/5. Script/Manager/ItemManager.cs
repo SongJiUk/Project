@@ -168,7 +168,7 @@ public class ItemManager : Singleton<ItemManager>
     ClassPrivateItems classPrivate;
     Types types;
     Ratings ratings;
-    EGender gender;
+    EquipmmentGender gender;
     public ItemData DropItem()
     {
         
@@ -209,7 +209,16 @@ public class ItemManager : Singleton<ItemManager>
                     {
                         if (ArmorLists[i].Rating == ratings)
                         {
-                            return ArmorLists[i];
+                            if(ArmorLists[i].Type == Types.Head)
+                            {
+                                return ArmorLists[i];
+                            }
+
+                            if (ArmorLists[i].Gender == gender)
+                            {
+                                return ArmorLists[i];
+                            }
+                            else continue;
                         }
                         else continue;
                     }
@@ -266,9 +275,9 @@ public class ItemManager : Singleton<ItemManager>
     {
         if (DataManager.GetInstance.GET_GENDERNUM(DataManager.GetInstance.SLOT_NUM) == 0)
         {
-            gender = EGender.Female;
+            gender = EquipmmentGender.Female;
         }
-        else gender = EGender.male;
+        else gender = EquipmmentGender.male;
     }
     public void CheckJob()
     {

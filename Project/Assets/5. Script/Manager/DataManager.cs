@@ -659,11 +659,23 @@ public class DataManager : Singleton<DataManager>
     }
     #endregion
 
+    bool[] isCreate = new bool[SlotCount];
+
+    public bool GET_ISCREATE(int _slot)
+    {
+        return isCreate[_slot];
+    }
+
+    public void SET_ISCREATE(int _slot, bool _value)
+    {
+        isCreate[_slot] = _value;
+    }
+
     public void SaveData(int _slot)
     {
         isSlotOpen[_slot] = true;
         SetBool("isSlotOpen" + _slot, isSlotOpen[_slot]);
-
+        SetBool("isCreate" + _slot, isCreate[_slot]);
         PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
 
         switch(Slot_Num)
@@ -771,6 +783,10 @@ public class DataManager : Singleton<DataManager>
             string isSlotOpenKey = "isSlotOpen" + i;
             if (PlayerPrefs.HasKey(isSlotOpenKey)) isSlotOpen[i] = GetBool(isSlotOpenKey).HasValue;
             else isSlotOpen[i] = false;
+
+            string isCreateKey = "isCreate" + i;
+            if (PlayerPrefs.HasKey(isCreateKey)) isCreate[i] = GetBool(isCreateKey).HasValue;
+            else isCreate[i] = false;
 
             if (isSlotOpen[i])
             {
@@ -882,6 +898,9 @@ public class DataManager : Singleton<DataManager>
     {
         isSlotOpen[_slot] = false;
         SetBool("isSlotOpen" + _slot, isSlotOpen[_slot]);
+
+        isCreate[_slot] = false;
+        SetBool("isCreate" + _slot, isCreate[_slot]);
 
         PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
 

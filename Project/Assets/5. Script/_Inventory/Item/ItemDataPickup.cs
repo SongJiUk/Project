@@ -8,6 +8,7 @@ public class ItemDataPickup : MonoBehaviour
     
 
     [SerializeField] ItemData _itemdata; // ?????? ??????
+    public ItemData ITEMDATA { get { return _itemdata; } set { _itemdata = value; } }
 
     [SerializeField] bool isOrb = false;
 
@@ -46,6 +47,39 @@ public class ItemDataPickup : MonoBehaviour
                 }
             }
             
+        }
+    }
+
+
+    public void CreatePrefab()
+    {
+        if (_itemdata != null)
+        {
+            if (_itemdata.ItemType != ItemType.Gold)
+            {
+                ItemCode = _itemdata.ItemCode;
+                if (_itemdata.Rating == Ratings.Common)
+                {
+                    _ratingColor.material.color = Color.white;
+                }
+                else if (_itemdata.Rating == Ratings.Rare)
+                {
+                    _ratingColor.material.color = Color.gray;
+                }
+                else if (_itemdata.Rating == Ratings.Unique)
+                {
+                    _ratingColor.material.color = Color.blue;
+                }
+                else if (_itemdata.Rating == Ratings.Legendary)
+                {
+                    _ratingColor.material.color = Color.magenta;
+                }
+                else if (_itemdata.Rating == Ratings.Mythic)
+                {
+                    _ratingColor.material.color = Color.yellow;
+                }
+            }
+
         }
     }
 

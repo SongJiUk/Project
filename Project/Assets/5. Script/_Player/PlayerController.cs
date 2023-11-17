@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     private bool rotateState = false;
     public float fireRate = 0.1f;
     bool isRealeseHold = false;
+    public bool isNoMP;
     #endregion
 
     #region 플레이어 점프 관련
@@ -77,6 +78,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] CameraManager _cameraManager;
 
+    [SerializeField] Inventory inventory;
     private void Awake()
     {
         
@@ -114,6 +116,7 @@ public class PlayerController : MonoBehaviour
     public void Dead()
     {
         isDead = true;
+        player.enabled = false;
         player.ANIM.SetTrigger("isDead");
         player.RIGID.useGravity = false;
         player.Capsulecollider.enabled = false;
@@ -129,23 +132,26 @@ public class PlayerController : MonoBehaviour
         if(weaponManager.ISEQUIP)
         {
             PlayerSkill.GetInstance.CheckSkillNumber(1);
+            
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
-                if (context.performed && !SkillStarted)
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
                     player.ANIM.SetTrigger("PressQ");
+                    
                 }
             }
 
             else if(player.playerStat.UnitCodes == UnitCode.MAGE)
             {
-                if (context.performed && !SkillStarted)
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(40))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
                     player.ANIM.SetTrigger("PressQ");
+                    
                 }
             }
             else if(player.playerStat.UnitCodes == UnitCode.ARCHER)
@@ -153,12 +159,10 @@ public class PlayerController : MonoBehaviour
 
                 if(weaponManager.Weapondata.Type == Types.Bow)
                 {
-                    if (context.performed && !SkillStarted)
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(30))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
-                        
-
                         StartCoroutine(InstantSkill(0));
                         Archer_Bow_Cast[0].GetComponent<ParticleSystem>().Play();
                         //if (Archer_Bow_Cast[0].GetComponent<AudioSource>())
@@ -178,8 +182,9 @@ public class PlayerController : MonoBehaviour
                     if (Enemy != null)
                     {
                         //가장 가까운적에게 5번 공격
-                        if (context.performed && !SkillStarted)
+                        if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(30))
                         {
+                            
                             isUseSkill = true;
                             SkillStarted = true;
                             //aimTimer = 2;
@@ -239,7 +244,7 @@ public class PlayerController : MonoBehaviour
             PlayerSkill.GetInstance.CheckSkillNumber(2);
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
-                if (context.performed && !SkillStarted)
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -249,7 +254,7 @@ public class PlayerController : MonoBehaviour
 
             else if (player.playerStat.UnitCodes == UnitCode.MAGE)
             {
-                if (context.performed && !SkillStarted)
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -260,7 +265,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(weaponManager.Weapondata.Type == Types.Bow)
                 {
-                    if (context.performed && !SkillStarted)
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -294,7 +299,7 @@ public class PlayerController : MonoBehaviour
                 else if (weaponManager.Weapondata.Type == Types.CrossBow)
                 {
                     //위로 쏴서 빙결 
-                    if (context.performed && !SkillStarted)
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -349,7 +354,7 @@ public class PlayerController : MonoBehaviour
             PlayerSkill.GetInstance.CheckSkillNumber(3);
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
-                if (context.performed && !SkillStarted)
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -358,7 +363,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (player.playerStat.UnitCodes == UnitCode.MAGE)
             {
-                if (context.performed && !SkillStarted)
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -369,7 +374,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (weaponManager.Weapondata.Type == Types.Bow)
                 {
-                    if (context.performed && !SkillStarted)
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -390,7 +395,6 @@ public class PlayerController : MonoBehaviour
                     if (context.canceled)
                     {
                         isRealeseHold = true;
-
                         if (myCoroutine_SkillCast_2 == null && isCastOff_noPress) StopCoroutine(myCoroutine_SkillCast_2);
                         TargetMarker_Front.SetActive(false);
                         TargetMarker_PreCast.SetActive(false);
@@ -403,7 +407,7 @@ public class PlayerController : MonoBehaviour
                 else if (weaponManager.Weapondata.Type == Types.CrossBow)
                 {
                     //앞으로 용발
-                    if (context.performed && !SkillStarted)
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -979,6 +983,61 @@ public class PlayerController : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.P))
         {
             Dead();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if(ScreenSlotManager.GetInstance.isSlot1_Use)
+            {
+                PlayerStat.GetInstance.GetHeel(100);
+                ScreenSlotManager.GetInstance.UsePortion(0);
+                DataManager.GetInstance.SET_INVENTORYSLOT(ScreenSlotManager.GetInstance.isSlot1_index
+                    , ScreenSlotManager.GetInstance.isSlot1_itemCode
+                    ,DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(ScreenSlotManager.GetInstance.isSlot1_index) - 1);
+
+                inventory.UpdateSlots(ScreenSlotManager.GetInstance.isSlot1_index);
+
+                //if (DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(ScreenSlotManager.GetInstance.isSlot1_index) == 0)
+                //{
+                //    ScreenSlotManager.GetInstance.PortionSlotUpdate(0, ScreenSlotManager.GetInstance.isSlot1_index
+                //        , ScreenSlotManager.GetInstance.isSlot1_itemCode, 0, false);
+                //}
+
+                if (ScreenSlotManager.GetInstance.hp_amount == 0)
+                {
+                    ScreenSlotManager.GetInstance.PortionSlotUpdate(0, ScreenSlotManager.GetInstance.isSlot1_index
+                        , ScreenSlotManager.GetInstance.isSlot1_itemCode, 0, false);
+                }
+            }
+
+           
+        }
+
+        if(Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            if (ScreenSlotManager.GetInstance.isSlot2_Use)
+            {
+                PlayerStat.GetInstance.RecoveryMp(100);
+                ScreenSlotManager.GetInstance.UsePortion(1);
+                DataManager.GetInstance.SET_INVENTORYSLOT(ScreenSlotManager.GetInstance.isSlot2_index
+                    , ScreenSlotManager.GetInstance.isSlot2_itemCode
+                    , DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(ScreenSlotManager.GetInstance.isSlot2_index) - 1);
+
+
+                inventory.UpdateSlots(ScreenSlotManager.GetInstance.isSlot2_index);
+
+                //if (DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(ScreenSlotManager.GetInstance.isSlot2_index) == 0)
+                //{
+                //    ScreenSlotManager.GetInstance.PortionSlotUpdate(1, ScreenSlotManager.GetInstance.isSlot2_index
+                //        , ScreenSlotManager.GetInstance.isSlot2_itemCode, 0, false);
+                //}
+
+                if (ScreenSlotManager.GetInstance.mp_amount == 0)
+                {
+                    ScreenSlotManager.GetInstance.PortionSlotUpdate(1, ScreenSlotManager.GetInstance.isSlot2_index
+                        , ScreenSlotManager.GetInstance.isSlot2_itemCode, 0, false);
+                }
+            }
         }
     }
 

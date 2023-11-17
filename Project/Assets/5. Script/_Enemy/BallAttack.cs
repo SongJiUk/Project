@@ -9,9 +9,6 @@ public class BallAttack : MonoBehaviour
     [SerializeField]
     Transform EffectPosition;
     Player player;
-    private void Start()
-    {
-    }
 
     private void Update()
     {
@@ -22,7 +19,9 @@ public class BallAttack : MonoBehaviour
     }
     public void BallAttacks()
     {
+        Enemy enemy = GetComponent<Enemy>();
         transform.LookAt(player.transform);
-        Instantiate(attackEffectPrefab, EffectPosition.position, Quaternion.identity);
+        var enemyattck =Instantiate(attackEffectPrefab, EffectPosition.position, Quaternion.identity);
+        enemyattck.GetComponent<EnemyAttack>().damage = enemy.damage;
     }
 }

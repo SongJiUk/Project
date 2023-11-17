@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.AI;
 using UnityEngine.UI;
 
 public class NPC : MonoBehaviour
@@ -23,6 +24,7 @@ public class NPC : MonoBehaviour
     [SerializeField] string NPCNAME;
     [SerializeField] string[] NPCTALK;
     [SerializeField] bool isSellNPC;
+    [SerializeField] bool isQuestNPC;
     [SerializeField] GameObject npc_Name;
     [SerializeField] GameObject npc_Talk;
 
@@ -45,14 +47,34 @@ public class NPC : MonoBehaviour
     private Vector3 centerPosition;
 
     public GameObject SellNPCPopup;
+    public GameObject QuestNPCPopup;
 
+    public Transform[] Waypoint;
+    private NavMeshAgent navMeshAgent;
+    Animator anim;
+    private int currentWaypointIndex = 0;
     void Start()
     {
+        
         if (player == null)
         {
             player = Player.GetInstance;
         }
 
+        anim = GetComponent<Animator>();
+        navMeshAgent = GetComponent<NavMeshAgent>();
+
+        if (Waypoint.Length > 0)
+        {
+            SetDestination();
+        }
+
+
+        if (!isSellNPC)
+        {
+            anim.SetBool("IsWalk", true);
+            SetNextWaypoint();
+        }
         manager = GameManager.GetInstance;
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
         boxCollider = GetComponent<BoxCollider>();
@@ -72,13 +94,14 @@ public class NPC : MonoBehaviour
             Debug.Log("npc_name_txt is null.");
         }
     }
+    float distanceToPlayer;
     void Update()
     {
 
-        if(isSellNPC)
+        if (isSellNPC)
         {
 
-            float distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
             if (distanceToPlayer <= nav.stoppingDistance)
             {
@@ -100,50 +123,73 @@ public class NPC : MonoBehaviour
 
                     if (SellNPCPopup != null) SellNPCPopup.SetActive(true);
 
+                    anim.SetBool("Isconversation", true);
+                }
+
+                if (SellNPCPopup.activeSelf == false) anim.SetBool("Isconversation", false);
+            }
+            else if (isQuestNPC)
+            {
+                 distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
+
+                if (distanceToPlayer <= nav.stoppingDistance)
+                {
+                    if (!interection && scanObj != null)
+                    {
+                        interection = true;
+                        InteretionText.SetActive(true);
+                    }
+                    Vector3 dir = player.transform.position - transform.position;
+                    dir.y = 0f;
+                    Quaternion rot = Quaternion.LookRotation(dir.normalized);
+                    transform.rotation = rot;
+
+                    scanObj = gameObject;
+                    if (Input.GetKeyDown(KeyCode.C) && scanObj != null)
+                    {
+                        InteretionText.SetActive(false);
+                        //manager.Action(scanObj);
+
+                        if (QuestNPCPopup != null) QuestNPCPopup.SetActive(true);
+                        QuestCheck();
+
+
+
+
+                        anim.SetBool("Isconversation", true);
+                    }
+
+                    if (QuestNPCPopup.activeSelf == false) anim.SetBool("Isconversation", false);
+                }
+                else
+                {
+                    if (QuestNPCPopup.activeSelf == false) anim.SetBool("Isconversation", false);
+
+                    if (interection)
+                    {
+                        interection = false;
+                        InteretionText.SetActive(false);
+                    }
+                    scanObj = null;
 
                 }
             }
             else
             {
-                if (interection)
+                if (navMeshAgent.remainingDistance < 0.1f && navMeshAgent.pathPending == false)
                 {
-                    interection = false;
-                    InteretionText.SetActive(false);
+                    anim.SetBool("IsWalk", true);
+                    SetNextWaypoint();
+
                 }
-                scanObj = null;
             }
+
         }
-        else
-        {
-            //// 이동 방향을 계산합니다.
-            //Vector3 direction = centerPosition - transform.position;
+    }
 
-            //// 이동합니다.
-            //transform.position += direction * speed * Time.deltaTime;
-
-            //// 이동 거리를 업데이트합니다.
-            //distance -= Vector3.Distance(startPosition, transform.position);
-
-            //// 사각형의 경계선을 벗어나면 방향을 반대로 바꿉니다.
-            //if (transform.position.x < centerPosition.x - width / 2)
-            //{
-            //    direction.x = -direction.x;
-            //}
-            //else if (transform.position.x > centerPosition.x + width / 2)
-            //{
-            //    direction.x = -direction.x;
-            //}
-
-            //if (transform.position.y < centerPosition.y - height / 2)
-            //{
-            //    direction.y = -direction.y;
-            //}
-            //else if (transform.position.y > centerPosition.y + height / 2)
-            //{
-            //    direction.y = -direction.y;
-            //}
-        }
-        
+    public void QuestCheck()
+    {
+        string questName = QuestManager.GetInstance.CheckQuest();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -152,6 +198,17 @@ public class NPC : MonoBehaviour
 
         if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
+            if(!isSellNPC)
+            {
+                anim.SetBool("IsWalk", false);
+                int Rand1 = Random.Range(0, 3);
+                anim.SetBool("Isinterection", true);
+                anim.SetInteger("CheerNum", Rand1);
+                navMeshAgent.isStopped = true;
+
+            }
+
+
             int Rand = Random.Range(0, 2); 
             npc_Name.SetActive(true);
             npc_Talk.SetActive(true);
@@ -183,8 +240,26 @@ public class NPC : MonoBehaviour
             npc_Name.SetActive(false);
             npc_Talk.SetActive(false);
             npc_talk_txt.text = "";
+            if (!isSellNPC)
+            {
+                anim.SetBool("Isinterection", false);
+                anim.SetBool("IsWalk", true);
+                navMeshAgent.isStopped = false;
+                SetNextWaypoint();
+            }
 
         }
        
+    }
+
+    void SetDestination()
+    {
+        navMeshAgent.SetDestination(Waypoint[currentWaypointIndex].position);
+    }
+
+    void SetNextWaypoint()
+    {
+        currentWaypointIndex = (currentWaypointIndex + 1) % Waypoint.Length;
+        SetDestination();
     }
 }

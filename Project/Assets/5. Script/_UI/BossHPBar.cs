@@ -30,10 +30,6 @@ public class BossHPBar : MonoBehaviour
             SetHpBarFollow();
         }
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
-            SetMaxHP(100);
-        }
     }
 
     private void CheckHp()
@@ -55,7 +51,7 @@ public class BossHPBar : MonoBehaviour
         SetHpBar();
     }
 
-    public void GetDamage(float nowHP, int damage, Transform _transformHit, bool _iscritical)
+    public void GetDamage(float nowHP, float damage, Transform _transformHit, bool _iscritical)
     {
         NowHp = nowHP;
 

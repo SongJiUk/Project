@@ -68568,6 +68568,7 @@ GameObject:
   - component: {fileID: 3678538727009741921}
   - component: {fileID: 8789470033423046211}
   - component: {fileID: 2037226226582119657}
+  - component: {fileID: -2695991321213605510}
   m_Layer: 12
   m_Name: Toon expoision
   m_TagString: Untagged
@@ -73484,6 +73485,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c26d3adf823d6342886cbf393cc6797, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2695991321213605510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6786030849893512365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1eb17d191c24f71a6c0ee058c88143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 90
 --- !u!1 &7492245266090644487
 GameObject:
   m_ObjectHideFlags: 0

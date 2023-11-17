@@ -49092,6 +49092,7 @@ GameObject:
   - component: {fileID: 6573955752913134081}
   - component: {fileID: 1325285390519784354}
   - component: {fileID: 8428639043169850565}
+  - component: {fileID: -663163631723340886}
   m_Layer: 12
   m_Name: BlackHole
   m_TagString: Untagged
@@ -53983,6 +53984,19 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &-663163631723340886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4904163772305398667}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf1eb17d191c24f71a6c0ee058c88143, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 60
 --- !u!1 &4912305950450651912
 GameObject:
   m_ObjectHideFlags: 0

@@ -206,6 +206,16 @@ public class Inventory : MonoBehaviour
         return -1;
     }
 
+    public void UpdateSlots(int index)
+    {
+        
+        if (_items[index] is IUsableItem uItem)
+        {
+            uItem.IsKeyDownUse();
+        }
+
+        UpdateSlot(index);
+    }
     /// <summary> 해당하는 인덱스의 슬롯 상태 및 UI 갱신 </summary>
     private void UpdateSlot(int index)
     {
@@ -398,7 +408,9 @@ public class Inventory : MonoBehaviour
                         amount = ci.AddAmountAndGetExcess(amount);
 
                         UpdateSlot(index);
-                        DataManager.GetInstance.SET_INVENTORYSLOT(index, itemData.ItemCode, amount);
+
+                        DataManager.GetInstance.SET_INVENTORYSLOT(index, _items[index].Data.ItemCode, ci.Amount);
+
                     }
                 }
                 // 1-2. 빈 슬롯 탐색
@@ -602,10 +614,18 @@ public class Inventory : MonoBehaviour
         {
             // 아이템 사용
             bool succeeded = uItem.Use();
-            DataManager.GetInstance.SET_INVENTORYSLOT(index, _items[index].Data.ItemCode
-                ,DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(index)-1);
+            
             if (succeeded)
             {
+                if(_items[index].Data.ItemCode == 9999)
+                {
+                    ScreenSlotManager.GetInstance.PortionSlotUpdate(0, index, _items[index].Data.ItemCode, uItem.ReturnAmount(), true);
+                    
+                }
+                else if (_items[index].Data.ItemCode == 8888)
+                {
+                    ScreenSlotManager.GetInstance.PortionSlotUpdate(1, index, _items[index].Data.ItemCode, uItem.ReturnAmount(), true);
+                }
                 UpdateSlot(index);
             }
         }

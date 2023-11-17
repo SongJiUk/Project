@@ -105,7 +105,7 @@ public class PlayerStat : Singleton<PlayerStat>
         {
             case UnitCode.WARRIOR:
                 ComboDelay = 1.5f;
-                if(Level == 1)
+                if(DataManager.GetInstance.GET_ISCREATE(DataManager.GetInstance.SLOT_NUM))
                 {
                     MaxHp = W_DefaultHP;
                     MaxMp = W_DefaultMP;
@@ -137,7 +137,7 @@ public class PlayerStat : Singleton<PlayerStat>
 
             case UnitCode.MAGE:
                 ComboDelay = 2f;
-                if(Level == 1)
+                if (DataManager.GetInstance.GET_ISCREATE(DataManager.GetInstance.SLOT_NUM))
                 {
                     MaxHp = M_DefaultHP;
                     MaxMp = M_DefaultMP;
@@ -169,7 +169,7 @@ public class PlayerStat : Singleton<PlayerStat>
 
             case UnitCode.ARCHER:
                 ComboDelay = 1f;
-                if(Level == 1)
+                if (DataManager.GetInstance.GET_ISCREATE(DataManager.GetInstance.SLOT_NUM))
                 {
                     MaxHp = A_DefaultHP;
                     MaxMp = A_DefaultMP;
@@ -182,6 +182,7 @@ public class PlayerStat : Singleton<PlayerStat>
                     NowMp = MaxMp;
                     NowExp = 0;
                     MaxExp = Level * DataManager.LevelUpEXP;
+                    DataManager.GetInstance.SET_ISCREATE(DataManager.GetInstance.SLOT_NUM, false);
                 }
                 else
                 {
@@ -218,9 +219,9 @@ public class PlayerStat : Singleton<PlayerStat>
 
     public bool PlayerAttackCriticalCheck()
     {
-        int rand = Random.Range(0, 101);
+        float rand = Random.Range(1f, 100f);
 
-        if (rand <= CriticalChance) return true;
+        if (rand < CriticalChance) return true;
         else return false;
     }
 
@@ -365,6 +366,7 @@ public class PlayerStat : Singleton<PlayerStat>
     {
         if (NowHp <= 0)
         {
+            NowHp = 0;
             Hpvalue = 0;
             if (playerController == null) playerController = GetComponent<PlayerController>();
 
@@ -419,7 +421,15 @@ public class PlayerStat : Singleton<PlayerStat>
     }
 
 
-   
+    public void Recorvery()
+    {
+        NowHp = MaxHp;
+        NowMp = MaxMp;
+        DataManager.GetInstance.SET_PALYER_NOWHP(DataManager.GetInstance.SLOT_NUM, NowHp);
+        DataManager.GetInstance.SET_PALYER_NOWMP(DataManager.GetInstance.SLOT_NUM, NowMp);
+        GetDamage();
+        UseMp();
+    }
 
     public void GetDamage(int damage = 0)
     {
@@ -438,20 +448,23 @@ public class PlayerStat : Singleton<PlayerStat>
         CheckHp();
 
         SetNowHP(Hpvalue);
-        DamageNum.instance.Damage(damage, 1, this.transform, false, isAvoidance);
+        DamageNum.instance.Damage(damage, 0, this.transform, false, isAvoidance, true);
     }
 
-    public void UseMp(int num = 0)
+    public bool UseMp(int num = 0)
     {
-        NowMp -= num;
-        if (NowMp < 0)
+        
+        if (NowMp - num < 0)
         {
-            NowMp = 0;
+            PopupManager.GetInstance.NoMpPopup();
+            return false;
         }
+        else NowMp -= num;
         CheckMp();
         SetNowMP(Mpvalue);
-
         SaveData();
+
+        return true;
     }
 
     public void GetExp(int num =0)
@@ -485,22 +498,46 @@ public class PlayerStat : Singleton<PlayerStat>
         if (NowMp > MaxMp)
         {
             NowMp = MaxMp;
+
         }
         CheckMp();
-        SetNowMP(Hpvalue);
+        SetNowMP(Mpvalue);
         SaveData();
     }
 
+    #region 피격시 무시간 1.5초
+    private bool isInvincible = false;
+    public float invincibilityDuration = 1.5f;
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Enemy") || other.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
+        if (!isInvincible && other.gameObject.layer == LayerMask.NameToLayer("Enemy"))
         {
             GetDamage(other.GetComponent<Enemy>().damage);
+            StartCoroutine(InvincibilityCooldown());
+        }
+
+        if (!isInvincible && other.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
+        {
+            GetDamage(other.GetComponent<EnemyAttack>().damage);
+            StartCoroutine(InvincibilityCooldown());
+        }
+
+        if (!isInvincible && other.gameObject.layer == LayerMask.NameToLayer("Boss"))
+        {
+            GetDamage(other.GetComponent<DemonBoss>().Damage);
+            StartCoroutine(InvincibilityCooldown());
         }
     }
 
+    private IEnumerator InvincibilityCooldown()
+    {
+        isInvincible = true;
+        yield return new WaitForSeconds(invincibilityDuration);
+        isInvincible = false;
+    }
 
+    #endregion
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.L))

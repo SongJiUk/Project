@@ -13,8 +13,13 @@ public class DragonBreath : MonoBehaviour
     Player player;
     private void Start()
     {
+        Enemy enemy = GetComponent<Enemy>();
+
+
+        
         player = Player.GetInstance;
         GameObject obj = Instantiate(attackEffectPrefab);
+        obj.GetComponent<EnemyAttack>().damage = enemy.damage;
         obj.transform.SetParent(EffectPosition);
         obj.transform.localPosition = Vector3.zero;
         obj.transform.localRotation = Quaternion.identity;

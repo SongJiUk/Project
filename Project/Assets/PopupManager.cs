@@ -14,11 +14,23 @@ public class PopupManager : Singleton<PopupManager>
 
     public GameObject DeadGoTown_Popup;
     public GameObject CallBackTown_Popup;
+    public GameObject NoMp_Popup;
 
 
     private void Awake()
     {
-        DontDestroyOnLoad(gameObject);
+
+    }
+
+    public void NoMpPopup()
+    {
+        NoMp_Popup.SetActive(true);
+        Invoke("WaitClosePopup", 1.5f);
+    }
+
+    public void WaitClosePopup()
+    {
+        NoMp_Popup.SetActive(false);
     }
 
     public void DeadGoTownBtn()
@@ -26,6 +38,7 @@ public class PopupManager : Singleton<PopupManager>
         DeadGoTown_Popup.SetActive(false);
         CameraManager.GetInstance.ISUIOFF = false;
         UIManager.GetInstance.isOnPopupCount--;
+        PlayerStat.GetInstance.Recorvery();
         LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
     }
 

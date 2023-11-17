@@ -92,7 +92,7 @@ public class EquipmentUI : MonoBehaviour
        *                               Init Methods
        ***********************************************************************/
 
-    [Header("캐릭터 스탯창")]
+    [Header("?????? ??????")]
     [SerializeField] Text Name_txt;
     [SerializeField] Text Level_txt;
     [SerializeField] Text Job_txt;
@@ -125,26 +125,26 @@ public class EquipmentUI : MonoBehaviour
         switch (PlayerStat.GetInstance.UnitCodes)
         {
             case UnitCode.WARRIOR:
-                Job_txt.text = "전사";
+                Job_txt.text = "??";
                 break;
 
             case UnitCode.MAGE:
-                Job_txt.text = "마법사";
+                Job_txt.text = "???";
                 break;
 
             case UnitCode.ARCHER:
-                Job_txt.text = "궁수";
+                Job_txt.text = "??";
                 break;
         }
 
         switch (PlayerStat.GetInstance.gender)
         {
             case EGender.Female:
-                Gender_txt.text = "여자";
+                Gender_txt.text = "??";
                 break;
 
             case EGender.male:
-                Gender_txt.text = "남자";
+                Gender_txt.text = "??";
                 break;
 
         }
