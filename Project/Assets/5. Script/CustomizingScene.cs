@@ -86,6 +86,8 @@ public class CustomizingScene : MonoBehaviour
             //var operation = SceneManager.LoadSceneAsync("4_TownMap");
             //operation.allowSceneActivation = true;
             DataManager.GetInstance.SET_ISCREATE(DataManager.GetInstance.SLOT_NUM, true);
+            DataManager.GetInstance.SET_QUEST_ID(DataManager.GetInstance.SLOT_NUM, 10);
+            DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
             LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
         }
         else RealUseName_Popup.SetActive(false);

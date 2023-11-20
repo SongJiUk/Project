@@ -6,11 +6,12 @@ public class SpecterAttack : MonoBehaviour
 {
     [SerializeField]
     GameObject Sword;
-
+    public int damage;
     BoxCollider SwordCollider;
     void Start()
     {
         SwordCollider = Sword.GetComponent<BoxCollider>();
+        damage = 10;
     }
     
     public void SwordAttack()

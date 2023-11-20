@@ -149,6 +149,7 @@ public class DemonBoss : MonoBehaviour
     void BossDie()
     {
         DropItem();
+        QuestManager.GetInstance.CheckKillCount();
         //콜라이더 제거
         if (null == collider) collider = GetComponent<BoxCollider>();
         if (collider != null) collider.enabled = false;

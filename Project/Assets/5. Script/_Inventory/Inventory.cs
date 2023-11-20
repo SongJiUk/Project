@@ -357,7 +357,7 @@ public class Inventory : MonoBehaviour
     }
 
 
-    //여기에요 여기!
+
     public void GetGold(int _gold)
     {
         int gold = DataManager.GetInstance.GET_PLAYER_GOLD(DataManager.GetInstance.SLOT_NUM);

@@ -6,14 +6,34 @@ public class QuestManager : Singleton<QuestManager>
 {
     [SerializeField]
     int questId;
+
+    public int QUESTID { get { return questId; } }
+
+    public int NPCID;
     [SerializeField]
     int questActionIndex;
     [SerializeField]
     GameObject[] questObject;
 
+    [SerializeField]
+    List<QuestDatas> questDatas;
+
+    public QuestDatas NowQuest;
+
     Dictionary<int, QuestData> questList;
 
+    public bool isAllClear;
+    public bool isQuesting;
+    public bool isQuestClear;
+
+    public int KillCount;
     private void Awake()
+    {
+       
+
+    }
+
+    private void Start()
     {
         questList = new Dictionary<int, QuestData>();
 
@@ -22,35 +42,69 @@ public class QuestManager : Singleton<QuestManager>
 
         //}
         //questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
-        GenerateData();
+        //GenerateData();
+        CheckQuestData();
     }
 
-    
-    void GenerateData()
+
+    void CheckQuestData()
     {
-        questList.Add(10, new QuestData("언덕 친구 찾아가기", new int[] {1000, 2000}));
-        questList.Add(20, new QuestData("몬스터 5마리 잡기", new int[] { 4000, 2000 }));
-        questList.Add(30, new QuestData("보스몬스터 잡기", new int[] { 5000, 2000 }));
+        questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
+        for(int i=0; i< questDatas.Count; i++)
+        {
+            if(questDatas[i].questId == questId)
+            {
+                NowQuest = questDatas[i];
+                if(!isQuesting) NPCID = NowQuest.Before_NPCId;
+                break;
+            }
+        }
+
+
     }
 
-    public int GetQuestTalkIndex(int id)
+    public QuestDatas GetNowQuest()
     {
-        return questId + questActionIndex;
+        return NowQuest;
     }
 
-    public string CheckQuest(int id)
+   
+
+    public void QuestMidterminspection()
     {
-
-        if (id == questList[questId].npcId[questActionIndex])
-        questActionIndex++;
-
-        ControlObject();
-
-        if (questActionIndex == questList[questId].npcId.Length)
-            NextQuest();
-
-        return questList[questId].questName;
+        if(NowQuest.questtype == EQuestGoal.Talk) isQuestClear = true;
+        else
+        {
+            if (KillCount == NowQuest.KillCount) isQuestClear = true;
+        }
+        
     }
+
+    public void CheckKillCount()
+    {
+        if (KillCount >= NowQuest.KillCount)
+        {
+            KillCount = NowQuest.KillCount;
+            QuestMidterminspection();
+        }
+        else KillCount++;
+
+
+    }
+
+    public bool QuestCheck()
+    {
+        return isQuestClear;
+    }
+
+    public void ClearQuest()
+    {
+        isQuesting = false;
+        isQuestClear = false;
+        KillCount = 0;
+        NextQuest();
+    }
+
 
     public string CheckQuest()
     {
@@ -60,22 +114,12 @@ public class QuestManager : Singleton<QuestManager>
     void NextQuest()
     {
         questId += 10;
+        if (questId > 30) isAllClear = true;
         DataManager.GetInstance.SET_QUEST_ID(DataManager.GetInstance.SLOT_NUM, questId);
         questActionIndex = 0;
+        CheckQuestData();
+        NPCID = NowQuest.Before_NPCId;
     }
 
-    void ControlObject()
-    {
-        switch (questId)
-        {
-            case 10:
-                if (questActionIndex == 2)
-                    questObject[0].SetActive(true);
-                break;
-            case 20:
-                if (questActionIndex == 1)
-                    questObject[0].SetActive(false);
-                break;
-        }
-    }
+   
 }

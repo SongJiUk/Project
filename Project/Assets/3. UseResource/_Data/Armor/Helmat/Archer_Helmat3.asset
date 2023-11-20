@@ -23,7 +23,7 @@ MonoBehaviour:
   _itemtype: 2
   _itemprice: 1000
   Type: 0
-  ClassPrivateItem: 0
+  ClassPrivateItem: 2
   Gender: 2
   _EquipmentNum: 0
   _EquipmentLevel: 10

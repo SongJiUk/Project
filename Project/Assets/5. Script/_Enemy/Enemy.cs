@@ -196,6 +196,8 @@ public class Enemy : MonoBehaviour
     void EnemyDie()
     {
         DropItem();
+
+        if(QuestManager.GetInstance.QUESTID == 20) QuestManager.GetInstance.CheckKillCount();
         //콜라이더 제거
         if (null == collider) collider = GetComponent<BoxCollider>();
         if (collider != null) collider.enabled = false;

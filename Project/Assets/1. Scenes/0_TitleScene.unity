@@ -2139,7 +2139,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   questId: 0
   questActionIndex: 0
-  questObject: []
+  questObject:
+  - {fileID: 0}
+  questDatas:
+  - {fileID: 11400000, guid: 5d349dc289e084c04a608c9869d9417f, type: 2}
+  - {fileID: 11400000, guid: 3c034fab7ea86433f9e2faf1f2064d3f, type: 2}
+  - {fileID: 11400000, guid: b1850280dd00f4d83949cf3094a3ce88, type: 2}
 --- !u!1 &2123059503
 GameObject:
   m_ObjectHideFlags: 0

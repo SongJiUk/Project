@@ -53,3 +53,10 @@ public enum EquipmmentGender
     Public
 }
 
+[Serializable]
+public enum EQuestGoal
+{
+    Kill,
+    Talk
+}
+

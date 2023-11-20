@@ -40,27 +40,27 @@ public class GameManager : Singleton<GameManager>
     void Talk(int id, bool isNpc, bool isSellNPC)
     {
 
-        int questTalkIndex = questManager.GetQuestTalkIndex(id);
-        string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
+        //int questTalkIndex = questManager.GetQuestTalkIndex(id);
+        //string talkData = talkManager.GetTalk(id + questTalkIndex, talkIndex);
 
-        if (talkData == null)
-        {
-            isAction = false;
-            talkIndex = 0;
-            Debug.Log(questManager.CheckQuest(id));
-            return;
-        }
+        //if (talkData == null)
+        //{
+        //    isAction = false;
+        //    talkIndex = 0;
+        //    Debug.Log(questManager.CheckQuest(id));
+        //    return;
+        //}
 
-        if (isNpc)
-        {
-            talkText.text = talkData;
-        }
-        else
-        {
-            talkText.text = talkData;
-        }
+        //if (isNpc)
+        //{
+        //    talkText.text = talkData;
+        //}
+        //else
+        //{
+        //    talkText.text = talkData;
+        //}
 
-        isAction = true;
-        talkIndex++;
+        //isAction = true;
+        //talkIndex++;
     }
 }

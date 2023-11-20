@@ -118,6 +118,7 @@ public class PlayerStat : Singleton<PlayerStat>
                     NowMp = MaxMp;
                     NowExp = 0;
                     MaxExp = Level * DataManager.LevelUpEXP;
+                    DataManager.GetInstance.SET_ISCREATE(DataManager.GetInstance.SLOT_NUM, false);
                 }
                 else
                 {
@@ -150,6 +151,7 @@ public class PlayerStat : Singleton<PlayerStat>
                     NowMp = MaxMp;
                     NowExp = 0;
                     MaxExp = Level * DataManager.LevelUpEXP;
+                    DataManager.GetInstance.SET_ISCREATE(DataManager.GetInstance.SLOT_NUM, false);
                 }
                 else
                 {
@@ -164,6 +166,7 @@ public class PlayerStat : Singleton<PlayerStat>
                     NowMp = DataManager.GetInstance.GET_PLAYER_NOWMP(slotNum);
                     NowExp = DataManager.GetInstance.GET_PLAYER_EXP(slotNum);
                     MaxExp = Level * DataManager.LevelUpEXP;
+
                 }
                 break;
 
@@ -520,6 +523,12 @@ public class PlayerStat : Singleton<PlayerStat>
         if (!isInvincible && other.gameObject.layer == LayerMask.NameToLayer("EnemyAttack"))
         {
             GetDamage(other.GetComponent<EnemyAttack>().damage);
+            StartCoroutine(InvincibilityCooldown());
+        }
+
+        if (!isInvincible && other.gameObject.layer == LayerMask.NameToLayer("Specter"))
+        {
+            GetDamage(other.GetComponent<SpecterAttack>().damage);
             StartCoroutine(InvincibilityCooldown());
         }
 
