@@ -161,13 +161,14 @@ public class NPC : MonoBehaviour
                     if (Input.GetKeyDown(KeyCode.C) && scanObj != null)
                     {
                         InteretionText.SetActive(false);
+                        if (QuestNPCPopup != null) QuestNPCPopup.SetActive(true);
 
                         if (QuestManager.GetInstance.QUESTID == 10)
                         {
                             QuestManager.GetInstance.QuestMidterminspection();
                         }
 
-                        if (QuestNPCPopup != null) QuestNPCPopup.SetActive(true);
+                        
 
                         anim.SetBool("Isconversation", true);
                     }

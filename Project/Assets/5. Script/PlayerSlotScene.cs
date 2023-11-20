@@ -133,6 +133,7 @@ public class PlayerSlotScene : MonoBehaviour
         if (_isanswer)
         {
             gameStartPopup.SetActive(false);
+            QuestManager.GetInstance.CheckQuestData();
             LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
         }
         else gameStartPopup.SetActive(false);
@@ -148,6 +149,12 @@ public class PlayerSlotScene : MonoBehaviour
             NoUseSlot[SlotNum].SetActive(true);
             CompleteDelete_Popup.SetActive(true);
             DeleteSlot_Popup.SetActive(false);
+
+            CreateCharacter_Btn.SetActive(true);
+            GameStart_Btn.SetActive(false);
+            DeleteSlot_Btn.SetActive(false);
+
+            DataManager.GetInstance.LoadData();
 
         }
         else DeleteSlot_Popup.SetActive(false);

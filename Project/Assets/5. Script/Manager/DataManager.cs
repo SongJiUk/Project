@@ -901,7 +901,10 @@ public class DataManager : Singleton<DataManager>
 
         isCreate[_slot] = false;
         SetBool("isCreate" + _slot, isCreate[_slot]);
-
+        
+        
+        if (SlotJob.ContainsKey(_slot)) SlotJob.Remove(_slot);
+       
         PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
 
         for (int num = 0; num < InventorySlotNum; num++)

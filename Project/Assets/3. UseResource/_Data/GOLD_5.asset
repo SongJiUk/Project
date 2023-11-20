@@ -17,7 +17,7 @@ MonoBehaviour:
   _name: money
   _itemCodeName: Gold5
   _tooltip: money
-  _iconSprite: {fileID: 0}
+  _iconSprite: {fileID: 21300000, guid: ff1b26432c9684be48f1b333b517e866, type: 3}
   _dropItemPrefab: {fileID: 2590264353337185668, guid: cc7944eaa1a4444c9b394b91343bf048, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 3

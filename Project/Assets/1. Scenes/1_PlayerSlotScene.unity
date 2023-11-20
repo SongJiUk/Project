@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.37311924, g: 0.38073963, b: 0.3587269, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11786,6 +11786,11 @@ MonoBehaviour:
   isEquipPants: 0
   isEquipHand: 0
   isEquipShoes: 0
+  HelmatData: {fileID: 0}
+  TopData: {fileID: 0}
+  PantsData: {fileID: 0}
+  HandData: {fileID: 0}
+  ShoesData: {fileID: 0}
   AppearanceOBJ: {fileID: 0}
   ClothesOBJ: {fileID: 0}
   BackBtn: {fileID: 0}

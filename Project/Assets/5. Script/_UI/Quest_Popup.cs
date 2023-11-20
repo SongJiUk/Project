@@ -36,7 +36,7 @@ public class Quest_Popup : MonoBehaviour
         if(QuestManager.GetInstance.QuestCheck())
         {
             QuestName_txt.text = "퀘스트 완료";
-            QuestTitle_txt.text = "감사합니! 약속한 보상을 드릴테니 사양말고 받아주세요!";
+            QuestTitle_txt.text = "감사합니다! 약속한 보상을 드릴테니 사양말고 받아주세요!, 체력도 회복시켜드릴게요!";
 
             for (int i = 0; i < Quest_Reward_Img.Length; i++)
             {
@@ -109,6 +109,9 @@ public class Quest_Popup : MonoBehaviour
 
         QuestManager.GetInstance.NPCID = NowQuest.After_NPCId;
         QuestManager.GetInstance.isQuesting = true;
+        
+        CameraManager.GetInstance.ISUIOFF = true;
+        UIManager.GetInstance.isOnPopupCount--;
     }
 
     public void RefuseQuest()

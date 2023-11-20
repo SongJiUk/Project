@@ -870,7 +870,6 @@ public class PlayerController : MonoBehaviour
                 if(context.canceled)
                 {
                     isRun = false;
-                    Debug.Log(isRun);
                     player.ANIM.SetBool("isRun", isRun);
                 }
             }

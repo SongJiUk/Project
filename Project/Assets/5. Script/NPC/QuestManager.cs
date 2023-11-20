@@ -43,11 +43,10 @@ public class QuestManager : Singleton<QuestManager>
         //}
         //questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
         //GenerateData();
-        CheckQuestData();
     }
 
 
-    void CheckQuestData()
+    public void CheckQuestData()
     {
         questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
         for(int i=0; i< questDatas.Count; i++)
@@ -82,12 +81,13 @@ public class QuestManager : Singleton<QuestManager>
 
     public void CheckKillCount()
     {
+        KillCount++;
         if (KillCount >= NowQuest.KillCount)
         {
             KillCount = NowQuest.KillCount;
             QuestMidterminspection();
         }
-        else KillCount++;
+       
 
 
     }
