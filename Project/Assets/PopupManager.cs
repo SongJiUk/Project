@@ -16,6 +16,8 @@ public class PopupManager : Singleton<PopupManager>
     public GameObject CallBackTown_Popup;
     public GameObject NoMp_Popup;
 
+    public GameObject Questing_Popup;
+
 
     private void Awake()
     {

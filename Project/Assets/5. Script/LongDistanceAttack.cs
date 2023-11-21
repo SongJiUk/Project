@@ -21,18 +21,43 @@ public class LongDistanceAttack : MonoBehaviour
     Vector3 startpos;
     float timer = 0;
     // Update is called once per frame
+
+    public Enemy FindNearEnemy()
+    {
+        Enemy[] enemies = FindObjectsOfType<Enemy>();
+
+
+
+        Enemy closestEnemy = null;
+        float closestDistance = Mathf.Infinity;
+
+        foreach (Enemy enemy in enemies)
+        {
+            float distance = Vector3.Distance(transform.position, enemy.transform.position);
+
+            // 현재까지 가장 가까운 적보다 더 가까운 적을 찾았을 때 업데이트
+            if (distance < closestDistance)
+            {
+                closestDistance = distance;
+                closestEnemy = enemy;
+            }
+        }
+        return closestEnemy;
+    }
+
     void Update()
     {
         if (Player.GetInstance.playerStat.UnitCodes == UnitCode.MAGE)
         {
-            var enemy = FindObjectOfType<Enemy>();
+
+            var enemy = FindNearEnemy();
             timer += Time.deltaTime;
             if(enemy != null)
             {
                 Vector3 pos = transform.position;
                 pos.y = Mathf.Sin(timer) * 3f;
                 transform.position = Vector3.Lerp(startpos, enemy.transform.position + Vector3.up, timer * 0.4f);
-                transform.position = new Vector3(transform.position.x, pos.y, transform.position.z);
+                //transform.position = new Vector3(transform.position.x, pos.y, transform.position.z);
 
 
                 Vector3 dis = (enemy.transform.position + Vector3.up - transform.position).normalized;

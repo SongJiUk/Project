@@ -430,8 +430,16 @@ public class PlayerStat : Singleton<PlayerStat>
         NowMp = MaxMp;
         DataManager.GetInstance.SET_PALYER_NOWHP(DataManager.GetInstance.SLOT_NUM, NowHp);
         DataManager.GetInstance.SET_PALYER_NOWMP(DataManager.GetInstance.SLOT_NUM, NowMp);
-        GetDamage();
+        UseHP();
         UseMp();
+        SaveData();
+    }
+
+
+    public void UseHP()
+    {
+        CheckHp();
+        SetNowHP(Hpvalue);
     }
 
     public void GetDamage(int damage = 0)

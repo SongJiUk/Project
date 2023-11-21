@@ -125,26 +125,26 @@ public class EquipmentUI : MonoBehaviour
         switch (PlayerStat.GetInstance.UnitCodes)
         {
             case UnitCode.WARRIOR:
-                Job_txt.text = "??";
+                Job_txt.text = "전사";
                 break;
 
             case UnitCode.MAGE:
-                Job_txt.text = "???";
+                Job_txt.text = "마법사";
                 break;
 
             case UnitCode.ARCHER:
-                Job_txt.text = "??";
+                Job_txt.text = "궁수";
                 break;
         }
 
         switch (PlayerStat.GetInstance.gender)
         {
             case EGender.Female:
-                Gender_txt.text = "??";
+                Gender_txt.text = "여성";
                 break;
 
             case EGender.male:
-                Gender_txt.text = "??";
+                Gender_txt.text = "남성";
                 break;
 
         }

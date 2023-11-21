@@ -38,6 +38,8 @@ public class Quest_Popup : MonoBehaviour
             QuestName_txt.text = "퀘스트 완료";
             QuestTitle_txt.text = "감사합니다! 약속한 보상을 드릴테니 사양말고 받아주세요!, 체력도 회복시켜드릴게요!";
 
+            PlayerStat.GetInstance.Recorvery();
+
             for (int i = 0; i < Quest_Reward_Img.Length; i++)
             {
                 Quest_Reward_Img[i].gameObject.SetActive(false);
@@ -50,11 +52,12 @@ public class Quest_Popup : MonoBehaviour
                 Quest_Reward_Img[i].sprite = NowQuest.Rewarditems[i].IconSprite;
                 if (NowQuest.Rewarditems[i].ItemType == ItemType.PortionItem)
                 {
-                    Quest_Reward_Amount_txt[i].text = NowQuest.Reward_Portion_Amount.ToString();
+                    Quest_Reward_Amount_txt[i].text = $"X {NowQuest.Reward_Portion_Amount}";
+                    
                 }
                 else
                 {
-                    Quest_Reward_Amount_txt[i].text = NowQuest.Reward_Gold_Amount.ToString();
+                    Quest_Reward_Amount_txt[i].text = $"X {NowQuest.Reward_Gold_Amount}";
                 }
             }
 
@@ -81,11 +84,11 @@ public class Quest_Popup : MonoBehaviour
                 Quest_Reward_Img[i].sprite = NowQuest.Rewarditems[i].IconSprite;
                 if (NowQuest.Rewarditems[i].ItemType == ItemType.PortionItem)
                 {
-                    Quest_Reward_Amount_txt[i].text = NowQuest.Reward_Portion_Amount.ToString();
+                    Quest_Reward_Amount_txt[i].text = $"X {NowQuest.Reward_Portion_Amount}";
                 }
                 else
                 {
-                    Quest_Reward_Amount_txt[i].text = NowQuest.Reward_Gold_Amount.ToString();
+                    Quest_Reward_Amount_txt[i].text = $"X {NowQuest.Reward_Gold_Amount}";
                 }
             }
 
@@ -107,11 +110,24 @@ public class Quest_Popup : MonoBehaviour
         if (QuestManager.GetInstance.isQuesting) already_received_Popup.SetActive(true);
         else gameObject.SetActive(false);
 
+        if (QuestManager.GetInstance.QUESTID == 10)
+        {
+            QuestManager.GetInstance.QuestMidterminspection();
+            QuestManager.GetInstance.ClearQuest_Popup();
+        }
+
+        QuestManager.GetInstance.EndChangePopup();
         QuestManager.GetInstance.NPCID = NowQuest.After_NPCId;
         QuestManager.GetInstance.isQuesting = true;
         
         CameraManager.GetInstance.ISUIOFF = true;
         UIManager.GetInstance.isOnPopupCount--;
+
+
+        PopupManager.GetInstance.Questing_Popup.SetActive(true);
+        Questing_popup.GetInstance.AcceptQuest(NowQuest.questtype, NowQuest.goal, NowQuest.KillCount);
+
+
     }
 
     public void RefuseQuest()
@@ -136,7 +152,9 @@ public class Quest_Popup : MonoBehaviour
             else _inventory.Add(NowQuest.Rewarditems[i], NowQuest.Reward_Portion_Amount); 
         }
 
+        QuestManager.GetInstance.ClearQuest_Popup();
         QuestManager.GetInstance.ClearQuest();
+        PopupManager.GetInstance.Questing_Popup.SetActive(false);
     }
 
     public void AlreadyQuest_Btn()

@@ -170,16 +170,19 @@ public class CameraManager : Singleton<CameraManager>
         {
             for (int i = 0; i < hits.Length; i++)
             {
-                MeshRenderer mesh = hits[i].transform.GetComponent<MeshRenderer>();
-                if(mesh != null)
+               if(hits[i].collider != null)
                 {
-                    Material mat = mesh.materials[0];
-                    Color color = mat.color;
+                    MeshRenderer mesh = hits[i].transform.GetComponent<MeshRenderer>();
 
-                    color.a = 1f;
-                    mat.color = color;
+                    if (mesh != null)
+                    {
+                        Material mat = mesh.materials[0];
+                        Color color = mat.color;
+
+                        color.a = 1f;
+                        mat.color = color;
+                    }
                 }
-             
             }
         }
 

@@ -1743,10 +1743,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 669916725}
     m_Modifications:
-    - target: {fileID: 1455416243, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2738118055555822154, guid: 21ffef15e56de489aa8a6a66010ee313, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -2037,7 +2033,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: "\uBBF8\uC815"
+  m_Text: PolyGon RPG
 --- !u!222 &1978801969
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2138,6 +2134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questId: 0
+  NPCID: 0
   questActionIndex: 0
   questObject:
   - {fileID: 0}
@@ -2145,6 +2142,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5d349dc289e084c04a608c9869d9417f, type: 2}
   - {fileID: 11400000, guid: 3c034fab7ea86433f9e2faf1f2064d3f, type: 2}
   - {fileID: 11400000, guid: b1850280dd00f4d83949cf3094a3ce88, type: 2}
+  NowQuest: {fileID: 0}
+  isAllClear: 0
+  isQuesting: 0
+  isQuestClear: 0
+  KillCount: 0
 --- !u!1 &2123059503
 GameObject:
   m_ObjectHideFlags: 0

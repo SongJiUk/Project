@@ -30,7 +30,12 @@ public class LoadManager : Singleton<LoadManager>
 
     private IEnumerator LoadSceneAsyncCoroutine(string sceneName)
     {
-
+        bool isQuesting = false;
+        if(PopupManager.GetInstance.Questing_Popup.activeSelf)
+        {
+            isQuesting = true;
+            PopupManager.GetInstance.Questing_Popup.SetActive(false);
+        }
 
        
 
@@ -70,6 +75,7 @@ public class LoadManager : Singleton<LoadManager>
         }
         asyncOperation.allowSceneActivation = true;
 
+        if(isQuesting) PopupManager.GetInstance.Questing_Popup.SetActive(true);
     }
 
 }

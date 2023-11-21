@@ -27,6 +27,8 @@ public class BossHPUIManager : MonoBehaviour
         BossHPBar.SetMaxHP(HPMax);
     }
 
+
+
     public void DeadBoss()
     {
         BossHPUI.SetActive(false);

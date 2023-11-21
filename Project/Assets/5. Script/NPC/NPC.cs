@@ -23,6 +23,7 @@ public class NPC : MonoBehaviour
     [SerializeField]
     int npcid;
 
+    [SerializeField] Quest_NPCUP NPCUP_ICON;
 
     [SerializeField] string NPCNAME;
     [SerializeField] string[] NPCTALK;
@@ -80,6 +81,8 @@ public class NPC : MonoBehaviour
         }
 
 
+
+
         manager = GameManager.GetInstance;
         nav = GetComponent<UnityEngine.AI.NavMeshAgent>();
         boxCollider = GetComponent<BoxCollider>();
@@ -98,6 +101,30 @@ public class NPC : MonoBehaviour
         {
             Debug.Log("npc_name_txt is null.");
         }
+
+
+        if(isQuestNPC)
+        {
+            if (npcid == QuestManager.GetInstance.NPCID)
+            {
+                QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
+
+                if (QuestManager.GetInstance.isQuesting)
+                {
+                    if (NPCUP_ICON != null) NPCUP_ICON.IsQuesting();
+                }
+                else if (QuestManager.GetInstance.isQuestClear)
+                {
+                    if (NPCUP_ICON != null) NPCUP_ICON.ClearQuest();
+                }
+                else
+                {
+                    if (NPCUP_ICON != null) NPCUP_ICON.NOAcceptQuest();
+                }
+
+            }
+        }
+        
     }
     float distanceToPlayer;
     void Update()
@@ -145,6 +172,7 @@ public class NPC : MonoBehaviour
         {
             distanceToPlayer = Vector3.Distance(transform.position, player.transform.position);
 
+
             if (distanceToPlayer <= nav.stoppingDistance)
             {
                 if(npcid == QuestManager.GetInstance.NPCID)
@@ -154,8 +182,32 @@ public class NPC : MonoBehaviour
                         interection = true;
                         InteretionText.SetActive(true);
                     }
-
-
+                    
+                    if (QuestManager.GetInstance.QuestCheck())
+                    {
+                        if(QuestManager.GetInstance.isQuesting)
+                        {
+                            NPCUP_ICON.ClearQuest();
+                        }
+                        else
+                        {
+                            NPCUP_ICON.ALLCLEAR();
+                            QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
+                        }
+                        
+                    }
+                    else
+                    {
+                        if(QuestManager.GetInstance.isQuesting)
+                        {
+                            NPCUP_ICON.IsQuesting();
+                        }
+                        else
+                        {
+                            NPCUP_ICON.NOAcceptQuest();
+                            QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
+                        }
+                    }
 
                     scanObj = gameObject;
                     if (Input.GetKeyDown(KeyCode.C) && scanObj != null)
@@ -163,10 +215,7 @@ public class NPC : MonoBehaviour
                         InteretionText.SetActive(false);
                         if (QuestNPCPopup != null) QuestNPCPopup.SetActive(true);
 
-                        if (QuestManager.GetInstance.QUESTID == 10)
-                        {
-                            QuestManager.GetInstance.QuestMidterminspection();
-                        }
+                        
 
                         
 
@@ -174,6 +223,10 @@ public class NPC : MonoBehaviour
                     }
 
                     if (QuestNPCPopup.activeSelf == false) anim.SetBool("Isconversation", false);
+                }
+                else
+                {
+
                 }
                 
             }

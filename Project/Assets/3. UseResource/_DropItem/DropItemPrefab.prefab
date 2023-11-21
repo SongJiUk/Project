@@ -209,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c6b360a088983d34faf19482c59ed49c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _itemdata: {fileID: 11400000, guid: 88febfbe6f2d23d499271e73329b991f, type: 2}
+  _itemdata: {fileID: 11400000, guid: 81f301d53615f6d489ec262c2f5c7092, type: 2}
   isOrb: 0
   _ratingColor: {fileID: 2356192956285326752}
 --- !u!54 &5107626381398824952

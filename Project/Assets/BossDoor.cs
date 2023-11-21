@@ -17,6 +17,8 @@ public class BossDoor : MonoBehaviour
     Animator anim;
     [SerializeField] BoxCollider boxCollider;
 
+
+    bool isTrigger = false;
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -28,9 +30,10 @@ public class BossDoor : MonoBehaviour
    
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        if (other.gameObject.layer == LayerMask.NameToLayer("Player") && !isTrigger)
         {
             Boss.SetActive(true);
+            isTrigger = true;
             StartBossScene();
 
         }

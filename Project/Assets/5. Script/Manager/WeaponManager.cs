@@ -87,10 +87,13 @@ public class WeaponManager : Singleton<WeaponManager>
 
     public void InitEquipMentWeapon(int _num)
     {
+
         if (DataManager.GetInstance.GET_ISEQUIPWEAPON(_num))
         {
             for (int i = 0; i < WeaponList.Count; i++)
             {
+                WeaponList[i].gameObject.SetActive(false);
+
                 if (WeaponList[i].DATA.ItemCode ==
                     DataManager.GetInstance.GET_WEAPONCODE(_num))
                 {
@@ -100,6 +103,7 @@ public class WeaponManager : Singleton<WeaponManager>
 
             for (int i = 0; i < ShiledList.Count; i++)
             {
+                ShiledList[i].gameObject.SetActive(false);
                 if (ShiledList[i].DATA.ItemCode ==
                     DataManager.GetInstance.GET_WEAPONCODE(_num))
                 {
