@@ -17,22 +17,33 @@ public class PopupManager : Singleton<PopupManager>
     public GameObject NoMp_Popup;
 
     public GameObject Questing_Popup;
+    public GameObject SkillCoolTime_Popup;
 
+    public GameObject Test_Popup;
 
-    private void Awake()
-    {
-
-    }
 
     public void NoMpPopup()
     {
         NoMp_Popup.SetActive(true);
-        Invoke("WaitClosePopup", 1.5f);
+        Invoke("WaitClosePopup_MP", 1.5f);
     }
 
-    public void WaitClosePopup()
+    public void WaitClosePopup_MP()
     {
         NoMp_Popup.SetActive(false);
+
+    }
+
+    public void CoolTimePopup()
+    {
+        SkillCoolTime_Popup.SetActive(true);
+        Invoke("WaitClosePopup_Cooltime", 1.5f);
+    }
+
+    public void WaitClosePopup_Cooltime()
+    {
+
+        SkillCoolTime_Popup.SetActive(false);
     }
 
     public void DeadGoTownBtn()
@@ -152,6 +163,30 @@ public class PopupManager : Singleton<PopupManager>
                     
                 }
 
+            }
+        }
+
+        if (SceneManager.GetActiveScene().name != "3_Customizing")
+        {
+            if (Input.GetKeyDown(KeyCode.T))
+            {
+                Test_Popup.SetActive(!Test_Popup.activeSelf);
+
+                if (Test_Popup.activeSelf)
+                {
+                    CameraManager.GetInstance.ISUIOFF = false;
+                    UIManager.GetInstance.isOnPopupCount++;
+                }
+                else
+                {
+                    UIManager.GetInstance.isOnPopupCount--;
+                    if (UIManager.GetInstance.isOnPopupCount == 0)
+                    {
+                        CameraManager.GetInstance.ISUIOFF = true;
+                    }
+
+
+                }
             }
         }
         

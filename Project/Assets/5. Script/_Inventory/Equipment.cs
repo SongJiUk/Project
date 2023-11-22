@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using static UnityEditor.Experimental.GraphView.Port;
-using static UnityEditor.Progress;
-using static UnityEngine.Rendering.VolumeComponent;
+//using static UnityEditor.Experimental.GraphView.Port;
+//using static UnityEditor.Progress;
+//using static UnityEngine.Rendering.VolumeComponent;
 
 public class Equipment : MonoBehaviour
 {

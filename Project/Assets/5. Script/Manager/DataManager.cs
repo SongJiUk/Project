@@ -506,6 +506,12 @@ public class DataManager : Singleton<DataManager>
             SlotJob.Add(_slot, _vaule);
         }
 
+        if(SlotJob[_slot] == UnitCode.None)
+        {
+            SlotJob.Remove(_slot);
+            SlotJob.Add(_slot, _vaule);
+        }
+
     }
 
     public string GET_PLAYER_ID(int _slot)
@@ -676,6 +682,8 @@ public class DataManager : Singleton<DataManager>
         isSlotOpen[_slot] = true;
         SetBool("isSlotOpen" + _slot, isSlotOpen[_slot]);
         SetBool("isCreate" + _slot, isCreate[_slot]);
+
+
         PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
 
         switch(Slot_Num)
@@ -901,10 +909,9 @@ public class DataManager : Singleton<DataManager>
 
         isCreate[_slot] = false;
         SetBool("isCreate" + _slot, isCreate[_slot]);
-        
-        
-        if (SlotJob.ContainsKey(_slot)) SlotJob.Remove(_slot);
-       
+
+
+        SlotJob[_slot] = UnitCode.None;
         PlayerPrefs.SetInt("SlotJob" + _slot, (int)SlotJob[_slot]);
 
         for (int num = 0; num < InventorySlotNum; num++)

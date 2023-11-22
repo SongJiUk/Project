@@ -11,6 +11,7 @@ public class CustomizingScene : MonoBehaviour
     [SerializeField] GameObject SelectName_Popup;
     [SerializeField] GameObject RealUseName_Popup;
     [SerializeField] GameObject Error_Popup;
+    [SerializeField] GameObject OnlyMan_Popup;
     [SerializeField] Text Error_txt;
     [SerializeField] Customizing customizing;
     string playerName;
@@ -45,6 +46,15 @@ public class CustomizingScene : MonoBehaviour
         }
 
         return true;
+    }
+
+    public void OpenOnlyManPopup()
+    {
+        OnlyMan_Popup.SetActive(true);
+    }
+    public void CloseOnlyManPopup()
+    {
+        OnlyMan_Popup.SetActive(false);
     }
 
     public void CloseErrorPopup()

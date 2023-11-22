@@ -5,7 +5,8 @@ public enum UnitCode
 {
     WARRIOR = 0,
     MAGE,
-    ARCHER
+    ARCHER,
+    None
 }
 
 [Serializable]

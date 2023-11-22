@@ -550,7 +550,7 @@ public class Customizing : Singleton<Customizing>
 
                 if (GenderNum.Equals(0))
                 {
-                    Debug.Log("남자 전용입니다.");
+                    customizingscene.OpenOnlyManPopup();
                 }
                 else if (GenderNum.Equals(1))
                 {

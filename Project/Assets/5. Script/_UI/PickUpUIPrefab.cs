@@ -1,4 +1,4 @@
-using Microsoft.Unity.VisualStudio.Editor;
+//using Microsoft.Unity.VisualStudio.Editor;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,13 +7,13 @@ using UnityEngine.UIElements;
 
 public class PickUpUIPrefab : MonoBehaviour
 {
-    [Tooltip("화살표 아이콘")]
+    [Tooltip("?????? ??????")]
     [SerializeField] private UnityEngine.UI.Image _pickUpNowImage;
 
-    [Tooltip("아이템 아이콘 이미지")]
+    [Tooltip("?????? ?????? ??????")]
     [SerializeField] private UnityEngine.UI.Image _iconImage;
 
-    [Tooltip("아이템 이름 텍스트")]
+    [Tooltip("?????? ???? ??????")]
     [SerializeField] private Text _amountText;
 
     private GameObject _aroundItemObj;

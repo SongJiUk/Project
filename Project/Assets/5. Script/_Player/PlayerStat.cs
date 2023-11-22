@@ -51,6 +51,35 @@ public class PlayerStat : Singleton<PlayerStat>
     static float A_DefaultCriticalChance = 50f;
 
 
+    public static float W_Skill1_Cooltime = 10f;
+    public static float W_Skill2_Cooltime = 15f;
+    public static float W_Skill3_Cooltime = 20f;
+
+    public float W_Skill1_time;
+    public float W_Skill2_time;
+    public float W_Skill3_time;
+
+    public static float M_Skill1_Cooltime = 5f;
+    public static float M_Skill2_Cooltime = 10f;
+    public static float M_Skill3_Cooltime = 20f;
+
+    public float M_Skill1_time;
+    public float M_Skill2_time;
+    public float M_Skill3_time;
+
+    public static float A_Skill1_Cooltime = 7f;
+    public static float A_Skill2_Cooltime = 13f;
+    public static float A_Skill3_Cooltime = 20f;
+
+    public float A_Skill1_time;
+    public float A_Skill2_time;
+    public float A_Skill3_time;
+
+    public bool isPossibleUseSkill1 = false;
+    public bool isPossibleUseSkill2 = false;
+    public bool isPossibleUseSkill3 = false;
+
+
     public UnitCode UnitCodes { get; set; }
     public int Level { get; set; }
     public int SlotNum { get; set; }
@@ -430,16 +459,13 @@ public class PlayerStat : Singleton<PlayerStat>
         NowMp = MaxMp;
         DataManager.GetInstance.SET_PALYER_NOWHP(DataManager.GetInstance.SLOT_NUM, NowHp);
         DataManager.GetInstance.SET_PALYER_NOWMP(DataManager.GetInstance.SLOT_NUM, NowMp);
-        UseHP();
-        UseMp();
-        SaveData();
-    }
-
-
-    public void UseHP()
-    {
         CheckHp();
         SetNowHP(Hpvalue);
+
+        CheckMp();
+        SetNowMP(Mpvalue);
+
+        SaveData();
     }
 
     public void GetDamage(int damage = 0)
@@ -462,14 +488,17 @@ public class PlayerStat : Singleton<PlayerStat>
         DamageNum.instance.Damage(damage, 0, this.transform, false, isAvoidance, true);
     }
 
-    public bool UseMp(int num = 0)
+    public bool UseMp(int num, int SkillNum)
     {
-        
         if (NowMp - num < 0)
         {
             PopupManager.GetInstance.NoMpPopup();
             return false;
         }
+
+        if (!UIManager.GetInstance.CheckCoolTime(SkillNum)) return false;
+
+        
         else NowMp -= num;
         CheckMp();
         SetNowMP(Mpvalue);
@@ -555,23 +584,5 @@ public class PlayerStat : Singleton<PlayerStat>
     }
 
     #endregion
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.L))
-        {
-            LevelUp();
-        }
-
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            GetDamage(10);
-
-        }
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-
-            GetExp(10);
-        }
-    }
 
 }

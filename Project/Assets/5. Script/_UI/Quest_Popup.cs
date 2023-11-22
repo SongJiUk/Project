@@ -9,6 +9,9 @@ public class Quest_Popup : MonoBehaviour
 
     [SerializeField] Inventory _inventory;
 
+    public Inventory Inventory { get { return _inventory; } }
+
+
     [SerializeField] Text QuestName_txt;
     [SerializeField] Text QuestTitle_txt;
     [SerializeField] Image[] Quest_Reward_Img;
@@ -113,13 +116,15 @@ public class Quest_Popup : MonoBehaviour
         if (QuestManager.GetInstance.QUESTID == 10)
         {
             QuestManager.GetInstance.QuestMidterminspection();
-            QuestManager.GetInstance.ClearQuest_Popup();
         }
 
         QuestManager.GetInstance.EndChangePopup();
         QuestManager.GetInstance.NPCID = NowQuest.After_NPCId;
         QuestManager.GetInstance.isQuesting = true;
-        
+
+        QuestManager.GetInstance.ChangeNpcPopup();
+
+
         CameraManager.GetInstance.ISUIOFF = true;
         UIManager.GetInstance.isOnPopupCount--;
 
@@ -128,6 +133,14 @@ public class Quest_Popup : MonoBehaviour
         Questing_popup.GetInstance.AcceptQuest(NowQuest.questtype, NowQuest.goal, NowQuest.KillCount);
 
 
+
+        //for (int i = 0; i < UIManager.GetInstance.NPC.Length; i++)
+        //{
+        //    if (UIManager.GetInstance.NPC[i].NPCID == QuestManager.GetInstance.QUESTID)
+        //    {
+        //        QuestManager.GetInstance.NPCUP_ICON = UIManager.GetInstance.Quest_NPC[i];
+        //    }
+        //}
     }
 
     public void RefuseQuest()
@@ -139,9 +152,16 @@ public class Quest_Popup : MonoBehaviour
 
     public void ReceiveRewardItem()
     {
+        for (int i = 0; i < UIManager.GetInstance.Quest_NPC.Length; i++)
+        {
+            UIManager.GetInstance.Quest_NPC[i].ALLCLEAR();
+        }
+
         gameObject.SetActive(false);
         CameraManager.GetInstance.ISUIOFF = true;
         UIManager.GetInstance.isOnPopupCount--;
+
+        
 
         for (int i=0; i< NowQuest.Rewarditems.Count; i++)
         {
@@ -152,8 +172,8 @@ public class Quest_Popup : MonoBehaviour
             else _inventory.Add(NowQuest.Rewarditems[i], NowQuest.Reward_Portion_Amount); 
         }
 
-        QuestManager.GetInstance.ClearQuest_Popup();
         QuestManager.GetInstance.ClearQuest();
+        QuestManager.GetInstance.ChangeNpcPopup();
         PopupManager.GetInstance.Questing_Popup.SetActive(false);
     }
 

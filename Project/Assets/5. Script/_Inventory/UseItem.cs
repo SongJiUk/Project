@@ -2,8 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using static UnityEditor.Experimental.GraphView.Port;
-using static UnityEditor.Progress;
+//using static UnityEditor.Experimental.GraphView.Port;
+//using static UnityEditor.Progress;
 
 public class UseItem : MonoBehaviour
 {

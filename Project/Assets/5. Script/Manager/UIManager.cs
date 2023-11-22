@@ -14,6 +14,13 @@ public class UIManager : Singleton<UIManager>
 
     [SerializeField] GameObject[] CloseUI;
 
+
+    public ScreenSlotUI[] SkillCoolTime;
+
+    public Inventory inventory;
+
+    public NPC[] NPC;
+    public Quest_NPCUP[] Quest_NPC;
     public int isOnPopupCount;
     //[SerializeField] GameObject
     public bool isNoEquip = false;
@@ -62,5 +69,24 @@ public class UIManager : Singleton<UIManager>
     //        if (null == weaponManger) weaponManger = Player.GetInstance.GetComponent<WeaponManager>();
     //    }
         
+    }
+
+    public bool CheckCoolTime(int _SkillNum)
+    {
+        switch(_SkillNum)
+        {
+            case 1:
+
+                return SkillCoolTime[0].CheckCoolTime();
+
+            case 2:
+                return SkillCoolTime[1].CheckCoolTime();
+
+            case 3:
+                return SkillCoolTime[2].CheckCoolTime();
+
+
+        }
+        return false;
     }
 }

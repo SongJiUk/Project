@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.ShaderKeywordFilter;
+//using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -583,7 +583,7 @@ public class EquipmentUI : MonoBehaviour
     [System.Diagnostics.Conditional("UNITY_EDITOR")]
     private void EditorLog(object message)
     {
-        if (!_showDebug) return;
+        //if (!_showDebug) return;
         //UnityEngine.Debug.Log($"[InventoryUI] {message}");
     }
 }

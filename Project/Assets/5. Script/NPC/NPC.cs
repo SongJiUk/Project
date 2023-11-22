@@ -23,6 +23,8 @@ public class NPC : MonoBehaviour
     [SerializeField]
     int npcid;
 
+    public int NPCID { get { return npcid; } }
+
     [SerializeField] Quest_NPCUP NPCUP_ICON;
 
     [SerializeField] string NPCNAME;
@@ -183,31 +185,31 @@ public class NPC : MonoBehaviour
                         InteretionText.SetActive(true);
                     }
                     
-                    if (QuestManager.GetInstance.QuestCheck())
-                    {
-                        if(QuestManager.GetInstance.isQuesting)
-                        {
-                            NPCUP_ICON.ClearQuest();
-                        }
-                        else
-                        {
-                            NPCUP_ICON.ALLCLEAR();
-                            QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
-                        }
+                    //if (QuestManager.GetInstance.QuestCheck())
+                    //{
+                    //    if(QuestManager.GetInstance.isQuesting)
+                    //    {
+                    //        NPCUP_ICON.ClearQuest();
+                    //    }
+                    //    else
+                    //    {
+                    //        NPCUP_ICON.ALLCLEAR();
+                    //        QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
+                    //    }
                         
-                    }
-                    else
-                    {
-                        if(QuestManager.GetInstance.isQuesting)
-                        {
-                            NPCUP_ICON.IsQuesting();
-                        }
-                        else
-                        {
-                            NPCUP_ICON.NOAcceptQuest();
-                            QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
-                        }
-                    }
+                    //}
+                    //else
+                    //{
+                    //    if(QuestManager.GetInstance.isQuesting)
+                    //    {
+                    //        NPCUP_ICON.IsQuesting();
+                    //    }
+                    //    else
+                    //    {
+                    //        NPCUP_ICON.NOAcceptQuest();
+                    //        QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
+                    //    }
+                    //}
 
                     scanObj = gameObject;
                     if (Input.GetKeyDown(KeyCode.C) && scanObj != null)
@@ -328,5 +330,22 @@ public class NPC : MonoBehaviour
     {
         currentWaypointIndex = (currentWaypointIndex + 1) % Waypoint.Length;
         SetDestination();
+    }
+
+    public void ChangeNPCICON()
+    {
+        switch(npcid)
+        {
+            case 10:
+                break;
+
+            case 20:
+                break;
+
+            case 30:
+                break;
+
+        }
+        QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
     }
 }

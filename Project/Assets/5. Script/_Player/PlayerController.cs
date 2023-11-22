@@ -135,7 +135,7 @@ public class PlayerController : MonoBehaviour
             
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
-                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20,1))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -146,7 +146,7 @@ public class PlayerController : MonoBehaviour
 
             else if(player.playerStat.UnitCodes == UnitCode.MAGE)
             {
-                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(40))
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(40, 1))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -159,7 +159,7 @@ public class PlayerController : MonoBehaviour
 
                 if(weaponManager.Weapondata.Type == Types.Bow)
                 {
-                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(30))
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(30, 1))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -182,7 +182,7 @@ public class PlayerController : MonoBehaviour
                     if (Enemy != null)
                     {
                         //가장 가까운적에게 5번 공격
-                        if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(30))
+                        if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(30, 1))
                         {
                             
                             isUseSkill = true;
@@ -244,7 +244,7 @@ public class PlayerController : MonoBehaviour
             PlayerSkill.GetInstance.CheckSkillNumber(2);
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
-                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 2))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -254,7 +254,7 @@ public class PlayerController : MonoBehaviour
 
             else if (player.playerStat.UnitCodes == UnitCode.MAGE)
             {
-                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 2))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -265,7 +265,7 @@ public class PlayerController : MonoBehaviour
             {
                 if(weaponManager.Weapondata.Type == Types.Bow)
                 {
-                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 2))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -299,7 +299,7 @@ public class PlayerController : MonoBehaviour
                 else if (weaponManager.Weapondata.Type == Types.CrossBow)
                 {
                     //위로 쏴서 빙결 
-                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 2))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -354,7 +354,7 @@ public class PlayerController : MonoBehaviour
             PlayerSkill.GetInstance.CheckSkillNumber(3);
             if (player.playerStat.UnitCodes == UnitCode.WARRIOR)
             {
-                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 3))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -363,7 +363,7 @@ public class PlayerController : MonoBehaviour
             }
             else if (player.playerStat.UnitCodes == UnitCode.MAGE)
             {
-                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 3))
                 {
                     isUseSkill = true;
                     SkillStarted = true;
@@ -374,7 +374,7 @@ public class PlayerController : MonoBehaviour
             {
                 if (weaponManager.Weapondata.Type == Types.Bow)
                 {
-                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 3))
                     {
                         isUseSkill = true;
                         SkillStarted = true;
@@ -407,7 +407,7 @@ public class PlayerController : MonoBehaviour
                 else if (weaponManager.Weapondata.Type == Types.CrossBow)
                 {
                     //앞으로 용발
-                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20))
+                    if (context.performed && !SkillStarted && PlayerStat.GetInstance.UseMp(20, 3))
                     {
                         isUseSkill = true;
                         SkillStarted = true;

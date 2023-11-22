@@ -47,18 +47,22 @@ public class QuestManager : Singleton<QuestManager>
     public void CheckQuestData()
     {
         questId = DataManager.GetInstance.GET_QUEST_ID(DataManager.GetInstance.SLOT_NUM);
-        for(int i=0; i< questDatas.Count; i++)
+        for (int i = 0; i < questDatas.Count; i++)
         {
-            if(questDatas[i].questId == questId)
+            if (questDatas[i].questId == questId)
             {
+
                 NowQuest = questDatas[i];
-                if(!isQuesting) NPCID = NowQuest.Before_NPCId;
+                if (!isQuesting) NPCID = NowQuest.Before_NPCId;
                 break;
             }
         }
 
+        
 
     }
+
+
 
     public QuestDatas GetNowQuest()
     {
@@ -82,16 +86,20 @@ public class QuestManager : Singleton<QuestManager>
 
     public void CheckKillCount()
     {
-        
-        KillCount++;
-        if (KillCount >= NowQuest.KillCount)
-        {
-            KillCount = NowQuest.KillCount;            
-            QuestMidterminspection();
-            Questing_popup.GetInstance.ClearQuest();
-            ClearQuest_Popup();
 
+        if(NowQuest != null)
+        {
+            KillCount++;
+            if (KillCount >= NowQuest.KillCount)
+            {
+                KillCount = NowQuest.KillCount;
+                QuestMidterminspection();
+                if (PopupManager.GetInstance.Questing_Popup.activeSelf) Questing_popup.GetInstance.ClearQuest();
+                ClearQuest_Popup();
+
+            }
         }
+        
 
         if(PopupManager.GetInstance.Questing_Popup.activeSelf) Questing_popup.GetInstance.UpdateKillCount(KillCount,NowQuest.KillCount);
 
@@ -120,6 +128,7 @@ public class QuestManager : Singleton<QuestManager>
 
     void NextQuest()
     {
+
         questId += 10;
         if (questId > 30) isAllClear = true;
         DataManager.GetInstance.SET_QUEST_ID(DataManager.GetInstance.SLOT_NUM, questId);
@@ -153,5 +162,31 @@ public class QuestManager : Singleton<QuestManager>
     public void IsQuesting_popup()
     {
         if (NPCUP_ICON != null) NPCUP_ICON.IsQuesting();
+    }
+
+    public void ChangeNpcPopup()
+    {
+        for(int i =0; i<UIManager.GetInstance.NPC.Length; i++)
+        {
+            if(NPCID == UIManager.GetInstance.NPC[i].NPCID)
+            {
+                if (isAllClear) break;
+
+                if (isQuestClear)
+                {
+                    UIManager.GetInstance.Quest_NPC[i].ClearQuest();
+                }
+                else if (isQuesting)
+                {
+                    UIManager.GetInstance.Quest_NPC[i].IsQuesting();
+                }
+                
+                else
+                {
+                    UIManager.GetInstance.Quest_NPC[i].NOAcceptQuest();
+                }
+                
+            }
+        }
     }
 }
