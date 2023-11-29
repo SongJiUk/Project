@@ -72,7 +72,7 @@ public class Quest_Popup : MonoBehaviour
         }
         else
         {
-            QuestName_txt.text = NowQuest.title;
+            QuestName_txt.text = NowQuest.goal;
             QuestTitle_txt.text = NowQuest.title;
 
             for (int i = 0; i < Quest_Reward_Img.Length; i++)

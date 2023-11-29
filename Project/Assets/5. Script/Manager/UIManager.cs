@@ -89,4 +89,12 @@ public class UIManager : Singleton<UIManager>
         }
         return false;
     }
+
+    #region 사운드 관련
+
+    public void UISound(string _key)
+    {
+        AudioManager.GetInstance.UISound(_key);
+    }
+    #endregion
 }

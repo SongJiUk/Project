@@ -90,7 +90,7 @@ public class Inventory : MonoBehaviour
     private Item[] _items;
 
 
-    [SerializeField] Text Glod_text;
+    public Text Glod_text;
     /// <summary> 업데이트 할 인덱스 목록 </summary>
     private readonly HashSet<int> _indexSetForUpdate = new HashSet<int>();
 

@@ -11,6 +11,7 @@ public class LoadManager : Singleton<LoadManager>
     AsyncOperation asyncOperation;
     public float LoadNum;
     public bool isSceneChange = false;
+    int bgmNum;
     private void Awake()
     {
         DataManager.GetInstance.LoadData();
@@ -18,6 +19,11 @@ public class LoadManager : Singleton<LoadManager>
     }
     public void LoadSceneAsync(string _name)
     {
+        if (_name == "4_TownMap") bgmNum = 1;
+        else if (_name == "5_Dungeon") bgmNum = 2;
+        else bgmNum = 0;
+
+
         isSceneChange = true;
         SceneManager.LoadScene(LoadSceneName);
         if (UIManager.GetInstance != null)
@@ -75,7 +81,22 @@ public class LoadManager : Singleton<LoadManager>
         }
         asyncOperation.allowSceneActivation = true;
 
-        if(isQuesting) PopupManager.GetInstance.Questing_Popup.SetActive(true);
+        if (isQuesting)
+        {
+            Invoke("WaitForPopup", 3f);
+        }
+
+        if(bgmNum != 0) Invoke("StartBGM", 2f);
+    }
+
+    public void WaitForPopup()
+    {
+        PopupManager.GetInstance.Questing_Popup.SetActive(true);
+    }
+
+    public void StartBGM()
+    {
+        AudioManager.GetInstance.PlayBgm(bgmNum);
     }
 
 }

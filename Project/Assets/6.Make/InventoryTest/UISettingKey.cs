@@ -32,6 +32,7 @@ public class UISettingKey : MonoBehaviour
 
     public void Inventoryend()
     {
+        UIManager.GetInstance.UISound("UI_ONOFF");
         Inventory.gameObject.SetActive(false);
         CameraManager.GetInstance.ISUIOFF = true;
         UIManager.GetInstance.isOnPopupCount--;
@@ -39,6 +40,7 @@ public class UISettingKey : MonoBehaviour
 
     public void Equipmentend()
     {
+        UIManager.GetInstance.UISound("UI_ONOFF");
         Equipment.gameObject.SetActive(false);
         CameraManager.GetInstance.ISUIOFF = true;
         UIManager.GetInstance.isOnPopupCount--;
@@ -46,6 +48,7 @@ public class UISettingKey : MonoBehaviour
 
     public void Skillend()
     {
+        UIManager.GetInstance.UISound("UI_ONOFF");
         Skill.gameObject.SetActive(false);
         CameraManager.GetInstance.ISUIOFF = true;
         UIManager.GetInstance.isOnPopupCount--;
@@ -57,7 +60,7 @@ public class UISettingKey : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.I))
         {
             Inventory.gameObject.SetActive(!Inventory.gameObject.activeSelf);
-
+            UIManager.GetInstance.UISound("UI_ONOFF");
             if (Inventory.gameObject.activeSelf)
             {
                 CameraManager.GetInstance.ISUIOFF = false;
@@ -73,7 +76,7 @@ public class UISettingKey : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Equipment.gameObject.SetActive(!Equipment.gameObject.activeSelf);
-
+            UIManager.GetInstance.UISound("UI_ONOFF");
             if (Equipment.gameObject.activeSelf)
             {
                 CameraManager.GetInstance.ISUIOFF = false;
@@ -87,22 +90,22 @@ public class UISettingKey : MonoBehaviour
             }
         }
         
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            Skill.gameObject.SetActive(!Skill.gameObject.activeSelf);
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    Skill.gameObject.SetActive(!Skill.gameObject.activeSelf);
 
-            if (Skill.gameObject.activeSelf)
-            {
-                CameraManager.GetInstance.ISUIOFF = false;
-                UIManager.GetInstance.isOnPopupCount++;
+        //    if (Skill.gameObject.activeSelf)
+        //    {
+        //        CameraManager.GetInstance.ISUIOFF = false;
+        //        UIManager.GetInstance.isOnPopupCount++;
 
-            }
-            else
-            {
-                CameraManager.GetInstance.ISUIOFF = true;
-                UIManager.GetInstance.isOnPopupCount--;
-            }
-        }
+        //    }
+        //    else
+        //    {
+        //        CameraManager.GetInstance.ISUIOFF = true;
+        //        UIManager.GetInstance.isOnPopupCount--;
+        //    }
+        //}
 
         
 

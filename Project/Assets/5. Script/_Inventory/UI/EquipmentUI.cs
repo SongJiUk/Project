@@ -162,6 +162,51 @@ public class EquipmentUI : MonoBehaviour
         UpdateEquipmentState();
     }
 
+    public void LevelUP()
+    {
+        Name_txt.text = DataManager.GetInstance.GET_PLAYER_ID(DataManager.GetInstance.SLOT_NUM);
+        Level_txt.text = PlayerStat.GetInstance.Level.ToString();
+
+        switch (PlayerStat.GetInstance.UnitCodes)
+        {
+            case UnitCode.WARRIOR:
+                Job_txt.text = "전사";
+                break;
+
+            case UnitCode.MAGE:
+                Job_txt.text = "마법사";
+                break;
+
+            case UnitCode.ARCHER:
+                Job_txt.text = "궁수";
+                break;
+        }
+
+        switch (PlayerStat.GetInstance.gender)
+        {
+            case EGender.Female:
+                Gender_txt.text = "여성";
+                break;
+
+            case EGender.male:
+                Gender_txt.text = "남성";
+                break;
+
+        }
+
+        HP_txt.text = PlayerStat.GetInstance.MaxHp.ToString();
+        MP_txt.text = PlayerStat.GetInstance.MaxMp.ToString();
+        Damage_txt.text = PlayerStat.GetInstance.Damage.ToString();
+        Speed_txt.text = PlayerStat.GetInstance.Speed.ToString();
+        Defence_txt.text = PlayerStat.GetInstance.Defence.ToString();
+        Avoidance_txt.text = PlayerStat.GetInstance.Avoidance.ToString();
+        CriticalChance_txt.text = PlayerStat.GetInstance.CriticalChance.ToString();
+
+        //CheckEquipItem();
+        UpdateWeaponState();
+        UpdateEquipmentState();
+    }
+
     public void CheckEquipItem()
     {
         if(DataManager.GetInstance.GET_ISEQUIPWEAPON(DataManager.GetInstance.SLOT_NUM))

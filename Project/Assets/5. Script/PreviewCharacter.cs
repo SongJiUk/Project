@@ -351,4 +351,14 @@ public class PreviewCharacter : MonoBehaviour
 
         }
     }
+
+
+
+    #region 사운드 관련
+
+    public void AttackSound(string _key)
+    {
+        AudioManager.GetInstance.PlaySound_PlayerAttack(_key);
+    }
+    #endregion
 }

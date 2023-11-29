@@ -43,6 +43,9 @@ public class DemonBoss : MonoBehaviour
     ParticleSystem Lazer;
 
     BoxCollider collider;
+
+    [SerializeField] EnemyAttack enemyAttack;
+
     bool die = false;
     void Awake()    
    {
@@ -60,6 +63,7 @@ public class DemonBoss : MonoBehaviour
     {
         if(!die)
         {
+            Damage = 30;
             transform.LookAt(player.transform);
             attckTimer -= Time.deltaTime;
             if (attckTimer <= 0f)
@@ -129,7 +133,8 @@ public class DemonBoss : MonoBehaviour
     void MeteorInvoke()
     {
         Vector3 playerPosi = player.transform.position;
-        Instantiate(DemonMeteorPrefab, new Vector3(Random.Range(playerPosi.x - 10, playerPosi.x + 10), 2f, Random.Range(playerPosi.z - 10, playerPosi.z + 10)), Quaternion.identity);
+        Instantiate(DemonMeteorPrefab, new Vector3(Random.Range(playerPosi.x - 2, playerPosi.x + 2), playerPosi.y, Random.Range(playerPosi.z - 2, playerPosi.z + 2)), Quaternion.identity);
+
         meteorCount++;
         if (meteorCount >= meteorMaxCount)
         {
@@ -235,5 +240,14 @@ public class DemonBoss : MonoBehaviour
 
         _bossHpBar.GetDamage(nowEnemyHP, value, transform, isCritical);
     }
+
+
+    #region 사운드 관련
+
+    public void AttackSound(string _key)
+    {
+        AudioManager.GetInstance.MonsterSound(_key);
+    }
+    #endregion
 
 }

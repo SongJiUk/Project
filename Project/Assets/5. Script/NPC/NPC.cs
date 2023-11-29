@@ -288,8 +288,8 @@ public class NPC : MonoBehaviour
             // if (string.IsNullOrEmpty(npc_name_txt.text)) npc_name_txt.text = $"NPC[{NPCNAME}]";
             if (string.IsNullOrEmpty(npc_talk_txt.text)) npc_talk_txt.text = $"{NPCTALK[Rand]}";
 
-            npc_Name.GetComponent<Transform>().position = transform.position + Vector3.up * 2f;
-            npc_Talk.GetComponent<Transform>().position = transform.position + Vector3.up * 2.5f;
+            npc_Name.GetComponent<Transform>().position = transform.position + Vector3.up * 2.5f;
+            npc_Talk.GetComponent<Transform>().position = transform.position + Vector3.up * 3f;
             
         }
     }

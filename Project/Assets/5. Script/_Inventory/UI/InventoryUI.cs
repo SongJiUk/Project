@@ -170,10 +170,11 @@ public class InventoryUI : MonoBehaviour
         _slotUiPrefab.TryGetComponent(out RectTransform slotRect);
         slotRect.sizeDelta = new Vector2(_slotSize, _slotSize);
 
+
         _slotUiPrefab.TryGetComponent(out ItemSlotUI itemSlot);
         if (itemSlot == null)
             _slotUiPrefab.AddComponent<ItemSlotUI>();
-
+         
         _slotUiPrefab.SetActive(false);
 
         // --
@@ -194,7 +195,7 @@ public class InventoryUI : MonoBehaviour
                 slotRT.anchoredPosition = curPos;
                 slotRT.gameObject.SetActive(true);
                 slotRT.gameObject.name = $"Item Slot [{slotIndex}]";
-
+                slotRT.localScale = Vector3.one;
                 var slotUI = slotRT.GetComponent<ItemSlotUI>();
                 slotUI.SetSlotIndex(slotIndex);
                 _slotUIList.Add(slotUI);

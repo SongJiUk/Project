@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rating: 0
   _itemcode: 300
-  _name: Bow_1
-  _itemCodeName: "\uADF8\uB0E5 \uD65C"
+  _name: "\uADF8\uB0E5 \uD65C"
+  _itemCodeName: Bow_1
   _tooltip: 
   _iconSprite: {fileID: 21300000, guid: 9eb8ec4d802718341814031b4d14b2b5, type: 3}
   _dropItemPrefab: {fileID: 0}

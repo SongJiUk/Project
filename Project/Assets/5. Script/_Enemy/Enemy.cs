@@ -205,17 +205,21 @@ public class Enemy : MonoBehaviour
         player = null;
         die = true;
         Anime.SetTrigger("IsDie");
-        gameObject.SetActive(false);
-
         PlayerStat.GetInstance.GetExp(EXP);
+
+        Invoke("WaitDie", 1f);
+       
         
         //objectPoolManager.ObjectDie(gameObject);
         //Anime.enabled = true;
     }
 
+    public void WaitDie()
+    {
+        gameObject.SetActive(false);
+    }
     public void DropItem()
     {
-        //여기 해야됨 !!!!
         
         var dropitem = Instantiate(DropItemPrefab);
         dropitem.ITEMDATA = ItemManager.GetInstance.DropItem();
@@ -231,6 +235,15 @@ public class Enemy : MonoBehaviour
         if (collider != null) collider.enabled = true;
         die = false;
     }
+
+
+    #region 사운드 관련
+
+    public void DieSound(string _key)
+    {
+        AudioManager.GetInstance.MonsterSound(_key);
+    }
+    #endregion
 }
 
 

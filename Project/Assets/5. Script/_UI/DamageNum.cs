@@ -56,8 +56,9 @@ public class DamageNum : MonoBehaviour
         }
         
         _transformto = _transformHit;
-        
-        Vector3 positionUI = (_transformto.position + (Random.insideUnitSphere));
+
+        //Vector3 positionUI = (_transformto.position + (Random.insideUnitSphere));
+        Vector3 positionUI = _transformto.position + Vector3.up;
         DamageUI.transform.position = Camera.main.WorldToScreenPoint(positionUI);
         DamageUI.SetActive(true);
         DamageNumPrefab DamageUIValue = DamageUI.GetComponent<DamageNumPrefab>();

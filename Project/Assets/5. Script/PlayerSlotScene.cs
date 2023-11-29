@@ -81,6 +81,7 @@ public class PlayerSlotScene : MonoBehaviour
         CreateCharacter_Btn.SetActive(false);
 
         SlotNum = _num;
+
         if (DataManager.GetInstance.GET_ISSLOTOPEN(_num))
         {
             DataManager.GetInstance.SLOT_NUM = _num;
@@ -134,6 +135,7 @@ public class PlayerSlotScene : MonoBehaviour
         {
             gameStartPopup.SetActive(false);
             QuestManager.GetInstance.CheckQuestData();
+            AudioManager.GetInstance.StopBgm();
             LoadManager.GetInstance.LoadSceneAsync("4_TownMap");
         }
         else gameStartPopup.SetActive(false);

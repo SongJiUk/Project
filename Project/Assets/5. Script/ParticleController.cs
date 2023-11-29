@@ -9,6 +9,8 @@ public class ParticleController : MonoBehaviour
     public bool CheckScriptLoad;
     public bool isDestory;
     public bool isHit = false;
+
+    public AudioSource sfx;
     private void Awake()
     {
         if(!CheckScriptLoad)
@@ -31,6 +33,7 @@ public class ParticleController : MonoBehaviour
 
     void OnParticleCollision(GameObject other)
     {
+        if(sfx != null) sfx.Play();
 
         Debug.Log(this.name);
 

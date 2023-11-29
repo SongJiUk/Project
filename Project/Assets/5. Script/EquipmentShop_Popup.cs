@@ -170,6 +170,7 @@ public class EquipmentShop_Popup : Singleton<EquipmentShop_Popup>
         DataManager.GetInstance.SET_PLAYER_GOLD(DataManager.GetInstance.SLOT_NUM, gold);
 
         inventory.Add(Sell_itemdata);
+        inventory.Glod_text.text = gold.ToString();
         DataManager.GetInstance.SaveData(DataManager.GetInstance.SLOT_NUM);
 
         RealBuy_Popup.SetActive(false);

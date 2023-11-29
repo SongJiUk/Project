@@ -6,6 +6,12 @@ TagManager:
   tags:
   - FxTemporaire
   - CutScene
+  - TAZOFX
+  - Weapon
+  - explosion
+  - InventorySlot
+  - Collide
+  - shield
   layers:
   - Default
   - TransparentFX
@@ -27,7 +33,7 @@ TagManager:
   - NPC
   - Boss
   - Specter
-  - 
+  - Weapon
   - 
   - 
   - 

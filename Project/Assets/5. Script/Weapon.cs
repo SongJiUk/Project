@@ -20,9 +20,9 @@ public class Weapon : MonoBehaviour
     float rotationSpeed = 100f;
     void Update()
     {
-        if (isOrb)
-            if (WeaponManager.GetInstance.ISEQUIP)
-                transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
+    //    if (isOrb)
+    //        if (WeaponManager.GetInstance.ISEQUIP)
+    //            transform.Rotate(Vector3.up * rotationSpeed * Time.deltaTime);
 
     }
 

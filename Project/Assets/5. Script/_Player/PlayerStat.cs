@@ -120,6 +120,7 @@ public class PlayerStat : Singleton<PlayerStat>
 
 
     [SerializeField] GameObject LevelupEffect;
+    [SerializeField] EquipmentUI equipmentUI;
 
     private void Awake()
     {
@@ -242,7 +243,6 @@ public class PlayerStat : Singleton<PlayerStat>
         SetNowHP(Hpvalue);
         SetNowMP(Mpvalue);
         SetNowEXP(Expvalue);
-
         SaveData();
 
 
@@ -312,7 +312,7 @@ public class PlayerStat : Singleton<PlayerStat>
     {
         Level++;
         MaxExp = DataManager.LevelUpEXP * Level;
-
+        AudioManager.GetInstance.PlayerSound("LevelUP");
         switch(UnitCodes)
         {
             case UnitCode.WARRIOR:
@@ -371,6 +371,7 @@ public class PlayerStat : Singleton<PlayerStat>
         SetNowMP(Mpvalue);
         SetNowEXP(Expvalue);
         DamageNum.instance.LevelUP();
+        equipmentUI.LevelUP();
         SaveData();
     }
 

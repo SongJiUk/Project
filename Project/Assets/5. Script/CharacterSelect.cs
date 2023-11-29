@@ -8,19 +8,19 @@ public class CharacterSelect : MonoBehaviour
     float smoothSpeed = 3f;
     Quaternion targetRotation;
 
-    [Header("시작할때 시간 이후에 뜨는 창")]
+    [Header("???????? ???? ?????? ???? ??")]
     [SerializeField] GameObject StartJobBtn;
     [SerializeField] GameObject[] Characters;
 
 
-    [Header("스킬 프리뷰를 보는 모든 위치")]
+    [Header("???? ???????? ???? ???? ????")]
     [SerializeField] Transform StartAnimPos;
     [SerializeField] Transform[] Job_Pos;
     [SerializeField] Transform[] Job_SkillView_Pos;
     [SerializeField] Transform Origin_pos;
 
 
-    [Header("각 직업의 무기마다 사용하는 스킬 보기")]
+    [Header("?? ?????? ???????? ???????? ???? ????")]
     [SerializeField] GameObject Job_Skill_Popup;
     [SerializeField] GameObject[] Job_Explanation_Top_txt;
     [SerializeField] GameObject[] Job_Explanation_popup;
@@ -65,6 +65,7 @@ public class CharacterSelect : MonoBehaviour
         time = 0f;
         isJoom = true;
         //targetRotation = Quaternion.Euler(30.0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+
         if (myCoroutine != null) StopCoroutine(myCoroutine);
         myCoroutine = StartCoroutine(LateUpdates(_num));
         StartJobBtn.SetActive(false);

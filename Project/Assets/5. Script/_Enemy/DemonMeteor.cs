@@ -8,6 +8,7 @@ public class DemonMeteor : MonoBehaviour
     GameObject magicCircleObj;
     [SerializeField]
     GameObject MeteorObj;
+
     void Start()
     {
         Invoke("Meteor", 5f);

@@ -988,6 +988,7 @@ public class PlayerController : MonoBehaviour
         {
             if(ScreenSlotManager.GetInstance.isSlot1_Use)
             {
+                AudioManager.GetInstance.PlayerSound("DrinkPostion");
                 PlayerStat.GetInstance.GetHeel(100);
                 ScreenSlotManager.GetInstance.UsePortion(0);
                 DataManager.GetInstance.SET_INVENTORYSLOT(ScreenSlotManager.GetInstance.isSlot1_index
@@ -1016,6 +1017,7 @@ public class PlayerController : MonoBehaviour
         {
             if (ScreenSlotManager.GetInstance.isSlot2_Use)
             {
+                AudioManager.GetInstance.PlayerSound("DrinkPostion");
                 PlayerStat.GetInstance.RecoveryMp(100);
                 ScreenSlotManager.GetInstance.UsePortion(1);
                 DataManager.GetInstance.SET_INVENTORYSLOT(ScreenSlotManager.GetInstance.isSlot2_index
@@ -1116,5 +1118,13 @@ public class PlayerController : MonoBehaviour
     }
 
 
+
+    #region 사운드 관련
+
+    public void AttackSound(string _key)
+    {
+        AudioManager.GetInstance.PlaySound_PlayerAttack(_key);
+    }
+    #endregion
 
 }

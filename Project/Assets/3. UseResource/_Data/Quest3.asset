@@ -16,7 +16,7 @@ MonoBehaviour:
   Before_NPCId: 3000
   After_NPCId: 3000
   goal: "\uBCF4\uC2A4\uBAAC\uC2A4\uD130 \uC7A1\uAE30"
-  title: "\uBCF4\uC2A4\uBAAC\uC2A4\uD130 \uC7A1\uAE30"
+  title: "\uBCF4\uC2A4\uBAAC\uC2A4\uD130 \uB370\uBAAC\uB4DC\uB798\uACE4\uC744 \uC7A1\uC544\uC8FC\uC138\uC694!!"
   description: "\uBCF4\uC2A4\uBAAC\uC2A4\uD130 \uC7A1\uAE30"
   Rewarditems:
   - {fileID: 11400000, guid: c76044d8a642b6341882e805becf92df, type: 2}

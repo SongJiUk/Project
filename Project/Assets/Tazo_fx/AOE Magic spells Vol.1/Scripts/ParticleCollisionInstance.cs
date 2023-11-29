@@ -17,9 +17,11 @@ public class ParticleCollisionInstance : MonoBehaviour
     private List<ParticleCollisionEvent> collisionEvents = new List<ParticleCollisionEvent>();
     private ParticleSystem ps;
 
+    AudioSource listener;
     void Start()
     {
         part = GetComponent<ParticleSystem>();
+        listener = GetComponent<AudioSource>();
     }
     void OnParticleCollision(GameObject other)
     {
@@ -49,6 +51,11 @@ public class ParticleCollisionInstance : MonoBehaviour
         if (DestoyMainEffect == true)
         {
             Destroy(gameObject, DestroyTimeDelay + 0.5f);
+        }
+
+        if (listener != null)
+        {
+            listener.Play();
         }
     }
 }
