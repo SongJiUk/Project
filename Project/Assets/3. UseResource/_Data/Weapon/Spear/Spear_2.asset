@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 131
   _name: "\uC88B\uC740 \uCC3D"
   _itemCodeName: Spear_2
-  _tooltip: 
+  _tooltip: "\uC88B\uC740 \uCC3D\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: 4bbaa643b78381f408414b1f2eabdd04, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}

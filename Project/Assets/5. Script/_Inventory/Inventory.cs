@@ -432,12 +432,12 @@ public class Inventory : MonoBehaviour
 
                         // 슬롯에 추가
                         _items[index] = ci;
-
+                        DataManager.GetInstance.SET_INVENTORYSLOT(index, itemData.ItemCode, amount);
                         // 남은 개수 계산
                         amount = (amount > ciData.MaxAmount) ? (amount - ciData.MaxAmount) : 0;
 
                         UpdateSlot(index);
-                        DataManager.GetInstance.SET_INVENTORYSLOT(index, itemData.ItemCode, amount);
+                        
                     }
                 }
             }

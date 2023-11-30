@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 310
   _name: "\uADF8\uB0E5 \uC11D\uAD81"
   _itemCodeName: CrossBow_1
-  _tooltip: 
+  _tooltip: "\uADF8\uB0E5 \uC11D\uAD81\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: 79b4a48bedbdf364d9703ef3379cb38a, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}

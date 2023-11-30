@@ -58,6 +58,10 @@ public class Quest_Popup : MonoBehaviour
                     Quest_Reward_Amount_txt[i].text = $"X {NowQuest.Reward_Portion_Amount}";
                     
                 }
+                else if (NowQuest.Rewarditems[i].ItemType == ItemType.WeaponItem)
+                {
+                    Quest_Reward_Amount_txt[i].text = $"X 1";
+                }
                 else
                 {
                     Quest_Reward_Amount_txt[i].text = $"X {NowQuest.Reward_Gold_Amount}";
@@ -82,12 +86,17 @@ public class Quest_Popup : MonoBehaviour
 
             for (int i = 0; i < NowQuest.Rewarditems.Count; i++)
             {
+                
                 Quest_Reward_Img[i].gameObject.SetActive(true);
 
                 Quest_Reward_Img[i].sprite = NowQuest.Rewarditems[i].IconSprite;
                 if (NowQuest.Rewarditems[i].ItemType == ItemType.PortionItem)
                 {
                     Quest_Reward_Amount_txt[i].text = $"X {NowQuest.Reward_Portion_Amount}";
+                }
+                else if(NowQuest.Rewarditems[i].ItemType == ItemType.WeaponItem)
+                {
+                    Quest_Reward_Amount_txt[i].text = $"X 1";
                 }
                 else
                 {
@@ -168,6 +177,24 @@ public class Quest_Popup : MonoBehaviour
             if(NowQuest.Rewarditems[i].ItemType == ItemType.Gold)
             {
                 _inventory.GetGold(NowQuest.Reward_Gold_Amount);
+            }
+            else if(NowQuest.Rewarditems[i].ItemType == ItemType.WeaponItem)
+            {
+                WeaponItemData wid = NowQuest.Rewarditems[i] as WeaponItemData;
+                switch(DataManager.GetInstance.GET_PLAYER_JOB(DataManager.GetInstance.SLOT_NUM))
+                {
+                    case 0:
+                        if (wid.Type == Types.Dagger) _inventory.Add(NowQuest.Rewarditems[i]);
+                        break;
+                    case 1:
+                        if (wid.Type == Types.Staff) _inventory.Add(NowQuest.Rewarditems[i]);
+                        break;
+                    case 2:
+                        if (wid.Type == Types.Bow) _inventory.Add(NowQuest.Rewarditems[i]);
+                        break;
+
+                }
+               
             }
             else _inventory.Add(NowQuest.Rewarditems[i], NowQuest.Reward_Portion_Amount); 
         }

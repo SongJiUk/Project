@@ -16,8 +16,8 @@ MonoBehaviour:
   _itemcode: 1032
   _name: "\uC9F1 \uC88B\uC740 \uC5EC\uC131\uC6A9 \uC804\uC0AC \uC7A5\uAC11"
   _itemCodeName: Female_Warrior_Hand3
-  _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: fb2e7cecbe7af4d8bb197d7b13cbcb00, type: 3}
+  _tooltip: "\uC9F1 \uC88B\uC740 \uC5EC\uC131\uC6A9 \uC804\uC0AC \uC7A5\uAC11\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: 2891473dfef6e4cf48af77e55be231e9, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2

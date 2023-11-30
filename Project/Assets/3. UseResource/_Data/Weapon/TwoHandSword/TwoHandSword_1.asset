@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 120
   _name: "\uADF8\uB0E5 \uB450\uC190\uAC80"
   _itemCodeName: TwoHandSword_1
-  _tooltip: 
+  _tooltip: "\uADF8\uB0E5 \uB450\uC190\uAC80\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: 3e23a5fe20695e34f815d0eec4fc0c51, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}

@@ -16,8 +16,8 @@ MonoBehaviour:
   _itemcode: 1210
   _name: "\uADF8\uB0E5 \uC5EC\uC131\uC6A9 \uAD81\uC218 \uAC11\uC637"
   _itemCodeName: Female_Archer_Armor1
-  _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 3e4bce5241c7642d392b39886c15f562, type: 3}
+  _tooltip: "\uADF8\uB0E5 \uC5EC\uC131\uC6A9 \uAD81\uC218 \uAC11\uC637\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: de19d9a23b3ef4541a2f8e23fbe2462b, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2

@@ -473,9 +473,13 @@ public class InventoryUI : MonoBehaviour
                 itemName += $" x{amount}";
 
             if (_showRemovingPopup)
+            {
                 _popup.OpenConfirmationPopup(() => TryRemoveItem(index), itemName);
+                RemoveItem(index);
+            }
             else
                 TryRemoveItem(index);
+
         }
         // 슬롯이 아닌 다른 UI 위에 놓은 경우
         else
@@ -603,6 +607,7 @@ public class InventoryUI : MonoBehaviour
     public void RemoveItem(int index)
     {
         EditorLog($"Remove Item : Slot [{index}]");
+        DataManager.GetInstance.SET_INVENTORYSLOT(index, 0);
 
         _slotUIList[index].RemoveItem();
     }

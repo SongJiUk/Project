@@ -147,7 +147,7 @@ public class EquipmentShop_Popup : Singleton<EquipmentShop_Popup>
     public void BuyEquipmentItem()
     {
         
-        if(Player.GetInstance.CheckGold(Sell_itemdata.ItemCode))
+        if(Player.GetInstance.CheckGold(Sell_itemdata.ItemPrice))
         {
             //정말로 구매 하시겠습니까?
             RealBuy_Popup.SetActive(true);

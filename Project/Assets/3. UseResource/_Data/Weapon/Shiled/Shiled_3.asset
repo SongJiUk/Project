@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 112
   _name: "\uC9F1 \uC88B\uC740 \uBC29\uD328"
   _itemCodeName: Shiled_3
-  _tooltip: 
+  _tooltip: "\uC9F1 \uC88B\uC740 \uBC29\uD328\uC774\uB2E4."
   _iconSprite: {fileID: 0}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}

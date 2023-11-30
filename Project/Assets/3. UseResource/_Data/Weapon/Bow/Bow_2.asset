@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 301
   _name: "\uC88B\uC740 \uD65C"
   _itemCodeName: Bow_2
-  _tooltip: 
+  _tooltip: "\uC88B\uC740 \uD65C\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: d8b2f01ad85c2d743b96f6b9c8fdc15b, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}

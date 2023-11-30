@@ -16,8 +16,8 @@ MonoBehaviour:
   _itemcode: 3201
   _name: "\uC88B\uC740 \uAD81\uC218 \uBAA8\uC790"
   _itemCodeName: Archer_Helmat2
-  _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 6980abda02f3f46c7a9ceef8df7e4048, type: 3}
+  _tooltip: "\uC88B\uC740 \uAD81\uC218 \uBAA8\uC790\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: 1570d4123d53b4cd2961042ccf2faf9f, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2

@@ -16,8 +16,8 @@ MonoBehaviour:
   _itemcode: 2211
   _name: "\uC88B\uC740 \uB0A8\uC131\uC6A9 \uAD81\uC218 \uAC11\uC637"
   _itemCodeName: male_Archer_Armor2
-  _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: 3e4bce5241c7642d392b39886c15f562, type: 3}
+  _tooltip: "\uC88B\uC740 \uB0A8\uC131\uC6A9 \uAD81\uC218 \uAC11\uC637\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: e17c6f713c4bb49a39d5f2cad5e7299e, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2

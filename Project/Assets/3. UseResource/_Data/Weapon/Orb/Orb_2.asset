@@ -16,7 +16,7 @@ MonoBehaviour:
   _itemcode: 211
   _name: "\uC88B\uC740 \uC624\uBE0C"
   _itemCodeName: Orb_2
-  _tooltip: 
+  _tooltip: "\uC88B\uC740 \uC624\uBE0C\uC774\uB2E4."
   _iconSprite: {fileID: 21300000, guid: 5b7e59ef429695a4d92f4dae17431e84, type: 3}
   _dropItemPrefab: {fileID: 0}
   _SettingItem: {fileID: 0}

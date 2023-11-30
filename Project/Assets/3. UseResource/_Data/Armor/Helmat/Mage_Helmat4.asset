@@ -17,8 +17,9 @@ MonoBehaviour:
   _name: "\uC138\uACC4\uC5D0\uC11C \uB450\uBC88\uC9F8\uB85C \uC88B\uC740 \uB9C8\uBC95\uC0AC
     \uBAA8\uC790"
   _itemCodeName: Mage_Helmat4
-  _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: b91cf1dbd490c41aab12079d0311cdf5, type: 3}
+  _tooltip: "\uC138\uACC4\uC5D0\uC11C \uB450\uBC88\uC9F8\uB85C \uC88B\uC740 \uB9C8\uBC95\uC0AC
+    \uBAA8\uC790\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: 786b479418da34c929ed3b080b7d7ac5, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2

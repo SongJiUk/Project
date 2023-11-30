@@ -16,8 +16,8 @@ MonoBehaviour:
   _itemcode: 1041
   _name: "\uC88B\uC740 \uC5EC\uC131\uC6A9 \uC804\uC0AC \uC2E0\uBC1C"
   _itemCodeName: Female_Warrior_Leg2
-  _tooltip: 
-  _iconSprite: {fileID: 21300000, guid: efb02282f82714606817167f8bc958eb, type: 3}
+  _tooltip: "\uC88B\uC740 \uC5EC\uC131\uC6A9 \uC804\uC0AC \uC2E0\uBC1C\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: 9c13e31b9e63045eb86e26c16662e96f, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2

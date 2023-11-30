@@ -16,8 +16,8 @@ MonoBehaviour:
   _itemcode: 3001
   _name: "\uC88B\uC740 \uC804\uC0AC \uBAA8\uC790"
   _itemCodeName: Warrior_Helmat2
-  _tooltip: "\uC804\uC0AC \uBAA8\uC7902\uC774\uB2E4."
-  _iconSprite: {fileID: 21300000, guid: ded77ef94631d425787fb06ea53496fa, type: 3}
+  _tooltip: "\uC88B\uC740 \uC804\uC0AC \uBAA8\uC790\uC774\uB2E4."
+  _iconSprite: {fileID: 21300000, guid: 12c6b760cab33447e887e04ab5b5b087, type: 3}
   _dropItemPrefab: {fileID: 5107626381398824953, guid: f5b8bb4d57ff5ce45b488c3ee94aea5d, type: 3}
   _SettingItem: {fileID: 0}
   _itemtype: 2

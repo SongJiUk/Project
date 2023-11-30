@@ -110,14 +110,15 @@ public class NPC : MonoBehaviour
             if (npcid == QuestManager.GetInstance.NPCID)
             {
                 QuestManager.GetInstance.NPCUP_ICON = NPCUP_ICON;
-
-                if (QuestManager.GetInstance.isQuesting)
-                {
-                    if (NPCUP_ICON != null) NPCUP_ICON.IsQuesting();
-                }
-                else if (QuestManager.GetInstance.isQuestClear)
+                
+                if (QuestManager.GetInstance.isQuestClear)
                 {
                     if (NPCUP_ICON != null) NPCUP_ICON.ClearQuest();
+                    
+                }
+                else if (QuestManager.GetInstance.isQuesting)
+                {
+                    if (NPCUP_ICON != null) NPCUP_ICON.IsQuesting();
                 }
                 else
                 {
