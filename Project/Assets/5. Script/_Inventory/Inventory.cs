@@ -146,7 +146,7 @@ public class Inventory : MonoBehaviour
                 var SlotCount = DataManager.GetInstance.GET_INVENTORYSLOTCOUNT(i);
 
                 if(ItemManager.GetInstance.GetWeaponItemData(SlotNum) != null)
-                {
+                {   
                     Add(ItemManager.GetInstance.GetWeaponItemData(SlotNum), SlotCount);
                 }
 

@@ -145,7 +145,7 @@ public class PlayerSlotScene : MonoBehaviour
     {
         if(_isanswer)
         {
-            DataManager.GetInstance.DeleteData(SlotNum);
+            
             playercutomizing.gameObject.SetActive(false);
             UseSlot[SlotNum].SetActive(false);
             NoUseSlot[SlotNum].SetActive(true);
@@ -156,8 +156,7 @@ public class PlayerSlotScene : MonoBehaviour
             GameStart_Btn.SetActive(false);
             DeleteSlot_Btn.SetActive(false);
 
-            DataManager.GetInstance.LoadData();
-
+            DataManager.GetInstance.DeleteData(SlotNum);
         }
         else DeleteSlot_Popup.SetActive(false);
     }

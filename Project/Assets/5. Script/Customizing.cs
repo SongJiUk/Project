@@ -401,7 +401,7 @@ public class Customizing : Singleton<Customizing>
                 }
                 else
                 {
-                    Female_Default_Body.SetActive(true);
+                    male_Default_Body.SetActive(true);
                     for (int i = 0; i < male_Armor_Top.Count; i++)
                     {
                         male_Armor_Top[i].gameObject.SetActive(false);

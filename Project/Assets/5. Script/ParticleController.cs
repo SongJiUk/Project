@@ -16,9 +16,12 @@ public class ParticleController : MonoBehaviour
         if(!CheckScriptLoad)
         {
             if (null == ParticleSystem) ParticleSystem = this.GetComponent<ParticleSystem>();
-            ParticleSystem.Stop();
+            if(ParticleSystem != null) ParticleSystem.Stop();
         }
-        
+
+        if(PlayerStat.GetInstance != null) DAMAGE = PlayerStat.GetInstance.Damage;
+
+
     }
 
     private void OnEnable()
